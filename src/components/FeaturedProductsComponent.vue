@@ -1,14 +1,14 @@
 <template>
     <div class="container-featured-products">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col q-pa-md">
                 <div class="text-title">
                     Productos destacados
-                    <a href="" class="q-pl-md">Ver más</a>
+                    <a href="" class="q-pl-md enlace-ver">Ver más</a>
                 </div>
             </div>
-        </div>
-        <div class="row justify-center q-mb-md">
+        </div> -->
+        <!-- <div class="row justify-center q-mb-md">
             <div class="column justify-center text-center">
                 <div class="row justify-center">
                     <div class="col-4-md q-pa-md q-gutter-sm">
@@ -82,11 +82,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col">
                 <div class="row">
-                    <div class="container col text-white bg-primary">
+                    <div class="container col text-white bg-primary img-mdp-ventas">
                         <div class="row">
                             <div class="col q-pa-md">
                                 <div class="pdt-mpagos">
@@ -154,6 +154,18 @@ export default defineComponent ( { name: 'FeaturedProductsComponent' } )
 .hola{
     padding-left: 35%;
 }
+.container:hover .img-mpagos{
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.container:hover .img-ventasmd{
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+}
 
 .img-mpagos{
     padding-top: 13%;
@@ -175,7 +187,7 @@ export default defineComponent ( { name: 'FeaturedProductsComponent' } )
     font-family: 'Poppins-SemiBold';
 }
 
-a{
+.enlace-ver{
     color:#EB0004;
     font-family: 'Poppins-Regular';
     font-size: 19px;

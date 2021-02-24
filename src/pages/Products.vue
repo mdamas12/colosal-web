@@ -1,5 +1,5 @@
 <template>
-    <q-page class="container-products">
+    <q-page class="container-products q-pt-md">
         <q-breadcrumbs gutter="sm" class="q-px-md text-grey" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs"/>
@@ -15,7 +15,7 @@
     </q-toolbar>
         <q-splitter
       v-model="splitterModel"
-
+    
     >
 
       <template v-slot:before class="font-splitter">
@@ -87,14 +87,14 @@
                  <div class="row justify-center q-mb-md">
             <div class="column justify-center text-center">
                 <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
                                 <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                    Doritos
                                 </div>
                                 <div class="text-description-product">
                                     150Gr Frito Lay
@@ -110,22 +110,22 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                   Aceite Soya
                                 </div>
                                 <div class="text-description-product">
-                                    150Gr Frito Lay
+                                   500ml Vatel
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center q-pt-none">
                                 <div class="text-price-product">
-                                    $150
+                                   $169.99
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center">
@@ -133,14 +133,89 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                            <q-card-section class="text-center">
+                                <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
+                            </q-card-section> 
+                            <q-card-section class="text-center">
+                                <div class="text-name-product">
+                                     Nutella
+                                </div>
+                                <div class="text-description-product">
+                                   750g Ferrero
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center q-pt-none">
+                                <div class="text-price-product">
+                                   $189.99
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center">
+                                <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="row justify-center q-mb-md">
+            <div class="column justify-center text-center">
+                <div class="row justify-center">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                            <q-card-section class="text-center">
+                                <q-img src="~assets/img/blancaflor.png" class="img-product"></q-img>
+                            </q-card-section> 
+                            <q-card-section class="text-center">
+                                <div class="text-name-product">
+                                    Harina de Trigo
+                                </div>
+                                <div class="text-description-product">
+                                    1Kg Blancaflor
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center q-pt-none">
+                                <div class="text-price-product">
+                                   $69.99
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center">
+                                <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                            <q-card-section class="text-center">
+                                <q-img src="~assets/img/galleta.png" class="img-product"></q-img>
+                            </q-card-section> 
+                            <q-card-section class="text-center">
+                                <div class="text-name-product">
+                                    Galleta Soda
+                                </div>
+                                <div class="text-description-product">
+                                    240gr El Sol
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center q-pt-none">
+                                <div class="text-price-product">
+                                    $9.99
+                                </div>
+                            </q-card-section>
+                            <q-card-section class="text-center">
+                                <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
                                 <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                    Doritos
                                 </div>
                                 <div class="text-description-product">
                                     150Gr Frito Lay
@@ -162,22 +237,22 @@
                 <div class="row justify-center q-mb-md">
             <div class="column justify-center text-center">
                 <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                    Aceite Soya
                                 </div>
                                 <div class="text-description-product">
-                                    150Gr Frito Lay
+                                    500ml Vatel
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center q-pt-none">
                                 <div class="text-price-product">
-                                    $150
+                                   $169.99
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center">
@@ -185,22 +260,22 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                    Nutella
                                 </div>
                                 <div class="text-description-product">
-                                    150Gr Frito Lay
+                                   750g Ferrero
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center q-pt-none">
                                 <div class="text-price-product">
-                                    $150
+                                    $189.99
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center">
@@ -208,97 +283,22 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                        <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/blancaflor.png" class="img-product"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
-                                    Doritos Mega Queso
+                                    Harina de Trigo
                                 </div>
                                 <div class="text-description-product">
-                                    150Gr Frito Lay
+                                    1Kg Blancaflor
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center q-pt-none">
                                 <div class="text-price-product">
-                                    $150
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center">
-                                <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                            </q-card-section>
-                        </q-card>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="row justify-center q-mb-md">
-            <div class="column justify-center text-center">
-                <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
-                            <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
-                            </q-card-section> 
-                            <q-card-section class="text-center">
-                                <div class="text-name-product">
-                                    Doritos Mega Queso
-                                </div>
-                                <div class="text-description-product">
-                                    150Gr Frito Lay
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center q-pt-none">
-                                <div class="text-price-product">
-                                    $150
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center">
-                                <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                            </q-card-section>
-                        </q-card>
-                    </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
-                            <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
-                            </q-card-section> 
-                            <q-card-section class="text-center">
-                                <div class="text-name-product">
-                                    Doritos Mega Queso
-                                </div>
-                                <div class="text-description-product">
-                                    150Gr Frito Lay
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center q-pt-none">
-                                <div class="text-price-product">
-                                    $150
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center">
-                                <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                            </q-card-section>
-                        </q-card>
-                    </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
-                            <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
-                            </q-card-section> 
-                            <q-card-section class="text-center">
-                                <div class="text-name-product">
-                                    Doritos Mega Queso
-                                </div>
-                                <div class="text-description-product">
-                                    150Gr Frito Lay
-                                </div>
-                            </q-card-section>
-                            <q-card-section class="text-center q-pt-none">
-                                <div class="text-price-product">
-                                    $150
+                                   $69.99
                                 </div>
                             </q-card-section>
                             <q-card-section class="text-center">
@@ -365,11 +365,11 @@ export default defineComponent ({
     font-family: 'Poppins-Regular';
 }
 
-a{
+/* a{
     color:#EB0004;
     font-family: 'Poppins-Regular';
     font-size: 19px;
-}
+} */
 
 .texto-breadcrumbs{
     font-family: 'Poppins-Regular';

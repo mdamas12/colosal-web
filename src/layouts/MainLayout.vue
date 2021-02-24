@@ -10,27 +10,27 @@
       </div> -->
       <q-toolbar class="q-pa-md">
         <q-toolbar-title>
-          <q-img src="~assets/img/logo.png" style="width:98px">
+          <q-img src="~assets/img/logo.png" style="width:98px" class="cursor-pointer" @click="$router.push('/')">
           </q-img>
           <q-btn flat icon="menu" label="Productos" text-color="redsito" class="q-ml-sm btn-menu">
                 <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                   <q-list>
-                    <q-item>
-                      <q-item-section>Open...</q-item-section>
+                    <q-item clickable class="font-list">
+                      <q-item-section>Almacén</q-item-section>
                         <q-item-section side>
                           <q-icon name="keyboard_arrow_right" color="bluesito"/>
                         </q-item-section>
                         <q-menu anchor="top end" self="top start">
                           <q-list>
-                            <q-item v-for="n in 3" :key="n">
-                              <q-item-section>Submenu</q-item-section>
+                            <q-item v-for="n in 3" :key="n" clickable class="font-list">
+                              <q-item-section>Harinas y pastas</q-item-section>
                               <q-item-section side>
                                 <q-icon name="keyboard_arrow_right" color="bluesito" />
                               </q-item-section>
                               <q-menu anchor="top end" self="top start">
                                   <q-list>
-                                    <q-item v-for="n in 3" :key="n">
-                                      <q-item-section>Submenu 2</q-item-section>
+                                    <q-item v-for="n in 3" :key="n" clickable class="font-list">
+                                      <q-item-section>Granos y café</q-item-section>
                                       <q-item-section side>
                                         <q-icon name="keyboard_arrow_right" color="bluesito" />
                                       </q-item-section>
@@ -41,6 +41,10 @@
                           </q-list>
                         </q-menu>
                     </q-item>
+                    <q-separator />
+                    <q-item clickable v-close-popup to="/products" class="font-all-products">
+              <q-item-section><a href="/products">Todos los productos</a></q-item-section>
+            </q-item>
                   </q-list>
                 </q-menu>
               </q-btn>
@@ -108,7 +112,7 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue'
+
 
 const linksData = [
   {
@@ -159,7 +163,7 @@ import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { EssentialLink },
+  // components: { EssentialLink },
   setup () {
     const leftDrawerOpen = ref(false)
     const essentialLinks = ref(linksData)
@@ -191,5 +195,14 @@ export default defineComponent({
 .btn-menu{
   font-family: 'Poppins-Regular';
   font-size: 12px;
+}
+.font-list{
+  font-family: 'Poppins-SemiBold';
+  font-size: 12px;
+}
+.font-all-products{
+  font-family: 'Poppins-Medium';
+  font-size: 12px;
+  color: #020B68;
 }
 </style>
