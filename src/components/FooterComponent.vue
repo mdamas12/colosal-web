@@ -3,7 +3,7 @@
         <div class="row justify-around">
             <div class="column items-center q-pa-md">
                 <div class="row">
-                    <div class="col q-pa-md">
+                    <div class="col-12 col-md q-pa-md text-center">
                             <div>
                                 <img src="~assets/img/Logo-iso-colosal.svg">
                             </div>
@@ -11,42 +11,42 @@
                                 Somos mayoristas e importadores directos de una gran variedad de productos.
                             </div>
                             <div class="text-social-footer text-white q-pt-md">
-                                <img src="~assets/img/icon-mail.svg">
+                                <q-icon name="mail_outline" style="font-size: 18px;"/>
                                 design@galuapps.com
                             </div>
                     </div>
-                    <div class="col q-pa-md">
+                    <div class="col-12 col-md q-pa-md text-center">
                         <div class="text-title-footer text-white">
                             Social
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                            <img src="~assets/img/icon-instagram.svg">
+                            <q-icon name="font_download" />
                             @minimarketcolosal
                         </div>
                     </div>
-                    <div class="col q-pa-md">
+                    <div class="col-12 col-md q-pa-md text-center">
                         <div class="text-title-footer text-white">
                             Sucursales
                         </div>
                          <div class="text-parrafo-footer text-white q-pt-md">
-                            <img src="~assets/img/Icon-location-on.svg">
+                            <q-icon name="location_on" style="font-size: 15px;"/>
                            C.C Guayana Mall, Planta baja.
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                            <img src="~assets/img/Icon-location-on.svg">
+                            <q-icon name="location_on" style="font-size: 15px;"/>
                            C.C Las Cúpulas.
                         </div>
                     </div>
-                    <div class="col q-pa-md">
+                    <div class="col-12 col-md q-pa-md text-center">
                         <div class="text-title-footer text-white">
                             Contáctanos
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                            <img src="~assets/img/icon-phone.svg">
+                            <q-icon name="phone" style="font-size: 15px;"/>
                            +58 412 877 0825
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                            <img src="~assets/img/icon-phone.svg">
+                            <q-icon name="phone" style="font-size: 15px;"/>
                            +58 412 877 0825
                         </div>
                     </div>

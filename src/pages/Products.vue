@@ -6,7 +6,12 @@
     </q-breadcrumbs>
     <q-toolbar>
         <q-toolbar-title>
-            <div class="text-h6 texto-all-products">Todos los productos</div>
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="text-h6 texto-all-products">Todos los productos</div>
+                </div>
+            </div>
+            
         </q-toolbar-title>
         <div>
             <div class="text-h7 q-mr-sm texto-filter">Ordenar por:</div>

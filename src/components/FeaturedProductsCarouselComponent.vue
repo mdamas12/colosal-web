@@ -1,6 +1,6 @@
 <template>
     <!-- <q-page> -->
-        <div class="container-featured-products-carousel">
+        <div class="container-featured-products-carousel q-pt-lg">
             <div class="row">
             <div class="col q-pa-md">
                 <div class="text-title">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-         <div class="container q-px-md q-mb-md">
+         <div class="container q-px-md">
                 <q-carousel
                     v-model="slide"
                     transition-prev="slide-right"
@@ -18,11 +18,11 @@
                     animated
                     arrows
                     control-color="red-10"
-                    class="bg-accent"
+                    class="bg-accent container-carousel q-px-lg"
                     >
-                    <q-carousel-slide :name="1" class="column no-wrap flex-center">
+                    <q-carousel-slide :name="1" class="col">
                         <div class="row">
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
@@ -45,7 +45,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
@@ -68,7 +68,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
@@ -93,9 +93,9 @@
                             </div>
                         </div>
                     </q-carousel-slide>
-                    <q-carousel-slide :name="2" class="column no-wrap flex-center">
+                    <q-carousel-slide :name="2" class="col">
                         <div class="row">
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
@@ -118,7 +118,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
@@ -141,7 +141,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
@@ -166,9 +166,9 @@
                             </div>
                         </div>
                     </q-carousel-slide>
-                    <q-carousel-slide :name="3" class="column no-wrap flex-center">
+                    <q-carousel-slide :name="3" class="col">
                         <div class="row">
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
@@ -191,7 +191,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
@@ -214,7 +214,7 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col q-gutter-sm q-pa-md ">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
@@ -262,7 +262,12 @@ export default defineComponent
 <style>
 .container-featured-products-carousel{
     background-color: #FAFAFA;
+    padding-left: 12%;
+    padding-right: 12%;
 }
+/* .container-carousel{
+    height: 520px;
+} */
 .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
@@ -280,8 +285,7 @@ export default defineComponent
 }
 
 .img-product{
-    width: 100%;
-    height: 100%;
+    width: 50%;
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;
@@ -310,5 +314,21 @@ export default defineComponent
 .btn-product{
     border-radius: 9px;
     font-family: 'Poppins-SemiBold';
+}
+
+@media (min-width:320px) and (max-width: 767px) {
+.container-featured-products-carousel{
+    padding-left: 0;
+    padding-right: 0;
+}
+.img-product{
+    width: 70%;
+}
+}
+
+@media (min-width:1500px){
+    .container-carousel{
+    height: 480px;
+}
 }
 </style>

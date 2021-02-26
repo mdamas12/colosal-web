@@ -1,16 +1,17 @@
 <template>
-    <div class="container-categories q-pa-md">
+<div class="container-categories-1">
+     <div class="container-categories">
         <div class="row q-pa-md">
-            <div class="col">
+            <div class="col q-px-lg">
                 <div class="text-title">
                     Categorías
                 </div>
             </div>
         </div>
         <div class="row q-pa-md justify-center">
-            <div class="col justify-center text-center">
+            <div class="col justify-center text-center padding-cat">
                 <div class="row">
-                    <div class="col text-center q-gutter-sm">
+                    <div class="col-12 col-md text-center q-gutter-sm">
                         <div class="div-carniceria q-pa-md">
                             <q-img src="~assets/img/img-carniceria.png" class="image-categorie"></q-img>
                             <div class="middle">
@@ -21,7 +22,7 @@
                             Carnicería
                         </div>
                     </div>
-                    <div class="col text-center q-gutter-sm">
+                    <div class="col-12 col-md text-center q-gutter-sm">
                         <div class="div-bebidas q-pa-md">
                             <q-img src="~assets/img/img-bebidas.png" class="image-categorie"></q-img>
                             <div class="middle">
@@ -32,7 +33,7 @@
                             Bebidas
                         </div>
                     </div>
-                    <div class="col text-center q-gutter-sm">
+                    <div class="col-12 col-md text-center q-gutter-sm">
                         <div class="div-almacen q-pa-md">
                             <q-img src="~assets/img/img-almacen.png" class="image-categorie"></q-img>
                             <div class="middle">
@@ -48,6 +49,8 @@
             </div>
         </div>
     </div>
+</div>
+   
 </template>
 
 <script lang="ts">
@@ -56,6 +59,11 @@ export default defineComponent ( { name: 'CategoriesComponent' } )
 </script>
 
 <style>
+.container-categories-1{
+    background-color:#FAF3EB;
+    padding-left: 10%;
+    padding-right: 10%;
+}
 .container-categories{
     background-color: #FAF3EB;
 }
@@ -120,6 +128,18 @@ export default defineComponent ( { name: 'CategoriesComponent' } )
 .btn-category{
     border-radius: 9px;
     font-family: 'Poppins-SemiBold';
+}
+
+.padding-cat{
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+@media (min-width: 1700px){
+    .container-categories-1{
+        padding-left: 11%;
+        padding-right: 11%;
+    }
 }
 
 </style>

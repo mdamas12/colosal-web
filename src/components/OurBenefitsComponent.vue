@@ -1,16 +1,17 @@
 <template>
-    <div class="container-benefits q-pa-md">
+<div class="container-benefits-1">
+ <div class="container-benefits">
         <div class="row">
-            <div class="col q-pt-md">
+            <div class="col q-gutter-sm col-md q-pt-lg q-px-md">
                <div class="text-title text-dark">
                    Nuestros beneficios
                </div>
             </div>
         </div>
         <div class="row justify-center">
-            <div class="col justify-center text-center">
+            <div class="column justify-center text-center q-mb-lg">
                 <div class="row justify-center">
-                    <div class="col q-pa-md q-gutter-sm">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm">
                         <q-card class="my-card q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
@@ -25,13 +26,13 @@
                               </div>
                             </q-card-section>
                             <q-card-section class="q-pt-none text-center">
-                                <div class="text">
-                                   Todos los pagos se procesan instantáneamente a través de un protocolo de pago seguro.
+                                <div class="text q-px-md">
+                                   Todos los pagos se procesan instantáneamente a través de un protocolo seguro.
                                 </div>
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col q-pa-md q-gutter-sm">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm">
                         <q-card class="my-card q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
@@ -46,13 +47,13 @@
                               </div>
                             </q-card-section>
                             <q-card-section class="q-pt-none text-center">
-                                <div class="text">
+                                <div class="text q-px-lg">
                                    Todas las compras superiores a $ 399 son elegibles para envío gratis.
                                 </div>
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col q-pa-md q-gutter-sm">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm">
                         <q-card class="my-card q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
@@ -67,7 +68,7 @@
                               </div>
                             </q-card-section>
                             <q-card-section class="q-pt-none text-center">
-                                <div class="text">
+                                <div class="text q-px-md">
                                     Cada uno de nuestros productos ha sido elaborado con los mejores materiales.
                                 </div>
                             </q-card-section>
@@ -77,6 +78,8 @@
             </div>
         </div>
     </div>
+</div>
+   
 </template>
 
 <script lang="ts">
@@ -85,6 +88,11 @@ export default defineComponent ( { name: 'OurBenefitsComponent' } )
 </script>
 
 <style>
+.container-benefits-1{
+    background-color:#DFEBFF;
+    padding-left: 12%;
+    padding-right: 12%;
+}
 .container-benefits{
     /* height: 530px; */
     background-color:#DFEBFF;
@@ -124,7 +132,5 @@ border-radius: 27px;
     font-family: 'Poppins-Regular';
     font-size: 13px;
     color: #808080;
-    padding-left: 20%;
-    padding-right: 20%;
 }
 </style>

@@ -7,7 +7,7 @@
         </q-breadcrumbs>
         <div class="container">
             <div class="row">
-                <div class="col q-gutter-sm q-pa-md">
+                <div class="col-12 col-md q-gutter-sm q-pa-md">
                     <q-carousel
                         swipeable
                         animated
@@ -31,7 +31,7 @@
                     <div class="text-price_fventa-product">$129.99</div>
                     <div class="text-quantity-product">Cantidad:</div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6 col-md">
                             
                             <div class="border">
                                 <span class="border">
@@ -43,7 +43,7 @@
                             
  
                         </div>
-                        <div class="col">
+                        <div class="col-6 col-md">
                             <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                         </div>
                     </div>
