@@ -79,7 +79,7 @@
               </div>
             </q-menu>
           </q-btn>
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"></q-btn>
+          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car" @click="$router.push({path: '/cart'})"></q-btn>
         </div>
       </q-toolbar>
     </q-header>
