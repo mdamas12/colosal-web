@@ -5,7 +5,7 @@
             <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs" to="/products"/>
             <q-breadcrumbs-el label="Almacén" class="texto-breadcrumbs text-bluesito"/>
         </q-breadcrumbs>
-        <div class="container">
+        <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
                     <q-carousel
@@ -14,11 +14,12 @@
                         v-model="slide"
                         thumbnails
                         infinite
+                        
                         >
-                        <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg"></q-carousel-slide>
-                        <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-                        <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-                        <q-carousel-slide :name="4" img-src="~assets/img/dorito.png" />
+                        <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="border-img-slide"></q-carousel-slide>
+                        <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" class="border-img-slide"/>
+                        <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" class="border-img-slide"/>
+                        <q-carousel-slide :name="4" img-src="~assets/img/dorito.png" class="border-img-slide"/>
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
@@ -48,15 +49,15 @@
                         </div>
                     </div>
                     <div class="title-nota-extra">Nota extra:</div>
-                    <div class="text-nota-extra">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
                 </div>
             </div>
         </div>
-        <div class="container-description-product q-px-md">
+        <div class="container-description-product q-px-md q-pt-xl">
             <div class="row">
                 <div class="col">
                     <div class="text-title-description">Descripción del producto</div>
-                    <div class="text-description q-pa-md">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="text-description q-pa-md text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
                 </div>
             </div>
         </div>
@@ -86,6 +87,11 @@ export default defineComponent ({
 }
 .container-detail-product{
     background-color: #FFFFFF;
+}
+.container-detail-product2{
+    background-color: #FFFFFF;
+    padding-left: 12%;
+    padding-right: 12%;
 }
 .texto-breadcrumbs{
     font-family: 'Poppins-Regular';
@@ -137,6 +143,8 @@ export default defineComponent ({
 }
 .container-description-product{
     background-color: #FAFAFA;
+    padding-left: 13%;
+    padding-right: 13%;
 }
 .container-featured-products{
     background-color: #FAFAFA;
@@ -160,5 +168,9 @@ export default defineComponent ({
 .text-description-product{
     font-family: 'Poppins-Regular';
     font-size: 16px;
+}
+
+.border-img-slide{
+    border-radius: 12px;
 }
 </style>

@@ -16,7 +16,7 @@
         <div>
             <div class="text-h7 q-mr-sm texto-filter">Ordenar por:</div>
         </div>
-        <div> <q-btn label="Popular" icon-right="keyboard_arrow_down" class="btn-filter"></q-btn></div>
+        <div class="q-pr-sm"> <q-btn label="Popular" icon-right="keyboard_arrow_down" class="btn-filter"></q-btn></div>
     </q-toolbar>
         <q-splitter
       v-model="splitterModel"
@@ -90,12 +90,12 @@
       <template v-slot:after>
         <div class="q-pa-md">
                  <div class="row justify-center q-mb-md">
-            <div class="column justify-center text-center">
+            <div class="col justify-center text-center">
                 <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -115,10 +115,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -138,10 +138,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/nutella.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -165,12 +165,12 @@
             </div>
         </div>
                 <div class="row justify-center q-mb-md">
-            <div class="column justify-center text-center">
+            <div class="col justify-center text-center">
                 <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/blancaflor.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -190,10 +190,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/galleta.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/galleta.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -213,10 +213,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -240,12 +240,12 @@
             </div>
         </div>
                 <div class="row justify-center q-mb-md">
-            <div class="column justify-center text-center">
+            <div class="col justify-center text-center">
                 <div class="row justify-center">
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -265,10 +265,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/nutella.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -288,10 +288,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-4-md q-pa-md q-gutter-sm cursor-pointer">
+                    <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                         <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
                             <q-card-section class="text-center">
-                                <q-img src="~assets/img/blancaflor.png" class="img-product"></q-img>
+                                <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
                             </q-card-section> 
                             <q-card-section class="text-center">
                                 <div class="text-name-product">
@@ -383,21 +383,20 @@ export default defineComponent ({
 .my-card{
     border-radius: 9px;
 }
-.my-card:hover .img-product{
+.my-card:hover .img-product2{
     -webkit-transform: scale(1.00);
     transform: scale(1.00);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
 }
 
-.img-product{
-    width: 100%;
-    height: 100%;
+/* .img-product2{
+    width: 70%;
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
-}
+} */
 
 .text-title{
     font-family: 'Poppins-SemiBold';
@@ -429,5 +428,17 @@ export default defineComponent ({
 
 .texto-all-products{
     font-family: 'Poppins-Regular';
+}
+
+/* @media (min-width: 320px) and (min-height:1022px){
+    .img-product2{
+        width: 30%;
+    }
+} */
+
+@media (min-width:1023px){
+    .img-product2{
+        width: 70%;
+    }
 }
 </style>
