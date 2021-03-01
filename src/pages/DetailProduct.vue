@@ -1,5 +1,5 @@
 <template>
-    <q-page class="container-detail-product">
+    <q-page class="container-detail-product q-pt-md">
         <q-breadcrumbs gutter="sm" class="q-px-md text-grey" active-color="grey">
             <q-breadcrumbs-el icon="home" to="/" />
             <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs" to="/products"/>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-description-product q-px-md q-pt-xl">
+        <div class="container-description-product q-px-md q-pt-lg">
             <div class="row">
                 <div class="col">
                     <div class="text-title-description">Descripción del producto</div>

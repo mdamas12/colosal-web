@@ -265,9 +265,9 @@ export default defineComponent
     padding-left: 12%;
     padding-right: 12%;
 }
-/* .container-carousel{
-    height: 520px;
-} */
+.container-carousel{
+    height: 425px;
+}
 .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;

@@ -17,7 +17,7 @@
       <div class="texto-slide1">
         <div class="col">
           <div class="row items-center q-pa-md">
-            <div class="col-4 justify-center q-pa-md">
+            <div class="col-4 q-pa-md">
                <div class="text-h3 q-mb-md">
                 Tu minimarket de <span class="color-text">Confia<span class="subrayar">nza</span></span>
               </div>
