@@ -79,7 +79,8 @@
               </div>
             </q-menu>
           </q-btn>
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"></q-btn>
+          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md"></q-btn>
+
         </div>
       </q-toolbar>
     </q-header>
@@ -179,8 +180,7 @@ export default defineComponent({
 }
 .btn-car{
   border-radius: 9px;
-  font-family: 'Poppins-Regular';
-  font-size: 12px;
+  font-family: 'Poppins-SemiBold';
 }
 .text-promo{
   font-family: 'Poppins-SemiBold';

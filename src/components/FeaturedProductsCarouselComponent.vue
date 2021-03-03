@@ -2,13 +2,13 @@
     <!-- <q-page> -->
         <div class="container-featured-products-carousel q-pt-lg">
             <div class="row">
-            <div class="col q-pa-md">
-                <div class="text-title">
-                    Productos destacados
-                    <a href="" class="q-pl-md enlace-ver">Ver más</a>
+                <div class="col q-pa-md">
+                    <div class="text-title">
+                        Productos destacados
+                        <a href="" class="q-pl-md enlace-ver">Ver más</a>
+                    </div>
                 </div>
             </div>
-        </div>
          <div class="container q-px-md">
                 <q-carousel
                     v-model="slide"
@@ -21,8 +21,91 @@
                     class="bg-accent container-carousel q-px-lg"
                     >
                     <q-carousel-slide :name="1" class="col">
-                        <div class="row">
-                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
+                        <div class="row" v-if="load">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                                <q-card class="q-pt-md">
+                                    <q-card-section align="center" class="q-gutter-md">
+                                        <q-skeleton type="circle" size="100px" bordered />
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                    </q-card-actions>
+                                </q-card>
+                            </div>
+                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                                <q-card class="q-pt-md">
+                                    <q-card-section align="center" class="q-gutter-md">
+                                        <q-skeleton type="circle" size="100px" bordered />
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                    </q-card-actions>
+                                </q-card>
+                            </div>
+                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                                <q-card class="q-pt-md">
+                                    <q-card-section align="center" class="q-gutter-md">
+                                        <q-skeleton type="circle" size="100px" bordered />
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-section>
+                                        <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                    </q-card-section>
+                                    <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                    </q-card-actions>
+                                </q-card>
+                            </div>
+                        </div>
+                        <div class="row" v-else>
+                            <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="my-card">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
@@ -253,7 +336,13 @@ export default defineComponent
         data(){
             return{
                 slide:1,
+                load: true
             }
+        },
+        mounted (){
+             setTimeout(() => {
+            this.load = false
+        }, 3000)
         }
     })
 
