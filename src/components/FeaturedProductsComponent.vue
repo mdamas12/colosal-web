@@ -21,19 +21,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container col-12 col-md text-white bg-red-10">
+                    <div class="container-ws col-12 col-md text-white">
                         <div class="row items-center">
                             <div class="col-12 col-md q-pa-md">
                                 <div class="img-ventasmd">
-                                     <q-img src="~assets/img/Checking-boxes-rafiki.svg"></q-img>
+                                     <q-img src="~assets/img/Personaje-Whatsapp.svg"></q-img>
                                 </div>
                             </div>
                             <div class="col q-pa-md q-mx-md">
                                 <div class="pdt-ventasmd text-h6 text-right">
-                                    Ventas al mayor y al detal
+                                    Contáctanos a nuestro WhatsApp
                                 </div>
                                 <div class="column items-end q-pt-md">
-                                    <q-btn label="Ver Más" text-color="black" color="white" size="md" class="btn"></q-btn>  
+                                    <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>  
                                 </div>
                             </div>
                         </div>
@@ -60,6 +60,9 @@ export default defineComponent ( { name: 'FeaturedProductsComponent' } )
 .container-featured-products{
     background-color: #FAFAFA;
 }
+.container-ws{
+    background-color: #00BFA5;
+}
 
 .pdt-mpagos{
     /* padding-top: 30%; */
@@ -75,17 +78,13 @@ export default defineComponent ( { name: 'FeaturedProductsComponent' } )
     font-family: 'Poppins-SemiBold';
     /* font-size: 25px; */
 }
-
-/* .hola{
-    padding-left: 35%;
-} */
 .container:hover .img-mpagos{
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
 }
-.container:hover .img-ventasmd{
+.container-ws:hover .img-ventasmd{
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;

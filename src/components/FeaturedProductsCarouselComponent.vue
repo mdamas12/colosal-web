@@ -23,7 +23,7 @@
                     <q-carousel-slide :name="1" class="col">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
                                     </q-card-section>
@@ -50,7 +50,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
                                     </q-card-section>
@@ -77,7 +77,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
                                     </q-card-section>
@@ -105,22 +105,22 @@
                             </div>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="my-card">
+                            <div class="col-4 col-3-md q-gutter-sm q-pa-md" v-for="product in products" :key="product.id">
+                                <q-card class="my-card card2">
                                     <q-card-section class="text-center">
-                                        <q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+                                        <q-img v-bind:xsrc="product.image" class="img-product"></q-img>
                                     </q-card-section> 
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
-                                            Doritos
+                                            {{product.name}}
                                         </div>
                                         <div class="text-description-product">
-                                            150Gr Frito Lay
+                                           {{product.description}}
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <div class="text-price-product">
-                                            $150
+                                            {{product.price}}
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -128,8 +128,8 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                                <q-card class="my-card">
+                            <!-- <div class="col-12 col-md q-gutter-sm q-pa-md ">
+                                <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product"></q-img>
                                     </q-card-section> 
@@ -152,7 +152,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                                <q-card class="my-card">
+                                <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product"></q-img>
                                     </q-card-section> 
@@ -173,10 +173,10 @@
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                                     </q-card-section>
                                 </q-card>
-                            </div>
+                            </div> -->
                         </div>
                     </q-carousel-slide>
-                    <q-carousel-slide :name="2" class="col">
+                    <!-- <q-carousel-slide :name="2" class="col">
                         <div class="row">
                             <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
@@ -248,8 +248,8 @@
                                 </q-card>
                             </div>
                         </div>
-                    </q-carousel-slide>
-                    <q-carousel-slide :name="3" class="col">
+                    </q-carousel-slide> -->
+                    <!-- <q-carousel-slide :name="3" class="col">
                         <div class="row">
                             <div class="col-12 col-md q-gutter-sm q-pa-md ">
                                 <q-card class="my-card">
@@ -314,7 +314,6 @@
                                         <div class="text-price-product">
                                            $189.99
                                         </div>
-                                        <!-- <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product"></q-btn> -->
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -322,7 +321,7 @@
                                 </q-card>
                             </div>
                         </div>
-                    </q-carousel-slide> 
+                    </q-carousel-slide>  -->
                 </q-carousel>
             </div>
         </div>
@@ -331,18 +330,29 @@
 
 <script>
 import{ defineComponent } from '@vue/composition-api'
+import ProductsService from '../services/home/products/product.service'
+
 export default defineComponent
     ({ name: 'FeaturedProductsCarouselComponent',
         data(){
             return{
                 slide:1,
-                load: true
+                load: true,
+                products: []
             }
         },
         mounted (){
              setTimeout(() => {
             this.load = false
         }, 3000)
+
+        let subscription = ProductsService.getProducts().subscribe( {
+            next: data => {
+            this.products = data.results
+            console.log(data)
+            },
+            complete: () => console.log('[complete]'),
+         })
         }
     })
 
@@ -365,6 +375,9 @@ export default defineComponent
     color:#EB0004;
     font-family: 'Poppins-Regular';
     font-size: 19px;
+}
+.card2{
+    min-height: 360px;
 }
 .my-card:hover .img-product{
     -webkit-transform: scale(1.00);
@@ -403,6 +416,10 @@ export default defineComponent
 .btn-product{
     border-radius: 9px;
     font-family: 'Poppins-SemiBold';
+}
+.skeleton-card{
+    min-height: 360px;
+    border-radius: 27px;
 }
 
 @media (min-width:320px) and (max-width: 767px) {

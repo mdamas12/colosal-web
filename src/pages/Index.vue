@@ -24,8 +24,21 @@ import CategoriesComponent from 'src/components/CategoriesComponent.vue'
 import AboutComponent from 'src/components/AboutComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 
+
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent, OurBenefitsComponent, FeaturedProductsCarouselComponent, PromotionsComponent, FeaturedProductsComponent, CategoriesComponent, AboutComponent, FooterComponent }
+  components: { ExampleComponent, OurBenefitsComponent, FeaturedProductsCarouselComponent, PromotionsComponent, FeaturedProductsComponent, CategoriesComponent, AboutComponent, FooterComponent },
+  // data(){
+
+  // },
+  // mounted(){
+  //           let subscription = CategoriesServices.getCategories().subscribe( {
+  //           next: data => {
+  //           this.category = data
+  //           console.log(data)
+  //           },
+  //           complete: () => console.log('[complete]'),
+  //        })
+  // }
 })
 </script>

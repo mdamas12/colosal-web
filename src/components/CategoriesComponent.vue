@@ -117,7 +117,7 @@
                     </div>
                 </div> 
                    <div class="row" v-else>
-                    <div class="col-12 col-md text-center q-gutter-sm">
+                    <div class="col-6 col-md text-center q-gutter-sm" v-for="category in categories" :key="category.id">
                         <div class="div-carniceria q-pa-md">
                             <q-img src="~assets/img/img-carniceria.png" class="image-categorie"></q-img>
                             <div class="middle">
@@ -125,10 +125,10 @@
                             </div>
                         </div>
                         <div class="text-title-categorie q-pa-md">
-                            Carnicería
+                            {{category.name}}
                         </div>
                     </div>
-                    <div class="col-12 col-md text-center q-gutter-sm">
+                    <!-- <div class="col-12 col-md text-center q-gutter-sm">
                         <div class="div-bebidas q-pa-md">
                             <q-img src="~assets/img/img-bebidas.png" class="image-categorie"></q-img>
                             <div class="middle">
@@ -150,10 +150,10 @@
                         <div class="text-title-categorie q-pa-md">
                             Almacén
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 </q-carousel-slide>
-                <q-carousel-slide :name="2" class="col q-pt-none">
+                <!-- <q-carousel-slide :name="2" class="col q-pt-none">
                    <div class="row">
                     <div class="col-12 col-md text-center q-gutter-sm">
                         <div class="div-carniceria q-pa-md">
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                 </div>
-                </q-carousel-slide>
+                </q-carousel-slide> -->
             </q-carousel>
         </div>
     </div>
@@ -199,18 +199,29 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import CategoriesServices from '../services/home/categories/categorie.services'
+
 export default defineComponent
     ( { name: 'CategoriesComponent',
         data(){
             return{
                 slide:1,
-                load:true
+                load:true,
+                categories: []
             }
         },
         mounted(){
             setTimeout(() => {
             this.load = false
         }, 3000)
+
+        let subscription = CategoriesServices.getCategories().subscribe( {
+            next: data => {
+            this.categories = data.results
+            console.log(data)
+            },
+            complete: () => console.log('[complete]'),
+         })
         }
      } )
 </script>

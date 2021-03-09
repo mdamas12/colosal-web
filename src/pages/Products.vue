@@ -84,9 +84,9 @@
             <div class="q-pa-md">
                 <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -111,9 +111,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -138,9 +138,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -169,7 +169,7 @@
                     <div class="col justify-center text-center">
                         <div class="row justify-center">
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -192,7 +192,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -215,7 +215,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -242,9 +242,9 @@
                 </div>
                 <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -269,9 +269,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -296,9 +296,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -327,7 +327,7 @@
                     <div class="col justify-center text-center">
                         <div class="row justify-center">
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -350,7 +350,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/galleta.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -373,7 +373,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -400,9 +400,9 @@
                 </div>
                 <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -427,9 +427,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -454,9 +454,9 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md">
+                                <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="100px" bordered />
+                                        <q-skeleton type="circle" size="130px" bordered />
                                     </q-card-section>
                                     <q-card-section>
                                         <q-item-section class="q-mx-md q-py-sm">
@@ -485,7 +485,7 @@
                     <div class="col justify-center text-center">
                         <div class="row justify-center">
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -508,7 +508,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/nutella.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -531,7 +531,7 @@
                                 </q-card>
                             </div>
                             <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card q-pa-md" @click="$router.push('/products/detail')">
+                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
                                     </q-card-section> 
@@ -645,7 +645,13 @@ export default defineComponent ({
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
 } */
-
+.card2{
+    min-height: 420px;
+}
+.skeleton-card{
+    min-height: 420px;
+    border-radius: 27px;
+}
 .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
@@ -687,6 +693,15 @@ export default defineComponent ({
 @media (min-width:1023px){
     .img-product2{
         width: 70%;
+    }
+}
+
+@media (min-width:1900px){
+    .card2{
+        min-height: 520px;
+    }
+    .skeleton-card{
+        min-height: 520px;
     }
 }
 </style>
