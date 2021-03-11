@@ -7,6 +7,8 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
+
+const envparser = require('./src/config/envparser.js')
 const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
@@ -50,7 +52,9 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
+      env: envparser(),
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      publicPath: ctx.prod ? process.env.API_URL : '',
 
       // transpile: false,
 
