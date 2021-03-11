@@ -119,7 +119,7 @@
                    <div class="row" v-else>
                     <div class="col-6 col-md text-center q-gutter-sm" v-for="category in categories" :key="category.id">
                         <div class="div-carniceria q-pa-md">
-                            <q-img src="~assets/img/img-carniceria.png" class="image-categorie"></q-img>
+                            <q-img v-bind:src="category.image" class="image-categorie"></q-img>
                             <div class="middle">
                                 <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                             </div>

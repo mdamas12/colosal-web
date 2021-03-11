@@ -24,7 +24,7 @@
                     <div class="container-ws col-12 col-md text-white">
                         <div class="row items-center">
                             <div class="col-12 col-md q-pa-md">
-                                <div class="img-ventasmd">
+                                <div class="img-ventasmd q-pt-md">
                                      <q-img src="~assets/img/Personaje-Whatsapp.svg"></q-img>
                                 </div>
                             </div>

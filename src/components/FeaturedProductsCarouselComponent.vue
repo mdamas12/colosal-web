@@ -108,7 +108,7 @@
                             <div class="col-4 col-3-md q-gutter-sm q-pa-md" v-for="product in products" :key="product.id">
                                 <q-card class="my-card card2">
                                     <q-card-section class="text-center">
-                                        <q-img v-bind:xsrc="product.image" class="img-product"></q-img>
+                                        <q-img v-bind:src="product.image" class="img-product"></q-img>
                                     </q-card-section> 
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
