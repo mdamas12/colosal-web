@@ -114,7 +114,7 @@
                     </div>
                     <div class="row" v-else>
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
@@ -142,7 +142,7 @@
                                 </q-card>
                         </div>
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
@@ -170,7 +170,7 @@
                                 </q-card>
                         </div>
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
@@ -202,7 +202,7 @@
                  <q-carousel-slide :name="2" class="col">
                     <div class="row">
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
@@ -230,7 +230,7 @@
                                 </q-card>
                         </div>
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
@@ -258,7 +258,7 @@
                                 </q-card>
                         </div>
                         <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card">
+                            <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>

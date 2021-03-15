@@ -89,7 +89,7 @@
                 control-color="red-10"
                 class="container-carousel q-px-lg q-pt-md bg-redp"
             >
-                <q-carousel-slide :name="1" class="col q-pt-none">
+                <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                 <div class="row" v-if="load">
                     <div class="col-12 col-md text-center q-gutter-sm">
                         <q-card-section align="center" class="q-gutter-md">
@@ -117,7 +117,7 @@
                     </div>
                 </div> 
                    <div class="row" v-else>
-                    <div class="col-6 col-md text-center q-gutter-sm" v-for="category in categories" :key="category.id">
+                    <div class="col-12 col-md text-center q-gutter-sm" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
                         <div class="div-carniceria q-pa-md">
                             <q-img v-bind:src="category.image" class="image-categorie"></q-img>
                             <div class="middle">
@@ -205,9 +205,15 @@ export default defineComponent
     ( { name: 'CategoriesComponent',
         data(){
             return{
-                slide:1,
+                slide:0,
                 load:true,
+                itemsCatRow:3,
                 categories: []
+            }
+        },
+        computed: {
+            categoriesGroups (){
+                return Array.from(Array(Math.ceil(this.categories.length / this.itemsCatRow)).keys())
             }
         },
         mounted(){

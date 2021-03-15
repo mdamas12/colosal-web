@@ -12,7 +12,7 @@
             <div class="column justify-center text-center q-mb-lg">
                 <div class="row justify-center">
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                        <q-card class="my-card card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -33,7 +33,7 @@
                         </q-card>
                     </div>
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                        <q-card class="my-card card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -54,7 +54,7 @@
                         </q-card>
                     </div>
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card q-pa-md">
+                        <q-card class="my-card card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -106,15 +106,15 @@ border-radius: 27px;
     box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.my-card:hover img{
+.card-benefits:hover img{
     filter: invert(6%) sepia(91%) saturate(6899%) hue-rotate(204deg) brightness(98%) contrast(158%);
 }
 
-.my-card:hover .text-subtitle{
+.card-benefits:hover .text-subtitle{
     color: #020B68;
 }
 
-.my-card:hover .text{
+.card-benefits:hover .text{
     color: #000000;
 }
 

@@ -28,7 +28,7 @@
                                      <q-img src="~assets/img/Personaje-Whatsapp.svg"></q-img>
                                 </div>
                             </div>
-                            <div class="col q-pa-md q-mx-md">
+                            <div class="col q-pt-md q-mx-md">
                                 <div class="pdt-ventasmd text-h6 text-right">
                                     Contáctanos a nuestro WhatsApp
                                 </div>

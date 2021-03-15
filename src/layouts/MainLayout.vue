@@ -12,7 +12,7 @@
         <q-toolbar-title>
           <q-img src="~assets/img/logo.png" style="width:98px" class="cursor-pointer gt-xs " @click="$router.push('/')">
           </q-img>
-          <q-btn flat icon="menu" label="Productos" text-color="redsito" class="q-ml-sm btn-menu">
+          <q-btn flat icon="menu" text-color="redsito" class="q-ml-sm btn-menu">
                 <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                   <q-list>
                     <q-item clickable class="font-list">
@@ -47,7 +47,7 @@
             </q-item>
                   </q-list>
                 </q-menu>
-              </q-btn>
+          </q-btn>
               <div class="absolute-center gt-sm">
                 <q-input rounded outlined label="¿Que estas buscando?" style="width:476px" color="bluesito">
                   <template v-slot:prepend>

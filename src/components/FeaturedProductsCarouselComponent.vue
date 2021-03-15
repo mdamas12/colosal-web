@@ -20,7 +20,7 @@
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-lg"
                     >
-                    <q-carousel-slide :name="1" class="col">
+                    <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
@@ -105,8 +105,8 @@
                             </div>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-4 col-3-md q-gutter-sm q-pa-md" v-for="product in products" :key="product.id">
-                                <q-card class="my-card card2">
+                            <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
+                                <q-card class="my-card card">
                                     <q-card-section class="text-center">
                                         <q-img v-bind:src="product.image" class="img-product"></q-img>
                                     </q-card-section> 
@@ -176,6 +176,7 @@
                             </div> -->
                         </div>
                     </q-carousel-slide>
+                    
                     <!-- <q-carousel-slide :name="2" class="col">
                         <div class="row">
                             <div class="col-12 col-md q-gutter-sm q-pa-md ">
@@ -336,9 +337,15 @@ export default defineComponent
     ({ name: 'FeaturedProductsCarouselComponent',
         data(){
             return{
-                slide:1,
+                slide:0,
                 load: true,
+                itemsProdRow:3,
                 products: []
+            }
+        },
+        computed: {
+            productsGroups (){
+                return Array.from(Array(Math.ceil(this.products.length / this.itemsProdRow)).keys())
             }
         },
         mounted (){
@@ -376,7 +383,7 @@ export default defineComponent
     font-family: 'Poppins-Regular';
     font-size: 19px;
 }
-.card2{
+.card{
     min-height: 360px;
 }
 .my-card:hover .img-product{
