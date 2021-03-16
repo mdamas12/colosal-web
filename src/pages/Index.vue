@@ -1,8 +1,6 @@
 <template>
   <q-page>
-    <example-component
-      title="Example component"
-    ></example-component>
+    <example-component></example-component>
     <our-benefits-component></our-benefits-component>
     <featured-products-carousel-component></featured-products-carousel-component>
     <featured-products-component></featured-products-component>
@@ -10,6 +8,7 @@
     <categories-component></categories-component>
     <about-component></about-component>
     <footer-component></footer-component>
+    <!-- <header-component></header-component> -->
   </q-page>
 </template>
 
@@ -23,22 +22,10 @@ import FeaturedProductsComponent from 'src/components/FeaturedProductsComponent.
 import CategoriesComponent from 'src/components/CategoriesComponent.vue'
 import AboutComponent from 'src/components/AboutComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
-
+import HeaderComponent from 'src/components/HeaderComponent.vue'
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent, OurBenefitsComponent, FeaturedProductsCarouselComponent, PromotionsComponent, FeaturedProductsComponent, CategoriesComponent, AboutComponent, FooterComponent },
-  // data(){
-
-  // },
-  // mounted(){
-  //           let subscription = CategoriesServices.getCategories().subscribe( {
-  //           next: data => {
-  //           this.category = data
-  //           console.log(data)
-  //           },
-  //           complete: () => console.log('[complete]'),
-  //        })
-  // }
+  components: { ExampleComponent, OurBenefitsComponent, FeaturedProductsCarouselComponent, PromotionsComponent, FeaturedProductsComponent, CategoriesComponent, AboutComponent, FooterComponent, HeaderComponent }
 })
 </script>

@@ -17,8 +17,8 @@
                                 <div class="col text-center">
                                     <q-avatar rounded>
                                         <img src="~assets/img/icon-payment.svg">
-                                    </q-avatar>      
-                                </div>                        
+                                    </q-avatar>
+                                    </div>
                             </q-item-section>
                             <q-card-section class="text-center">
                               <div class="text-subtitle">
@@ -38,8 +38,8 @@
                                 <div class="col text-center">
                                     <q-avatar rounded>
                                         <img src="~assets/img/icon-delivery.svg" class="img-fluid">
-                                    </q-avatar>     
-                                </div>                        
+                                    </q-avatar>
+                                </div>
                             </q-item-section>
                             <q-card-section class="text-center">
                               <div class="text-subtitle">
@@ -59,9 +59,9 @@
                                 <div class="col text-center">
                                     <q-avatar rounded>
                                         <img src="~assets/img/icon-medal.svg">
-                                    </q-avatar> 
-                                </div>                              
-                            </q-item-section>
+                                    </q-avatar>
+                                </div>
+                           </q-item-section>
                             <q-card-section class="text-center">
                               <div class="text-subtitle">
                                   Mejor calidad
@@ -79,12 +79,11 @@
         </div>
     </div>
 </div>
-   
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-export default defineComponent ( { name: 'OurBenefitsComponent' } )
+export default defineComponent({ name: 'OurBenefitsComponent' })
 </script>
 
 <style>

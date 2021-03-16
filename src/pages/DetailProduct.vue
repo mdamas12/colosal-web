@@ -8,14 +8,7 @@
         <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
-                    <q-carousel
-                        swipeable
-                        animated
-                        v-model="slide"
-                        thumbnails
-                        infinite
-                        
-                        >
+                    <q-carousel swipeable animated v-model="slide" thumbnails infinite>
                         <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="border-img-slide"></q-carousel-slide>
                         <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" class="border-img-slide"/>
                         <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" class="border-img-slide"/>
@@ -32,8 +25,7 @@
                     <div class="text-price_fventa-product">$129.99</div>
                     <div class="text-quantity-product">Cantidad:</div>
                     <div class="row">
-                        <div class="col-6 col-md">
-                            
+                        <div class="col-6 col-md">                  
                             <div class="border">
                                 <span class="border">
                                 <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="counter -= 1"></q-btn>
@@ -41,8 +33,6 @@
                                 <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="counter += 1"></q-btn>
                                 </span>
                             </div>
-                            
- 
                         </div>
                         <div class="col-6 col-md">
                             <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -70,9 +60,9 @@
 import { defineComponent } from '@vue/composition-api'
 import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCarouselComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
-export default defineComponent ({
-    components: {FeaturedProductsCarouselComponent, FooterComponent},
-    data () {
+export default defineComponent({
+  components: { FeaturedProductsCarouselComponent, FooterComponent },
+  data () {
     return {
       counter: 0,
       slide: 1

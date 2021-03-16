@@ -66,35 +66,35 @@
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-export default defineComponent ( { name: 'FooterComponent' } )
+export default defineComponent({ name: 'FooterComponent' })
 </script>
 <style>
-.container-footer{
-    background-color: #020B68;
-}
+    .container-footer{
+        background-color: #020B68;
+    }
 
-.container-design{
-    background-color: #EBEBEB;
-}
+    .container-design{
+        background-color: #EBEBEB;
+    }
 
-.text-title-footer{
-    font-family: 'Poppins-SemiBold';
-    font-size: 14px;
-}
+    .text-title-footer{
+        font-family: 'Poppins-SemiBold';
+        font-size: 14px;
+    }
 
-.text-parrafo-footer{
-    font-family: 'Poppins-Regular';
-    font-size: 12px;
-}
+    .text-parrafo-footer{
+        font-family: 'Poppins-Regular';
+        font-size: 12px;
+    }
 
-.text-social-footer{
-    font-family: 'Poppins-Medium';
-    font-size: 14px;
-}
+    .text-social-footer{
+        font-family: 'Poppins-Medium';
+        font-size: 14px;
+    }
 
-.text-design{
-    font-family: 'Poppins-SemiBold';
-    font-size: 10px;
-    color: #3D3D3D;
-}
+    .text-design{
+        font-family: 'Poppins-SemiBold';
+        font-size: 10px;
+        color: #3D3D3D;
+    }
 </style>

@@ -116,26 +116,22 @@
             </q-card>
         </div>
         </div>
-       
         <footer-component></footer-component>
     </q-page>
-    
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
 import FooterComponent from 'src/components/FooterComponent.vue'
 export default defineComponent({
-    components: {FooterComponent},
-    data(){
-        return{
-            model: null,
-            options: [
-                'V', 'E'
-            ],
-             right: false
-        }
+  components: { FooterComponent },
+  data () {
+    return {
+      model: null,
+      options: ['V', 'E'],
+      right: false
     }
+  }
 })
 </script>
 
@@ -204,12 +200,12 @@ export default defineComponent({
 
 @media(min-width:320px) and (max-width:600px){
     .container-title-register{
-    padding-left: 3%;;
+    padding-left: 3%;
     padding-right: 3%;
     }
     .container-form{
-    padding-left: 4%;;
-    padding-right: 4%; 
+    padding-left: 4%;
+    padding-right: 4%;
     }
 }
 </style>

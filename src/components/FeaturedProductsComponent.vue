@@ -11,8 +11,7 @@
                                     Conoce nuestros métodos de pago
                                 </div>
                                 <div class="col-12 col-md q-pt-md q-mx-md">
-                                     <q-btn label="Ver Más" text-color="black" color="white" size="md" class="btn"></q-btn>   
-                                </div>
+                                     <q-btn label="Ver Más" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
                             </div>
                             <div class="col q-pa-md">
                                 <div class="img-mpagos q-pa-md">
@@ -33,8 +32,7 @@
                                     Contáctanos a nuestro WhatsApp
                                 </div>
                                 <div class="column items-end q-pt-md">
-                                    <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>  
-                                </div>
+                                    <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,114 +41,93 @@
         </div>
     </div>
 </div>
-    
 </template>
- 
 <script>
 import { defineComponent } from '@vue/composition-api'
-export default defineComponent ( { name: 'FeaturedProductsComponent' } )
+export default defineComponent({ name: 'FeaturedProductsComponent' })
 </script>
-
 <style>
-.container-featured-products-1{
+  .container-featured-products-1{
     padding-left: 13%;
     padding-right: 13%;
     background-color: #FAFAFA;
-}
-.container-featured-products{
+  }
+  .container-featured-products{
     background-color: #FAFAFA;
-}
-.container-ws{
+  }
+  .container-ws{
     background-color: #00BFA5;
-}
-
-.pdt-mpagos{
-    /* padding-top: 30%; */
+   }
+  .pdt-mpagos{
     font-family: 'Poppins-SemiBold';
-    /* font-size: 25px; */
-}
-
-.btn-mpagos{
+  }
+  .btn-mpagos{
     font-family: 'Poppins-SemiBold';
-}
-.pdt-ventasmd{
-    /* padding-top: 30%; */
+  }
+  .pdt-ventasmd{
     font-family: 'Poppins-SemiBold';
-    /* font-size: 25px; */
-}
-.container:hover .img-mpagos{
+  }
+  .container:hover .img-mpagos{
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
-}
-.container-ws:hover .img-ventasmd{
+  }
+  .container-ws:hover .img-ventasmd{
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
-}
-
-.img-mpagos{
+  }
+  .img-mpagos{
     padding-top: 13%;
-}
-
-.img-ventasmd{
+  }
+  .img-ventasmd{
     padding-top: 13%;
-}
-
-.btn-ventasmd{
+   }
+  .btn-ventasmd{
     font-family: 'Poppins-SemiBold';
-}
-.btn{
+  }
+  .btn{
     border-radius: 9px;
-}
-
-.btn-product{
+  }
+  .btn-product{
     border-radius: 9px;
     font-family: 'Poppins-SemiBold';
-}
-
-.enlace-ver{
+    }
+  .enlace-ver{
     color:#EB0004;
     font-family: 'Poppins-Regular';
     font-size: 19px;
-}
-
-.my-card:hover .img-product{
+  }
+  .my-card:hover .img-product{
     -webkit-transform: scale(1.00);
-    transform: scale(1.00);
+     transform: scale(1.00);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
-}
-
-
-.text-title{
+  }
+  .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
-}
-
-.text-name-product{
+  }
+  .text-name-product{
     font-family: 'Poppins-SemiBold';
     font-size: 16px;
-}
-
-.text-description-product{
+  }
+  .text-description-product{
     font-family: 'Poppins-Regular';
     font-size: 16px;
-}
-
-.text-price-product{
+  }
+  .text-price-product{
     font-family: 'Poppins-SemiBold';
     font-size: 24px;
-}
-
-@media (min-width:320px) and (max-width: 1023px) {
+   }
+  @media (min-width:320px) and (max-width: 1023px) {
     .img-ventasmd{
-    width: 60%;
+      width: 60%;
     }
     .img-mpagos{
-    width: 60%;
+      width: 60%;
     }
-}
+    }
 </style>

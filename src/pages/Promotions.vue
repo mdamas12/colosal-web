@@ -5,7 +5,6 @@
             <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
         </q-breadcrumbs>
      <div class="container-skeleton-list q-pa-md q-mb-sm" v-if="load">
-    <!-- <div class="col q-px-md q-mb-md"> -->
         <q-skeleton type="QToolbar" square animation="wave" class="bg-indigo-10"/>
         <q-item v-for="sk in 5" :key="sk">
             <q-item-section>
@@ -18,8 +17,7 @@
             </q-item-section>
         </q-item>
         <q-separator />
-        <!-- </div> -->
-    </div>    
+    </div>
     <div class="container-list-promotions q-pa-md q-mb-sm" v-else>
         <q-toolbar class="bg-indigo-10 text-white shadow-2">
             <q-toolbar-title class="title-promotions">Promociones</q-toolbar-title>
@@ -35,24 +33,23 @@
     </div>
      <footer-component></footer-component>
 </q-page>
-    
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
 import FooterComponent from 'src/components/FooterComponent.vue'
-export default defineComponent ({
-    components: {FooterComponent},
-    data(){
-        return {
-            load: true
-        }
-    },
-    mounted (){
-        setTimeout(() => {
-            this.load = false
-        }, 3000)
+export default defineComponent({
+  components: { FooterComponent },
+  data () {
+    return {
+      load: true
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
+  }
 })
 </script>
 

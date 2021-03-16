@@ -22,63 +22,57 @@
         <!-- </div> -->
     </div>
 </div>
-    
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-export default defineComponent ( { name: 'AboutComponent' } )
+export default defineComponent({ name: 'AboutComponent' })
 </script>
 
 <style>
-.container-about-1{
-    color: #FAFAFA;
-    padding-left: 11%;
-    padding-right: 11%;
-}
-.container-about{
-    color: #FAFAFA;
-}
-
-.text-title{
-    font-family: 'Poppins-SemiBold';
-    font-size: 25px;
-    color: #000000
-}
-
-.text-parrafo{
-    font-family: 'Poppins-Regular';
-    font-size: 14px;
-    color: #000000
-}
-
-.image-about{
-    -webkit-transform: scale(0.95);
-    transform: scale(0.95);
-    -webkit-transition: all 1.0s;
-    transition: all 1.0s;
-    width: 85%;
-}
-
-.image-about:hover{
-    -webkit-transform: scale(1.00);
-    transform: scale(1.00);
-    -webkit-transition: all 1.0s;
-    transition: all 1.0s;
-}
-
-@media (min-width:1700px){
+    .container-about-1{
+        color: #FAFAFA;
+        padding-left: 11%;
+        padding-right: 11%;
+    }
+    .container-about{
+        color: #FAFAFA;
+    }
+    .text-title{
+        font-family: 'Poppins-SemiBold';
+        font-size: 25px;
+        color: #000000
+    }
+    .text-parrafo{
+        font-family: 'Poppins-Regular';
+        font-size: 14px;
+        color: #000000
+    }
     .image-about{
-    -webkit-transform: scale(0.95);
-    transform: scale(0.95);
-    -webkit-transition: all 1.0s;
-    transition: all 1.0s;
-    width: 65%;
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+        -webkit-transition: all 1.0s;
+        transition: all 1.0s;
+        width: 85%;
     }
     .image-about:hover{
-    -webkit-transform: scale(1.00);
-    transform: scale(1.00);
-    -webkit-transition: all 1.0s;
-    transition: all 1.0s;
-}
-}
+        -webkit-transform: scale(1.00);
+        transform: scale(1.00);
+        -webkit-transition: all 1.0s;
+        transition: all 1.0s;
+    }
+    @media (min-width:1700px){
+        .image-about{
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+        -webkit-transition: all 1.0s;
+        transition: all 1.0s;
+        width: 65%;
+        }
+        .image-about:hover{
+        -webkit-transform: scale(1.00);
+        transform: scale(1.00);
+        -webkit-transition: all 1.0s;
+        transition: all 1.0s;
+        }
+    }
 </style>

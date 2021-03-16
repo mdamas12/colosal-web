@@ -121,8 +121,8 @@
                                             <div class="middle">
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
-                                        </div> 
-                                    </q-card-section> 
+                                        </div>
+                                    </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
                                            Combo 1
@@ -149,8 +149,8 @@
                                             <div class="middle">
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
-                                        </div> 
-                                    </q-card-section> 
+                                        </div>
+                                    </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
                                            Combo 1
@@ -177,8 +177,8 @@
                                             <div class="middle">
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
-                                        </div> 
-                                    </q-card-section> 
+                                        </div>
+                                    </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
                                            Combo 1
@@ -209,7 +209,35 @@
                                             <div class="middle">
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
-                                        </div> 
+                                        </div>
+                                    </q-card-section>
+                                    <q-card-section class="text-center">
+                                        <div class="text-name-product">
+                                           Combo 1
+                                        </div>
+                                        <div class="text-description-product">
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing.
+                                        </div>
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none">
+                                        <div class="text-price-product">
+                                           $189.99
+                                        </div>
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none">
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                    </q-card-section>
+                                </q-card>
+                        </div>
+                        <div class="col-12 col-md q-gutter-sm q-pa-md ">
+                            <q-card class="my-card card2">
+                                    <q-card-section class="text-center">
+                                        <div class="combo1">
+                                            <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
+                                            <div class="middle">
+                                                <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
+                                            </div>
+                                        </div>
                                     </q-card-section> 
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
@@ -238,35 +266,7 @@
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
                                         </div> 
-                                    </q-card-section> 
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                           Combo 1
-                                        </div>
-                                        <div class="text-description-product">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing.
-                                        </div>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                           $189.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                        </div>
-                        <div class="col-12 col-md q-gutter-sm q-pa-md ">
-                            <q-card class="my-card card2">
-                                    <q-card-section class="text-center">
-                                        <div class="combo1">
-                                            <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
-                                            <div class="middle">
-                                                <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
-                                            </div>
-                                        </div> 
-                                    </q-card-section> 
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
                                            Combo 1
@@ -293,22 +293,21 @@
 </template>
 
 <script>
-import{ defineComponent } from '@vue/composition-api'
-export default defineComponent
-    ({name: 'PromotionsComponent',
-        data(){
-            return{
-                slide: 1,
-                load:true
-            }
-        },
-        mounted(){
-            setTimeout(() => {
-            this.load = false
-        }, 3000)
-        }
-    })
-    
+import { defineComponent } from '@vue/composition-api'
+export default defineComponent({
+  name: 'PromotionsComponent',
+  data () {
+    return {
+      slide: 1,
+      load: true
+    }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.load = false
+    }, 3000)
+  }
+})
 </script>
 
 <style>
