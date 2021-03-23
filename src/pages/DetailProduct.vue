@@ -25,7 +25,7 @@
                     <div class="text-price_fventa-product">$129.99</div>
                     <div class="text-quantity-product">Cantidad:</div>
                     <div class="row">
-                        <div class="col-6 col-md">                  
+                        <div class="col-6 col-md">
                             <div class="border">
                                 <span class="border">
                                 <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="counter -= 1"></q-btn>

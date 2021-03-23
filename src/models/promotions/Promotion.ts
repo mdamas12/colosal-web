@@ -1,10 +1,7 @@
-/* eslint-disable camelcase */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Category from '../categories/Category'
-import Brand from '../brands/Brand'
-import DetailProduct from '../detail_products/DetailProduct'
+import PromotionDetail from '../detail_promotions/PromotionDetail'
 
-export default class Product {
+export default class Promotion {
   id: number;
   name: string;
   description: string;
@@ -13,10 +10,8 @@ export default class Product {
   quantity: number;
   image: File;
   category: Category[];
-  brand: Brand[];
-  detail_product: DetailProduct[]
+  promotion_detail: PromotionDetail[]
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor (map:any) {
     this.id = map.id as number
     this.name = map.name as string
@@ -26,7 +21,6 @@ export default class Product {
     this.quantity = map.quantity as number
     this.image = map.image as File
     this.category = map.category as []
-    this.brand = map.brand as []
-    this.detail_product = map.detail_product as []
+    this.promotion_detail = map.detail_product as []
   }
 }

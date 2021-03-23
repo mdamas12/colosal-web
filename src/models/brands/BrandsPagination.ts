@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Brand from './Brand'
 
 export default class BrandsPagination {
@@ -6,6 +7,7 @@ export default class BrandsPagination {
   previous: number;
   results: Brand[];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor (map:any) {
     this.count = map.count as number
     this.next = map.next as number

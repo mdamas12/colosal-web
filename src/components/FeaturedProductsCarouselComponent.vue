@@ -4,7 +4,7 @@
                 <div class="col q-pa-md">
                     <div class="text-title">
                         Productos destacados
-                        <a href="" class="q-pl-md enlace-ver">Ver más</a>
+                        <a class="q-pl-md enlace-ver cursor-pointer" @click="$router.push('/products')">Ver más</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,8 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import ProductsService from '../services/home/products/product.service'
-
+import axios from 'axios'
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 export default defineComponent({
   name: 'FeaturedProductsCarouselComponent',
   data () {
@@ -153,18 +154,37 @@ export default defineComponent({
       return Array.from(Array(Math.ceil(this.products.length / this.itemsProdRow)).keys())
     }
   },
-  mounted () {
-    setTimeout(() => {
-      this.load = false
-    }, 3000)
-    const subscription = ProductsService.getProducts().subscribe({
-      next: data => {
-        this.products = data.results
-        console.log(data)
-      },
-      complete: () => console.log('[complete]')
-    })
-  }
+  created () {
+    this.allProducts();
+    // this.searchData();
+    // this.productsFilter = this.products
+    // this.spliteCategories();
+  },
+  //   mounted () {
+  //     setTimeout(() => {
+  //       this.load = false
+  //     }, 3000)
+  //     ProductsService.getProducts().subscribe({
+  //       next: data => {
+  //         this.products = data.results
+  //         console.log(data)
+  //       },
+  //       complete: () => console.log('[complete]')
+  //     })
+  //   }
+  methods: {
+    allProducts () {
+            setTimeout(()=>{
+                this.load = false
+            }, 3000)
+            const headers = { "Content-Type": "application/json" };
+            axios.get('http://localhost:8000/web/home/products-featured/', {headers})
+                .then(response => {
+                    this.products = response.data;
+                    console.log(response.data)
+                })
+        }
+    }
 })
 </script>
 

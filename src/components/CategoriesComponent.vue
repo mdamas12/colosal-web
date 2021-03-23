@@ -19,7 +19,7 @@
                 control-color="red-10"
                 class="container-carousel q-px-lg q-pt-md bg-redp"
             >
-                <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
+                    <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
                         <div class="col-12 col-md text-center q-gutter-sm">
                             <q-card-section align="center" class="q-gutter-md">
@@ -47,17 +47,20 @@
                         </div>
                     </div>
                     <div class="row" v-else>
-                        <div class="col-12 col-md text-center q-gutter-sm" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
-                            <div class="div-carniceria q-pa-md">
-                                <q-img v-bind:src="category.image" class="image-categorie"></q-img>
-                                <div class="middle">
-                                    <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
+                            <div class="col-12 col-md text-center q-gutter-sm" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                                <div class="div-carniceria q-pa-md">
+                                    <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
+                                    <q-img :src="'http://localhost:8000' + category.image" class="image-categorie"></q-img>
+                                    <div class="middle">
+                                        <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
+                                    </div>
                                 </div>
+                                    <div align="center" class="q-gutter-sm">
+                                        <div class="text-title-categorie q-pa-md">
+                                            {{category.name}}
+                                        </div>
+                                    </div>
                             </div>
-                            <div class="text-title-categorie q-pa-md">
-                                {{category.name}}
-                            </div>
-                        </div>
                     </div>
                 </q-carousel-slide>
             </q-carousel>
@@ -66,9 +69,10 @@
 </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from '@vue/composition-api'
 import CategoriesServices from '../services/home/categories/categorie.services'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'CategoriesComponent',
@@ -77,26 +81,70 @@ export default defineComponent({
       slide: 0,
       load: true,
       itemsCatRow: 3,
-      categories: []
+      categories: [],
+      image: null,
+      preview: null
     }
   },
   computed: {
-    categoriesGroups (): number [] {
+    categoriesGroups () {
       return Array.from(Array(Math.ceil(this.categories.length / this.itemsCatRow)).keys())
     }
   },
-  mounted () {
-    setTimeout(() => {
-      this.load = false
-    }, 3000)
-    let subscription = CategoriesServices.getCategories().subscribe({
-      next: (data: { results: any }) => {
-        this.categories = data.results
-        console.log(data)
-      },
-      complete: () => console.log('[complete]')
-    })
+  created () {
+    this.allCategories()
+    // this.spliteCategories();
+  },
+  methods: {
+    allCategories () {
+      setTimeout(() => {
+        this.load = false
+      }, 3000)
+      //  CategoriesServices.getCategories().subscribe({
+      //      next: data => {
+      //          this.categories = data.results
+      //          console.log(data)
+      //      },
+      //      complete: () => console.log('[complete]')
+      //  })
+    //   const headers = { 'Content-Type': 'application/json' }
+      axios.get('http://localhost:8000/web/home/categories-featured/')
+        .then(response => {
+          this.categories = response.data
+          console.log(response.data)
+        //   var imageUrl = encodeURI(response.data.image)
+        //   fetch(imageUrl)
+        //     .then(res => res.blob())
+        //     .then(blob => {
+        //       const n = response.data.image.indexOf("categories/") + 11
+        //       const imageName = response.data.image.substring(n)
+        //       const extension = imageName.substring(imageName.indexOf(".") + 1)
+        //       const file = new File([blob], imageName, { type: `image/${extension}` })
+        //       this.image = file
+        //       this.getImage(file)
+        //     })
+        })
+    },
+    getImage (e) {
+      let reader = new FileReader()
+      reader.readAsDataURL(e)
+      reader.onload = e => {
+        this.preview = e.target.result
+      }
+    }
   }
+//   mounted () {
+//     setTimeout(() => {
+//       this.load = false
+//     }, 3000)
+//     CategoriesServices.getCategories().subscribe({
+//       next: data => {
+//         this.categories = data.results
+//         console.log(data)
+//       },
+//       complete: () => console.log('[complete]')
+//     })
+//   }
 })
 </script>
 

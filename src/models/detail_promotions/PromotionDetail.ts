@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import Feature from '../features/Feature'
+import Product from '../products/Product'
 
-export default class DetailProduct {
+export default class PromotionDetail {
     id: number;
-    characteristic: Feature[];
+    product: Product[];
     created: string;
     modified: string;
-    description: string;
-    product: number
+    quantity: number;
+    promotion: number
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor (map:any) {
       this.id = map.id as number
-      this.characteristic = map.characteristic as []
+      this.product = map.product as []
       this.created = map.created as string
       this.modified = map.modified as string
-      this.description = map.description as string
-      this.product = map.product as number
+      this.quantity = map.description as number
+      this.promotion = map.product as number
     }
 }

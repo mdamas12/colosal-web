@@ -3,7 +3,7 @@ module.exports = {
   // https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
   // This option interrupts the configuration hierarchy at this file
   // Remove this if you have an higher level ESLint config file (it usually happens into a monorepos)
-  root: true,
+  root: false,
 
   // https://eslint.vuejs.org/user-guide/#how-to-use-custom-parser
   // Must use parserOptions instead of "parser" to allow vue-eslint-parser to keep working
@@ -21,7 +21,9 @@ module.exports = {
   },
 
   env: {
-    browser: true
+    browser: true,
+    es6: true,
+    node: true
   },
 
   // Rules order is important, please avoid shuffling them
@@ -89,6 +91,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
     // allow debugger during development only
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   }
 }

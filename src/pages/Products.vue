@@ -81,6 +81,7 @@
 
       <q-page-container>
        <div class="q-pa-md">
+				 <q-input label="Buscar" />
                 <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card-all-products">
@@ -167,22 +168,23 @@
                 <div class="row justify-center q-mb-md" v-else>
                     <div class="col justify-center text-center">
                         <div class="row justify-center">
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
+                            <div class="col-4 col-12-md q-pa-md q-gutter-sm cursor-pointer" v-for="product in products" :key="product.id">
                                 <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
-                                        <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
+																			<!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
+                                        <q-img :src="'http://localhost:8000' + product.image" class="img-product2"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
-                                            Doritos
+                                            {{product.name}}
                                         </div>
                                         <div class="text-description-product">
-                                            150Gr Frito Lay
+                                            {{product.description}}
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <div class="text-price-product">
-                                            $150
+                                            {{product.price}}
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -190,11 +192,11 @@
                                     </q-card-section>
                                 </q-card>
                             </div>
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
+                            <!-- <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
                                 <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
                                     <q-card-section class="text-center">
                                         <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
-                                    </q-card-section> 
+                                    </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">
                                         Aceite Soya
@@ -235,323 +237,7 @@
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                                     </q-card-section>
                                 </q-card>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" v-if="load">
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                </div>
-                <div class="row justify-center q-mb-md" v-else>
-                    <div class="col justify-center text-center">
-                        <div class="row justify-center">
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Harina de Trigo
-                                        </div>
-                                        <div class="text-description-product">
-                                            1Kg Blancaflor
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                        $69.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/galleta.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Galleta Soda
-                                        </div>
-                                        <div class="text-description-product">
-                                            240gr El Sol
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                            $9.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/dorito.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Doritos
-                                        </div>
-                                        <div class="text-description-product">
-                                            150Gr Frito Lay
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                            $150
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" v-if="load">
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
-                                <q-card class="q-pt-md skeleton-card-all-products">
-                                    <q-card-section align="center" class="q-gutter-md">
-                                        <q-skeleton type="circle" size="130px" bordered />
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md q-py-sm">
-                                        <q-item-label>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                        <q-item-label caption>
-                                            <q-skeleton type="text" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-section>
-                                        <q-item-section class="q-mx-md">
-                                        <q-item-label>
-                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
-                                        </q-item-label>
-                                    </q-item-section>
-                                    </q-card-section>
-                                    <q-card-actions align="center" >
-                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                                    </q-card-actions>
-                                </q-card>
-                            </div>
-                </div>
-                <div class="row justify-center q-mb-md" v-else>
-                    <div class="col justify-center text-center">
-                        <div class="row justify-center">
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/aceite.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Aceite Soya
-                                        </div>
-                                        <div class="text-description-product">
-                                            500ml Vatel
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                        $169.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/nutella.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Nutella
-                                        </div>
-                                        <div class="text-description-product">
-                                        750g Ferrero
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                            $189.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
-                            <div class="col-12 col-md q-pa-md q-gutter-sm cursor-pointer">
-                                <q-card class="my-card card2 q-pa-md" @click="$router.push('/products/detail')">
-                                    <q-card-section class="text-center">
-                                        <q-img src="~assets/img/blancaflor.png" class="img-product2"></q-img>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                            Harina de Trigo
-                                        </div>
-                                        <div class="text-description-product">
-                                            1Kg Blancaflor
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                        $69.99
-                                        </div>
-                                    </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                                    </q-card-section>
-                                </q-card>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -576,6 +262,7 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import axios from 'axios'
 
 const menuList = [
   {
@@ -624,13 +311,41 @@ export default defineComponent({
       current: 3,
       load: true,
       drawer: false,
-      menuList
+      menuList,
+			products: [],
+			search: '',
     }
   },
   mounted () {
     setTimeout(() => {
       this.load = false
     }, 3000)
+  },
+	// computed: {
+	// 	filtro: {
+	// 		get(){
+	// 			return this.search
+	// 		},
+	// 		set(value){
+	// 			value = value.toLowerCase()
+	// 			this.productsFilter = this.products.filter(
+	// 				item => item.search.toLowerCase().indexOf(value) !== -1)
+	// 			this.search = value
+	// 		}
+	// 	}
+	// },
+  created () {
+		this.getAllProducts ()
+		// this.getProductsFilter ()
+  },
+  methods: {
+    getAllProducts () {
+        axios.get('http://localhost:8000/panel/products/')
+          .then(response => {
+              this.products = response.data.results
+              console.log(response.data.results)
+          })
+    }
   }
 })
 

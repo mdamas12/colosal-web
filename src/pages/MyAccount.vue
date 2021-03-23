@@ -5,7 +5,7 @@
              <q-toolbar>
               <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" />
         </q-toolbar>
-        </q-header>      
+        </q-header>
         <q-drawer
             v-model="drawer"
             show-if-above
@@ -25,7 +25,7 @@
                         <q-tab name="personal-info" label="Información personal" class="font-tabs-item" />
                     </div>
                 </div>
-            </div>         
+            </div>
             <q-tab name="security" label="Seguridad" class="font-tabs-item"/>
             <q-tab name="addresses" label="Direcciones" class="font-tabs-item"/>
             <q-tab name="order-status" label="Estatus de Ordenes" class="font-tabs-item"/>

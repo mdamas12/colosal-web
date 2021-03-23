@@ -71,7 +71,7 @@
                     <q-item-label class="label-register">¿No tienes cuenta? REGÍSTRATE</q-item-label>
                   </div>
                 </div>
-              </div>       
+              </div>
               <q-card-actions vertical align="center">
                 <q-btn label="Registrarse" color="cielo" text-color="bluesito" class="btn-register-session q-mb-md" size="md" v-close-popup to="/register"></q-btn>
               </q-card-actions>
