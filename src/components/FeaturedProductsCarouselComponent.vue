@@ -155,7 +155,7 @@ export default defineComponent({
     }
   },
   created () {
-    this.allProducts();
+    this.allProducts()
     // this.searchData();
     // this.productsFilter = this.products
     // this.spliteCategories();
@@ -174,17 +174,17 @@ export default defineComponent({
   //   }
   methods: {
     allProducts () {
-            setTimeout(()=>{
-                this.load = false
-            }, 3000)
-            const headers = { "Content-Type": "application/json" };
-            axios.get('http://localhost:8000/web/home/products-featured/', {headers})
-                .then(response => {
-                    this.products = response.data;
-                    console.log(response.data)
-                })
-        }
+      setTimeout(() => {
+        this.load = false
+      }, 3000)
+      const headers = { 'Content-Type': 'application/json' }
+      axios.get('http://localhost:8000/web/home/products-featured/', { headers })
+        .then(response => {
+          this.products = response.data
+          console.log(response.data)
+        })
     }
+  }
 })
 </script>
 

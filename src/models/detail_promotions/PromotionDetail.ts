@@ -19,3 +19,4 @@ export default class PromotionDetail {
       this.promotion = map.product as number
     }
 }
+

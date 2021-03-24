@@ -220,23 +220,23 @@ export default defineComponent({
   computed: {
     promotionsGroups () {
       return Array.from(Array(Math.ceil(this.promotions.length / this.itemsPromoRow)).keys())
-    },
+    }
   },
   created () {
-      this.allPromotions();
+    this.allPromotions()
   },
   methods: {
-    allPromotions() {
-            setTimeout(()=>{
-                this.load = false
-            }, 3000)
-            const headers = { "Content-Type": "application/json" };
-            axios.get('http://localhost:8000/web/home/promotions-featured/', {headers})
-                .then(response => {
-                    this.promotions = response.data;
-                    console.log(response.data)
-                })
-        }
+    allPromotions () {
+      setTimeout(() => {
+        this.load = false
+      }, 3000)
+      const headers = { 'Content-Type': 'application/json' }
+      axios.get('http://localhost:8000/web/home/promotions-featured/', { headers })
+        .then(response => {
+          this.promotions = response.data
+          console.log(response.data)
+        })
+    }
   }
 })
 </script>
