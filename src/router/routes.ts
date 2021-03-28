@@ -10,8 +10,8 @@ const routes: RouteConfig[] = [
       { path: '/products/detail', component: () => import('pages/DetailProduct.vue') },
       { path: '/promotions', component: () => import('pages/Promotions.vue') },
       { path: '/register', component: () => import('pages/Register.vue') },
-      { path: '/my-account', component: () => import('pages/MyAccount.vue') }
-
+      { path: '/my-account', component: () => import('pages/MyAccount.vue') },
+      { path: '/cart', component:() => import('pages/ShoppingCart.vue')}
     ]
   },
 
