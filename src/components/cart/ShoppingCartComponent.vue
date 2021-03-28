@@ -304,7 +304,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			this.cantidad++
 		},
 		decreaseProdQty(){
-			if (cantidad > 0){
+			if (this.cantidad > 0){
 				this.cantidad--
 			}
 		}

@@ -57,29 +57,8 @@
               </div>
         </q-toolbar-title>
         <div>
-          <q-btn flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign">
-            <q-menu :offset="[0, 20]" transition-show="jump-down"
-                transition-hide="jump-up">
-              <div class="row no-wrap q-pa-md">
-                <div class="column items-center">
-                  <q-avatar size="72px">
-                    <img src="https://cdn.quasar.dev/img/avatar4.jpg">
-                  </q-avatar>
-
-                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
-
-                  <q-btn
-                    color="primary"
-                    label="Logout"
-                    push
-                    size="sm"
-                    v-close-popup
-                  />
-                </div>
-              </div>
-            </q-menu>
-          </q-btn>
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car" @click="$router.push({path: '/cart'})"></q-btn>
+          <q-btn flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
+          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md"></q-btn>
         </div>
       </q-toolbar>
     </q-header>
