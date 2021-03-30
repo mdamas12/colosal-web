@@ -112,17 +112,9 @@ export default defineComponent({
         .then(response => {
           this.categories = response.data
           console.log(response.data)
-        //   var imageUrl = encodeURI(response.data.image)
-        //   fetch(imageUrl)
-        //     .then(res => res.blob())
-        //     .then(blob => {
-        //       const n = response.data.image.indexOf("categories/") + 11
-        //       const imageName = response.data.image.substring(n)
-        //       const extension = imageName.substring(imageName.indexOf(".") + 1)
-        //       const file = new File([blob], imageName, { type: `image/${extension}` })
-        //       this.image = file
-        //       this.getImage(file)
-        //     })
+        })
+        .catch(error => {
+          console.log(error)
         })
     },
     getImage (e) {
@@ -194,6 +186,9 @@ export default defineComponent({
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%)
+    }
+    .image-categorie{
+        max-height: 250px;
     }
     .div-carniceria:hover .image-categorie{
         opacity: 0.6;

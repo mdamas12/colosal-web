@@ -1,5 +1,6 @@
 <template>
   <q-page>
+    <!-- <header-component></header-component> -->
     <example-component></example-component>
     <our-benefits-component></our-benefits-component>
     <featured-products-carousel-component></featured-products-carousel-component>
@@ -8,7 +9,6 @@
     <categories-component></categories-component>
     <about-component></about-component>
     <footer-component></footer-component>
-    <!-- <header-component></header-component> -->
   </q-page>
 </template>
 
