@@ -1,0 +1,334 @@
+<template>
+	<div class="container-shopping-cart-title ">
+		<div class="row">
+		</div>
+		<div class="row justify-evenly items-start content-center">
+			<div class="col-8 q-mx-md">
+				<div class="row full-width q-my-xl">
+					<div class="col">
+						<q-card flat bordered class="q-mb-sm q-pa-lg">
+							<q-card-header>
+								<div class="row title-text">
+									Carrito de compras
+								</div>
+							</q-card-header>
+						</q-card>		
+					</div>
+				</div>
+				
+				<div class="row q-mx-xs">
+					<div class="col-12">
+						<q-card flat bordered class="my-card q-mb-md">
+							<div class="row items-center">
+								<div class="col-1">
+									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+								</div>
+							
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												Doritos Mega Queso
+											</div>
+											<div class="col text-description-product">
+												150Gr Frito Lay
+											</div>
+											<div class="col-1">
+												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-3">
+									<q-card-section>
+										<div class="col text-description-product">
+											Cantidad
+										</div>
+										<div class="row">
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">
+														<div class="col">
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
+														</div>
+														<div class="col text-name-product self-center q-pl-lg">
+															1
+														</div>
+														<div class="col q-mr-sm">
+															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
+														</div>
+													</div>
+												</q-card-section>
+											</q-card>
+										</div>
+									</q-card-section>
+								</div>
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-description-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+							</div>
+						</q-card>
+						<q-card flat bordered class="my-card q-my-md">
+							<div class="row items-center">
+								<div class="col-1">
+									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+								</div>
+							
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												Doritos Mega Queso
+											</div>
+											<div class="col text-description-product">
+												150Gr Frito Lay
+											</div>
+											<div class="col-1">
+												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-3">
+									<q-card-section>
+										<div class="col text-description-product">
+											Cantidad
+										</div>
+										<div class="row">
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">
+														<div class="col">
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
+														</div>
+														<div class="col text-name-product self-center q-pl-lg">
+															1
+														</div>
+														<div class="col q-mr-sm">
+															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
+														</div>
+													</div>
+												</q-card-section>
+											</q-card>
+										</div>
+									</q-card-section>
+								</div>
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-description-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+							</div>
+						</q-card>
+						<q-card flat bordered class="my-card q-my-md">
+							<div class="row items-center">
+								<div class="col-1">
+									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+								</div>
+							
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												Doritos Mega Queso
+											</div>
+											<div class="col text-description-product">
+												150Gr Frito Lay
+											</div>
+											<div class="col-1">
+												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-3">
+									<q-card-section>
+										<div class="col text-description-product">
+											Cantidad
+										</div>
+										<div class="row">
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">
+														<div class="col">
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
+														</div>
+														<div class="col text-name-product self-center q-pl-lg">
+															1
+														</div>
+														<div class="col q-mr-sm">
+															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
+														</div>
+													</div>
+												</q-card-section>
+											</q-card>
+										</div>
+									</q-card-section>
+								</div>
+								<div class="col-3">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-description-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product">
+												$169.99
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+							</div>
+						</q-card>
+					</div>
+				</div>
+			</div>
+			<div class="col-3">
+				<q-card flat bordered class="my-card q-mx-md q-mt-xl">
+					<q-card-section>
+						<div class="row justify-between">
+							<div class="col-2 self-start">
+								Subtotal
+							</div>
+							<div class="col-2 wrap self-end">
+								<strong>$169.99</strong>
+							</div>
+						</div>
+					</q-card-section>
+
+					<q-card-section>
+						<div class="row justify-between">
+							<div class="col-2 self-start">
+								Descuentos
+							</div>
+							<div class="col-2 wrap self-end">
+								<strong>$10.99</strong>
+							</div>
+						</div>
+					</q-card-section>
+
+					<q-separator/>
+
+					<q-card-section>
+						<div class="row justify-between">
+							<div class="col-2 self-start">
+								TOTAL
+							</div>
+							<div class="col-2 wrap self-end">
+								<strong>$159.00</strong>
+							</div>
+						</div>
+					</q-card-section>
+
+					<q-separator/>
+
+					<q-card-section>
+						<div class="column items-center">
+							<div class="row">
+								<div class="col">
+									<q-btn color="red-10" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido"></q-btn>
+								</div>
+							</div>
+						</div>
+					</q-card-section>
+				</q-card>
+			</div>
+		</div>
+
+		
+	</div>
+</template>
+ 
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent ( { name: 'ShoppingCartComponent',
+	data (){
+		return {
+			cantidad: 0
+		}
+	},
+	methods: {
+		increaseProdQty(){
+			this.cantidad++
+		},
+		decreaseProdQty(){
+			if (cantidad > 0){
+				this.cantidad--
+			}
+		}
+	}
+})
+</script>
+
+<style>
+    .container-shopping-cart-title {
+			background: #FAFAFA;
+    }
+
+		.text-name-product{
+			font-family: 'Poppins-SemiBold';
+			font-size: 16px;
+		}
+
+		.text-description-product{
+				font-family: 'Poppins-Regular';
+				font-size: 16px;
+		}
+
+		.title-text{
+				font-family: 'Poppins-SemiBold';
+				font-size: 32px;
+		}
+</style>

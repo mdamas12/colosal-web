@@ -21,7 +21,7 @@
                     </q-avatar>
                     <q-tooltip>Account</q-tooltip>
                   </q-btn>
-                  <q-btn round dense flat color="bluesito" icon="shopping_cart">
+                  <q-btn round dense flat color="bluesito" icon="shopping_cart" @click="$router.push({path: '/cart'})">
                     <q-tooltip>Carrito</q-tooltip>
                   </q-btn>
                 </div>
