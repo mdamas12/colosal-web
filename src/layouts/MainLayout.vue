@@ -58,7 +58,7 @@
         </q-toolbar-title>
         <div>
           <q-btn flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md"></q-btn>
+          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car" @click="$router.push({path: '/cart'})"></q-btn>
         </div>
       </q-toolbar>
     </q-header>
