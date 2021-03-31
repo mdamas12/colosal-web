@@ -8,6 +8,7 @@ const routes: RouteConfig[] = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/products', component: () => import('pages/Products.vue') },
       { path: '/products/detail/:id', component: () => import('pages/DetailProduct.vue') },
+      { path: '/promotions/detail/:id', component: () => import('pages/DetailPromotion.vue') },
       { path: '/promotions', component: () => import('pages/Promotions.vue') },
       { path: '/register', component: () => import('pages/Register.vue') },
       { path: '/my-account', component: () => import('pages/MyAccount.vue') },
