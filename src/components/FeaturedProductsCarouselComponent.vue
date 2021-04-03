@@ -107,7 +107,7 @@
                             <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card">
                                     <q-card-section class="text-center">
-                                        <q-img v-bind:src="product.image" class="img-product"></q-img>
+                                        <q-img v-bind:src="'http://localhost:8000' + product.image" class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <div class="text-name-product">

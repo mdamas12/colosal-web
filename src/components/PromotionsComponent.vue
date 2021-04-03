@@ -117,7 +117,7 @@
                             <q-card class="my-card card2">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
-                                            <q-img src="~assets/img/combo3.png" class="img-promotions" style="max-width:150px"></q-img>
+                                            <q-img :src="'http://localhost:8000' + promotion.image" class="img-promotions" style="max-width:150px"></q-img>
                                             <div class="middle">
                                                 <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                             </div>
