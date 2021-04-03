@@ -114,7 +114,7 @@
                     </div>
                     <div class="row" v-else>
                         <div class="col-4 col-md q-gutter-sm q-pa-md" v-for="promotion in promotions.slice(index * itemsPromoRow, (index+1) * itemsPromoRow)" :key="promotion.id">
-                            <q-card class="my-card card2">
+                            <q-card class="my-card card2" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <div class="combo1">
                                             <q-img :src="'http://localhost:8000' + promotion.image" class="img-promotions" style="max-width:150px"></q-img>

@@ -7,10 +7,10 @@
                     <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
                 </q-toolbar-title>
                 <q-space />
-                <q-input rounded outlined dense v-model="search" @keyup="filtroProducts" color="bluesito" placeholder="¿Que estas buscando?" style="width: 40%">
+                <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?" style="width: 40%">
                   <template v-slot:prepend>
                     <q-icon v-if="search === ''" name="search" />
-                    <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
+                    <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
                   </template>
                 </q-input>
                 <q-space />
@@ -26,13 +26,20 @@
                   </q-btn>
                 </div>
             </q-toolbar>
-            <q-list v-for="product in filtroProducts()" :key="product.id" separator>
-              <q-item clickable class="text-center q-px-md" @click="$router.push({ path: `/products/detail/${product.id}/` })">
-                <q-item-section>
-                  {{product.name}}
-                </q-item-section>
-              </q-item>
-            </q-list>
+                <q-list v-if="products" v-for="product in products" :key="product.id" separator>
+                  <q-item clickable class="text-center q-px-md" @click="clickToProduct(product.id)">
+                    <q-item-section>
+                      {{product.name}}
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              <div class="row justify-center" v-if="searching && products.length == 0">
+                <q-circular-progress
+                    indeterminate
+                    size="50px"
+                    class="q-ma-md"
+                  />
+              </div>
         </q-header>
         <q-dialog persistent v-model="showInitSession" >
           <q-card class="my-card" style="max-width:100%; width:440px">
@@ -148,39 +155,39 @@ export default defineComponent({
     const leftDrawerOpen = ref(false)
     // const essentialLinks = ref(linksData)
 
-    return { leftDrawerOpen, showInitSession: false, password: '', isPwd: true, search: '', products: '', name }
-  },
-  created () {
-    this.getProducts()
+    return { 
+      leftDrawerOpen, 
+      showInitSession: false, 
+      password: '', 
+      isPwd: true, 
+      search: '', 
+      products: [], 
+      name,
+      searching : false
+    }
   },
   methods: {
-    getProducts () {
-      ProductsServices.getProducts().subscribe({
-        next: data => {
-          this.products = data.results
-          console.log(data.results)
-        },
-        complete: () => console.log('[complete]')
-      })
+    clearSearch(){
+        this.search = ''
+        this.products = []
     },
-    filtroProducts () {
-      var data = this.products
-      if (this.search === '') {
-        let value = ''
-        return value
-      } else {
-        return data.filter((item) => {
-          return (item.name.toString().toLowerCase().includes(this.search.toLowerCase())) ? true : false
+    clickToProduct(productID : number){
+        this.clearSearch()
+        this.$router.push({ path: `/products/detail/${productID}/` })
+    },
+    searchProduct () {
+      let vm = this
+      this.products = []
+      if (vm.search.length > 2) {
+        vm.searching = true
+        ProductsServices.searchProduct(vm.search).subscribe({
+          next: data => {
+            vm.searching = false
+            vm.products = data.results
+            console.log(data)
+          }
         })
-      }
-    },
-    productsFilter () {
-      ProductsServices.searchProduct(this.search).subscribe({
-        next: data => {
-          console.log(data)
-          this.products = data.results
-        }
-      })
+      } 
     },
     getId (id) {
       console.log('estoy imprimiendo:', id)

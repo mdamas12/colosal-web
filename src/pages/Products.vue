@@ -28,8 +28,12 @@
         <q-scroll-area class="fit">
           <q-list>
             <q-item-label class="font-category-splitter q-pa-md">Categorías</q-item-label>
-              <q-item clickable v-ripple v-for="categorie in categories" :key="categorie.id" class="font-title-splitter" @click="getId(categorie.id)">
-                {{categorie.name}}
+              <q-item clickable 
+                      v-ripple 
+                      :active="categorie.id === idCategorie"
+                      active-class="my-menu-link"
+                      v-for="categorie in categories" :key="categorie.id" class="font-title-splitter" @click="getId(categorie.id)">
+                <q-item-section>{{categorie.name}}</q-item-section>
               </q-item>
               <q-separator />
           </q-list>
@@ -153,6 +157,7 @@
           </div>
           <div class="row justify-center">
             <q-pagination
+              v-if="numberOfPages > 1"
               v-model="pagination.page"
               :min="currentPage"
               :max="numberOfPages"
@@ -176,6 +181,10 @@ import { defineComponent } from '@vue/composition-api'
 import ProductsServices from '../services/home/products/product.service'
 import CategoriesServices from '../services/home/categories/categorie.services'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import { colors } from 'quasar'
+
+const { getPaletteColor } = colors
+
 
 const menuList = [
   {
@@ -434,5 +443,9 @@ export default defineComponent({
     .skeleton-card{
         min-height: 520px;
     }
+}
+.my-menu-link{
+  color: white;
+  background: var(--q-color-primary) !important
 }
 </style>
