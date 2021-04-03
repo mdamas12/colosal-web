@@ -16,13 +16,13 @@
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
-                    <div class="text-title-product">Doritos Mega Queso 150Gr</div>
-                    <div class="text-title-brand">Frito Lay</div>
-                    <div class="text-ID-product">ID Producto: 261311</div>
+                    <div class="text-title-product">{{getDataDetail.name}}</div>
+                    <div class="text-title-brand">{{getDataDetail.brand.name}}</div>
+                    <div class="text-ID-product">ID Producto: {{getDataDetail.id}}</div>
                     <div class="text-detail-product">Detail:</div>
-                    <div class="text-price-product">$169.99</div>
+                    <div class="text-price-product">{{getDataDetail.price}}</div>
                     <div class="text-fventa-product">Mayor:</div>
-                    <div class="text-price_fventa-product">$129.99</div>
+                    <div class="text-price_fventa-product">{{getDataDetail.price}}</div>
                     <div class="text-quantity-product">Cantidad:</div>
                     <div class="row">
                         <div class="col-6 col-md">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="title-nota-extra">Nota extra:</div>
-                    <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sequi, quibusdam quis nostrum libero voluptate quod velit inventore dolores veritatis quaerat illum, incidunt voluptatum, aperiam asperiores quisquam totam perferendis architecto!</div>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col">
                     <div class="text-title-description">Descripción del producto</div>
-                    <div class="text-description q-pa-md text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="text-description q-pa-md text-justify">{{getDataDetail.description}}</div>
                 </div>
             </div>
         </div>
@@ -60,12 +60,46 @@
 import { defineComponent } from '@vue/composition-api'
 import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCarouselComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import ProductsServices from '../services/home/products/product.service'
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
     return {
       counter: 0,
-      slide: 1
+      slide: 1,
+      getDataDetail: [{
+        id: this.$route.params.id,
+        name: '',
+        description: '',
+        coin: '',
+        price: '',
+        quantitity: null,
+        image: '',
+        category: [{ name: '' }],
+        brand: [{ name: '' }]
+      }]
+    }
+  },
+  mounted () {
+    this.getProductDetail()
+    this.refreshComponent()
+  },
+  methods: {
+    getProductDetail () {
+      ProductsServices.getProductDetail(this.$route.params.id).subscribe({
+        next: data => {
+          console.log(data)
+          this.getDataDetail = data
+        }
+      })
+    },
+    refreshComponent () {
+      this.$watch(
+        () => this.$route.params.id,
+        (toParams, previousParams) => {
+          this.getProductDetail()
+        }
+      )
     }
   }
 })
