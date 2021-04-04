@@ -8,20 +8,21 @@
                     </div>
                 </div>
             </div>
-         <div class="container q-px-md">
+         <div class="container" style="margin-left:-20px; margin-right:-20px">
                 <q-carousel
                     v-model="slide"
                     transition-prev="slide-right"
                     transition-next="slide-left"
+                    infinite
                     swipeable
                     animated
                     arrows
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-lg"
-                    >
+                    style="height:450px">
                     <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
-                            <div class="col-4 col-md q-gutter-sm q-pa-md">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -48,7 +49,7 @@
                                     </q-card-actions>
                                 </q-card>
                             </div>
-                            <div class="col-4 col-md q-gutter-sm q-pa-md">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -75,7 +76,7 @@
                                     </q-card-actions>
                                 </q-card>
                             </div>
-                            <div class="col-4 col-md q-gutter-sm q-pa-md">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -107,20 +108,21 @@
                             <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
-                                        <q-img v-bind:src="'http://localhost:8000' + product.image" class="img-product"></q-img>
+                                        <q-img 
+                                            style="max-width:150px"
+                                            v-bind:src="'http://localhost:8000' + product.image" 
+                                            class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <div class="text-name-product">
+                                        <q-item-label lines="2" class="text-name-product">
                                             {{product.name}}
-                                        </div>
-                                        <div class="text-description-product">
+                                        </q-item-label>
+                                        <!--<div class="text-description-product">
                                            {{product.description}}
-                                        </div>
+                                        </div>-->
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
-                                            {{product.price}}
-                                        </div>
+                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                       {{product.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -253,6 +255,9 @@ export default defineComponent({
         }
         .img-product{
             width: 70%;
+        }
+        .height-card{
+            height: 100px;
         }
     }
     @media (min-width:1500px){

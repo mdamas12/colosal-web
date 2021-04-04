@@ -6,7 +6,7 @@ const routes: RouteConfig[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: '/products', component: () => import('pages/Products.vue') },
+      { name: 'Products', path: '/products', component: () => import('pages/Products.vue'), props: true },
       { path: '/products/detail/:id', component: () => import('pages/DetailProduct.vue') },
       { path: '/promotions/detail/:id', component: () => import('pages/DetailPromotion.vue') },
       { path: '/promotions', component: () => import('pages/Promotions.vue') },

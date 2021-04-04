@@ -59,6 +59,7 @@
     </div>
     <div class="row justify-center q-mb-md">
       <q-pagination
+        v-if="numberOfPages > 1"
         v-model="pagination.page"
         :min="currentPage"
         :max="numberOfPages"

@@ -35,8 +35,14 @@
               <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md"></q-btn>
             </div>
           </div>
-          <div class="title-nota-extra">Nota extra:</div>
-          <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sequi, quibusdam quis nostrum libero voluptate quod velit inventore dolores veritatis quaerat illum, incidunt voluptatum, aperiam asperiores quisquam totam perferendis architecto!</div>
+          <div class="title-nota-extra"><b>Productos:</b></div>
+          <q-list dense class="rounded-borders">
+            <q-item clickable v-ripple v-for="promo in promotion.promotion_detail">
+              <q-item-section>
+                - {{promo.product.name}}
+              </q-item-section>
+            </q-item>
+          </q-list>
         </div>
       </div>
     </div>

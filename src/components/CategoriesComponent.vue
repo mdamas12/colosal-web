@@ -56,7 +56,7 @@
                                     style="height: 250px; max-width: 250px"/>
                                     
                                 <div class="middle q-pr-md q-pt-md">
-                                    <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
+                                    <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
                                 </div>
                             </div>
                             <div align="center">

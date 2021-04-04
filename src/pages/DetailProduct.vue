@@ -35,19 +35,19 @@
                             <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                         </div>
                     </div>
-                    <div class="title-nota-extra">Nota extra:</div>
-                    <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sequi, quibusdam quis nostrum libero voluptate quod velit inventore dolores veritatis quaerat illum, incidunt voluptatum, aperiam asperiores quisquam totam perferendis architecto!</div>
+                    <div class="title-nota-extra"><b>Descripción del producto:</b></div>
+                    <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
                 </div>
             </div>
         </div>
-        <div class="container-description-product q-px-md q-pt-lg">
+        <!--<div class="container-description-product q-px-md q-pt-lg">
             <div class="row">
                 <div class="col">
                     <div class="text-title-description">Descripción del producto</div>
                     <div class="text-description q-pa-md text-justify">{{getDataDetail.description}}</div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <featured-products-carousel-component></featured-products-carousel-component>
         <footer-component></footer-component>
     </q-page>

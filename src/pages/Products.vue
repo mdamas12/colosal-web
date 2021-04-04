@@ -227,6 +227,7 @@ const menuList = [
 
 export default defineComponent({
   components: { FooterComponent },
+  props: ['idCategorie'],
   data () {
     return {
       splitterModel: 30, // start at 50%
@@ -265,7 +266,11 @@ export default defineComponent({
   created () {
     // this.getAllProducts()
     this.getAllCategories()
-    this.optionsOrder()
+    if(this.idCategorie){
+      this.getId(this.idCategorie)
+    }else{
+      this.optionsOrder()
+    }
     // this.productsFilter()
   },
   methods: {
