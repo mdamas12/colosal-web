@@ -11,10 +11,11 @@ export default class Product {
   coin: string;
   price: number;
   quantity: number;
-  image: File;
+  image: string;
   category: Category[];
   brand: Brand[];
   detail_product: DetailProduct[]
+  picture : ProductImage[]
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor (map:any) {
@@ -24,9 +25,25 @@ export default class Product {
     this.coin = map.coin as string
     this.price = map.price as number
     this.quantity = map.quantity as number
-    this.image = map.image as File
+    this.image = map.image as string
     this.category = map.category as []
     this.brand = map.brand as []
     this.detail_product = map.detail_product as []
+    let picture = map.picture as any[]
+    this.picture = picture.map(item => new ProductImage(item))
+    if(this.image){
+      let aux : any = {
+        "image" : this.image
+      }
+      this.picture.push(new ProductImage(aux))
+    }
   }
+}
+
+export class ProductImage{
+    image : string;
+
+    constructor(map:any){
+        this.image = map.image
+    }
 }

@@ -21,7 +21,7 @@
                     >
                     <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <div class="col-4 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -48,7 +48,7 @@
                                     </q-card-actions>
                                 </q-card>
                             </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <div class="col-4 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -75,7 +75,7 @@
                                     </q-card-actions>
                                 </q-card>
                             </div>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <div class="col-4 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
                                     <q-card-section align="center" class="q-gutter-md">
                                         <q-skeleton type="circle" size="100px" bordered />
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img v-bind:src="'http://localhost:8000' + product.image" class="img-product"></q-img>

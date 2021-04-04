@@ -9,10 +9,7 @@
       <div class="row">
         <div class="col-12 col-md q-gutter-sm q-pa-md">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-            <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="border-img-slide"></q-carousel-slide>
-            <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" class="border-img-slide"/>
-            <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" class="border-img-slide"/>
-            <q-carousel-slide :name="4" img-src="~assets/img/dorito.png" class="border-img-slide"/>
+            <q-carousel-slide v-for="(promo,index) in promotion.promotion_detail" :name="index + 1" :img-src="'http://localhost:8000' + promo.product.image" class="border-img-slide"></q-carousel-slide>
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">

@@ -8,11 +8,8 @@
         <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
-                    <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-                        <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="border-img-slide"></q-carousel-slide>
-                        <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" class="border-img-slide"/>
-                        <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" class="border-img-slide"/>
-                        <q-carousel-slide :name="4" img-src="~assets/img/dorito.png" class="border-img-slide"/>
+                    <q-carousel swipeable animated v-model="slide" thumbnails infinite >
+                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="'http://localhost:8000' + pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
@@ -61,6 +58,7 @@ import { defineComponent } from '@vue/composition-api'
 import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCarouselComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import ProductsServices from '../services/home/products/product.service'
+import Product from "../models/products/Product"
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
@@ -88,8 +86,9 @@ export default defineComponent({
     getProductDetail () {
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
         next: data => {
-          console.log(data)
-          this.getDataDetail = data
+          console.log("antes",data)
+          this.getDataDetail = new Product(data)
+          console.log("despues",this.getDataDetail)
         }
       })
     },
