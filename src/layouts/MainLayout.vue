@@ -15,15 +15,28 @@
                 </q-input>
                 <q-space />
                 <div class="q-gutter-sm row items-center no-wrap">
-                  <q-btn round flat @click.stop="showInitSession = true">
-                    <q-avatar size="30px">
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                    </q-avatar>
-                    <q-tooltip>Account</q-tooltip>
-                  </q-btn>
-                  <q-btn round dense flat color="bluesito" icon="shopping_cart" @click="$router.push({path: '/cart'})">
-                    <q-tooltip>Carrito</q-tooltip>
-                  </q-btn>
+                  <q-item-label class="label-register"> {{name}}</q-item-label>
+                  <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">Mi Cuenta
+                    <q-icon name="keyboard_arrow_down" color="bluesito"/>
+                    <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
+                      <q-list>
+                        <q-item clickable class="font-list">
+                          <q-item-section><a href="#">Mi Perfil</a></q-item-section>
+                        </q-item>
+                        <q-separator />
+                          <q-item clickable class="font-list">
+                            <q-item-section><a href="#">Mis Compras</a></q-item-section>
+                        </q-item>
+                        <q-separator />
+                          <q-item clickable class="font-list">
+                            <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-menu>
+                 </q-btn>
+                 <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesion" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
+                  
+                 <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
                 </div>
             </q-toolbar>
                 <q-list v-if="products" v-for="product in products" :key="product.id" separator>
@@ -40,38 +53,10 @@
                     class="q-ma-md"
                   />
               </div>
-        </q-toolbar-title>
-        <div>
-          <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">Mi Cuenta
-                <q-icon name="keyboard_arrow_down" color="bluesito"/>
-                <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
-                  <q-list>
-                    <q-item clickable class="font-list">
-                      <q-item-section><a href="#">Mi Perfil</a></q-item-section>
-                    </q-item>
-                    <q-separator />
-                      <q-item clickable class="font-list">
-                        <q-item-section><a href="#">Mis Compras</a></q-item-section>
-                    </q-item>
-                     <q-separator />
-                      <q-item clickable class="font-list">
-                        <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-          </q-btn>
-            
-          <q-item-label class="label-register"> {{name}}</q-item-label>
-          <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
-        </div>
-      </q-toolbar>
+
     </q-header>
 
-    <q-dialog
-    persistent
-    v-model="showInitSession"
-    >
+    <q-dialog persistent v-model="showInitSession" >
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
@@ -82,32 +67,32 @@
         <q-separator />
         <q-item class="q-pt-md">
           <q-item-section>
-                        <div class="row q-pt-md">
-                            <div class="col-12 col-md q-px-md">
-                              <q-input label="Correo electrónico" v-model="email" class="font-input"></q-input>
-                            </div>
+              <div class="row q-pt-md">
+                   <div class="col-12 col-md q-px-md">
+                      <q-input label="username" v-model="email" class="font-input"></q-input>
+                      </div>
+               </div>
+                  <div class="row q-pt-md">
+                      <div class="col-12 col-md q-px-md">
+                         <q-input label="Contraseña" v-model="password" :type="isPwd ? 'password' : 'text'" class="font-input">
+                            <template v-slot:append>
+                               <q-icon
+                                 :name="isPwd ? 'visibility_off' : 'visibility'"
+                                  class="cursor-pointer"
+                                 @click="isPwd = !isPwd"
+                                />
+                            </template>
+                            </q-input>
+                       </div>
+                   </div>
+                   <div class="row q-pt-md">
+                      <div class="col col-md q-px-md">
+                          <a href="" class="enlace-recordarme">Recordarme</a>
+                       </div>
+                       <div class="col col-md q-px-md">
+                          <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
                         </div>
-                        <div class="row q-pt-md">
-                            <div class="col-12 col-md q-px-md">
-                              <q-input label="Contraseña" v-model="password" :type="isPwd ? 'password' : 'text'" class="font-input">
-                                <template v-slot:append>
-                                    <q-icon
-                                      :name="isPwd ? 'visibility_off' : 'visibility'"
-                                      class="cursor-pointer"
-                                      @click="isPwd = !isPwd"
-                                    />
-                                </template>
-                              </q-input>
-                            </div>
-                        </div>
-                        <div class="row q-pt-md">
-                            <div class="col col-md q-px-md">
-                                <a href="" class="enlace-recordarme">Recordarme</a>
-                            </div>
-                            <div class="col col-md q-px-md">
-                              <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
-                            </div>
-                        </div>
+                  </div>
           </q-item-section>
         </q-item>
         <q-card-actions vertical align="center">
@@ -129,24 +114,9 @@
                     <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
                   </div>
                 </div>
-              </q-item-section>
-            </q-item>
-            <q-card-actions vertical align="center">
-              <q-btn label="Iniciar Sesión" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
-            </q-card-actions>
-            <q-separator />
-            <q-item-section>
-              <div class="row q-pt-md">
-                <div class="col">
-                  <div class="container text-center">
-                    <q-item-label class="label-register">¿No tienes cuenta? REGÍSTRATE</q-item-label>
-                  </div>
-                </div>
               </div>
-              <q-card-actions vertical align="center">
-                <q-btn label="Registrarse" color="cielo" text-color="bluesito" class="btn-register-session q-mb-md" size="md" v-close-popup to="/register"></q-btn>
-              </q-card-actions>
-            </q-item-section>
+           </q-item-section>
+            </q-item>
           </q-card>
         </q-dialog>
         <q-page-container>
@@ -208,7 +178,6 @@ import { Loading } from "quasar";
 import UsersService   from "../services/home/users/user.service";
 import ProductsServices from '../services/home/products/product.service'
 
-
 export default defineComponent({
   name: 'MainLayout',
   // components: { EssentialLink },
@@ -216,24 +185,21 @@ export default defineComponent({
     const leftDrawerOpen = ref(false)
     // const essentialLinks = ref(linksData)
 
-    return { 
-        leftDrawerOpen, 
-        showInitSession: false, 
-        password: '', 
-        isPwd: true, 
-        search: '', 
-        products: [], 
-        searching : false,
-        email: '', 
-        name : '', 
-        SessionCotrol: false, 
-        SessionClean : true 
-       }
+    return {       
+      leftDrawerOpen, 
+      showInitSession: false, 
+      password: '', 
+      isPwd: true, 
+      search: '', 
+      products: [], 
+      name : '',
+      searching : false, 
+      email: '', SessionCotrol: false, SessionClean : true }
   },
 
   methods: {
 
-    clearSearch(){
+         clearSearch(){
         this.search = ''
         this.products = []
     },
@@ -247,7 +213,7 @@ export default defineComponent({
       if (vm.search.length > 2) {
         vm.searching = true
         ProductsServices.searchProduct(vm.search).subscribe({
-          next: data => {
+          next: (data : any) => {
             vm.searching = false
             vm.products = data.results
             console.log(data)
@@ -255,7 +221,7 @@ export default defineComponent({
         })
       } 
     },
-    getId (id) {
+    getId (id : any) {
       console.log('estoy imprimiendo:', id)
     },
 
@@ -340,8 +306,6 @@ export default defineComponent({
     }
 
   },
-
-
 
     mounted(){
       let token = localStorage.getItem("token")
