@@ -31,75 +31,42 @@
                     </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item class="q-pt-md">
-                    <q-item-section avatar class="q-px-lg">
-                        <q-avatar size="84px">
-                            <img src="https://cdn.quasar.dev/img/avatar4.jpg">
-                        </q-avatar>
-                    </q-item-section>
-                    <q-item-section>
-                        <div class="row">
-                            <div class="col-4">
-                                <q-btn label="Cargar foto" class="btn-photo"></q-btn>
-                            </div>
-                        </div>
-                    <q-item-label caption class="label-photo">
-                        Lorem ipsum dolor sit amet, consetetur
-                    </q-item-label>
-                    </q-item-section>
-                </q-item>
+
                 <q-card-section>
                     <q-item>
                         <q-item-section>
                             <div class="row">
                                 <div class="col-12 col-md q-px-md q-mb-sm">
-                                    <q-input label="Nombre(s) y Apellido(s)*" class="font-input"></q-input>
+                                    <q-input label="Nombre(s) y Apellido(s)*" v-model="username" class="font-input"></q-input>
                                 </div>
-                                <div class="col-3-lg col-12-sm q-px-md q-mb-sm">
-                                    <q-select v-model="model" :options="options" />
+                            </div>
+
+                            <div class="row q-pt-md">
+                                <div class="col-12 col-md q-px-md">
+                                    <q-input label="Correo Electrónico*" v-model="email" class="font-input"
+                                      lazy-rules
+                                      :rules="[val => !!val || 'Debe ingresar el correo', isValidEmail]"
+                                    ></q-input>
                                 </div>
                                 <div class="col-12 col-md q-px-md">
-                                    <q-input label="Ingrese su nro. de cédula*" class="font-input"></q-input>
+                                    <q-input label="Confirmar correo" v-model="email_confirm" class="font-input"
+                                       lazy-rules
+                                       :rules="[val => !!val || 'Debe ingresar el correo', isValidEmail]"
+                                    ></q-input>
                                 </div>
                             </div>
                             <div class="row q-pt-md">
                                 <div class="col-12 col-md q-px-md">
-                                    <q-input label="Teléfono móvil*" class="font-input"></q-input>
+                                    <q-input label="Contraseña*" v-model="password" class="font-input"
+                                      lazy-rules
+                                      :rules="[val => !!val || 'Debe ingresar una contraseña', isValidPassword]"
+                                    ></q-input>
                                 </div>
                                 <div class="col-12 col-md q-px-md">
-                                    <q-input label="Teléfono casa (opcional)" class="font-input"></q-input>
-                                </div>
-                            </div>
-                            <div class="row q-pt-md">
-                                <div class="col-12 col-md q-px-md">
-                                    <q-input label="Correo Electrónico*" class="font-input"></q-input>
-                                </div>
-                                <div class="col-12 col-md q-px-md">
-                                    <q-input label="Confirmar correo" class="font-input"></q-input>
-                                </div>
-                            </div>
-                            <div class="row q-pt-md">
-                                <div class="col-12 col-md q-px-md">
-                                    <q-input label="Contraseña*" class="font-input"></q-input>
-                                </div>
-                                <div class="col-12 col-md q-px-md">
-                                    <q-input label="Confirmar contraseña" class="font-input"></q-input>
-                                </div>
-                            </div>
-                            <div class="row q-pt-md">
-                                <div class="col-12 col-md q-px-md">
-                                    <q-select v-model="model" :options="options" label="Seleccione su Ciudad"/>
-                                    <q-item-label class="label-ciudad q-pt-sm">Solo está disponible en las ciudades, solo San Félix y Puerto Ordaz.</q-item-label>
-                                </div>
-                                <div class="col-12 col-md q-px-md">
-                                    <q-select v-model="model" :options="options" label="Seleccione su Zona"/>
-                                    <q-item-label class="label-zona q-pt-sm">Solo está disponible en las zonas aquí listadas.</q-item-label>
-                                </div>
-                            </div>
-                            <div class="row q-pt-md">
-                                <div class="col-12 col-md q-px-md">
-                                    <q-input label="Dirección de entrega*" class="font-input"></q-input>
-                                    <q-item-label class="label-direccion q-pt-sm">Por favor, escriba la dirección en la que desea recibir su compra, con el mayor detalle posible. Incluya un punto de referencia.</q-item-label>
+                                    <q-input label="Confirmar contraseña" v-model="password_confirm" class="font-input"
+                                      lazy-rules
+                                      :rules="[val => !!val || 'Debe ingresar una contraseña', isValidPassword]"
+                                    ></q-input>
                                 </div>
                             </div>
                             <div class="row q-pt-md">
@@ -111,7 +78,7 @@
                     </q-item>
                 </q-card-section>
                 <q-card-actions vertical align="center">
-                    <q-btn label="Registrarme" color="bluesito" class="btn-register q-mb-md"></q-btn>
+                    <q-btn label="Registrarme" color="bluesito" class="btn-register q-mb-md" @click="checkinformations()"></q-btn>
                 </q-card-actions>
             </q-card>
         </div>
@@ -123,14 +90,92 @@
 <script>
 import { defineComponent } from '@vue/composition-api'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import UsersService   from "../services/home/users/user.service";
+import { Loading } from "quasar";
 export default defineComponent({
   components: { FooterComponent },
   data () {
     return {
       model: null,
-      options: ['V', 'E'],
-      right: false
+      right: false,
+      username : '',
+      email : '',
+      email_confirm : '',
+      password : '',
+      password_confirm : '',
+      loading: false
     }
+  },
+  methods: {
+
+        showNotif (message , color) {
+        this.$q.notify({
+            message: message,
+            color: color,
+            actions: [
+            { label: '', color: 'white', handler: () => { /* ... */ } }
+            ]
+        })
+        },
+        checkinformations(){
+         
+        if (this.username == "" || this.email == "" || this.email_confirm == "" || this.password == "" || this.password_confirm == ""){
+            this.showNotif("Faltan campos por completar", 'red-10');
+            return;
+        };
+        if (this.email != this.email_confirm){
+            this.showNotif("Campo Email No coincide con Email de confirmacion", 'red-10');
+            return; 
+        }
+        if (this.password != this.password_confirm){
+            this.showNotif("la contrasenia No coincide con la contrasenia de confirmacion", 'red-10');
+            return; 
+        }
+        if (this.right == false) {
+           this.showNotif("Debes Aceptar las condiciones para continuar con el registro", 'red-10');
+            return; 
+        }
+        //console.log("everything in order. Creating user...");
+        this.Register();
+        },
+        Register(){
+            //Loading.show();
+            /* const credentials = new FormData();
+                    credentials.append('username', this.username);
+                    credentials.append('email', this.email);
+                    credentials.append('password1', this.password);
+                    credentials.append('password2', this.password); 
+                    credentials.append('is_superuser', false);
+                */
+            let credentials = {
+                'username' : this.username,
+                'email' : this.email,
+                'password1' : this.password,
+                'password2' : this.password_confirm,
+                'is_superuser' : false
+            }
+            let subscription = UsersService.Register(credentials).subscribe( {
+            complete: () => {
+               // Loading.hide()
+                this.showNotif("Usuario Registrado", 'green-5');
+                this.$router.push('/')
+                //this.$router.back();
+            },
+            error: () => {
+                Loading.hide();
+                this.showNotif("ERROR: Usuario/Email ya existen ", 'red-10');
+                }
+            });
+        },
+
+        isValidEmail (val) {
+            const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
+            return emailPattern.test(val) || 'Correo inválido';
+            },
+        isValidPassword (val) {
+           const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+           return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres (1 Letra May, 1 Caracter especial) ';
+        },
   }
 })
 </script>

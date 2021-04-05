@@ -292,6 +292,7 @@
  
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import SoppingcartService   from "../../services/home/shoppingcart/shoppingcart.service";
 
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
@@ -300,6 +301,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		}
 	},
 	methods: {
+		
 		increaseProdQty(){
 			this.cantidad++
 		},
@@ -307,8 +309,23 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			if (this.cantidad > 0){
 				this.cantidad--
 			}
-		}
-	}
+		},
+
+		listCart(){
+		let token = 'Bearer '+localStorage.getItem("token")
+        let subscription = SoppingcartService.listcart(token).subscribe( {
+          complete: () => {
+             alert("ok")
+          }
+        });
+      },
+	},
+	 mounted () {
+        const vm = this;
+        vm.listCart();
+        //vm.pagination.rowsNumber = vm.count;
+  
+    }
 })
 </script>
 

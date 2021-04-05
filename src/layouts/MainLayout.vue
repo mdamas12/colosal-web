@@ -57,8 +57,28 @@
               </div>
         </q-toolbar-title>
         <div>
-          <q-btn flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
-          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md"></q-btn>
+          <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">Mi Cuenta
+                <q-icon name="keyboard_arrow_down" color="bluesito"/>
+                <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
+                  <q-list>
+                    <q-item clickable class="font-list">
+                      <q-item-section><a href="#">Mi Perfil</a></q-item-section>
+                    </q-item>
+                    <q-separator />
+                      <q-item clickable class="font-list">
+                        <q-item-section><a href="#">Mis Compras</a></q-item-section>
+                    </q-item>
+                     <q-separator />
+                      <q-item clickable class="font-list">
+                        <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+          </q-btn>
+            
+          <q-item-label class="label-register"> {{name}}</q-item-label>
+          <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Mi cuenta" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
+          <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
         </div>
       </q-toolbar>
     </q-header>
@@ -70,7 +90,7 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Inicia Sesión
+              Inicia Sesión 
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
@@ -79,7 +99,7 @@
           <q-item-section>
                         <div class="row q-pt-md">
                             <div class="col-12 col-md q-px-md">
-                              <q-input label="Correo electrónico" class="font-input"></q-input>
+                              <q-input label="Correo electrónico" v-model="email" class="font-input"></q-input>
                             </div>
                         </div>
                         <div class="row q-pt-md">
@@ -106,7 +126,7 @@
           </q-item-section>
         </q-item>
         <q-card-actions vertical align="center">
-            <q-btn label="Iniciar Sesión" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
+            <q-btn label="Iniciar Sesión" color="bluesito" class="btn-init-session q-mb-md" size="md" @click="checkLogin()"></q-btn>
         </q-card-actions>
          <q-separator />
          <q-item-section>
@@ -175,8 +195,11 @@ const linksData = [
     link: 'https://awesome.quasar.dev'
   }
 ]
+import Vue from 'vue'
+import { defineComponent, ref } from '@vue/composition-api';
+import { Loading } from "quasar";
+import UsersService   from "../services/home/users/user.service";
 
-import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -185,8 +208,113 @@ export default defineComponent({
     const leftDrawerOpen = ref(false)
     const essentialLinks = ref(linksData)
 
-    return { leftDrawerOpen, essentialLinks, showInitSession: false, password: '', isPwd: true }
-  }
+    return { leftDrawerOpen, essentialLinks, showInitSession: false, password: '', isPwd: true, email: '', name : '', SessionCotrol: false, SessionClean : true }
+  },
+
+  methods: {
+
+      showNotif (message : any, color: any) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        actions: [
+          { label: '', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
+     },
+     
+     checkLogin(){
+      if (this.email === "" || this.password == null){
+        this.showNotif("Faltan campos por completar", 'red-10');
+        return;
+      };
+      this.Login();
+    },
+    Login(){
+      Loading.show();
+      const credentials = {
+        username : this.email,
+        password : this.password
+      };
+    
+        let subscription = UsersService.Login(credentials).subscribe( {
+          complete: () => {
+            Loading.hide();
+            if (this.verifySession() == true){
+            this.showNotif("Ha iniciado sesion", 'green-10');
+            this.showInitSession = false;
+            this.email = '';
+            this.password = '';
+            }
+          },
+          error: () => {
+              Loading.hide();
+              this.showNotif("Los datos proporcionados son incorrectos", 'red-10');
+            }
+        });
+      },
+      Logout() {
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          if (this.verifySession() == false){
+            this.showNotif("sesion Cerrada", 'blue-7');
+            this.$router.push('/')
+          }
+         
+      },
+      Shoppingcart(){
+        
+        if (this.verifySession() == true){
+           this.$router.push('/cart')
+        }
+        else{
+           this.showInitSession = true;
+        }
+  
+      },
+      verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+          this.name = username;
+          this.SessionClean = false;
+          this.SessionCotrol = true;
+          return true;
+
+
+      }
+      else{
+        this.name = '';
+        this.SessionClean = true;
+        this.SessionCotrol = false;
+        return false;
+       
+      }
+    
+    }
+
+  },
+
+
+
+    mounted(){
+      let token = localStorage.getItem("token")
+      let username =  localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+          this.name = username
+          this.SessionClean = false;
+          this.SessionCotrol = true;
+
+      }
+      else{
+        this.name = '';
+        this.SessionClean = true;
+        this.SessionCotrol = false;
+      }
+    
+    }
+  
+
 })
 </script>
 
