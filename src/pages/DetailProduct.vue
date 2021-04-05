@@ -8,21 +8,18 @@
         <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
-                    <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-                        <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" class="border-img-slide"></q-carousel-slide>
-                        <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" class="border-img-slide"/>
-                        <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" class="border-img-slide"/>
-                        <q-carousel-slide :name="4" img-src="~assets/img/dorito.png" class="border-img-slide"/>
+                    <q-carousel swipeable animated v-model="slide" thumbnails infinite >
+                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="'http://localhost:8000' + pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
-                    <div class="text-title-product">Doritos Mega Queso 150Gr</div>
-                    <div class="text-title-brand">Frito Lay</div>
-                    <div class="text-ID-product">ID Producto: 261311</div>
+                    <div class="text-title-product">{{getDataDetail.name}}</div>
+                    <div class="text-title-brand">{{getDataDetail.brand.name}}</div>
+                    <div class="text-ID-product">ID Producto: {{getDataDetail.id}}</div>
                     <div class="text-detail-product">Detail:</div>
-                    <div class="text-price-product">$169.99</div>
+                    <div class="text-price-product">{{getDataDetail.price}}</div>
                     <div class="text-fventa-product">Mayor:</div>
-                    <div class="text-price_fventa-product">$129.99</div>
+                    <div class="text-price_fventa-product">{{getDataDetail.price}}</div>
                     <div class="text-quantity-product">Cantidad:</div>
                     <div class="row">
                         <div class="col-6 col-md">
@@ -38,19 +35,19 @@
                             <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                         </div>
                     </div>
-                    <div class="title-nota-extra">Nota extra:</div>
-                    <div class="text-nota-extra text-justify q-pr-md">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="title-nota-extra"><b>Descripción del producto:</b></div>
+                    <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
                 </div>
             </div>
         </div>
-        <div class="container-description-product q-px-md q-pt-lg">
+        <!--<div class="container-description-product q-px-md q-pt-lg">
             <div class="row">
                 <div class="col">
                     <div class="text-title-description">Descripción del producto</div>
-                    <div class="text-description q-pa-md text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+                    <div class="text-description q-pa-md text-justify">{{getDataDetail.description}}</div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <featured-products-carousel-component></featured-products-carousel-component>
         <footer-component></footer-component>
     </q-page>
@@ -60,12 +57,48 @@
 import { defineComponent } from '@vue/composition-api'
 import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCarouselComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import ProductsServices from '../services/home/products/product.service'
+import Product from "../models/products/Product"
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
     return {
       counter: 0,
-      slide: 1
+      slide: 1,
+      getDataDetail: [{
+        id: this.$route.params.id,
+        name: '',
+        description: '',
+        coin: '',
+        price: '',
+        quantitity: null,
+        image: '',
+        category: [{ name: '' }],
+        brand: [{ name: '' }]
+      }]
+    }
+  },
+  mounted () {
+    this.getProductDetail()
+    this.refreshComponent()
+  },
+  methods: {
+    getProductDetail () {
+      ProductsServices.getProductDetail(this.$route.params.id).subscribe({
+        next: data => {
+          console.log("antes",data)
+          this.getDataDetail = new Product(data)
+          console.log("despues",this.getDataDetail)
+        }
+      })
+    },
+    refreshComponent () {
+      this.$watch(
+        () => this.$route.params.id,
+        (toParams, previousParams) => {
+          this.getProductDetail()
+        }
+      )
     }
   }
 })

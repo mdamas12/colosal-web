@@ -8,21 +8,22 @@
                 </div>
             </div>
         </div>
-        <div class="container q-px-md">
+        <div class="container" style="margin-left:-60px; margin-right:-60px">
             <q-carousel
                 v-model="slide"
                 transition-prev="slide-right"
                 transition-next="slide-left"
+                infinite
                 swipeable
                 animated
                 arrows
                 control-color="red-10"
-                class="carousel-promo q-px-xl"
-            >
+                class="bg-accent container-carousel q-px-lg"
+                style="height:450px">
                 <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in promotionsGroups" :key="slide">
                     <div class="row" v-if="load">
-                          <div class="col-12 col-md q-gutter-sm q-pa-md">
-                            <q-card class="q-pt-md">
+                          <div class="col-6 col-md q-gutter-sm q-pa-md">
+                            <q-card class="q-pt-md skeleton-card">
                                 <q-card-section align="center" class="q-gutter-md">
                                     <q-skeleton height="150px" square />
                                 </q-card-section>
@@ -113,28 +114,24 @@
                         </div>
                     </div>
                     <div class="row" v-else>
-                        <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="promotion in promotions.slice(index * itemsPromoRow, (index+1) * itemsPromoRow)" :key="promotion.id">
-                            <q-card class="my-card card2">
+                        <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="promotion in promotions.slice(index * itemsPromoRow, (index+1) * itemsPromoRow)" :key="promotion.id">
+                            <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
-                                        <div class="combo1">
-                                            <q-img src="~assets/img/combo3.png" class="img-promotions"></q-img>
-                                            <div class="middle">
-                                                <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
-                                            </div>
+                                        <q-img 
+                                            :src="'http://localhost:8000' + promotion.promotion_detail[0].product.image" 
+                                            class="img-promotions" 
+                                            style="max-width:150px"></q-img>
+                                        <div class="middle">
+                                            <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <div class="text-name-product">
-                                           {{promotion.name}}
-                                        </div>
-                                        <div class="text-description-product">
-                                            {{promotion.description}}
-                                        </div>
+                                        <q-item-label lines="2" class="text-name-product">
+                                            {{promotion.name}}
+                                        </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
-                                        <div class="text-price-product">
+                                    <q-card-section class="text-center q-pt-none text-price-product">
                                            {{promotion.price}}
-                                        </div>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -258,6 +255,9 @@ export default defineComponent({
 .combo1{
     position: relative;
 }
+.card{
+        min-height: 360px;
+    }
 .middle{
   transition: .5s ease;
   opacity: 0;

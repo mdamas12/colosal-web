@@ -78,6 +78,9 @@
             </q-item-section>
           </q-card>
         </q-dialog>
+        <q-page-container>
+          <router-view />
+        </q-page-container>
     </q-layout>
 </template>
 

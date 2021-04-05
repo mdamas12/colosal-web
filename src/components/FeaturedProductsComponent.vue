@@ -11,7 +11,7 @@
                                     Conoce nuestros métodos de pago
                                 </div>
                                 <div class="col-12 col-md q-pt-md q-mx-md">
-                                     <q-btn label="Ver Más" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
+                                     <q-btn @click="alert=true" label="Ver Más" text-color="black" color="white" size="md" class="btn"></q-btn></div>
                             </div>
                             <div class="col q-pa-md">
                                 <div class="img-mpagos q-pa-md">
@@ -40,11 +40,61 @@
             </div>
         </div>
     </div>
+    <q-dialog v-model="alert">
+      <q-card>
+          <q-card-section class="q-pa-md">
+            <q-list padding v-if="payments" v-for="payment in payments" :key="payment.id">
+              <q-item>
+                <q-item-section>
+                <q-item-label><b>Banco: </b>{{payment.name}}</q-item-label>
+                <q-item-label><b>Titular: </b>{{payment.account_owner}}</q-item-label>
+                <q-item-label><b>Nro de cuenta: </b>{{payment.account_number}}</q-item-label>
+                <q-item-label><b>Email: </b>{{payment.email}}</q-item-label>
+                <q-item-label><b>Telefono: </b>{{payment.phone}}</q-item-label>
+                <q-item-label><b>Metodos de pago: </b> {{payment.getMethods()}} </q-item-label>
+                </q-item-section>
+              </q-item>
+              <q-separator spaced />
+            </q-list>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat label="OK" color="primary" v-close-popup />
+          </q-card-actions>
+      </q-card>
+    </q-dialog>
 </div>
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
-export default defineComponent({ name: 'FeaturedProductsComponent' })
+import PaymentsService from "../services/home/payments.service";
+import Payment from "../models/payments/Payment"
+export default defineComponent({
+   name: 'FeaturedProductsComponent',
+    data () {
+      return {
+        alert : false,
+        payments : []
+      }
+    },
+    created () {
+      this.getPaymentMethods()
+    },
+    methods: { 
+      getPaymentMethods () {
+        let vm = this
+        PaymentsService.getPaymentMethods().subscribe({
+          next: data =>{
+            vm.payments = data.map(item => new Payment(item))
+           console.log(data)
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
+      }
+    }
+  })
 </script>
 <style>
   .container-featured-products-1{

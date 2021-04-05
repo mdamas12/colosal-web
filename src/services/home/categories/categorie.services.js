@@ -17,6 +17,30 @@ class CategoriesService {
         })
     })
   }
+  // getCategorie (id) {
+  //   return Observable.create((observer) => {
+  //     axios.get(`http://localhost:8000/panel/categories/${id}/`)
+  //       .then((response) => {
+  //         observer.next(response.data)
+  //         observer.complete()
+  //       })
+  //       .catch((error) => {
+  //         observer.error(error)
+  //       })
+  //   })
+  // }
+  getListCategories () {
+    return Observable.create((observer) => {
+      axios.get(API_URL + 'categories-all')
+        .then((response) => {
+          observer.next(response.data)
+          observer.complete()
+        })
+        .catch((error) => {
+          observer.error(error)
+        })
+    })
+  }
 }
 
 export default new CategoriesService()

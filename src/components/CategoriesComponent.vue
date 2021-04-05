@@ -47,20 +47,24 @@
                         </div>
                     </div>
                     <div class="row" v-else>
-                            <div class="col-12 col-md text-center q-gutter-sm" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
-                                <div class="div-carniceria q-pa-md">
-                                    <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
-                                    <q-img :src="'http://localhost:8000' + category.image" class="image-categorie"></q-img>
-                                    <div class="middle">
-                                        <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
-                                    </div>
+                        <div class="col-4 text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                            <div class="div-carniceria q-pa-md">
+                                <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
+                                <q-img 
+                                    :src="'http://localhost:8000' + category.image" 
+                                    class="image-categorie" 
+                                    style="height: 250px; max-width: 250px"/>
+                                    
+                                <div class="middle q-pr-md q-pt-md">
+                                    <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
                                 </div>
-                                    <div align="center" class="q-gutter-sm">
-                                        <div class="text-title-categorie q-pa-md">
-                                            {{category.name}}
-                                        </div>
-                                    </div>
                             </div>
+                            <div align="center">
+                                <div class="text-title-categorie q-pr-md">
+                                    {{category.name}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </q-carousel-slide>
             </q-carousel>
@@ -112,17 +116,9 @@ export default defineComponent({
         .then(response => {
           this.categories = response.data
           console.log(response.data)
-        //   var imageUrl = encodeURI(response.data.image)
-        //   fetch(imageUrl)
-        //     .then(res => res.blob())
-        //     .then(blob => {
-        //       const n = response.data.image.indexOf("categories/") + 11
-        //       const imageName = response.data.image.substring(n)
-        //       const extension = imageName.substring(imageName.indexOf(".") + 1)
-        //       const file = new File([blob], imageName, { type: `image/${extension}` })
-        //       this.image = file
-        //       this.getImage(file)
-        //     })
+        })
+        .catch(error => {
+          console.log(error)
         })
     },
     getImage (e) {
@@ -194,6 +190,9 @@ export default defineComponent({
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%)
+    }
+    .image-categorie{
+        max-height: 250px;
     }
     .div-carniceria:hover .image-categorie{
         opacity: 0.6;
