@@ -292,7 +292,7 @@
  
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import SoppingcartService   from "../../services/home/shoppingcart/shoppingcart.service";
+import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart.service";
 
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
@@ -312,8 +312,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		},
 
 		listCart(){
-		let token = 'Bearer '+localStorage.getItem("token")
-        let subscription = SoppingcartService.listcart(token).subscribe( {
+        let subscription = ShoppingcartService.getListCart().subscribe( {
           complete: () => {
              alert("ok")
           }

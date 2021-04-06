@@ -1,23 +1,17 @@
 import { Observable } from 'rxjs'
 import axios from 'axios'
+import tokenHeader from '../../auth.service';
 
 const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
 
 
-class SoppingcartService {
+class ShoppingcartService {
 
-  listcart(token) {
- 
+  getListCart() {
     return Observable.create((observer) => {
-      axios.get(API_URL + 'panel/shoppingcart/customer/',{
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization' : token,
-        }
-         }
-      )
+      console.log(tokenHeader())
+      axios.get(API_URL + 'panel/shoppingcart/customer/',{headers : tokenHeader()})
         .then((response) => {
-     
           console.log(response.data)
           observer.next(response.data)
           observer.complete()
@@ -35,4 +29,4 @@ class SoppingcartService {
 
 
 
-export default new SoppingcartService()
+export default new ShoppingcartService()

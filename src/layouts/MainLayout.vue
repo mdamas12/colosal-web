@@ -20,15 +20,15 @@
                     <q-icon name="keyboard_arrow_down" color="bluesito"/>
                     <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                       <q-list>
-                        <q-item clickable class="font-list">
+                        <q-item clickable v-close-popup class="font-list">
                           <q-item-section><a href="#">Mi Perfil</a></q-item-section>
                         </q-item>
                         <q-separator />
-                          <q-item clickable class="font-list">
+                          <q-item clickable v-close-popup class="font-list">
                             <q-item-section><a href="#">Mis Compras</a></q-item-section>
                         </q-item>
                         <q-separator />
-                          <q-item clickable class="font-list">
+                          <q-item clickable v-close-popup class="font-list">
                             <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
                         </q-item>
                       </q-list>
@@ -69,7 +69,7 @@
           <q-item-section>
               <div class="row q-pt-md">
                    <div class="col-12 col-md q-px-md">
-                      <q-input label="username" v-model="email" class="font-input"></q-input>
+                      <q-input label="Email" v-model="email" class="font-input"></q-input>
                       </div>
                </div>
                   <div class="row q-pt-md">
@@ -86,9 +86,6 @@
                        </div>
                    </div>
                    <div class="row q-pt-md">
-                      <div class="col col-md q-px-md">
-                          <a href="" class="enlace-recordarme">Recordarme</a>
-                       </div>
                        <div class="col col-md q-px-md">
                           <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
                         </div>
@@ -102,16 +99,9 @@
          <q-item-section>
            <div class="row q-pt-md">
                 <div class="col">
-                  <div class="container text-center">
-                     <q-item-label class="label-register">¿No tienes cuenta? REGÍSTRATE</q-item-label>
-                  </div>
-                </div>
-                <div class="row q-pt-md">
-                  <div class="col col-md q-px-md">
-                    <a href="" class="enlace-recordarme">Recordarme</a>
-                  </div>
-                  <div class="col col-md q-px-md">
-                    <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
+                  <div class="container text-center q-pa-md">
+                     <q-item-label class="label-register">¿No tienes cuenta? </q-item-label>
+                     <q-btn flat label="REGÍSTRATE" @click="goToRegister()"></q-btn>
                   </div>
                 </div>
               </div>
@@ -198,8 +188,11 @@ export default defineComponent({
   },
 
   methods: {
-
-         clearSearch(){
+    goToRegister(){
+      this.showInitSession = false
+      this.$router.push('/register')
+    },
+    clearSearch(){
         this.search = ''
         this.products = []
     },
@@ -270,9 +263,7 @@ export default defineComponent({
           localStorage.removeItem("name");
           if (this.verifySession() == false){
             this.showNotif("sesion Cerrada", 'blue-7');
-            this.$router.push('/')
           }
-         
       },
       Shoppingcart(){
         
@@ -292,8 +283,6 @@ export default defineComponent({
           this.SessionClean = false;
           this.SessionCotrol = true;
           return true;
-
-
       }
       else{
         this.name = '';

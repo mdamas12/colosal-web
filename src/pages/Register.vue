@@ -57,16 +57,32 @@
                             </div>
                             <div class="row q-pt-md">
                                 <div class="col-12 col-md q-px-md">
-                                    <q-input label="Contraseña*" v-model="password" class="font-input"
+                                    <q-input label="Contraseña*" v-model="password" class="font-input" :type="isPwd ? 'password' : 'text'"
                                       lazy-rules
                                       :rules="[val => !!val || 'Debe ingresar una contraseña', isValidPassword]"
-                                    ></q-input>
+                                    >
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="isPwd ? 'visibility_off' : 'visibility'"
+                                            class="cursor-pointer"
+                                            @click="isPwd = !isPwd"
+                                            />
+                                    </template>
+                                    </q-input>
                                 </div>
                                 <div class="col-12 col-md q-px-md">
-                                    <q-input label="Confirmar contraseña" v-model="password_confirm" class="font-input"
+                                    <q-input label="Confirmar contraseña" v-model="password_confirm" class="font-input" :type="isPwd ? 'password' : 'text'"
                                       lazy-rules
                                       :rules="[val => !!val || 'Debe ingresar una contraseña', isValidPassword]"
-                                    ></q-input>
+                                    >
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="isPwd ? 'visibility_off' : 'visibility'"
+                                            class="cursor-pointer"
+                                            @click="isPwd = !isPwd"
+                                            />
+                                    </template>
+                                    </q-input>
                                 </div>
                             </div>
                             <div class="row q-pt-md">
@@ -103,7 +119,8 @@ export default defineComponent({
       email_confirm : '',
       password : '',
       password_confirm : '',
-      loading: false
+      loading: false,
+      isPwd: true, 
     }
   },
   methods: {
@@ -139,31 +156,31 @@ export default defineComponent({
         this.Register();
         },
         Register(){
-            //Loading.show();
-            /* const credentials = new FormData();
-                    credentials.append('username', this.username);
-                    credentials.append('email', this.email);
-                    credentials.append('password1', this.password);
-                    credentials.append('password2', this.password); 
-                    credentials.append('is_superuser', false);
-                */
+            Loading.show()
+
             let credentials = {
-                'username' : this.username,
+                'username' : this.email,
                 'email' : this.email,
                 'password1' : this.password,
                 'password2' : this.password_confirm,
-                'is_superuser' : false
+                'is_superuser' : false,
+                'first_name' : this.username,
             }
-            let subscription = UsersService.Register(credentials).subscribe( {
-            complete: () => {
-               // Loading.hide()
-                this.showNotif("Usuario Registrado", 'green-5');
-                this.$router.push('/')
-                //this.$router.back();
-            },
-            error: () => {
-                Loading.hide();
-                this.showNotif("ERROR: Usuario/Email ya existen ", 'red-10');
+
+            let subscription = UsersService.Register(credentials).subscribe({
+                complete: () => {
+                    Loading.hide()
+                    this.showNotif("Usuario Registrado", 'green-5');
+                    this.$router.go('/')
+                },
+                error: err => {
+                    console.log(err)
+                    Loading.hide();
+                    if(err.response.status == 400){
+                        this.showNotif("ERROR: Email ya existente", 'red-10');
+                    }else{
+                        this.showNotif("ERROR: Ocurrio un problema, por favor intente nuevamente mas tarde y si persiste, contacte al administrador de la pagina", 'red-10');
+                    }
                 }
             });
         },

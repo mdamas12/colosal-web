@@ -22,11 +22,12 @@ class UsuersService {
   Register(credentials) {
     console.log(credentials)
     return Observable.create((observer) => {
-      axios.post(API_URL + 'auth/registration/',
-          credentials)
+      axios.post(API_URL + 'auth/registration/', credentials)
         .then((response) => {
           localStorage.setItem("token", response.data["key"]);
-          localStorage.setItem("username", credentials["username"] );
+          localStorage.setItem("username", credentials["first_name"]);
+          console.log("Todooo biennnnn  ")
+          observer.next(response)
           observer.complete()
         })
         .catch((error) => {
