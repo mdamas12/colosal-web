@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="margin-left:-60px; margin-right:-60px">
+        <div class="container gt-sm" style="margin-left:-60px; margin-right:-60px">
             <q-carousel
                 v-model="slide"
                 transition-prev="slide-right"
@@ -198,6 +198,140 @@
                 </q-carousel-slide>
             </q-carousel>
         </div>
+        <div class="container lt-md" style="margin-left:-60px; margin-right:-60px">
+            <q-carousel
+                v-model="slideresponsive"
+                transition-prev="slide-right"
+                transition-next="slide-left"
+                infinite
+                swipeable
+                animated
+                arrows
+                control-color="red-10"
+                class="bg-accent container-carousel q-px-lg"
+                style="height:450px">
+                <q-carousel-slide :name="promotion.id" class="col" v-for="promotion in promotions" :key="promotion.id">
+                    <div class="row" v-if="load">
+                          <div class="col-6 col-md q-gutter-sm q-pa-md">
+                            <q-card class="q-pt-md skeleton-card">
+                                <q-card-section align="center" class="q-gutter-md">
+                                    <q-skeleton height="150px" square />
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                </q-card-actions>
+                            </q-card>
+                        </div>
+                         <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <q-card class="q-pt-md">
+                                <q-card-section align="center" class="q-gutter-md">
+                                    <q-skeleton height="150px" square />
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                </q-card-actions>
+                            </q-card>
+                        </div>
+                          <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <q-card class="q-pt-md">
+                                <q-card-section align="center" class="q-gutter-md">
+                                    <q-skeleton height="150px" square />
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md q-py-sm">
+                                        <q-item-label>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                        <q-item-label caption>
+                                            <q-skeleton type="text" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-section>
+                                    <q-item-section class="q-mx-md">
+                                        <q-item-label>
+                                            <q-skeleton type="text" class="q-px-md q-mb-sm" />
+                                        </q-item-label>
+                                    </q-item-section>
+                                </q-card-section>
+                                <q-card-actions align="center" >
+                                        <q-skeleton type="QBtn" class="q-mb-sm" bordered />
+                                </q-card-actions>
+                            </q-card>
+                        </div>
+                    </div>
+                    <div class="row" v-else>
+                        <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
+                                    <q-card-section class="text-center">
+                                        <q-img 
+                                            :src="'http://localhost:8000' + promotion.promotion_detail[0].product.image" 
+                                            class="img-promotions" 
+                                            style="max-width:150px"></q-img>
+                                        <div class="middle">
+                                            <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
+                                        </div>
+                                    </q-card-section>
+                                    <q-card-section class="text-center">
+                                        <q-item-label lines="2" class="text-name-product">
+                                            {{promotion.name}}
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                           {{promotion.price}}
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none">
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                    </q-card-section>
+                                </q-card>
+                        </div>
+                    </div>
+                </q-carousel-slide>
+            </q-carousel>
+        </div>
     </div>
 </template>
 
@@ -209,6 +343,7 @@ export default defineComponent({
   data () {
     return {
       slide: 0,
+      slideresponsive: 1,
       load: true,
       itemsPromoRow: 3,
       promotions: []
