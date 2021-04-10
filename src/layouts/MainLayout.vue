@@ -25,7 +25,7 @@
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
-                            <q-item-section><a href="#">Mis Compras</a></q-item-section>
+                            <q-item-section><a href="#" @click="$router.push('/purchases-list')">Mis Compras</a></q-item-section>
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
