@@ -32,9 +32,11 @@
                             </div>
                         </div>
                         <div class="col-6 col-md">
-                            <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                            <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>
+                            
                         </div>
                     </div>
+                    <div class="text-msj-cart"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
                 </div>
@@ -59,12 +61,16 @@ import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCa
 import FooterComponent from 'src/components/FooterComponent.vue'
 import ProductsServices from '../services/home/products/product.service'
 import Product from "../models/products/Product"
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { Loading } from "quasar";
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
     return {
       counter: 0,
+      status_cart : "",
       slide: 1,
+      showInitSession: false, 
       getDataDetail: [{
         id: this.$route.params.id,
         name: '',
@@ -80,15 +86,15 @@ export default defineComponent({
   },
   mounted () {
     this.getProductDetail()
+    this.verifyShoppingcart()
     this.refreshComponent()
   },
   methods: {
     getProductDetail () {
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
         next: data => {
-          console.log("antes",data)
           this.getDataDetail = new Product(data)
-          console.log("despues",this.getDataDetail)
+
         }
       })
     },
@@ -99,6 +105,73 @@ export default defineComponent({
           this.getProductDetail()
         }
       )
+    },
+     verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    
+    },
+    verifyShoppingcart() {
+       
+        let subscription = ShoppingcartService.searchShoppingcart(this.$route.params.id).subscribe({
+           
+          next: data => {
+            
+            this.counter = data
+            this.status_cart  = "Este producto se encuentra en su Carrito de Compra"
+
+           },
+           complete: () => {  
+              
+               this.showNotif("data", 'blue-5');
+            }
+          
+        });
+    },
+
+    Shoppingcart(){   
+        if (this.verifySession() == true){
+            Loading.show();
+            const data_cart = {
+                product : this.getDataDetail.id,
+                quantity : this.counter
+            };
+            let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
+             complete: () => {
+               Loading.hide();
+               this.showNotif("producto agregado al carrito de compra", 'blue-5');
+             },
+             error: () => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+           
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showInitSession = true;
+        }
+  
+      },
+
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
     }
   }
 })
@@ -195,5 +268,11 @@ export default defineComponent({
 
 .border-img-slide{
     border-radius: 12px;
+}
+
+.text-msj-cart{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    color: #FF0000
 }
 </style>

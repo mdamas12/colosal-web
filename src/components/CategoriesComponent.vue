@@ -8,14 +8,14 @@
                 </div>
             </div>
         </div>
-        <div class="container gt-sm">
+        <div class="container q-px-md">
             <q-carousel
                 v-model="slide"
                 transition-prev="slide-right"
                 transition-next="slide-left"
-                infinite
                 swipeable
                 animated
+                arrows
                 control-color="red-10"
                 class="container-carousel q-px-lg q-pt-md bg-redp"
             >
@@ -46,7 +46,7 @@
                             </q-card-actions>
                         </div>
                     </div>
-                    <div class="row justify-center" v-else>
+                    <div class="row" v-else>
                         <div class="col-4 text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
@@ -54,67 +54,6 @@
                                     :src="'http://localhost:8000' + category.image" 
                                     class="image-categorie" 
                                     style="height: 250px; max-width: 250px"/>
-                                    
-                                <div class="middle q-pr-md q-pt-md">
-                                    <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
-                                </div>
-                            </div>
-                            <div align="center">
-                                <div class="text-title-categorie q-pr-md">
-                                    {{category.name}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </q-carousel-slide>
-            </q-carousel>
-        </div>
-        <div class="container lt-md q-px-md">
-            <q-carousel
-                v-model="slideresponsive"
-                transition-prev="slide-right"
-                transition-next="slide-left"
-                infinite
-                swipeable
-                animated
-                control-color="red-10"
-                class="container-carousel q-px-lg q-pt-md bg-redp"
-            >
-                    <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
-                    <div class="row" v-if="load">
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                    </div>
-                    <div class="row justify-center" v-else>
-                        <div class="col-12 text-center q-gutter-sm q-mt-md">
-                            <div class="div-carniceria q-pa-md">
-                                <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
-                                <q-img 
-                                    :src="'http://localhost:8000' + category.image" 
-                                    class="image-categorie" 
-                                />
                                     
                                 <div class="middle q-pr-md q-pt-md">
                                     <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
@@ -144,12 +83,11 @@ export default defineComponent({
   data () {
     return {
       slide: 0,
-      slideresponsive: 1,
       load: true,
       itemsCatRow: 3,
       categories: [],
-    //   image: null,
-    //   preview: null
+      image: null,
+      preview: null
     }
   },
   computed: {
@@ -255,7 +193,6 @@ export default defineComponent({
     }
     .image-categorie{
         max-height: 250px;
-        min-height: 200px;
     }
     .div-carniceria:hover .image-categorie{
         opacity: 0.6;
@@ -282,12 +219,6 @@ export default defineComponent({
     .padding-cat{
         padding-left: 12%;
         padding-right: 12%;
-    }
-
-    @media (min-width:1023px){
-        .image-categorie{
-            max-width: 250px;
-        }
     }
     @media (min-width: 1700px){
         .container-categories-1{

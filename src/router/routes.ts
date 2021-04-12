@@ -13,7 +13,9 @@ const routes: RouteConfig[] = [
       { path: '/register', component: () => import('pages/Register.vue') },
       { path: '/my-account', component: () => import('pages/MyAccount.vue') },
       { path: '/cart', component:() => import('pages/ShoppingCart.vue')},
-      { path: '/purchases-list', component:() => import('pages/PurchasesList.vue')}
+      { path: '/purchases', component:() => import('pages/Purchase.vue')},
+      { path: '/purchases-orders', component:() => import('pages/PurchasesOrder.vue')},
+      { path: '/purchases/detail/:id', component: () => import('pages/PurchaseDetail.vue') },
     ]
   },
 

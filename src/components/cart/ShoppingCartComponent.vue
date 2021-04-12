@@ -3,7 +3,7 @@
 		<div class="row">
 		</div>
 		<div class="row justify-evenly items-start content-center">
-			<div class="col-8 q-mx-md">
+			<div class="col-8 q-mx-md" >
 				<div class="row full-width q-my-xl">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
@@ -17,24 +17,26 @@
 				</div>
 				
 				<div class="row q-mx-xs">
-					<div class="col-12">
+				 
+					<div class="col-12" v-for="shoppingcart in products" :key="shoppingcart.id">
 						<q-card flat bordered class="my-card q-mb-md">
 							<div class="row items-center">
 								<div class="col-1">
-									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
+
+									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product"></q-img>
 								</div>
 							
 								<div class="col-3">
 									<div class="column items-start">
 										<q-card-section>
 											<div class="col text-name-product">
-												Doritos Mega Queso
+												{{shoppingcart.product.name}}
 											</div>
 											<div class="col text-description-product">
-												150Gr Frito Lay
+												{{shoppingcart.product.description}}
 											</div>
 											<div class="col-1">
-												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
+												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar" @click="DeleteItemShop(shoppingcart.id)"/>
 											</div>
 										</q-card-section>
 									</div>
@@ -52,7 +54,7 @@
 															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
 														</div>
 														<div class="col text-name-product self-center q-pl-lg">
-															1
+															{{shoppingcart.quantity}}
 														</div>
 														<div class="col q-mr-sm">
 															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
@@ -70,7 +72,7 @@
 												Precio
 											</div>
 											<div class="col text-description-product">
-												$169.99
+												{{shoppingcart.product.coin}} {{shoppingcart.product.price}}
 											</div>
 										</q-card-section>
 									</div>
@@ -82,149 +84,7 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-												$169.99
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-							</div>
-						</q-card>
-						<q-card flat bordered class="my-card q-my-md">
-							<div class="row items-center">
-								<div class="col-1">
-									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
-								</div>
-							
-								<div class="col-3">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-name-product">
-												Doritos Mega Queso
-											</div>
-											<div class="col text-description-product">
-												150Gr Frito Lay
-											</div>
-											<div class="col-1">
-												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-								<div class="col-3">
-									<q-card-section>
-										<div class="col text-description-product">
-											Cantidad
-										</div>
-										<div class="row">
-											<q-card flat bordered>
-												<q-card-section>
-													<div class="row justify-evenly items-center">
-														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
-														</div>
-														<div class="col text-name-product self-center q-pl-lg">
-															1
-														</div>
-														<div class="col q-mr-sm">
-															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
-														</div>
-													</div>
-												</q-card-section>
-											</q-card>
-										</div>
-									</q-card-section>
-								</div>
-								<div class="col-3">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-description-product">
-												Precio
-											</div>
-											<div class="col text-description-product">
-												$169.99
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-name-product">
-												SUBTOTAL
-											</div>
-											<div class="col text-name-product">
-												$169.99
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-							</div>
-						</q-card>
-						<q-card flat bordered class="my-card q-my-md">
-							<div class="row items-center">
-								<div class="col-1">
-									<q-img src="~assets/img/dorito.png" class="img-product"></q-img>
-								</div>
-							
-								<div class="col-3">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-name-product">
-												Doritos Mega Queso
-											</div>
-											<div class="col text-description-product">
-												150Gr Frito Lay
-											</div>
-											<div class="col-1">
-												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar"/>
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-								<div class="col-3">
-									<q-card-section>
-										<div class="col text-description-product">
-											Cantidad
-										</div>
-										<div class="row">
-											<q-card flat bordered>
-												<q-card-section>
-													<div class="row justify-evenly items-center">
-														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
-														</div>
-														<div class="col text-name-product self-center q-pl-lg">
-															1
-														</div>
-														<div class="col q-mr-sm">
-															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
-														</div>
-													</div>
-												</q-card-section>
-											</q-card>
-										</div>
-									</q-card-section>
-								</div>
-								<div class="col-3">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-description-product">
-												Precio
-											</div>
-											<div class="col text-description-product">
-												$169.99
-											</div>
-										</q-card-section>
-									</div>
-								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-name-product">
-												SUBTOTAL
-											</div>
-											<div class="col text-name-product">
-												$169.99
+												{{shoppingcart.product.coin}} {{shoppingcart.amount}}
 											</div>
 										</q-card-section>
 									</div>
@@ -242,7 +102,7 @@
 								Subtotal
 							</div>
 							<div class="col-2 wrap self-end">
-								<strong>$169.99</strong>
+								<strong>${{subtotal}}</strong>
 							</div>
 						</div>
 					</q-card-section>
@@ -253,7 +113,7 @@
 								Descuentos
 							</div>
 							<div class="col-2 wrap self-end">
-								<strong>$10.99</strong>
+								<strong>$0.00</strong>
 							</div>
 						</div>
 					</q-card-section>
@@ -266,7 +126,7 @@
 								TOTAL
 							</div>
 							<div class="col-2 wrap self-end">
-								<strong>$159.00</strong>
+								<strong>${{subtotal}}</strong>
 							</div>
 						</div>
 					</q-card-section>
@@ -277,7 +137,7 @@
 						<div class="column items-center">
 							<div class="row">
 								<div class="col">
-									<q-btn color="red-10" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido"></q-btn>
+									<q-btn color="red-10" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido" @click="goToPurchase()"></q-btn>
 								</div>
 							</div>
 						</div>
@@ -297,7 +157,9 @@ import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
 		return {
-			cantidad: 0
+			cantidad: 0,
+			products: [],
+			subtotal : 0
 		}
 	},
 	methods: {
@@ -312,19 +174,39 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		},
 
 		listCart(){
-        let subscription = ShoppingcartService.getListCart().subscribe( {
-          complete: () => {
-             alert("ok")
-          }
-        });
-      },
+			let subscription = ShoppingcartService.getListCart().subscribe( {
+			next: data => {
+				this.products = data.results	
+			},
+			complete: () => {
+				this.SubTotal()
+			}
+			});
+        },
+	  SubTotal(){
+		 this.subtotal = 0
+		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + Number(element.amount));
+		 
+	  },
+	  DeleteItemShop(id_item){
+		let subscription = ShoppingcartService.DeleteShopCart(id_item).subscribe( {
+			complete: () => {
+				this.listCart()
+			}
+			});
+	  },
+	goToPurchase(){
+      //this.showInitSession = false
+      this.$router.push('/purchases')
+    },
 	},
 	 mounted () {
         const vm = this;
         vm.listCart();
         //vm.pagination.rowsNumber = vm.count;
   
-    }
+    },
+
 })
 </script>
 
