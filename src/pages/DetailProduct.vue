@@ -25,9 +25,9 @@
                         <div class="col-6 col-md">
                             <div class="border">
                                 <span class="border">
-                                <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="counter -= 1"></q-btn>
+                                <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="decreaseProdQty()"></q-btn>
                                 {{counter}}
-                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="counter += 1"></q-btn>
+                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="increaseProdQty()"></q-btn>
                                 </span>
                             </div>
                         </div>
@@ -90,6 +90,16 @@ export default defineComponent({
     this.refreshComponent()
   },
   methods: {
+    increaseProdQty(){
+        if (this.counter <= this.getDataDetail.quantity){ //compruebo que no se pase de la cantidad de stock
+            this.counter++
+        }
+    },
+    decreaseProdQty(){
+        if (this.counter > 1){ 
+            this.counter--
+        }
+    },
     getProductDetail () {
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
         next: data => {
@@ -117,7 +127,6 @@ export default defineComponent({
         return false;
        
       }
-    
     },
     verifyShoppingcart() {
        
@@ -139,6 +148,10 @@ export default defineComponent({
 
     Shoppingcart(){   
         if (this.verifySession() == true){
+            if(this.counter == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
             Loading.show();
             const data_cart = {
                 product : this.getDataDetail.id,
@@ -154,14 +167,12 @@ export default defineComponent({
                this.showNotif("Error al agregar producto", 'red-10');
               }
             });
-           
         }
         else{
            this.showNotif("Debe Iniciar Sesion", 'red-10');
            this.showInitSession = true;
         }
-  
-      },
+    },
 
     showNotif (message , color) {
       this.$q.notify({

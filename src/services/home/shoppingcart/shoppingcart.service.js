@@ -47,12 +47,13 @@ class ShoppingcartService {
     let product = {
       "product" : id_product
     }
+    console.log(id_product)
     return Observable.create((observer) => {
     axios.post(API_URL + 'panel/shoppingcart/verify-product/',product,{headers : tokenHeader()})
     .then((response) => {
-      //console.log(response.data)
-      observer.next(response.data)
-      //observer.complete()
+      console.log(response.status)
+      observer.next(response.status)
+      observer.complete()
     })
     .catch((error) => {
       observer.error(error)
@@ -64,7 +65,7 @@ DeleteShopCart(id){
     return Observable.create((observer) => {
       axios.delete(API_URL + 'panel/shoppingcart/delete-item/'+id+'/',{headers : tokenHeader()})
       .then((response) => {
-        //observer.next(response.data)
+        observer.next(response.data)
         observer.complete()
       })
       .catch((error) => {

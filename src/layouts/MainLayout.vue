@@ -265,7 +265,7 @@ export default defineComponent({
           localStorage.removeItem("token");
           localStorage.removeItem("name");
           if (this.verifySession() == false){
-            this.showNotif("sesion Cerrada", 'blue-7');
+            this.showNotif("Sesión cerrada exitosamente", 'blue-7');
           }
       },
       Shoppingcart(){

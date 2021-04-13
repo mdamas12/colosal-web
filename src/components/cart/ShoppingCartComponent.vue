@@ -18,7 +18,7 @@
 				
 				<div class="row q-mx-xs">
 				 
-					<div class="col-12" v-for="shoppingcart in products" :key="shoppingcart.id">
+					<div class="col-12" v-for="(shoppingcart, index) in products" :key="shoppingcart.id">
 						<q-card flat bordered class="my-card q-mb-md">
 							<div class="row items-center">
 								<div class="col-1">
@@ -51,13 +51,13 @@
 												<q-card-section>
 													<div class="row justify-evenly items-center">
 														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty()"/>
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
 														</div>
 														<div class="col text-name-product self-center q-pl-lg">
 															{{shoppingcart.quantity}}
 														</div>
 														<div class="col q-mr-sm">
-															<q-btn flat round color="primary" icon="remove" @click="this.decreaseProdQty()"/>
+															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
 														</div>
 													</div>
 												</q-card-section>
@@ -84,7 +84,7 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-												{{shoppingcart.product.coin}} {{shoppingcart.amount}}
+												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
 											</div>
 										</q-card-section>
 									</div>
@@ -163,13 +163,16 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		}
 	},
 	methods: {
-		
-		increaseProdQty(){
-			this.cantidad++
+		increaseProdQty(index : number){
+			if (this.products[index].quantity <= this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
+				this.products[index].quantity += 1
+				this.SubTotal()
+			}
 		},
-		decreaseProdQty(){
-			if (this.cantidad > 0){
-				this.cantidad--
+		decreaseProdQty(index : number){
+			if (this.products[index].quantity > 1){ 
+				this.products[index].quantity--
+				this.SubTotal()
 			}
 		},
 
@@ -185,8 +188,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         },
 	  SubTotal(){
 		 this.subtotal = 0
-		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + Number(element.amount));
-		 
+		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity)));
 	  },
 	  DeleteItemShop(id_item){
 		let subscription = ShoppingcartService.DeleteShopCart(id_item).subscribe( {
@@ -205,8 +207,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         vm.listCart();
         //vm.pagination.rowsNumber = vm.count;
   
-    },
-
+	}
 })
 </script>
 
