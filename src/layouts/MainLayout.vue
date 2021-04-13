@@ -21,15 +21,15 @@
                     <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                       <q-list>
                         <q-item clickable v-close-popup class="font-list">
-                          <q-item-section><a href="#">Mi Perfil</a></q-item-section>
+                          <q-item-section><a href="#" class="text-myacount" @click="myaccount()">Mi Perfil</a></q-item-section>
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
-                            <q-item-section><a href="#" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
+                            <q-item-section><a href="#" class="text-myacount" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
-                            <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                            <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
                         </q-item>
                       </q-list>
                     </q-menu>
@@ -202,6 +202,9 @@ export default defineComponent({
     clickToProduct(productID : number){
         this.clearSearch()
         this.$router.push({ path: `/products/detail/${productID}/` })
+    },
+    myaccount(){
+      this.$router.push('/my-account')
     },
     searchProduct () {
       let vm = this
@@ -380,5 +383,11 @@ export default defineComponent({
   font-family: 'Poppins-Medium';
   font-size: 12px;
   border-radius: 9px;
+}
+.text-myacount{
+  font-family: 'Poppins-SemiBold';
+  font-size: 14px;
+  color: #020B68;
+  text-decoration: none;
 }
 </style>
