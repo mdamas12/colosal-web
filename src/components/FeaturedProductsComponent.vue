@@ -31,7 +31,7 @@
                                 <div class="pdt-ventasmd text-h6 text-right">
                                     Contáctanos a nuestro WhatsApp
                                 </div>
-                                <div class="column items-end q-pt-md">
+                                <div class="column items-end q-pa-md">
                                     <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
                             </div>
                         </div>

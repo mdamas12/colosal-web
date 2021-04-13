@@ -90,4 +90,61 @@ export default defineComponent({
   font-family: 'Poppins-SemiBold';
   border-radius: 9px;
 }
+
+@media (min-width:280px) and (max-width:509px) {
+  .text-h3{
+    font-size:30px
+  }
+  .btn-slide{
+    font-size: 10px;
+  }
+  .texto-slide1{
+    padding-top: 0;
+  }
+  .texto-slide2{
+    padding-top: 0;
+  }
+}
+@media (min-width:510px) and (max-width:767px) {
+  .text-h3{
+    font-size:30px
+  }
+  .btn-slide{
+    font-size: 10px;
+  }
+  .texto-slide1{
+    padding-top: 4%;
+  }
+  .texto-slide2{
+    padding-top: 4%;
+  }
+}
+@media (min-width:768px) and (max-width:1023px){
+  .text-h3{
+    font-size:35px
+  }
+  .btn-slide{
+    font-size: 10px;
+  }
+  .texto-slide1{
+    padding-top: 4%;
+  }
+  .texto-slide2{
+    padding-top: 6%;
+  }
+}
+@media (min-width:1024px) and (max-width:1325px){
+  .text-h3{
+    font-size:50px
+  }
+  .btn-slide{
+    font-size: 10px;
+  }
+  .texto-slide1{
+    padding-top: 5%;
+  }
+  .texto-slide2{
+    padding-top: 5%;
+  }
+}
 </style>
