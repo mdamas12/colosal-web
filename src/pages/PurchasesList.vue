@@ -6,7 +6,7 @@
           <q-item-section>
             <div class="row items-center">
               <div class="col text-center">
-                <q-item-label class="title-addresses">Historial de compras</q-item-label>
+                <q-item-label class="title-addresses">Estatus de Ordenes</q-item-label>
               </div>
             </div>
           </q-item-section>
@@ -18,6 +18,13 @@
           row-key="id"
           :loading="!isFetched"
         >
+          <template v-slot:body-cell-status="props">
+            <q-td row-key="status" :props="props">
+              <div>
+                <q-badge :class="(props.row.status == 'POR VALIDAR') ? 'bg-red' : (props.row.status == 'POR ENTREGAR') ? 'bg-blue' : 'bg-green'" :label="props.row.status" />
+              </div>
+            </q-td>
+          </template>
         </q-table>
       </q-card> 
     </div>
