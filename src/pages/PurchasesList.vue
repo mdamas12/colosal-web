@@ -18,10 +18,22 @@
           row-key="id"
           :loading="!isFetched"
         >
+          <template v-slot:header="props">
+            <q-tr :props="props">
+              <q-th
+                v-for="col in props.cols"
+                :key="col.name"
+                :props="props"
+                class="font-table"
+              >
+                {{ col.label }}
+              </q-th>
+            </q-tr>
+          </template>
           <template v-slot:body-cell-status="props">
-            <q-td row-key="status" :props="props">
+            <q-td row-key="status" :props="props" class="font-table">
               <div>
-                <q-badge :class="(props.row.status == 'POR VALIDAR') ? 'bg-red' : (props.row.status == 'POR ENTREGAR') ? 'bg-blue' : 'bg-green'" :label="props.row.status" />
+                <q-badge :class="(props.row.status == 'POR VALIDAR') ? 'bg-amarillo' : (props.row.status == 'POR ENTREGAR') ? 'bg-blue' : 'bg-green'" :label="props.row.status" />
               </div>
             </q-td>
           </template>
@@ -86,5 +98,8 @@ export default Vue.extend({
     font-family: 'Poppins-SemiBold';
     font-size: 20px;
     color: #3D3D3D
+  }
+  .font-table{
+    font-family: 'Poppins-SemiBold';
   }
 </style>
