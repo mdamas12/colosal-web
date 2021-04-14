@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="(product,i) in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
@@ -115,15 +115,20 @@
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
-                                            {{product.name}}
+                                            {{product.name}} 
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                       {{product.price}}
+                                      {{product.coin}}  {{product.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                     <q-card-section class="text-center">
+                                        <q-item-label lines="2" class="text-quantity">
+                                            {{product.quantity}} Disponibles 
+                                        </q-item-label>
                                     </q-card-section>
+                                    <q-card-section class="text-center" >
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
+                                </q-card-section>
                                 </q-card>
                             </div>
                         </div>
@@ -241,7 +246,8 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                       {{product.price}}
+                                      {{product.price}}
+                                     
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
@@ -267,6 +273,9 @@ export default defineComponent({
   name: 'FeaturedProductsCarouselComponent',
   data () {
     return {
+      shopp:[],
+      incart: [],
+      productsShop: [],
       slide: 0,
 			slideresponsive: 1,
       load: true,
@@ -300,12 +309,40 @@ export default defineComponent({
   //   }
   methods: {
     allProducts () {
+        
       this.load = true
       const headers = { 'Content-Type': 'application/json' }
       axios.get('http://localhost:8000/web/home/products-featured/', { headers })
         .then(response => {
-          this.products = response.data
-          console.log(response.data)
+          this.productsShop = response.data
+          //buscar si el usuario tiene productos en carrito de compra
+          let subscription = ShoppingcartService.getListCart().subscribe( {
+			next: data => {
+				this.shopp = data.results
+                //console.log(this.shopp)	
+                for (let i = 0; i < this.productsShop.length; i++){
+                    let swich = false 
+                    for (let j = 0; j < this.shopp.length; j++){
+                        
+                        if((swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
+                            this.incart[i] = true
+                            swich = true
+                            console.log(this.productsShop[i].name)
+                        }
+                        if((swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
+                            this.incart[i] = false
+                            }
+                    }
+                }
+                this.products = this.productsShop
+                	
+			},
+            complete: ()=>{}
+			});
+
+          
+     
+          console.log(this.incart)
           this.load = false
         })
     },
@@ -440,5 +477,8 @@ export default defineComponent({
         .container-carousel{
         height: 480px;
         }
+    }
+    .text-quantity{
+        color: #666;
     }
 </style>

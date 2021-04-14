@@ -31,14 +31,19 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-6 col-md">
-                            <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>
+                        <div class="col-6 col-md" v-if="status_cart == ''">
+                            <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                        </div>
+                        <div class="col-6 col-md" v-if="status_cart != ''">
                             
+                            <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                          
                         </div>
                     </div>
                     <div class="text-msj-cart"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
+                    <div class="text-msj-stock"><b>Solo quedan {{getDataDetail.quantity}} en stock</b></div>
                 </div>
             </div>
         </div>
@@ -67,6 +72,7 @@ export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
     return {
+
       counter: 0,
       status_cart : "",
       slide: 1,
@@ -102,11 +108,10 @@ export default defineComponent({
     },
     getProductDetail () {
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
-        next: data => {
-          this.getDataDetail = new Product(data)
-
-        }
-      })
+         next: data => {
+             this.getDataDetail = new Product(data)
+           }
+        });
     },
     refreshComponent () {
       this.$watch(
@@ -132,15 +137,13 @@ export default defineComponent({
        
         let subscription = ShoppingcartService.searchShoppingcart(this.$route.params.id).subscribe({
            
-          next: data => {
-            
+          next: data => {         
             this.counter = data
+            console.log(data)
             this.status_cart  = "Este producto se encuentra en su Carrito de Compra"
-
            },
-           complete: () => {  
-              
-               this.showNotif("data", 'blue-5');
+           complete: () => {        
+               //this.showNotif("data", 'blue-5');
             }
           
         });
@@ -152,15 +155,32 @@ export default defineComponent({
                 this.showNotif("Debe agregar cantidad en producto", 'red-10');
                 return 
             }
+            if (this.counter > this.getDataDetail.quantity){
+                this.showNotif("La Cantidad Supera al stock de este Producto", 'red-10');
+                return
+            }
             Loading.show();
             const data_cart = {
-                product : this.getDataDetail.id,
-                quantity : this.counter
+                'product' : this.getDataDetail.id,
+                'quantity' : this.counter
             };
             let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+					this.getProductDetail ();
+					
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+					this.verifyShoppingcart();
+				}
+               
+             },
              complete: () => {
                Loading.hide();
-               this.showNotif("producto agregado al carrito de compra", 'blue-5');
+             
              },
              error: () => {
                Loading.hide();
@@ -282,6 +302,11 @@ export default defineComponent({
 }
 
 .text-msj-cart{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    color: rgba(3, 11, 88, 0.333)
+}
+.text-msj-stock{
     font-family: 'Poppins-Regular';
     font-size: 12px;
     color: #FF0000

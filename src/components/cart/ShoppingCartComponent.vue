@@ -44,27 +44,33 @@
 								<div class="col-3">
 									<q-card-section>
 										<div class="col text-description-product">
-											Cantidad
+											Cantidad  {{shoppingcart.id}}
 										</div>
 										<div class="row">
 											<q-card flat bordered>
 												<q-card-section>
 													<div class="row justify-evenly items-center">
-														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
-														</div>
-														<div class="col text-name-product self-center q-pl-lg">
-															{{shoppingcart.quantity}}
-														</div>
 														<div class="col q-mr-sm">
 															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
 														</div>
+				
+														<div class="col text-name-product self-center q-pl-lg">
+															{{shoppingcart.quantity}} 
+														</div>
+														<div class="col">
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
+														</div>										
 													</div>
 												</q-card-section>
 											</q-card>
 										</div>
+										<div class="col-3 col-sm">
+											<q-btn label="Actualizar cantidad" color="red-8" text-color="white" icon="shopping_cart" class="btn-shopp" size="md" @click="Shoppingcart(index)"></q-btn>					
+										</div>
 									</q-card-section>
+								
 								</div>
+									 
 								<div class="col-3">
 									<div class="column items-start">
 										<q-card-section>
@@ -90,6 +96,9 @@
 									</div>
 								</div>
 							</div>
+							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity > 5"><b>Existen {{shoppingcart.product.quantity}} en Disponibles</b></div>
+							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity <= 5 && shoppingcart.product.quantity > 0 "><b>Solo quedan {{shoppingcart.product.quantity}} Disponibles</b></div>
+							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity == 0"><b> Este Producto no esta Disponible</b></div>
 						</q-card>
 					</div>
 				</div>
@@ -147,22 +156,71 @@
 		</div>
 
 		
+      <q-dialog persistent v-model="ShowMsg" >
+      <q-card class="my-card" style="max-width:100%; width:440px">
+        <q-toolbar class="text-bluesito">
+          <q-toolbar-title class="title-session">
+              <h4 class="title-error">¡Advertencia!</h4>  
+              <q-item-label class="subtitle-error">La Cantidad Solicitada no esta disponible </q-item-label>
+          </q-toolbar-title>
+          <q-btn flat icon="close" round v-close-popup />
+        </q-toolbar>
+        <q-separator />
+        <q-item-section>
+           <div class="row q-pt-md">
+                <div class="col">
+                  <div class="container text-center q-pa-md">
+                
+                    <q-item-label class="text-msg-error"> Haz click en "ok" y verifica tus productos. </q-item-label>
+                     
+                  </div>
+                </div>
+              </div>
+           </q-item-section>
+        <q-separator />
+           
+          <q-card-actions vertical align="center">
+            <q-btn label="OK" color="red-7" class="btn-init-session q-mb-md" size="sm" @click="CloseShowMsg()"></q-btn>
+         </q-card-actions>
+         <q-separator />
+ 
+           </q-item>
+          </q-card>
+        </q-dialog>
+
+		
 	</div>
 </template>
  
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart.service";
-
+import { Loading } from "quasar";
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
 		return {
 			cantidad: 0,
 			products: [],
-			subtotal : 0
+			subtotal : 0,
+			counter : [],
+			ShowMsg : false
+
 		}
 	},
 	methods: {
+
+		verifySession(){
+			let token = localStorage.getItem("token")
+			let username = localStorage.getItem("username")
+			if ((token != null) && (username != null)) {
+
+				return true;
+			}
+			else{
+				return false;
+			
+			}
+		},
 		increaseProdQty(index : number){
 			if (this.products[index].quantity <= this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
 				this.products[index].quantity += 1
@@ -179,7 +237,16 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		listCart(){
 			let subscription = ShoppingcartService.getListCart().subscribe( {
 			next: data => {
-				this.products = data.results	
+				this.products = data.results
+				
+				for (let i = 0; i < this.products.length; i++){
+					if (this.products[i].quantity > this.products[i].product.quantity){
+						this.ShowMsg = true;
+						this.products[i].quantity = this.products[i].product.quantity
+						
+					}
+					this.counter[i] = this.products[i].quantity
+                }	
 			},
 			complete: () => {
 				this.SubTotal()
@@ -197,10 +264,74 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			}
 			});
 	  },
+	 Shoppingcart(id){   
+		
+        if (this.verifySession() == true){
+            if(this.products[id].quantity == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
+            if (this.products[id].quantity > this.products[id].product.quantity){
+                this.showNotif("La Cantidad Supera al stock de este Producto", 'red-10');
+                return
+            }
+			if (this.counter[id] ==  this.products[id].quantity){
+                this.showNotif("no has modificado la cantidad", 'red-10');
+                return
+            }
+            Loading.show();
+            const data = {
+                //'quantity' : this.products[id].quantity,
+				'quantity' : this.products[id].quantity,
+				'product' : this.products[id].product.id
+            };
+			let shopp_id = this.products[id].id
+            let subscription = ShoppingcartService.UpdateShoppingCart(shopp_id,data).subscribe( {
+             complete: resp   => {
+               Loading.hide();
+             },
+			 next: resp =>{
+				Loading.hide();
+				if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+					this.listCart();
+					return
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+					this.listCart();
+					return
+				}
+			 },
+             error: data => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showInitSession = true;
+        }
+    },
 	goToPurchase(){
       //this.showInitSession = false
       this.$router.push('/purchases')
     },
+	CloseShowMsg(){
+		this.ShowMsg = false;
+	},
+	showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
+    }
+
 	},
 	 mounted () {
         const vm = this;
@@ -212,6 +343,12 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 </script>
 
 <style>
+    .btn-shopp{
+		/*font-family: 'Poppins-SemiBold';*/
+	    font-size: 8px;
+		color:#FAFAFA;
+		margin: 2px 0 ;
+	}
     .container-shopping-cart-title {
 			background: #FAFAFA;
     }
@@ -230,4 +367,25 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 				font-family: 'Poppins-SemiBold';
 				font-size: 32px;
 		}
+
+		 .title-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 18px;
+          font-weight: 400;
+          color: rgb(194, 5, 5)
+        }
+
+       .text-msg-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 15px;
+         
+          text-align: left;
+          color: rgb(26, 25, 25)
+        }
+        .subtitle-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 15px;
+          text-align: center;
+          color: rgb(194, 5, 5)
+        }
 </style>

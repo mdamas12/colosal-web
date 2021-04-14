@@ -12,7 +12,7 @@ class ShoppingcartService {
       //console.log(tokenHeader())
       axios.get(API_URL + 'panel/shoppingcart/customer/',{headers : tokenHeader()})
         .then((response) => {
-          console.log(response.data)
+         // console.log(response.data)
           observer.next(response.data)
           observer.complete()
         })
@@ -32,7 +32,7 @@ class ShoppingcartService {
       axios.post(API_URL + 'panel/shoppingcart/customer/',data_cart,{headers : tokenHeader()})
         .then((response) => {
           //console.log(response.data)
-          observer.next(response.data)
+          observer.next(response)
           observer.complete()
         })
         .catch((error) => {
@@ -52,7 +52,7 @@ class ShoppingcartService {
     axios.post(API_URL + 'panel/shoppingcart/verify-product/',product,{headers : tokenHeader()})
     .then((response) => {
       console.log(response.status)
-      observer.next(response.status)
+      observer.next(response.data)
       observer.complete()
     })
     .catch((error) => {
@@ -61,9 +61,25 @@ class ShoppingcartService {
   })
 }
 
+UpdateShoppingCart(id,data){
+    //console.log(id_product)
+    return Observable.create((observer) => {
+    axios.put(API_URL + 'panel/shoppingcart/change/'+id+'/',data,{headers : tokenHeader()})
+    .then((response) => {
+      observer.next(response)   
+    })
+    .catch((error,response) => {
+       console.log(error)
+       console.log(response.data)
+      //observer.error(response.data)
+    });
+})
+
+}
+
 DeleteShopCart(id){ 
     return Observable.create((observer) => {
-      axios.delete(API_URL + 'panel/shoppingcart/delete-item/'+id+'/',{headers : tokenHeader()})
+      axios.delete(API_URL + 'panel/shoppingcart/change/'+id+'/',{headers : tokenHeader()})
       .then((response) => {
         observer.next(response.data)
         observer.complete()

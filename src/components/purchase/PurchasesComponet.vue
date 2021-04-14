@@ -303,6 +303,40 @@
            </q-item>
           </q-card>
         </q-dialog>
+
+
+      <q-dialog persistent v-model="showErrorFaltaStock" >
+      <q-card class="my-card" style="max-width:100%; width:440px">
+        <q-toolbar class="text-bluesito">
+          <q-toolbar-title class="title-session">
+              <h4 class="title-error">¡Oh no!</h4>  
+              <q-item-label class="subtitle-error">Tenemos un problema: </q-item-label>
+          </q-toolbar-title>
+          <q-btn flat icon="close" round v-close-popup />
+        </q-toolbar>
+        <q-separator />
+        <q-item-section>
+           <div class="row q-pt-md">
+                <div class="col">
+                  <div class="container text-center q-pa-md">
+                    
+                    <q-item-label class="text-msg-error"> {{rep_stock}} </br></br></q-item-label>
+                    <q-item-label class="text-msg-error"> Haz click en "ok" para volver al carrito y verificar el producto. </q-item-label>
+                     
+                  </div>
+                </div>
+              </div>
+           </q-item-section>
+        <q-separator />
+           
+          <q-card-actions vertical align="center">
+            <q-btn label="OK" color="red-7" class="btn-init-session q-mb-md" size="sm" @click="GoToShoppingCart()"></q-btn>
+         </q-card-actions>
+         <q-separator />
+ 
+           </q-item>
+          </q-card>
+        </q-dialog>
     
 		
 	</div>
@@ -324,15 +358,17 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		return {
 			cantidad: 0,
 			products: [],
-            banks: [], 
-            bankSelect : [],
+      banks: [], 
+      bankSelect : [],
 			subtotal : 0,
-            Tpago: '',
-            bankSelectShow : false,
-            showProcessPayment:false,
-            showProcessPaymentEfectivo : false,
-            showSaleReady : false,
-            Referencia : ''
+      Tpago: '',
+      rep_stock : '',
+      bankSelectShow : false,
+      showProcessPayment:false,
+      showProcessPaymentEfectivo : false,
+      showSaleReady : false,
+      showErrorFaltaStock : false,
+      Referencia : ''
 		}
 	},
 	methods: {
@@ -409,19 +445,28 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             }
 
             let subscription = PurchaseService.SaveSale(sale).subscribe( {
-			next: data => {
-                this.showProcessPaymentEfectivo = false;
-                this.showProcessPayment = false;
-                this.showSaleReady = true;
-				console.log(data)	
-			},
-			complete: () => {
-				 this.showNotif("Tu compra ha sido procesada", "green-9")
-			},
+			        next: resp => {
+
+                if (resp.status == "200"){
+                    
+                    this.showProcessPayment = false;
+                    this.rep_stock = resp.data;
+                    this.showErrorFaltaStock = true;
+
+                }
+                else{
+                   this.showProcessPaymentEfectivo = false;
+                    this.showProcessPayment = false;
+                    this.showSaleReady = true;
+                }              				       	
+		       	},
+            complete: () => {
+              this.showNotif("Tu compra ha sido procesada", "green-9")
+            },
             error: () =>{
-                this.showNotif("ha ocurrido un error", "red-7")
-            }
-			});
+                      this.showNotif("ha ocurrido un error", "red-7")
+                  }
+            });
 
       },
      showNotif (message : any, color: any) {
@@ -437,6 +482,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
      GotoHome(){
          this.showSaleReady = false
          this.$router.push('/')
+     },
+
+     GoToShoppingCart(){
+         this.showErrorFaltaStock = false;
+         this.$router.push('/cart');
      }
 
 	},
@@ -502,5 +552,25 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         }
         .my-card{
             padding:  10px;
+        }
+        .title-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 18px;
+          font-weight: 400;
+          color: rgb(194, 5, 5)
+        }
+
+       .text-msg-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 15px;
+         
+          text-align: left;
+          color: rgb(26, 25, 25)
+        }
+        .subtitle-error{
+          font-family: 'Poppins-SemiBold';
+          font-size: 15px;
+          text-align: center;
+          color: rgb(194, 5, 5)
         }
 </style>
