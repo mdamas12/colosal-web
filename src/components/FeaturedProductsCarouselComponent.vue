@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="product in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
+                            <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="(product,i) in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
@@ -115,15 +115,20 @@
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
-                                            {{product.name}}
+                                            {{product.name}} 
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                       {{product.price}}
+                                      {{product.coin}}  {{product.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                     <q-card-section class="text-center">
+                                        <q-item-label lines="2" class="text-quantity">
+                                            {{product.quantity}} Disponibles 
+                                        </q-item-label>
                                     </q-card-section>
+                                    <q-card-section class="text-center" >
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
+                                </q-card-section>
                                 </q-card>
                             </div>
                         </div>
@@ -241,10 +246,11 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                       {{product.price}}
+                                      {{product.price}}
+                                     
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
                                     </q-card-section>
                                 </q-card>
                             </div>
@@ -259,11 +265,17 @@
 import { defineComponent } from '@vue/composition-api'
 import ProductsService from '../services/home/products/product.service'
 import axios from 'axios'
+import { Loading } from "quasar";
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { stat } from 'fs';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 export default defineComponent({
   name: 'FeaturedProductsCarouselComponent',
   data () {
     return {
+      shopp:[],
+      incart: [],
+      productsShop: [],
       slide: 0,
 			slideresponsive: 1,
       load: true,
@@ -297,14 +309,95 @@ export default defineComponent({
   //   }
   methods: {
     allProducts () {
+        
       this.load = true
       const headers = { 'Content-Type': 'application/json' }
       axios.get('http://localhost:8000/web/home/products-featured/', { headers })
         .then(response => {
-          this.products = response.data
-          console.log(response.data)
+          this.productsShop = response.data
+          //buscar si el usuario tiene productos en carrito de compra
+          let subscription = ShoppingcartService.getListCart().subscribe( {
+			next: data => {
+				this.shopp = data.results
+                //console.log(this.shopp)	
+                for (let i = 0; i < this.productsShop.length; i++){
+                    let swich = false 
+                    for (let j = 0; j < this.shopp.length; j++){
+                        
+                        if((swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
+                            this.incart[i] = true
+                            swich = true
+                            console.log(this.productsShop[i].name)
+                        }
+                        if((swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
+                            this.incart[i] = false
+                            }
+                    }
+                }
+                this.products = this.productsShop
+                	
+			},
+            complete: ()=>{}
+			});
+
+          
+     
+          console.log(this.incart)
           this.load = false
         })
+    },
+    verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
+    async Shoppingcart(productID){   
+        if (this.verifySession() == true){
+            ShoppingcartService.searchShoppingcart(productID).subscribe({
+                next: status => {
+                    this.showNotif("El producto ya esta registrado en carrito", 'blue-5');
+                },
+                error: data =>{
+                    Loading.show();
+                    const data_cart = {
+                        product : productID,
+                        quantity : 1
+                    };
+                    let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
+                        complete: () => {
+                            Loading.hide();
+                            this.showNotif("producto agregado al carrito de compra", 'blue-5');
+                        },
+                        error: () => {
+                            Loading.hide();
+                            this.showNotif("Error al agregar producto", 'red-10');
+                            }
+                    });
+                },
+                complete: () => {}
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showInitSession = true;
+        }
+    },
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
     }
   }
 })
@@ -384,5 +477,8 @@ export default defineComponent({
         .container-carousel{
         height: 480px;
         }
+    }
+    .text-quantity{
+        color: #666;
     }
 </style>

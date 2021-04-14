@@ -25,18 +25,25 @@
                         <div class="col-6 col-md">
                             <div class="border">
                                 <span class="border">
-                                <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="counter -= 1"></q-btn>
+                                <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="decreaseProdQty()"></q-btn>
                                 {{counter}}
-                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="counter += 1"></q-btn>
+                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="increaseProdQty()"></q-btn>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-6 col-md">
-                            <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                        <div class="col-6 col-md" v-if="status_cart == ''">
+                            <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                        </div>
+                        <div class="col-6 col-md" v-if="status_cart != ''">
+                            
+                            <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                          
                         </div>
                     </div>
+                    <div class="text-msj-cart"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
+                    <div class="text-msj-stock"><b>Solo quedan {{getDataDetail.quantity}} en stock</b></div>
                 </div>
             </div>
         </div>
@@ -59,12 +66,17 @@ import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCa
 import FooterComponent from 'src/components/FooterComponent.vue'
 import ProductsServices from '../services/home/products/product.service'
 import Product from "../models/products/Product"
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { Loading } from "quasar";
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data () {
     return {
+
       counter: 0,
+      status_cart : "",
       slide: 1,
+      showInitSession: false, 
       getDataDetail: [{
         id: this.$route.params.id,
         name: '',
@@ -80,17 +92,26 @@ export default defineComponent({
   },
   mounted () {
     this.getProductDetail()
+    this.verifyShoppingcart()
     this.refreshComponent()
   },
   methods: {
+    increaseProdQty(){
+        if (this.counter <= this.getDataDetail.quantity){ //compruebo que no se pase de la cantidad de stock
+            this.counter++
+        }
+    },
+    decreaseProdQty(){
+        if (this.counter > 1){ 
+            this.counter--
+        }
+    },
     getProductDetail () {
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
-        next: data => {
-          console.log("antes",data)
-          this.getDataDetail = new Product(data)
-          console.log("despues",this.getDataDetail)
-        }
-      })
+         next: data => {
+             this.getDataDetail = new Product(data)
+           }
+        });
     },
     refreshComponent () {
       this.$watch(
@@ -99,6 +120,89 @@ export default defineComponent({
           this.getProductDetail()
         }
       )
+    },
+     verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
+    verifyShoppingcart() {
+       
+        let subscription = ShoppingcartService.searchShoppingcart(this.$route.params.id).subscribe({
+           
+          next: data => {         
+            this.counter = data
+            console.log(data)
+            this.status_cart  = "Este producto se encuentra en su Carrito de Compra"
+           },
+           complete: () => {        
+               //this.showNotif("data", 'blue-5');
+            }
+          
+        });
+    },
+
+    Shoppingcart(){   
+        if (this.verifySession() == true){
+            if(this.counter == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
+            if (this.counter > this.getDataDetail.quantity){
+                this.showNotif("La Cantidad Supera al stock de este Producto", 'red-10');
+                return
+            }
+            Loading.show();
+            const data_cart = {
+                'product' : this.getDataDetail.id,
+                'quantity' : this.counter
+            };
+            let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+					this.getProductDetail ();
+					
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+					this.verifyShoppingcart();
+				}
+               
+             },
+             complete: () => {
+               Loading.hide();
+             
+             },
+             error: () => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showInitSession = true;
+        }
+    },
+
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
     }
   }
 })
@@ -195,5 +299,16 @@ export default defineComponent({
 
 .border-img-slide{
     border-radius: 12px;
+}
+
+.text-msj-cart{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    color: rgba(3, 11, 88, 0.333)
+}
+.text-msj-stock{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    color: #FF0000
 }
 </style>

@@ -15,21 +15,21 @@
                 </q-input>
                 <q-space />
                 <div class="q-gutter-sm row items-center no-wrap">
-                  <q-item-label class="label-register"> {{name}}</q-item-label>
-                  <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">Mi Cuenta
+                  <q-item-label class="label-register"> </q-item-label>
+                  <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">{{name}}
                     <q-icon name="keyboard_arrow_down" color="bluesito"/>
                     <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                       <q-list>
                         <q-item clickable v-close-popup class="font-list">
-                          <q-item-section><a href="#">Mi Perfil</a></q-item-section>
+                          <q-item-section><a href="#" class="text-myacount" @click="myaccount()">Mi Perfil</a></q-item-section>
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
-                            <q-item-section><a href="#" @click="$router.push('/purchases-list')">Mis Compras</a></q-item-section>
+                            <q-item-section><a href="#" class="text-myacount" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
                         </q-item>
                         <q-separator />
                           <q-item clickable v-close-popup class="font-list">
-                            <q-item-section><a href="#" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                            <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
                         </q-item>
                       </q-list>
                     </q-menu>
@@ -192,6 +192,9 @@ export default defineComponent({
       this.showInitSession = false
       this.$router.push('/register')
     },
+    GoPurchaseOrder(){
+      this.$router.push('/purchases-orders')
+    },
     clearSearch(){
         this.search = ''
         this.products = []
@@ -199,6 +202,9 @@ export default defineComponent({
     clickToProduct(productID : number){
         this.clearSearch()
         this.$router.push({ path: `/products/detail/${productID}/` })
+    },
+    myaccount(){
+      this.$router.push('/my-account')
     },
     searchProduct () {
       let vm = this
@@ -262,7 +268,7 @@ export default defineComponent({
           localStorage.removeItem("token");
           localStorage.removeItem("name");
           if (this.verifySession() == false){
-            this.showNotif("sesion Cerrada", 'blue-7');
+            this.showNotif("Sesión cerrada exitosamente", 'blue-7');
           }
       },
       Shoppingcart(){
@@ -377,5 +383,11 @@ export default defineComponent({
   font-family: 'Poppins-Medium';
   font-size: 12px;
   border-radius: 9px;
+}
+.text-myacount{
+  font-family: 'Poppins-SemiBold';
+  font-size: 14px;
+  color: #020B68;
+  text-decoration: none;
 }
 </style>

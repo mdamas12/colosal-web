@@ -176,7 +176,9 @@ export default defineComponent({
                 error: err => {
                     console.log(err)
                     Loading.hide();
-                    if(err.response.status == 400){
+   
+   
+   if(err.response.status == 400){
                         this.showNotif("ERROR: Email ya existente", 'red-10');
                     }else{
                         this.showNotif("ERROR: Ocurrio un problema, por favor intente nuevamente mas tarde y si persiste, contacte al administrador de la pagina", 'red-10');
