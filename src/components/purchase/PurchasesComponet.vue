@@ -215,10 +215,10 @@
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
         <q-separator />
-         <div class="col desc">
-            <span class="tittle">ya casi terminas tu compra, indicanos el numero de transferencia.</span> 
+         <div class="q-mt-xs" align="center">
+            <span class="label-register text-center">Ya casi terminas tu compra,<br> indicanos el numero de transferencia.</span> 
          </div>
-        <q-item class="q-pt-md">
+        <q-item class="q-pt-xs">
           <q-item-section>
               <div class="row q-pt-md">
                    <div class="col-12 col-md q-px-md">
@@ -236,7 +236,7 @@
                 <div class="col">
                   <div class="container text-center q-pa-md">
                      <q-item-label class="label-register">Recuerda, si no tiene aun la referencia, puedes procesar la compra y buscarla en Ordenes de compra, tienes 24 Horas para validar el pago; de lo contrario la compra sera anulada. </q-item-label>
-                     
+
                   </div>
                 </div>
               </div>

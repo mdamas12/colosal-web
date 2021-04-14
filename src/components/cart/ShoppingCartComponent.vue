@@ -2,9 +2,9 @@
 	<div class="container-shopping-cart-title ">
 		<div class="row">
 		</div>
-		<div class="row justify-evenly items-start content-center">
-			<div class="col-8 q-mx-md" >
-				<div class="row full-width q-my-xl">
+		<div class="row q-ma-md">
+			<div class="col-8" >
+				<div class="row q-my-xl">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
@@ -21,12 +21,10 @@
 					<div class="col-12" v-for="(shoppingcart, index) in products" :key="shoppingcart.id">
 						<q-card flat bordered class="my-card q-mb-md">
 							<div class="row items-center">
-								<div class="col-1">
-
-									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product"></q-img>
+								<div class="col-2">
+									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
-							
-								<div class="col-3">
+								<div class="col-2">
 									<div class="column items-start">
 										<q-card-section>
 											<div class="col text-name-product">
@@ -35,18 +33,17 @@
 											<div class="col text-description-product">
 												{{shoppingcart.product.description}}
 											</div>
-											<div class="col-1">
-												<q-btn flat text-color="grey-5" icon="delete_outline" label="Eliminar" @click="DeleteItemShop(shoppingcart.id)"/>
-											</div>
 										</q-card-section>
 									</div>
 								</div>
 								<div class="col-3">
 									<q-card-section>
 										<div class="col text-description-product">
-											Cantidad  {{shoppingcart.id}}
+											 <div  v-if="shoppingcart.product.quantity > 5"><b>Existen {{shoppingcart.product.quantity}} en Disponibles</b></div>
+							   				 <div  v-if="shoppingcart.product.quantity <= 5 && shoppingcart.product.quantity > 0 "><b>Solo quedan {{shoppingcart.product.quantity}} Disponibles</b></div>
+							   				 <div v-if="shoppingcart.product.quantity == 0"><b> Este Producto no esta Disponible</b></div>
 										</div>
-										<div class="row">
+										<div>
 											<q-card flat bordered>
 												<q-card-section>
 													<div class="row justify-evenly items-center">
@@ -71,7 +68,7 @@
 								
 								</div>
 									 
-								<div class="col-3">
+								<div class="col-2">
 									<div class="column items-start">
 										<q-card-section>
 											<div class="col text-description-product">
@@ -95,15 +92,15 @@
 										</q-card-section>
 									</div>
 								</div>
+								<div class="col-1">
+									<q-btn flat round text-color="red" icon="delete_outline" @click="DeleteItemShop(shoppingcart.id)"/>
+								</div>
 							</div>
-							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity > 5"><b>Existen {{shoppingcart.product.quantity}} en Disponibles</b></div>
-							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity <= 5 && shoppingcart.product.quantity > 0 "><b>Solo quedan {{shoppingcart.product.quantity}} Disponibles</b></div>
-							   <div class="text-msj-stock" v-if="shoppingcart.product.quantity == 0"><b> Este Producto no esta Disponible</b></div>
 						</q-card>
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-4">
 				<q-card flat bordered class="my-card q-mx-md q-mt-xl">
 					<q-card-section>
 						<div class="row justify-between">
@@ -222,7 +219,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			}
 		},
 		increaseProdQty(index : number){
-			if (this.products[index].quantity <= this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
+			if (this.products[index].quantity < this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
 				this.products[index].quantity += 1
 				this.SubTotal()
 			}
