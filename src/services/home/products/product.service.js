@@ -9,6 +9,20 @@ import axios from 'axios'
 const API_URL = process.env.API_URL + 'web/home/';
 
 class ProductsService {
+
+  getProductsFeatured() {
+    return Observable.create((observer) => {
+      axios.get(API_URL + 'products-featured/')
+        .then((response) => {
+          observer.next(response.data)
+          observer.complete()
+        })
+        .catch((error) => {
+          observer.error(error)
+        })
+    })
+  }
+
   getProducts () {
     return Observable.create((observer) => {
       axios.get(API_URL + 'products-all/')

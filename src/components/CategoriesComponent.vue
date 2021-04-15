@@ -174,7 +174,7 @@ export default defineComponent({
       //      complete: () => console.log('[complete]')
       //  })
       //   const headers = { 'Content-Type': 'application/json' }
-      axios.get('http://localhost:8000/web/home/categories-featured/')
+      axios.get(process.env.API_URL +'web/home/categories-featured/')
         .then(response => {
           this.categories = response.data
           console.log(response.data)
