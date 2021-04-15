@@ -363,7 +363,7 @@ export default defineComponent({
         this.load = false
       }, 3000)
       const headers = { 'Content-Type': 'application/json' }
-      axios.get('http://localhost:8000/web/home/promotions-featured/', { headers })
+      axios.get(process.env.API_URL + 'web/home/promotions-featured/', { headers })
         .then(response => {
           this.promotions = response.data
           console.log(response.data)
