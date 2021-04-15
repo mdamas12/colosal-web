@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="container gt-sm" style="margin-left:-60px; margin-right:-60px">
+        <div class="container gt-sm" style="margin-left:-20px; margin-right:-20px">
             <q-carousel
                 v-model="slide"
                 transition-prev="slide-right"
@@ -113,7 +113,7 @@
                             </q-card>
                         </div>
                     </div>
-                    <div class="row" v-else>
+                    <div class="row justify-center" v-else>
                         <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="promotion in promotions.slice(index * itemsPromoRow, (index+1) * itemsPromoRow)" :key="promotion.id">
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
@@ -131,7 +131,7 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                           {{promotion.price}}
+                                           {{promotion.coin}} {{promotion.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -198,7 +198,7 @@
                 </q-carousel-slide>
             </q-carousel>
         </div>
-        <div class="container lt-md" style="margin-left:-60px; margin-right:-60px">
+        <div class="container lt-md">
             <q-carousel
                 v-model="slideresponsive"
                 transition-prev="slide-right"
@@ -209,10 +209,10 @@
                 arrows
                 control-color="red-10"
                 class="bg-accent container-carousel q-px-lg"
-                style="height:450px">
+                style="height:465px">
                 <q-carousel-slide :name="promotion.id" class="col" v-for="promotion in promotions" :key="promotion.id">
                     <div class="row" v-if="load">
-                          <div class="col-6 col-md q-gutter-sm q-pa-md">
+                          <div class="col-12 col-md q-gutter-sm q-pa-md">
                             <q-card class="q-pt-md skeleton-card">
                                 <q-card-section align="center" class="q-gutter-md">
                                     <q-skeleton height="150px" square />
@@ -303,7 +303,7 @@
                             </q-card>
                         </div>
                     </div>
-                    <div class="row" v-else>
+                    <div class="row justify-center" v-else>
                         <div class="col-12 col-md q-gutter-sm q-pa-md">
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
@@ -321,7 +321,7 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                           {{promotion.price}}
+                                           {{promotion.coin}} {{promotion.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -408,7 +408,18 @@ export default defineComponent({
 .combo1:hover .middle{
     opacity: 1;
 }
-
+@media (min-width:320px) and (max-width: 767px) {
+        .container-promotions{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .img-product{
+            width: 70%;
+        }
+        .height-card{
+            height: 100px;
+        }
+    }
 @media (min-width:1500px){
     .carousel-promo{
     height: 600px;

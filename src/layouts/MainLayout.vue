@@ -1,13 +1,14 @@
 <template>
-    <q-layout view="hHh lpR fFf" class="bg-grey-1">
+    <!-- <q-layout view="hHh lpR fFf" class="bg-grey-1">
+      <div class="container"></div>
         <q-header elevated class="bg-white text-grey-8 q-pa-sm" height-hint="64">
             <q-toolbar class="toolbar-header">
-                <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu" icon="menu" class="q-mr-sm" />
+                <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu" icon="menu" class="q-mr-sm gt-md" />
                 <q-toolbar-title v-if="$q.screen.gt.xs" shrink class="row items-center no-wrap">
                     <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
                 </q-toolbar-title>
                 <q-space />
-                <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?" style="width: 40%">
+                <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?" class="width-search">
                   <template v-slot:prepend>
                     <q-icon v-if="search === ''" name="search" />
                     <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -112,8 +113,177 @@
         <q-page-container>
           <router-view />
         </q-page-container>
-    </q-layout>
+    </q-layout> -->
+    <q-layout view="hHh lpR fFf" class="bg-grey-1">
+      <div class="container">
+        <q-header elevated class="bg-white text-grey-8 q-pa-sm" height-hint="64">
+          <div class="row q-pa-sm justify-center">
+            <div class="col-2 q-pa-sm gt-xs">
+              <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
+            </div>
+            <div class="col-12 col-md q-pa-sm gt-sm">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+                <template v-slot:prepend>
+                  <q-icon v-if="search === ''" name="search" />
+                  <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
+                </template>
+              </q-input>
+            </div>
+            <div class="container q-pa-sm">
+              <div class="row text-center">
+                <div class="col-12 col-md ">
+                  <div class="container">
+                    <div class="row justify-center align-items-center">
+                          <!-- <div class="col-4">
+                              <q-item-label class="label-register"> </q-item-label>
+                          </div> -->
+                      <div class="col-12 col-sm">
+                        <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">{{name}}
+                          <q-icon name="keyboard_arrow_down" color="bluesito"/>
+                          <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
+                            <q-list>
+                              <q-item clickable v-close-popup class="font-list">
+                                <q-item-section><a href="#" class="text-myacount" @click="myaccount()">Mi Perfil</a></q-item-section>
+                              </q-item>
+                              <q-separator />
+                              <q-item clickable v-close-popup class="font-list">
+                                <q-item-section><a href="#" class="text-myacount" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
+                              </q-item>
+                              <q-separator />
+                              <q-item clickable v-close-popup class="font-list">
+                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                              </q-item>
+                            </q-list>
+                          </q-menu>
+                        </q-btn>
+                      </div>
+                      <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesion" size="md" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" /> 
+                      <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md q-pa-sm lt-md">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+                <template v-slot:prepend>
+                  <q-icon v-if="search === ''" name="search" />
+                  <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
+                </template>
+              </q-input>
+            </div> 
+          </div>
+              <!-- <q-toolbar class="toolbar-header">
+                  <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu" icon="menu" class="q-mr-sm gt-md" />
+                  <q-toolbar-title v-if="$q.screen.gt.xs" shrink class="row items-center no-wrap">
+                      <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
+                  </q-toolbar-title>
+                  <q-space />
+                  <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?" class="width-search">
+                    <template v-slot:prepend>
+                      <q-icon v-if="search === ''" name="search" />
+                      <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
+                    </template>
+                  </q-input>
+                  <q-space />
+                  <div class="q-gutter-sm row items-center no-wrap">
+                    <q-item-label class="label-register"> </q-item-label>
+                    <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">{{name}}
+                      <q-icon name="keyboard_arrow_down" color="bluesito"/>
+                      <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
+                        <q-list>
+                          <q-item clickable v-close-popup class="font-list">
+                            <q-item-section><a href="#" class="text-myacount" @click="myaccount()">Mi Perfil</a></q-item-section>
+                          </q-item>
+                          <q-separator />
+                            <q-item clickable v-close-popup class="font-list">
+                              <q-item-section><a href="#" class="text-myacount" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
+                          </q-item>
+                          <q-separator />
+                            <q-item clickable v-close-popup class="font-list">
+                              <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                          </q-item>
+                        </q-list>
+                      </q-menu>
+                  </q-btn>
+                  <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesion" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" />
+                    
+                  <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
+                  </div>
+              </q-toolbar> -->
+            <q-list v-if="products" v-for="product in products" :key="product.id" separator>
+              <q-item clickable class="text-center q-px-md" @click="clickToProduct(product.id)">
+                <q-item-section>
+                  {{product.name}}
+                </q-item-section>
+              </q-item>
+            </q-list>
+            <div class="row justify-center" v-if="searching && products.length == 0">
+              <q-circular-progress
+                indeterminate
+                size="50px"
+                class="q-ma-md"
+              />
+            </div>
+        </q-header>
+      </div>
 
+      <q-dialog persistent v-model="showInitSession" >
+        <q-card class="my-card" style="max-width:100%; width:440px">
+          <q-toolbar class="text-bluesito">
+            <q-toolbar-title class="title-session">
+                Inicia Sesión 
+            </q-toolbar-title>
+            <q-btn flat icon="close" round v-close-popup />
+          </q-toolbar>
+          <q-separator />
+          <q-item class="q-pt-md">
+            <q-item-section>
+              <div class="row q-pt-md">
+                <div class="col-12 col-md q-px-md">
+                  <q-input label="Email" v-model="email" class="font-input"></q-input>
+                </div>
+              </div>
+              <div class="row q-pt-md">
+                <div class="col-12 col-md q-px-md">
+                  <q-input label="Contraseña" v-model="password" :type="isPwd ? 'password' : 'text'" class="font-input">
+                    <template v-slot:append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+              <div class="row q-pt-md">
+                <div class="col col-md q-px-md">
+                  <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
+                </div>
+              </div>
+            </q-item-section>
+          </q-item>
+          <q-card-actions vertical align="center">
+            <q-btn label="Iniciar Sesión" color="bluesito" class="btn-init-session q-mb-md" size="md" @click="checkLogin()"></q-btn>
+          </q-card-actions>
+          <q-separator />
+          <q-item-section>
+            <div class="row q-pt-md">
+              <div class="col">
+                <div class="container text-center q-pa-md">
+                  <q-item-label class="label-register">¿No tienes cuenta? </q-item-label>
+                  <q-btn flat label="REGÍSTRATE" @click="goToRegister()"></q-btn>
+                </div>
+              </div>
+            </div>
+          </q-item-section>
+        </q-card>
+      </q-dialog>
+        <q-page-container>
+          <router-view />
+        </q-page-container>
+    </q-layout>
 </template>
 
 <script lang="ts">
@@ -389,5 +559,12 @@ export default defineComponent({
   font-size: 14px;
   color: #020B68;
   text-decoration: none;
+}
+
+@media (min-width:767px) {
+  .width-search{
+  width: 40%;
+  }
+
 }
 </style>

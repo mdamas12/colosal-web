@@ -18,7 +18,7 @@
                     animated
                     arrows
                     control-color="red-10"
-                    class="bg-accent container-carousel q-px-lg"
+                    class="bg-accent container-carousel q-px-md"
                     style="height:450px">
                     <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
@@ -104,7 +104,7 @@
                                 </q-card>
                             </div>
                         </div>
-                        <div class="row" v-else>
+                        <div class="row justify-center" v-else>
                             <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="(product,i) in products.slice(index * itemsProdRow, (index+1) * itemsProdRow)" :key="product.id">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
@@ -121,7 +121,7 @@
                                     <q-card-section class="text-center q-pt-none text-price-product">
                                       {{product.coin}}  {{product.price}}
                                     </q-card-section>
-                                     <q-card-section class="text-center">
+                                     <q-card-section class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity">
                                             {{product.quantity}} Disponibles 
                                         </q-item-label>
@@ -135,7 +135,7 @@
                     </q-carousel-slide>
                 </q-carousel>
          </div>
-				 <div class="container lt-md" style="margin-left:-20px; margin-right:-20px">
+				 <div class="container lt-md">
             <q-carousel
                     v-model="slideresponsive"
                     transition-prev="slide-right"
@@ -146,8 +146,8 @@
                     arrows
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-lg"
-                    style="height:450px">
-                    <q-carousel-slide :name="product.id" class="col" v-for="product in products" :key="product.id">
+                    style="height:465px">
+                    <q-carousel-slide :name="product.id" v-for="product in products" :key="product.id">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
@@ -231,7 +231,7 @@
                                 </q-card>
                             </div>
                         </div>
-                        <div class="row" v-else>
+                        <div class="row justify-center" v-else>
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
@@ -246,8 +246,12 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                      {{product.price}}
-                                     
+                                      {{product.coin}} {{product.price}} 
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none">
+                                        <q-item-label lines="2" class="text-quantity">
+                                            {{product.quantity}} Disponibles 
+                                        </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
