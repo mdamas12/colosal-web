@@ -355,10 +355,12 @@ import PurchaseService   from "../../services/purchases/purchase.services";
 
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
+    var banks : any = []
+    var products : any = []
 		return {
 			cantidad: 0,
-			products: [],
-      banks: [], 
+			products: products,
+      banks : banks, 
       bankSelect : [],
 			subtotal : 0,
       Tpago: '',
@@ -384,7 +386,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 		listCart(){
 			let subscription = ShoppingcartService.getListCart().subscribe( {
-			next: data => {
+			next: (data : any) => {
 				this.products = data.results	
 			},
 			complete: () => {
@@ -394,7 +396,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         },
 	  SubTotal(){
 		 this.subtotal = 0
-		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + Number(element.amount));
+		 this.products.forEach((element : any)=> this.subtotal = Number(this.subtotal) + Number(element.amount));
 		 
 	  },
       viewMetodo(){
@@ -403,7 +405,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             }
             else{
                 let subscription = PurchaseService.Getpayments(this.Tpago).subscribe( {
-                next: data => {
+                next: (data : any) => {
                     this.banks = data	
                     console.log(this.banks)
                 },
@@ -413,15 +415,13 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
                 });
             }
       },
-      Selectbank(payment_id){
-          this.banks.forEach(element => {
-               
+      Selectbank(payment_id : Number){
+          this.banks.forEach((element : any) => {
               if (element.id == payment_id){          
                   this.bankSelect = element
                   this.bankSelectShow = true
               }
           });	 
-
       },
       PurchaseNext(){
           if ((this.Tpago != '') && (this.bankSelect.length != 0)) {
@@ -445,7 +445,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             }
 
             let subscription = PurchaseService.SaveSale(sale).subscribe( {
-			        next: resp => {
+			        next: (resp : any) => {
 
                 if (resp.status == "200"){
                     
@@ -496,10 +496,9 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         //vm.pagination.rowsNumber = vm.count;
   
     },
-    	watch:{
-		Tpago(newOpcion){
-			this.viewMetodo(newOpcion)
-		
+  watch:{
+		Tpago(newOpcion : string){
+			this.viewMetodo()
 		}
 	}
 })

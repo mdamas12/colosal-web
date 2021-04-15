@@ -195,13 +195,16 @@ import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart
 import { Loading } from "quasar";
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
+
+		var products : any = []
+		var counter : any = []
+
 		return {
 			cantidad: 0,
-			products: [],
+			products: products,
 			subtotal : 0,
-			counter : [],
+			counter : counter,
 			ShowMsg : false
-
 		}
 	},
 	methods: {
@@ -233,7 +236,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 		listCart(){
 			let subscription = ShoppingcartService.getListCart().subscribe( {
-			next: data => {
+			next: (data:any) => {
 				this.products = data.results
 				
 				for (let i = 0; i < this.products.length; i++){
@@ -252,16 +255,16 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         },
 	  SubTotal(){
 		 this.subtotal = 0
-		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity)));
+		 this.products.forEach((element : any) => this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity)));
 	  },
-	  DeleteItemShop(id_item){
+	  DeleteItemShop(id_item : number){
 		let subscription = ShoppingcartService.DeleteShopCart(id_item).subscribe( {
 			complete: () => {
 				this.listCart()
 			}
 			});
 	  },
-	 Shoppingcart(id){   
+	 Shoppingcart(id : number){   
 		
         if (this.verifySession() == true){
             if(this.products[id].quantity == 0){
@@ -284,10 +287,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             };
 			let shopp_id = this.products[id].id
             let subscription = ShoppingcartService.UpdateShoppingCart(shopp_id,data).subscribe( {
-             complete: resp   => {
+             complete: (resp : any)   => {
                Loading.hide();
              },
-			 next: resp =>{
+			 next: (resp : any) =>{
 				Loading.hide();
 				if (resp.status == "200"){
 					this.showNotif(resp.data, 'red-8');
@@ -300,7 +303,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 					return
 				}
 			 },
-             error: data => {
+             error: (data : any) => {
                Loading.hide();
                this.showNotif("Error al agregar producto", 'red-10');
               }
@@ -308,7 +311,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         }
         else{
            this.showNotif("Debe Iniciar Sesion", 'red-10');
-           this.showInitSession = true;
+           //this.showInitSession = true;
         }
     },
 	goToPurchase(){
@@ -318,7 +321,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 	CloseShowMsg(){
 		this.ShowMsg = false;
 	},
-	showNotif (message , color) {
+	showNotif (message : string, color : string) {
       this.$q.notify({
         message: message,
         color: color,
