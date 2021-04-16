@@ -60,52 +60,53 @@
 					</div>
 				</div>
 				
-				<div class="row q-mx-xs">
+		  		<div class="row q-mx-xs">
 				 
-					<div class="col-12" >
-						<q-card flat bordered class="my-card q-mb-md" >
-                            <q-card-header>
-								<div class="row title-text-principal">
-								   Verifica los productos seleccionados:	
+					<div class="col-12" v-for="shoppingcart in products" :key="shoppingcart.id">
+						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
+							<div class="row items-center">
+								<div class="col-2">
+									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
-							</q-card-header>
-							<div class="row items-center separador" v-for="shoppingcart in products" :key="shoppingcart.id">
-								<div class="col-1">
-
-									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product"></q-img>
-								</div>
-							
-								<div class="col-3">
+								<div class="col-2">
 									<div class="column items-start">
 										<q-card-section>
 											<div class="col text-name-product">
 												{{shoppingcart.product.name}}
-											</div>
-											<div class="col text-description-product">
-												{{shoppingcart.product.description}}
 											</div>
 										</q-card-section>
 									</div>
 								</div>
 								<div class="col-3">
 									<q-card-section>
-										<div class="col text-description-product">
-											Cantidad
+										<div class="col text-name-product">
+						          Cantidad
+                  	</div>
+										<div>
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">	
+														<div class="col text-name-product self-center q-pl-lg">
+															{{shoppingcart.quantity}} 
+														</div>
+																		
+													</div>
+												</q-card-section>
+											</q-card>
 										</div>
-                                        <div class="col text-description-product">
-										<strong>{{shoppingcart.quantity}} </strong>
-										</div>
-									
+		
 									</q-card-section>
+								
 								</div>
-								<div class="col-3">
+									 
+								<div class="col-2">
 									<div class="column items-start">
 										<q-card-section>
-											<div class="col text-description-product">
+											<div class="col text-name-product">
 												Precio
 											</div>
 											<div class="col text-description-product">
-												<strong> {{shoppingcart.product.coin}} {{shoppingcart.product.price}} </strong>
+												{{shoppingcart.product.coin}} {{shoppingcart.product.price}}
 											</div>
 										</q-card-section>
 									</div>
@@ -117,13 +118,83 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-											<strong>{{shoppingcart.product.coin}} {{shoppingcart.amount}}</strong>
+												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+		
+							</div>
+						</q-card>
+
+
+
+						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.promotion != null">
+							<div class="row items-center">
+       
+								<div class="col-2">
+									<q-img :src="shoppingcart.promotion.image" class="img-product q-ml-md"></q-img>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												{{shoppingcart.promotion.name}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-3">
+									<q-card-section>
+										<div class="col text-name-product items-center">
+                       Cantidad 
+										</div>
+										<div>
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">
+														<div class="col text-name-product self-center q-pl-lg">
+															{{shoppingcart.quantity}} 
+														</div>
+																					
+													</div>
+												</q-card-section>
+											</q-card>
+										</div>
+									</q-card-section>
+								
+								</div>
+									 
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product">
+												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price * shoppingcart.quantity}}
 											</div>
 										</q-card-section>
 									</div>
 								</div>
 							</div>
 						</q-card>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -436,6 +507,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
       },
 
       PurchaseEnd(){
+ 
             let sale = {
                 'payment_type' : this.Tpago,
                 'bank' : this.bankSelect,
@@ -447,24 +519,18 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             let subscription = PurchaseService.SaveSale(sale).subscribe( {
 			        next: (resp : any) => {
 
-                if (resp.status == "200"){
-                    
-                    this.showProcessPayment = false;
-                    this.rep_stock = resp.data;
-                    this.showErrorFaltaStock = true;
-
-                }
-                else{
-                   this.showProcessPaymentEfectivo = false;
-                    this.showProcessPayment = false;
-                    this.showSaleReady = true;
-                }              				       	
+                  this.showProcessPaymentEfectivo = false;
+                  this.showProcessPayment = false;
+                  this.showSaleReady = true;
+                             				       	
 		       	},
             complete: () => {
-              this.showNotif("Tu compra ha sido procesada", "green-9")
+              //this.showNotif("Tu compra ha sido procesada", "green-9")
             },
-            error: () =>{
-                      this.showNotif("ha ocurrido un error", "red-7")
+            error: (resp) =>{
+                    this.showProcessPayment = false;
+                    this.rep_stock = resp;
+                    this.showErrorFaltaStock = true;
                   }
             });
 

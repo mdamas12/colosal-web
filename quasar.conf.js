@@ -8,8 +8,11 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const envparser = require('./src/config/envparser.js')
+const envparser = require('./envparser.js')
 const { configure } = require('quasar/wrappers')
+const DotEnv = require('dotenv')
+const webpack = require('webpack')
+
 
 module.exports = configure(function (ctx) {
   return {
@@ -88,7 +91,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
-      host: 'https://localhost:8000/',
+      //host: 'https://localhost:8000/',
       https: false,
       port: 3333,
       open: true // opens browser window automatically

@@ -3,8 +3,9 @@ import axios from 'axios'
 import tokenHeader from '../../auth.service';
 
 //const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
-
 const API_URL = process.env.API_URL;
+
+//const API_URL = process.env.API_URL;
 
 class ShoppingcartService {
 
@@ -13,7 +14,7 @@ class ShoppingcartService {
       //console.log(tokenHeader())
       axios.get(API_URL + 'panel/shoppingcart/customer/',{headers : tokenHeader()})
         .then((response) => {
-         // console.log(response.data)
+         //console.log(response.data)
           observer.next(response.data)
           observer.complete()
         })
@@ -30,7 +31,7 @@ class ShoppingcartService {
  
     return Observable.create((observer) => {
       //console.log(tokenHeader())
-      axios.post(API_URL + 'panel/shoppingcart/customer/',data_cart,{headers : tokenHeader()})
+      axios.post(API_URL + 'panel/shoppingcart/add-product/',data_cart,{headers : tokenHeader()})
         .then((response) => {
           //console.log(response.data)
           observer.next(response)
@@ -44,6 +45,25 @@ class ShoppingcartService {
     
   }
 
+  savePromotionShoppingCart(data_cart){
+
+    return Observable.create((observer) => {
+      //console.log(tokenHeader())
+      axios.post(API_URL + 'panel/shoppingcart/add-promotion/',data_cart,{headers : tokenHeader()})
+        .then((response) => {
+          //console.log(response.data)
+          observer.next(response)
+          observer.complete()
+        })
+        .catch((error) => {
+          console.log(error.response)
+          observer.error(error.response.data)
+        })
+    })
+
+
+  }
+
   searchShoppingcart(id_product){
     let product = {
       "product" : id_product
@@ -52,14 +72,32 @@ class ShoppingcartService {
     return Observable.create((observer) => {
     axios.post(API_URL + 'panel/shoppingcart/verify-product/',product,{headers : tokenHeader()})
     .then((response) => {
-      console.log(response.status)
+      //console.log(response.status)
       observer.next(response.data)
-      observer.complete()
+      //observer.complete()
     })
     .catch((error) => {
+      //console.log(error.response.data)
       observer.error(error)
     });
   })
+}
+
+searchPromotionShoppingcart(id_promotion){
+  let promotion = {
+    "promotion_id" : id_promotion
+  }
+  return Observable.create((observer) => {
+  axios.post(API_URL + 'panel/shoppingcart/verify-promotion/',promotion,{headers : tokenHeader()})
+  .then((response) => {
+   // console.log(response.status)
+    observer.next(response)
+    //observer.complete()
+  })
+  .catch((error) => {
+    observer.error(error)
+  });
+})
 }
 
 UpdateShoppingCart(id,data){
@@ -67,12 +105,11 @@ UpdateShoppingCart(id,data){
     return Observable.create((observer) => {
     axios.put(API_URL + 'panel/shoppingcart/change/'+id+'/',data,{headers : tokenHeader()})
     .then((response) => {
-      observer.next(response)   
+      observer.next(response.data)   
     })
-    .catch((error,response) => {
+    .catch((error) => {
        console.log(error)
-       console.log(response.data)
-      //observer.error(response.data)
+      observer.error(error.response.data)
     });
 })
 
@@ -86,7 +123,7 @@ DeleteShopCart(id){
         observer.complete()
       })
       .catch((error) => {
-        observer.error(error)
+        observer.error(error.response.data)
       });
     })
 }

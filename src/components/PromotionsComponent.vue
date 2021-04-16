@@ -118,7 +118,7 @@
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            :src="'http://localhost:8000' + promotion.promotion_detail[0].product.image" 
+                                            :src="promotion.image" 
                                             class="img-promotions" 
                                             style="max-width:150px"></q-img>
                                         <div class="middle">
@@ -131,7 +131,7 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                           {{promotion.price}}
+                                         {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
@@ -363,7 +363,9 @@ export default defineComponent({
         this.load = false
       }, 3000)
       const headers = { 'Content-Type': 'application/json' }
-      axios.get(process.env.API_URL + 'web/home/promotions-featured/', { headers })
+      let ULR = "http://localhost:8000/"
+      //axios.get(process.env.API_URL + 'web/home/promotions-featured/', { headers })
+      axios.get(ULR + 'web/home/promotions-featured/', { headers })
         .then(response => {
           this.promotions = response.data
           console.log(response.data)

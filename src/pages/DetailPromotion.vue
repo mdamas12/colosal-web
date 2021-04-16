@@ -9,37 +9,38 @@
       <div class="row">
         <div class="col-12 col-md q-gutter-sm q-pa-md">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-            <q-carousel-slide v-for="(promo,index) in promotion.promotion_detail" :name="index + 1" :img-src="'http://localhost:8000' + promo.product.image" class="border-img-slide"></q-carousel-slide>
+            <q-carousel-slide v-for="(pic,index) in images" :name="index + 1" :img-src="pic" class="border-img-slide" ></q-carousel-slide>
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">
           <div class="text-title-promotion">{{promotion.name}}</div>
+          <div class="text-ID-promotion">Categoria:</div>
           <div class="text-title-brand">{{promotion.category.name}}</div>
-          <div class="text-ID-promotion">ID Promoción: {{promotion.id}}</div>
-          <div class="text-detail-promotion">Detail:</div>
-          <div class="text-price-promotion">{{promotion.price}}</div>
-          <div class="text-fventa-promotion">Mayor:</div>
-          <div class="text-price_fventa-promotion">{{promotion.price}}</div>
-          <div class="text-quantity-promotion">Cantidad:</div>
+          <div class="text-detail-promotion">Cantidad Disponible:</div>
+          <div class="text-price-promotion">{{promotion.quantity}}</div>
+          <div class="text-fventa-promotion">Costo:</div>
+          <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div>
+          <div class="text-quantity-promotion">cantidad :</div>
           <div class="row">
             <div class="col-6 col-md">
               <div class="border">
                 <span class="border">
-                  <q-btn flat round color="redsito" icon="remove" class="btn-promotion" size="md" v-on:click="counter -= 1"></q-btn>
+                  <q-btn flat round color="redsito" icon="remove" class="btn-promotion" size="md" v-on:click="decreaseProdQty()"></q-btn>
                     {{counter}}
-                  <q-btn flat round color="indigo-10" icon="add" class="btn-promotion" size="md" v-on:click="counter += 1"></q-btn>
+                  <q-btn flat round color="indigo-10" icon="add" class="btn-promotion" size="md" v-on:click="increaseProdQty()"></q-btn>  
                 </span>
               </div>
             </div>
             <div class="col-6 col-md">
-              <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md"></q-btn>
+              <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md" @click="ToShoppingcart()"></q-btn>
             </div>
-          </div>
+          </div> 
+          <div class="title-nota-extra">{{status_cart}}</div>
           <div class="title-nota-extra"><b>Productos:</b></div>
           <q-list dense class="rounded-borders">
-            <q-item clickable v-ripple v-for="promo in promotion.promotion_detail">
+            <q-item clickable v-ripple v-for="promo in promotion.promotion_detail" :key="promo.product.id">
               <q-item-section>
-                - {{promo.product.name}}
+               {{promo.quantity}} - {{promo.product.name}}
               </q-item-section>
             </q-item>
           </q-list>
@@ -63,12 +64,16 @@ import { defineComponent } from '@vue/composition-api'
 import FeaturedProductsCarouselComponent from 'src/components/FeaturedProductsCarouselComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import PromotionsServices from '../services/home/promotions/promotion.service'
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { Loading } from "quasar";
 export default defineComponent({
   components: { FeaturedProductsCarouselComponent, FooterComponent },
   data() {
     return {
       counter: 0,
       slide: 1,
+      images: [],
+      status_cart : '',
       promotion: [{
         id: this.$route.params.id,
         name: '',
@@ -76,7 +81,7 @@ export default defineComponent({
         coin: '',
         price: '',
         quantity: null,
-        image: '',
+        image: null,
         category: [{ name: '' }],
         promotion_detail: []
       }],
@@ -87,12 +92,112 @@ export default defineComponent({
     this.refreshComponent()
   },
   methods: {
+
+    verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
     getPromotionDetail () {
       PromotionsServices.getPromotion(this.$route.params.id).subscribe({
         next: data => {
-          console.log(data)
+          //console.log(data)
           this.promotion =  data
+          let products = data.promotion_detail
+          let i = 1
+          this.images[0] = this.promotion.image
+          for (i = 0 ; i<+ data.promotion_detail.length; i++){
+             this.images[i+1] = data.promotion_detail[i].product.image
+           
+          }
+          this.verifyShoppingcart();
+          
         }
+      })
+    },
+
+    ToShoppingcart(){
+        if (this.verifySession() == true){
+            if(this.counter < 1){
+                this.showNotif("Debe agregar una cantidad", 'red-10');
+                return 
+            }
+            if (this.counter > this.promotion.quantity){
+                this.showNotif("La Cantidad Supera lo disponible de esta Promocion", 'red-10');
+                return
+            }
+             
+            Loading.show();
+            const data_cart = {
+                'promotion' : this.promotion.id,
+                'quantity' : this.counter
+            };
+            let subscription = ShoppingcartService.savePromotionShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+                    this.showNotif(resp.data, 'red-8');
+                    //this.getPromotionDetail();
+                }
+                else{
+                  this.showNotif(resp.data, 'blue-8');
+                  this.verifyShoppingcart();
+                }
+               
+               },
+             complete: () => {
+                  Loading.hide();
+                },
+             error: (resp) => {
+               Loading.hide();
+               this.showNotif(resp, 'red-10');
+              }
+            });
+        }
+        else{
+          this.showNotif("Inicia Sesion para agrerar a tu carrito de compra", 'red-10');
+        }
+    },
+
+  verifyShoppingcart() {
+       
+        let subscription = ShoppingcartService.searchPromotionShoppingcart(this.$route.params.id).subscribe({
+           
+          next: (resp) => {         
+            this.counter = resp.data
+            this.status_cart  = "Promocion esta en su Carrito de Compra"
+           },
+           complete: () => {        
+               //this.showNotif("data", 'blue-5');
+            }
+          
+        });
+    },
+   increaseProdQty(){
+        if (this.counter < this.promotion.quantity){ //compruebo que no se pase de la cantidad de stock
+            this.counter++
+        }
+    },
+    decreaseProdQty(){
+        if (this.counter > 1){ 
+            this.counter--
+        }
+    },
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
       })
     },
     refreshComponent () {

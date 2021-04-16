@@ -110,7 +110,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-                                            v-bind:src="'http://localhost:8000' + product.image" 
+                                            v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -320,12 +320,12 @@ export default defineComponent({
                     for (let i = 0; i < this.productsShop.length; i++){
                         let swich = false 
                         for (let j = 0; j < this.shopp.length; j++){
-                            if((swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
+                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
                                 this.incart[i] = true
                                 swich = true
-                                console.log(this.productsShop[i].name)
+                                //console.log(this.productsShop[i].name)
                             }
-                            if((swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
+                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
                                 this.incart[i] = false
                             }
                         }

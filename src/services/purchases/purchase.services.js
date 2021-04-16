@@ -31,12 +31,12 @@ class PurchaseService {
       axios.post(API_URL + 'panel/sales/',sale,{headers : tokenHeader()})
         .then((response) => {
           //console.log(response.data)
-          observer.next(response)
-          //observer.complete()
+          observer.next(response.data)
+          observer.complete()
         })
         .catch((error) => {
-          console.log(error.response)
-          observer.error(error)
+          //console.log(error.response.data)
+          observer.error(error.response.data)
         })
     })
     
