@@ -308,7 +308,7 @@
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            :src="process.env.API_URL + promotion.promotion_detail[0].product.image" 
+                                            :src="'http://minimarketcolosal.com/api' + promotion.promotion_detail[0].product.image" 
                                             class="img-promotions" 
                                             style="max-width:150px"></q-img>
                                         <div class="middle">
@@ -363,7 +363,7 @@ export default defineComponent({
         this.load = false
       }, 3000)
       const headers = { 'Content-Type': 'application/json' }
-      axios.get(process.env.API_URL + 'web/home/promotions-featured/', { headers })
+      axios.get('http://minimarketcolosal.com/api' + 'web/home/promotions-featured/', { headers })
         .then(response => {
           this.promotions = response.data
           console.log(response.data)

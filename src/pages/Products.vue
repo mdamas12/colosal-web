@@ -132,7 +132,7 @@
                   <q-card class="my-card card2 q-pa-md" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                     <q-card-section class="text-center">
                       <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
-                      <q-img :src="process.env.API_URL + product.image" class="img-product2"></q-img>
+                      <q-img :src="'http://minimarketcolosal.com/api' + product.image" class="img-product2"></q-img>
                     </q-card-section>
                     <q-card-section class="text-center">
                       <div class="text-name-product">

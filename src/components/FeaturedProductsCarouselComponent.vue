@@ -110,7 +110,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-                                            v-bind:src="process.env.API_URL + product.image" 
+                                            v-bind:src="'http://minimarketcolosal.com/api' + product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -237,7 +237,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-                                            v-bind:src="process.env.API_URL + product.image" 
+                                            v-bind:src="'http://minimarketcolosal.com/api' + product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
