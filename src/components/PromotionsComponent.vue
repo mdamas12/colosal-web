@@ -363,7 +363,7 @@ export default defineComponent({
         this.load = false
       }, 3000)
       const headers = { 'Content-Type': 'application/json' }
-      axios.get('http://minimarketcolosal.com/api' + 'web/home/promotions-featured/', { headers })
+      axios.get('http://minimarketcolosal.com/api/' + 'web/home/promotions-featured/', { headers })
         .then(response => {
           this.promotions = response.data
           console.log(response.data)
