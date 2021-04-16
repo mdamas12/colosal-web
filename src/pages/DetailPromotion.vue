@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-12 col-md q-gutter-sm q-pa-md">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-            <q-carousel-slide v-for="(promo,index) in promotion.promotion_detail" :name="index + 1" :img-src="'http://localhost:8000' + promo.product.image" class="border-img-slide"></q-carousel-slide>
+            <q-carousel-slide v-for="(promo,index) in promotion.promotion_detail" :name="index + 1" :img-src="process.env.API_URL + promo.product.image" class="border-img-slide"></q-carousel-slide>
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">

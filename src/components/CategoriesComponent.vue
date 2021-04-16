@@ -51,7 +51,7 @@
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
-                                    :src="'http://localhost:8000' + category.image" 
+                                    :src="process.env.API_URL + category.image" 
                                     class="image-categorie" 
                                     style="height: 250px; max-width: 250px"/>
                                     

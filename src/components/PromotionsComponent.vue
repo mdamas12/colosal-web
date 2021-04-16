@@ -118,7 +118,7 @@
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            :src="'http://localhost:8000' + promotion.promotion_detail[0].product.image" 
+                                            :src="process.env.API_URL + promotion.promotion_detail[0].product.image" 
                                             class="img-promotions" 
                                             style="max-width:150px"></q-img>
                                         <div class="middle">
@@ -308,7 +308,7 @@
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            :src="'http://localhost:8000' + promotion.promotion_detail[0].product.image" 
+                                            :src="process.env.API_URL + promotion.promotion_detail[0].product.image" 
                                             class="img-promotions" 
                                             style="max-width:150px"></q-img>
                                         <div class="middle">

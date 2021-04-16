@@ -72,7 +72,7 @@
 							<div class="row items-center separador" v-for="shoppingcart in products" :key="shoppingcart.id">
 								<div class="col-1">
 
-									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product"></q-img>
+									<q-img :src="process.env.API_URL + shoppingcart.product.image" class="img-product"></q-img>
 								</div>
 							
 								<div class="col-3">

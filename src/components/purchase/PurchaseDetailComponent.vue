@@ -142,7 +142,7 @@
 							<div class="row items-center">
 								<div class="col-1">
 
-									<q-img :src="'http://localhost:8000' + item.product.image" class="img-product"></q-img>
+									<q-img :src="process.env.API_URL + item.product.image" class="img-product"></q-img>
 								</div>
 							
 								<div class="col-3">

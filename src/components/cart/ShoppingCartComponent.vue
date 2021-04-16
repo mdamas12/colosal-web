@@ -22,7 +22,7 @@
 						<q-card flat bordered class="my-card q-mb-md">
 							<div class="row items-center">
 								<div class="col-2">
-									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product q-ml-md"></q-img>
+									<q-img :src="process.env.API_URL + shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
 								<div class="col-2">
 									<div class="column items-start">
