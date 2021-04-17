@@ -380,13 +380,13 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 	  },
 	  DeleteItemShop(id_item : number){
 		let subscription = ShoppingcartService.DeleteShopCart(id_item).subscribe( {
-			next: (resp) =>{
+			next: (resp : any) =>{
 				this.showNotif(resp, 'blue-8');
 			},
 			complete: () => {
 				this.listCart()
 			},
-			error: (resp) =>{
+			error: (resp : any) =>{
 				this.showNotif(resp, 'red-8');
 			}
 			});
@@ -467,7 +467,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 	CloseShowMsg(){
 		this.ShowMsg = false;
 	},
-	confirmDelete(item) {
+	confirmDelete(item : any) {
       this.$q.dialog({
         title: 'Confirmar',
         message: '¿Quieres Eliminar este producto?',

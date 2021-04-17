@@ -527,7 +527,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             complete: () => {
               //this.showNotif("Tu compra ha sido procesada", "green-9")
             },
-            error: (resp) =>{
+            error: (resp: any) =>{
                     this.showProcessPayment = false;
                     this.rep_stock = resp;
                     this.showErrorFaltaStock = true;
