@@ -110,11 +110,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-<<<<<<< HEAD
-                                            v-bind:src="product.image" 
-=======
                                             v-bind:src="'http://minimarketcolosal.com/api' + product.image" 
->>>>>>> master
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
