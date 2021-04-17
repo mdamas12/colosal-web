@@ -5,6 +5,7 @@ import { Observable } from 'rxjs'
 import axios from 'axios'
 //const API_URL = 'http://localhost:8000/web/home/' // process.env.API_URL+'/v1/';
 const API_URL = process.env.API_URL + 'web/home/';
+const API_URL_BASE = process.env.API_URL
 
 
 class ProductsService {
@@ -50,7 +51,7 @@ class ProductsService {
 
   searchProduct (search) {
     return Observable.create((observer) => {
-      axios.get(API_URL + `products-search/${search}/`)
+      axios.get(API_URL_BASE + `products-search/${search}/`)
         .then((response) => {
           observer.next(response.data)
           observer.complete()
