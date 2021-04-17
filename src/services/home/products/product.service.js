@@ -76,7 +76,7 @@ class ProductsService {
 
   getProductDetail (id) {
     return Observable.create((observer) => {
-      axios.get(`http://localhost:8000/panel/products/search/${id}/`)
+      axios.get(API_URL + `panel/products/search/${id}/`)
         .then((response) => {
           observer.next(response.data)
           observer.complete()
