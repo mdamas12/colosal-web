@@ -316,6 +316,7 @@ export default defineComponent({
             //buscar si el usuario tiene productos en carrito de compra
             ShoppingcartService.getListCart().subscribe({
                 next: data => {
+                    console.log("arigato",data)
                     this.shopp = data.results
                     for (let i = 0; i < this.productsShop.length; i++){
                         let swich = false 
@@ -331,6 +332,9 @@ export default defineComponent({
                         }
                     }
                     this.products = this.productsShop  
+                },
+                error: err =>{
+                    console.log("eehhh",err)
                 },
                 complete: ()=>{}
                 });

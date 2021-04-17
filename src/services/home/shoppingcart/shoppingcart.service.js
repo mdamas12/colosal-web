@@ -14,7 +14,7 @@ class ShoppingcartService {
       //console.log(tokenHeader())
       axios.get(API_URL + 'panel/shoppingcart/customer/',{headers : tokenHeader()})
         .then((response) => {
-         //console.log(response.data)
+          console.log(response.data)
           observer.next(response.data)
           observer.complete()
         })
