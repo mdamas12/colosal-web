@@ -51,8 +51,7 @@ class ProductsService {
 
   searchProduct (search) {
     return Observable.create((observer) => {
-      console.log(API_URL_BASE + `products-search/${search}/`)
-      axios.get(API_URL_BASE + `products-search/${search}/`)
+      axios.get(API_URL + `products-search/${search}/`)
         .then((response) => {
           observer.next(response.data)
           observer.complete()
@@ -78,7 +77,7 @@ class ProductsService {
 
   getProductDetail (id) {
     return Observable.create((observer) => {
-      axios.get(API_URL + `panel/products/search/${id}/`)
+      axios.get(API_URL_BASE + `panel/products/search/${id}/`)
         .then((response) => {
           observer.next(response.data)
           observer.complete()
