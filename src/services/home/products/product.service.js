@@ -51,6 +51,7 @@ class ProductsService {
 
   searchProduct (search) {
     return Observable.create((observer) => {
+      console.log(API_URL_BASE + `products-search/${search}/`)
       axios.get(API_URL_BASE + `products-search/${search}/`)
         .then((response) => {
           observer.next(response.data)
