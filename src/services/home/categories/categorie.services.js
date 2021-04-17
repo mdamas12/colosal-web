@@ -31,7 +31,8 @@ class CategoriesService {
   //   })
   // }
   getListCategories () {
-    console.log("entre aqui")
+    console.log("entre aqui",API_URL)
+    console.log(API_URL + 'web/home/categories-all')
     return Observable.create((observer) => {
       api.get(API_URL + 'categories-all')
         .then((response) => {
