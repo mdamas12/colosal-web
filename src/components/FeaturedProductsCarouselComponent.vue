@@ -110,7 +110,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-                                            v-bind:src="'http://localhost:8000' + product.image" 
+                                            v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -237,7 +237,7 @@
                                     <q-card-section class="text-center">
                                         <q-img 
                                             style="max-width:150px"
-                                            v-bind:src="'http://localhost:8000' + product.image" 
+                                            v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
@@ -312,43 +312,40 @@ export default defineComponent({
   //     })
   //   }
   methods: {
-    allProducts () {
-        
+    allProducts () {    
       this.load = true
-      const headers = { 'Content-Type': 'application/json' }
-      axios.get('http://localhost:8000/web/home/products-featured/', { headers })
-        .then(response => {
-          this.productsShop = response.data
-          //buscar si el usuario tiene productos en carrito de compra
-          let subscription = ShoppingcartService.getListCart().subscribe( {
-			next: data => {
-				this.shopp = data.results
-                //console.log(this.shopp)	
-                for (let i = 0; i < this.productsShop.length; i++){
-                    let swich = false 
-                    for (let j = 0; j < this.shopp.length; j++){
-                        
-                        if((swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
-                            this.incart[i] = true
-                            swich = true
-                            console.log(this.productsShop[i].name)
-                        }
-                        if((swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
-                            this.incart[i] = false
+      ProductsService.getProductsFeatured().subscribe({
+        next: response => {
+            this.productsShop = response
+            //buscar si el usuario tiene productos en carrito de compra
+            ShoppingcartService.getListCart().subscribe({
+                next: data => {
+                    console.log("arigato",data)
+                    this.shopp = data.results
+                    for (let i = 0; i < this.productsShop.length; i++){
+                        let swich = false 
+                        for (let j = 0; j < this.shopp.length; j++){
+                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
+                                this.incart[i] = true
+                                swich = true
+                                //console.log(this.productsShop[i].name)
                             }
+                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
+                                this.incart[i] = false
+                            }
+                        }
                     }
-                }
-                this.products = this.productsShop
-                	
-			},
-            complete: ()=>{}
-			});
-
-          
-     
-          console.log(this.incart)
-          this.load = false
-        })
+                    this.products = this.productsShop  
+                },
+                error: err =>{
+                    console.log("eehhh",err)
+                },
+                complete: ()=>{}
+                });
+            console.log(this.incart)
+            this.load = false
+        }
+      })
     },
     verifySession(){
       let token = localStorage.getItem("token")

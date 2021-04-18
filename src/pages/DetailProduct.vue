@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
                     <q-carousel swipeable animated v-model="slide" thumbnails infinite >
-                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="'http://localhost:8000' + pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
+                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
@@ -139,11 +139,13 @@ export default defineComponent({
            
           next: data => {         
             this.counter = data
-            console.log(data)
             this.status_cart  = "Este producto se encuentra en su Carrito de Compra"
            },
            complete: () => {        
                //this.showNotif("data", 'blue-5');
+            },
+            error: resp =>{
+                this.counter = 0
             }
           
         });

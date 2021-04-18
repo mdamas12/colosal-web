@@ -2,8 +2,9 @@ import { Observable } from 'rxjs'
 import axios from 'axios'
 import tokenHeader from '../auth.service';
 
-const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
+//onst API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
 
+const API_URL = process.env.API_URL;
 
 class PurchaseService {
 
@@ -30,12 +31,12 @@ class PurchaseService {
       axios.post(API_URL + 'panel/sales/',sale,{headers : tokenHeader()})
         .then((response) => {
           //console.log(response.data)
-          observer.next(response)
-          //observer.complete()
+          observer.next(response.data)
+          observer.complete()
         })
         .catch((error) => {
-          console.log(error.response)
-          observer.error(error)
+          //console.log(error.response.data)
+          observer.error(error.response.data)
         })
     })
     

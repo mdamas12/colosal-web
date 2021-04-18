@@ -51,7 +51,7 @@
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
-                                    :src="'http://localhost:8000' + category.image" 
+                                    :src="'http://minimarketcolosal.com/api' + category.image" 
                                     class="image-categorie" 
                                     style="height: 250px; max-width: 250px"/>
                                     
@@ -112,7 +112,7 @@
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
-                                    :src="'http://localhost:8000' + category.image" 
+                                    :src="'http://minimarketcolosal.com/api' + category.image" 
                                     class="image-categorie" 
                                 />
                                     
@@ -174,7 +174,7 @@ export default defineComponent({
       //      complete: () => console.log('[complete]')
       //  })
       //   const headers = { 'Content-Type': 'application/json' }
-      axios.get('http://localhost:8000/web/home/categories-featured/')
+      axios.get(process.env.API_URL +'web/home/categories-featured/')
         .then(response => {
           this.categories = response.data
           console.log(response.data)

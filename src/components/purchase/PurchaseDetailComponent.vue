@@ -142,7 +142,7 @@
 							<div class="row items-center">
 								<div class="col-1">
 
-									<q-img :src="'http://localhost:8000' + item.product.image" class="img-product"></q-img>
+									<q-img :src="'http://minimarketcolosal.com/api' + item.product.image" class="img-product"></q-img>
 								</div>
 							
 								<div class="col-3">
@@ -240,11 +240,12 @@ import PurchaseService   from "../../services/purchases/purchase.services";
 
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
+		var purchase : any = []
 		return {
 			cantidad: 0,
 			products: [],
 			subtotal : 0,
-            purchase : [],
+            purchase : purchase,
             referencecode : '',
             reference_band : true
 		}
@@ -254,7 +255,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         getPurchaseDetail(){
             let purchase_id = this.$route.params.id
             let subscription = PurchaseService.GetPurchaseDetail(purchase_id).subscribe( {
-			next: data => {
+			next: (data:any) => {
 				this.purchase = data 
                 if (this.purchase.bank == null){
                    this.purchase.bank = {
@@ -270,9 +271,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             
                 console.log(this.purchase)	
 			},
-			complete: () => {
-				
-			}
+			complete: () => {}
 			});
         },
 
@@ -283,7 +282,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             }
         
         PurchaseService.updateReference(purchase_id,code).subscribe({
-            next: data => {
+            next: (data:any) => {
              this.getPurchaseDetail()
             },
             complete: () => {
@@ -294,7 +293,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             }
         })
        },
-      showNotif(message , color) {
+      showNotif(message : string, color : string) {
         this.$q.notify({
             message: message,
             color: color,
@@ -303,17 +302,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             ]
         })
       },
-   
-  
-		
-    
 	},
 	 mounted () {
         const vm = this;
         vm.getPurchaseDetail()
-  
     },
-
 })
 </script>
 

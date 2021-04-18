@@ -1,13 +1,14 @@
 import { Observable } from 'rxjs'
-import axios from 'axios'
+import { axios } from 'boot/axios'
 
-const API_URL = 'http://localhost:8000/web/home/' // process.env.API_URL+'/v1/';
+///const API_URL = 'http://localhost:8000/web/home/' // process.env.API_URL+'/v1/';
 // const API_URL = 'http://161.35.123.177:8000/'
+const API_URL = process.env.API_URL + 'web/home/';
 
 class CategoriesService {
   getCategories () {
     return Observable.create((observer) => {
-      axios.get(API_URL + 'categories-featured/')
+      api.get(API_URL + 'categories-featured/')
         .then((response) => {
           observer.next(response.data)
           observer.complete()
@@ -30,8 +31,10 @@ class CategoriesService {
   //   })
   // }
   getListCategories () {
+    console.log("entre aqui",API_URL)
+    console.log(API_URL + 'web/home/categories-all')
     return Observable.create((observer) => {
-      axios.get(API_URL + 'categories-all')
+      axios.get(API_URL + 'web/home/categories-all')
         .then((response) => {
           observer.next(response.data)
           observer.complete()

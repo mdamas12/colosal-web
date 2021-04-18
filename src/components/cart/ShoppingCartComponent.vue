@@ -19,10 +19,10 @@
 				<div class="row q-mx-xs">
 				 
 					<div class="col-12" v-for="(shoppingcart, index) in products" :key="shoppingcart.id">
-						<q-card flat bordered class="my-card q-mb-md">
+						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
 							<div class="row items-center">
 								<div class="col-2">
-									<q-img :src="'http://localhost:8000' + shoppingcart.product.image" class="img-product q-ml-md"></q-img>
+									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
 								<div class="col-2">
 									<div class="column items-start">
@@ -93,10 +93,92 @@
 									</div>
 								</div>
 								<div class="col-1">
-									<q-btn flat round text-color="red" icon="delete_outline" @click="DeleteItemShop(shoppingcart.id)"/>
+									<q-btn flat round text-color="red" icon="delete_outline" @click="confirmDelete(shoppingcart.id)"/>
 								</div>
 							</div>
 						</q-card>
+						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.promotion != null">
+							<div class="row items-center">
+								<div class="col-2">
+									<q-img :src="shoppingcart.promotion.image" class="img-product q-ml-md"></q-img>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												{{shoppingcart.promotion.name}}
+											</div>
+											<div class="col text-description-product">
+												{{shoppingcart.promotion.description}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-3">
+									<q-card-section>
+										<div class="col text-description-product">
+											 <div  v-if="shoppingcart.promotion.quantity > 5"><b>Existen {{shoppingcart.promotion.quantity}} Disponibles</b></div>
+							   				 <div  v-if="shoppingcart.promotion.quantity <= 5 && shoppingcart.promotion.quantity > 0 "><b>Solo quedan {{shoppingcart.promotion.quantity}} Disponibles</b></div>
+							   				 <div v-if="shoppingcart.promotion.quantity == 0"><b> Este Producto no esta Disponible</b></div>
+										</div>
+										<div>
+											<q-card flat bordered>
+												<q-card-section>
+													<div class="row justify-evenly items-center">
+														<div class="col q-mr-sm">
+															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
+														</div>
+				
+														<div class="col text-name-product self-center q-pl-lg">
+															{{shoppingcart.quantity}} 
+														</div>
+														<div class="col">
+															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
+														</div>										
+													</div>
+												</q-card-section>
+											</q-card>
+										</div>
+										<div class="col-3 col-sm">
+											<q-btn label="Actualizar cantidad" color="red-8" text-color="white" icon="shopping_cart" class="btn-shopp" size="md" @click="Shoppingcart(index)"></q-btn>					
+										</div>
+									</q-card-section>
+								
+								</div>
+									 
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-description-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-2">
+									<div class="column items-start">
+										<q-card-section>
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product">
+												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price * shoppingcart.quantity}}
+											</div>
+										</q-card-section>
+									</div>
+								</div>
+								<div class="col-1">
+									<q-btn flat round text-color="red" icon="delete_outline" @click=" confirmDelete(shoppingcart.id)"/>
+								</div>
+							</div>
+						</q-card>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -195,13 +277,17 @@ import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart
 import { Loading } from "quasar";
 export default defineComponent ( { name: 'ShoppingCartComponent',
 	data (){
+
+		var products : any = []
+		var counter : any = []
+
 		return {
 			cantidad: 0,
-			products: [],
+			products: products,
 			subtotal : 0,
-			counter : [],
-			ShowMsg : false
-
+			counter : counter,
+			ShowMsg : false,
+			
 		}
 	},
 	methods: {
@@ -219,30 +305,58 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			}
 		},
 		increaseProdQty(index : number){
-			if (this.products[index].quantity < this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
-				this.products[index].quantity += 1
-				this.SubTotal()
+			
+			if (this.products[index].product != null){
+			
+				if (this.products[index].quantity < this.products[index].product.quantity){ //compruebo que no se pase de la cantidad de stock
+					this.products[index].quantity += 1
+					this.SubTotal()
+				}
+			}
+			else{
+				
+              if (this.products[index].quantity < this.products[index].promotion.quantity){ //compruebo que no se pase de la cantidad de stock
+					this.products[index].quantity += 1
+					this.SubTotal()
+				}
+
 			}
 		},
 		decreaseProdQty(index : number){
+
+
 			if (this.products[index].quantity > 1){ 
-				this.products[index].quantity--
-				this.SubTotal()
-			}
+					this.products[index].quantity--
+					this.SubTotal()
+				}
+			
+	
 		},
 
 		listCart(){
 			let subscription = ShoppingcartService.getListCart().subscribe( {
-			next: data => {
+			next: (data:any) => {
+				//console.log(data)
 				this.products = data.results
 				
 				for (let i = 0; i < this.products.length; i++){
-					if (this.products[i].quantity > this.products[i].product.quantity){
-						this.ShowMsg = true;
-						this.products[i].quantity = this.products[i].product.quantity
-						
+					if (this.products[i].product != null){
+                    	if (this.products[i].quantity > this.products[i].product.quantity){
+							this.ShowMsg = true;
+							this.products[i].quantity = this.products[i].product.quantity							
+     					}
+						this.counter[i] = this.products[i].quantity
 					}
-					this.counter[i] = this.products[i].quantity
+					else{
+
+					    if (this.products[i].quantity > this.products[i].promotion.quantity){
+							this.ShowMsg = true;
+							this.products[i].quantity = this.products[i].promotion.quantity							
+     					}
+						this.counter[i] = this.products[i].quantity
+					}
+								
+					
                 }	
 			},
 			complete: () => {
@@ -252,63 +366,98 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         },
 	  SubTotal(){
 		 this.subtotal = 0
-		 this.products.forEach(element => this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity)));
+
+		 this.products.forEach((element : any) => {
+
+			 if (element.product){
+		
+			   this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity))
+			 }
+			 else{
+				this.subtotal = Number(this.subtotal) + (Number(element.promotion.price) * Number(element.quantity)) 
+			 }
+		 });
 	  },
-	  DeleteItemShop(id_item){
+	  DeleteItemShop(id_item : number){
 		let subscription = ShoppingcartService.DeleteShopCart(id_item).subscribe( {
+			next: (resp : any) =>{
+				this.showNotif(resp, 'blue-8');
+			},
 			complete: () => {
 				this.listCart()
+			},
+			error: (resp : any) =>{
+				this.showNotif(resp, 'red-8');
 			}
 			});
 	  },
-	 Shoppingcart(id){   
+	 Shoppingcart(id : number){   
 		
         if (this.verifySession() == true){
+            
+			let data = {}
+
             if(this.products[id].quantity == 0){
                 this.showNotif("Debe agregar cantidad en producto", 'red-10');
                 return 
             }
-            if (this.products[id].quantity > this.products[id].product.quantity){
-                this.showNotif("La Cantidad Supera al stock de este Producto", 'red-10');
-                return
-            }
-			if (this.counter[id] ==  this.products[id].quantity){
-                this.showNotif("no has modificado la cantidad", 'red-10');
-                return
-            }
+			if (this.products[id].product != null) {
+
+				if (this.products[id].quantity > this.products[id].product.quantity){
+					this.showNotif("La Cantidad Supera al stock de este Producto", 'red-10');
+					return
+				}
+				if (this.counter[id] ==  this.products[id].quantity){
+					this.showNotif("no has modificado la cantidad", 'red-10');
+					return
+				}
+			     data = {
+					'quantity' : this.products[id].quantity,
+					'product' : this.products[id].product.id,
+					'promotion' : null
+				}
+
+			}
+			else{
+
+				if (this.products[id].quantity > this.products[id].promotion.quantity){
+					this.showNotif("La Cantidad Supera la disponible", 'red-10');
+					return
+				}
+				if (this.counter[id] ==  this.products[id].quantity){
+					this.showNotif("no has modificado la cantidad", 'red-10');
+					return
+				}
+			    data = {
+					'quantity' : this.products[id].quantity,
+					'promotion' : this.products[id].promotion.id,
+					'product' : null
+				}
+
+			}
             Loading.show();
-            const data = {
-                //'quantity' : this.products[id].quantity,
-				'quantity' : this.products[id].quantity,
-				'product' : this.products[id].product.id
-            };
+          
 			let shopp_id = this.products[id].id
+		
             let subscription = ShoppingcartService.UpdateShoppingCart(shopp_id,data).subscribe( {
-             complete: resp   => {
+             complete: (resp : any)   => {
                Loading.hide();
              },
-			 next: resp =>{
+			 next: (resp : any) =>{
 				Loading.hide();
-				if (resp.status == "200"){
-					this.showNotif(resp.data, 'red-8');
-					this.listCart();
-					return
-				}
-				else{
-					this.showNotif(resp.data, 'blue-8');
-					this.listCart();
-					return
-				}
+				this.showNotif(resp, 'blue-8');
+				this.listCart();
+				return
 			 },
-             error: data => {
+             error: (resp : any) => {
                Loading.hide();
-               this.showNotif("Error al agregar producto", 'red-10');
+               this.showNotif(resp, 'red-10');
               }
             });
         }
         else{
            this.showNotif("Debe Iniciar Sesion", 'red-10');
-           this.showInitSession = true;
+           //this.showInitSession = true;
         }
     },
 	goToPurchase(){
@@ -318,7 +467,20 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 	CloseShowMsg(){
 		this.ShowMsg = false;
 	},
-	showNotif (message , color) {
+	confirmDelete(item : any) {
+      this.$q.dialog({
+        title: 'Confirmar',
+        message: '¿Quieres Eliminar este producto?',
+        cancel: true,
+        persistent: true,
+        color: 'red-10'
+      }).onOk(() => {
+		this.DeleteItemShop(item)
+      }).onCancel(() => {
+        // console.log('>>>> Cancel')
+      })
+    },
+	showNotif (message : string, color : string) {
       this.$q.notify({
         message: message,
         color: color,
