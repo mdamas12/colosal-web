@@ -332,6 +332,7 @@ export default Vue.extend({
                }
             }
             this.reference = data[i].reference
+            console.log("referencia pago", this.reference)
         
             this.toValidate.push({id: data[i].id, customer: data[i].customer, created: data[i].created.substring(0,10),payment_type: data[i].payment_type, bank: data[i].bank , coin: data[i].coin, amount: data[i].amount, status: data[i].status, reference: data[i].reference});
           };
