@@ -254,8 +254,7 @@ export default defineComponent({
         rowsNumber: 0,
         currentPage: 1
       },
-      filtroPagination: 1,
-      idCategorie: null
+      filtroPagination: 1
     }
   },
   // mounted () {
@@ -310,6 +309,9 @@ export default defineComponent({
         next: data => {
           console.log(data)
           this.categories = data
+        },
+        error: error =>{
+            console.log(error)
         }
       })
     },

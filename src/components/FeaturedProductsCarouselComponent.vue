@@ -316,32 +316,35 @@ export default defineComponent({
       this.load = true
       ProductsService.getProductsFeatured().subscribe({
         next: response => {
-            this.productsShop = response
+            console.log(response)
+            this.productsShop = response  
             //buscar si el usuario tiene productos en carrito de compra
-            ShoppingcartService.getListCart().subscribe({
-                next: data => {
-                    console.log("arigato",data)
-                    this.shopp = data.results
-                    for (let i = 0; i < this.productsShop.length; i++){
-                        let swich = false 
-                        for (let j = 0; j < this.shopp.length; j++){
-                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
-                                this.incart[i] = true
-                                swich = true
-                                //console.log(this.productsShop[i].name)
-                            }
-                            if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
-                                this.incart[i] = false
+            if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        console.log("arigato",data)
+                        this.shopp = data.results
+                        for (let i = 0; i < this.productsShop.length; i++){
+                            let swich = false 
+                            for (let j = 0; j < this.shopp.length; j++){
+                                if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id == this.shopp[j].product.id)){   
+                                    this.incart[i] = true
+                                    swich = true
+                                    //console.log(this.productsShop[i].name)
+                                }
+                                if((this.shopp[j].product!=null) && (swich == false) && (this.productsShop[i].id != this.shopp[j].product.id)){
+                                    this.incart[i] = false
+                                }
                             }
                         }
-                    }
-                    this.products = this.productsShop  
-                },
-                error: err =>{
-                    console.log("eehhh",err)
-                },
-                complete: ()=>{}
+                    },
+                    error: err =>{
+                        console.log("eehhh",err)
+                    },
+                    complete: ()=>{}
                 });
+            }
+            this.products = this.productsShop
             console.log(this.incart)
             this.load = false
         }

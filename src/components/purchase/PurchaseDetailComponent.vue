@@ -155,10 +155,10 @@
 			</div>      
 			<div class="row q-mx-xs">
 				<div class="col-12 col-sm" v-for="item in purchase.detail_sale" :key="item.id">
-					<q-card flat bordered class="my-card q-mb-md">
+					<q-card v-if="item.product != null" flat bordered class="my-card q-mb-md">
 						<div class="row items-center">
 							<div class="col-12 col-md text-center">
-									<q-img :src="'http://minimarketcolosal.com/api' + item.product.image" class="img-product"></q-img>
+									<q-img :src="item.product.image" class="img-product"></q-img>
 							</div>
 							<div class="col-12 col-md text-center">
 									<div class="column items-center">
@@ -202,6 +202,59 @@
 											</div>
 											<div class="col text-name-product text-bluesito">
 												{{item.product.coin}} {{item.amount}}
+											</div>
+										</q-card-section>
+									</div>
+							</div>
+						</div>
+					</q-card>
+					<q-card v-if="item.promotion != null" flat bordered class="my-card q-mb-md">
+						<div class="row items-center">
+							<div class="col-12 col-md text-center">
+									<q-img :src="item.promotion.image" class="img-product"></q-img>
+							</div>
+							<div class="col-12 col-md text-center">
+									<div class="column items-center">
+										<q-card-section class="q-pa-sm text-center">
+											<div class="col text-name-product">
+												{{item.promotion.name}}
+											</div>
+											<div class="col text-description-product">
+												{{item.promotion.description}}
+											</div>
+										</q-card-section>
+									</div>
+							</div>
+							<div class="col-6 col-md text-center">
+									<q-card-section class="q-pa-sm text-center">
+										<div class="col text-name-product">
+											Cantidad
+										</div>
+								       	<div class="col text-description-product">
+											{{item.quantity_sold}}
+										</div>
+									</q-card-section>
+							</div>
+							<div class="col-6 col-md text-center">
+									<div class="column items-center">
+										<q-card-section class="q-pa-sm text-center">
+											<div class="col text-name-product">
+												Precio
+											</div>
+											<div class="col text-description-product">
+												{{item.promotion.coin}} {{item.promotion.price}}
+											</div>
+										</q-card-section>
+									</div>
+							</div>
+							<div class="col-12 col-md text-center">
+									<div class="column items-center">
+										<q-card-section class="q-pa-sm text-center">
+											<div class="col text-name-product">
+												SUBTOTAL
+											</div>
+											<div class="col text-name-product text-bluesito">
+												{{item.promotion.coin}} {{item.amount}}
 											</div>
 										</q-card-section>
 									</div>
