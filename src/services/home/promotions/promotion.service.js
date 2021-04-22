@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs'
 import axios from 'axios'
-const API_URL = 'http://localhost:8000/panel/'
+//const API_URL = 'http://localhost:8000/panel/'
 //const API_URL = 'http://localhost:8000/panel/'
 // const API_URL = 'http://161.35.123.177:8000/'
-//const API_URL = process.env.API_URL + 'panel/';
+const API_URL = process.env.API_URL + 'panel/';
 
 class PromotionsService {
   getPromotions (limit, offset) {
