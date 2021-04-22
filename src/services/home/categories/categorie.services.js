@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs'
 import { axios } from 'boot/axios'
 
-// const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
+const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
 // const API_URL = 'http://161.35.123.177:8000/'
-const API_URL = process.env.API_URL + 'web/home/';
+// const API_URL = process.env.API_URL + 'web/home/';
 
 class CategoriesService {
   getCategories () {

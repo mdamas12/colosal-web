@@ -2,9 +2,9 @@ import { Observable } from 'rxjs'
 import axios from 'axios'
 import tokenHeader from '../auth.service';
 
-// const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
+const API_URL = 'http://localhost:8000/' // process.env.API_URL+'/v1/';
 
-const API_URL = process.env.API_URL;
+// const API_URL = process.env.API_URL;
 
 class PurchaseService {
 

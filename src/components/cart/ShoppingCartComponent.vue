@@ -3,30 +3,30 @@
 		<div class="row">
 		</div>
 		<div class="row q-ma-md">
-			<div class="col-8" >
+			<div class="col-12 col-md-8" >
 				<div class="row q-my-xl">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
-								<div class="row title-text">
+								<div class="row title-text text-center">
 									Carrito de compras
 								</div>
 							</q-card-header>
 						</q-card>		
 					</div>
 				</div>
-				
+
 				<div class="row q-mx-xs">
 				 
 					<div class="col-12" v-for="(shoppingcart, index) in products" :key="shoppingcart.id">
 						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
 							<div class="row items-center">
-								<div class="col-2">
+								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center text-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												{{shoppingcart.product.name}}
 											</div>
@@ -36,22 +36,21 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-3">
+								<div class="col-12 col-sm-3">
 									<q-card-section>
-										<div class="col text-description-product">
+										<div class="col text-description-product text-center">
 											 <div  v-if="shoppingcart.product.quantity > 5"><b>Existen {{shoppingcart.product.quantity}} en Disponibles</b></div>
 							   				 <div  v-if="shoppingcart.product.quantity <= 5 && shoppingcart.product.quantity > 0 "><b>Solo quedan {{shoppingcart.product.quantity}} Disponibles</b></div>
 							   				 <div v-if="shoppingcart.product.quantity == 0"><b> Este Producto no esta Disponible</b></div>
 										</div>
-										<div>
+										<div class="text-center">
 											<q-card flat bordered>
 												<q-card-section>
-													<div class="row justify-evenly items-center">
-														<div class="col q-mr-sm">
+													<div class="row items-center">
+														<div class="col">
 															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
 														</div>
-				
-														<div class="col text-name-product self-center q-pl-lg">
+														<div class="col text-name-product">
 															{{shoppingcart.quantity}} 
 														</div>
 														<div class="col">
@@ -61,17 +60,15 @@
 												</q-card-section>
 											</q-card>
 										</div>
-										<div class="col-3 col-sm">
-											<q-btn label="Actualizar cantidad" color="red-8" text-color="white" icon="shopping_cart" class="btn-shopp" size="md" @click="Shoppingcart(index)"></q-btn>					
+										<div class="col-3 text-center">
+											<q-btn label="Actualizar cantidad" color="redsito" text-color="white" icon="shopping_cart" class="btn-shopp" size="sm" @click="Shoppingcart(index)"></q-btn>					
 										</div>
 									</q-card-section>
-								
-								</div>
-									 
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
-											<div class="col text-description-product">
+								</div>				 
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
+											<div class="col text-price-product">
 												Precio
 											</div>
 											<div class="col text-description-product">
@@ -80,31 +77,31 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
-											<div class="col text-name-product">
+											<div class="col text-name-product text-bluesito">
 												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
 											</div>
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-1">
-									<q-btn flat round text-color="red" icon="delete_outline" @click="confirmDelete(shoppingcart.id)"/>
+								<div class="col-12 col-sm-1 text-center">
+									<q-btn flat round text-color="redsito" icon="delete_outline" @click="confirmDelete(shoppingcart.id)"/>
 								</div>
 							</div>
 						</q-card>
 						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.promotion != null">
 							<div class="row items-center">
-								<div class="col-2">
+								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.promotion.image" class="img-product q-ml-md"></q-img>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												{{shoppingcart.promotion.name}}
 											</div>
@@ -114,22 +111,21 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-3">
+								<div class="col-12 col-sm-3">
 									<q-card-section>
-										<div class="col text-description-product">
+										<div class="col text-description-product text-center">
 											 <div  v-if="shoppingcart.promotion.quantity > 5"><b>Existen {{shoppingcart.promotion.quantity}} Disponibles</b></div>
 							   				 <div  v-if="shoppingcart.promotion.quantity <= 5 && shoppingcart.promotion.quantity > 0 "><b>Solo quedan {{shoppingcart.promotion.quantity}} Disponibles</b></div>
 							   				 <div v-if="shoppingcart.promotion.quantity == 0"><b> Este Producto no esta Disponible</b></div>
 										</div>
-										<div>
+										<div class="text-center">
 											<q-card flat bordered>
 												<q-card-section>
-													<div class="row justify-evenly items-center">
-														<div class="col q-mr-sm">
+													<div class="row items-center">
+														<div class="col">
 															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
 														</div>
-				
-														<div class="col text-name-product self-center q-pl-lg">
+														<div class="col text-name-product">
 															{{shoppingcart.quantity}} 
 														</div>
 														<div class="col">
@@ -140,15 +136,13 @@
 											</q-card>
 										</div>
 										<div class="col-3 col-sm">
-											<q-btn label="Actualizar cantidad" color="red-8" text-color="white" icon="shopping_cart" class="btn-shopp" size="md" @click="Shoppingcart(index)"></q-btn>					
+											<q-btn label="Actualizar cantidad" color="redsito" text-color="white" icon="shopping_cart" class="btn-shopp" size="sm" @click="Shoppingcart(index)"></q-btn>					
 										</div>
 									</q-card-section>
-								
-								</div>
-									 
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								</div>		 
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-description-product">
 												Precio
 											</div>
@@ -158,9 +152,9 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
@@ -170,62 +164,53 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-1">
-									<q-btn flat round text-color="red" icon="delete_outline" @click=" confirmDelete(shoppingcart.id)"/>
+								<div class="col-12 col-sm-1 text-center">
+									<q-btn flat round text-color="redsito" icon="delete_outline" @click=" confirmDelete(shoppingcart.id)"/>
 								</div>
 							</div>
 						</q-card>
-
-
-
-
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-12 col-md-4 text-center">
 				<q-card flat bordered class="my-card q-mx-md q-mt-xl">
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								Subtotal
 							</div>
-							<div class="col-2 wrap self-end">
+							<div class="col-2 wrap self-end text-name-product">
 								<strong>${{subtotal}}</strong>
 							</div>
 						</div>
 					</q-card-section>
-
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								Descuentos
 							</div>
-							<div class="col-2 wrap self-end">
+							<div class="col-2 wrap self-end text-name-product">
 								<strong>$0.00</strong>
 							</div>
 						</div>
 					</q-card-section>
-
 					<q-separator/>
-
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end">
+							<div class="col-2 wrap self-end text-name-product text-bluesito">
 								<strong>${{subtotal}}</strong>
 							</div>
 						</div>
 					</q-card-section>
-
 					<q-separator/>
-
-					<q-card-section>
+					<q-card-section class="text-center">
 						<div class="column items-center">
-							<div class="row">
+							<div class="row text-center">
 								<div class="col">
-									<q-btn color="red-10" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido" @click="goToPurchase()"></q-btn>
+									<q-btn color="redsito" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido" class="btn-car" size="md" @click="goToPurchase()"></q-btn>
 								</div>
 							</div>
 						</div>
@@ -234,7 +219,6 @@
 			</div>
 		</div>
 
-		
       <q-dialog persistent v-model="ShowMsg" >
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
@@ -249,9 +233,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                
-                    <q-item-label class="text-msg-error"> Haz click en "ok" y verifica tus productos. </q-item-label>
-                     
+                    <q-item-label class="text-msg-error"> Haz click en "ok" y verifica tus productos. </q-item-label>  
                   </div>
                 </div>
               </div>
@@ -262,12 +244,9 @@
             <q-btn label="OK" color="red-7" class="btn-init-session q-mb-md" size="sm" @click="CloseShowMsg()"></q-btn>
          </q-card-actions>
          <q-separator />
- 
-           </q-item>
+           <!-- </q-item> -->
           </q-card>
-        </q-dialog>
-
-		
+        </q-dialog>	
 	</div>
 </template>
  
@@ -503,8 +482,8 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 <style>
     .btn-shopp{
-		/*font-family: 'Poppins-SemiBold';*/
-	    font-size: 8px;
+		font-family: 'Poppins-SemiBold';
+	    font-size: 9px;
 		color:#FAFAFA;
 		margin: 2px 0 ;
 	}
@@ -513,6 +492,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
     }
 
 		.text-name-product{
+			font-family: 'Poppins-SemiBold';
+			font-size: 16px;
+		}
+
+		.text-price-product{
 			font-family: 'Poppins-SemiBold';
 			font-size: 16px;
 		}
