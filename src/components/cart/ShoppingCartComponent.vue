@@ -4,7 +4,7 @@
 		</div>
 		<div class="row q-ma-md">
 			<div class="col-12 col-md-8" >
-				<div class="row q-my-xl">
+				<div class="row q-my-lg">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
@@ -173,7 +173,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-md-4 text-center">
-				<q-card flat bordered class="my-card q-mx-md q-mt-xl">
+				<q-card flat bordered class="my-card q-mx-md q-mt-lg">
 					<q-card-section class="text-center">
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product">

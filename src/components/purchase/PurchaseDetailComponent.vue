@@ -154,7 +154,7 @@
 			    </q-card>
 			</div>      
 			<div class="row q-mx-xs">
-				<div class="col-12 col-sm" v-for="item in purchase.detail_sale" :key="item.id">
+				<div class="col-12 col-sm-12" v-for="item in purchase.detail_sale" :key="item.id">
 					<q-card v-if="item.product != null" flat bordered class="my-card q-mb-md">
 						<div class="row items-center">
 							<div class="col-12 col-md text-center">

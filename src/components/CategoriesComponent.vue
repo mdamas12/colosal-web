@@ -82,25 +82,9 @@
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
-                        <div class="col-12 col-md text-center q-gutter-sm">
+                        <div class="col-12 col-sm-12 text-center q-gutter-sm">
                             <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
+                                <q-skeleton type="circle" size="145px" bordered />
                             </q-card-section>
                             <q-card-actions align="center" class="q-pt-sm">
                                 <q-skeleton type="QBtn" class="q-mb-sm" bordered />
@@ -109,11 +93,11 @@
                     </div>
                     <div class="row justify-center" v-else>
                         <div class="col-12 text-center q-gutter-sm q-mt-md">
-                            <div class="div-carniceria q-pa-md">
+                            <div class="div-carniceria">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
                                     :src="'http://minimarketcolosal.com/api' + category.image" 
-                                    class="image-categorie" 
+                                    class="image-categorie-responsive" 
                                 />
                                     
                                 <div class="middle q-pr-md q-pt-md">
@@ -253,10 +237,7 @@ export default defineComponent({
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%)
     }
-    .image-categorie{
-        max-height: 250px;
-        min-height: 200px;
-    }
+    
     .div-carniceria:hover .image-categorie{
         opacity: 0.6;
     }
@@ -284,11 +265,17 @@ export default defineComponent({
         padding-right: 12%;
     }
 
-    @media (min-width:1023px){
+    @media (min-width:550px) {
+        .image-categorie-responsive{
+        height: 250px;
+        max-width: 250px;
+        }
+    }
+    /* @media (min-width:1023px){
         .image-categorie{
             max-width: 250px;
         }
-    }
+    } */
     @media (min-width: 1700px){
         .container-categories-1{
             padding-left: 11%;
