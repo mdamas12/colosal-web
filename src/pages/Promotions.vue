@@ -45,11 +45,19 @@
             </q-card-section>
             <q-card-section>
               <div class="text-price-promotion">
-                {{promotion.price}}
+                 {{promotion.coin}} {{promotion.price}}
+              </div>
+
+              <div v-if="promotion.quantity > 0" >
+                <div class="text-detail-promotion">Cantidad Disponible :</div>
+                <div class="text-quantity">{{promotion.quantity}}</div>
+              </div>
+              <div v-if="promotion.quantity  < 1" >
+                <div class="text-quantity-none">Promocion NO Disponible</div>
               </div>
             </q-card-section>
             <q-card-section>
-              <div class="q-pt-none">
+              <div class="q-pt-none" v-if="promotion.quantity > 0">
                 <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" size="md" class="btn-promotions"></q-btn>
               </div>
             </q-card-section>
@@ -161,5 +169,21 @@ export default defineComponent({
   border-radius: 9px;
   font-size: 14px;
   font-family: 'Poppins-SemiBold';
+}
+
+.text-quantity{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 24px;
+  color: #060485;
+
+}
+
+.text-quantity-none{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 24px;
+  color: #ce0707;
+
 }
 </style>

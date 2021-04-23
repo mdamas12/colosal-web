@@ -21,7 +21,7 @@
                     <div class="text-fventa-product">Mayor:</div>
                     <div class="text-price_fventa-product">{{getDataDetail.price}}</div>
                     <div class="text-quantity-product">Cantidad:</div>
-                    <div class="row">
+                    <div class="row" v-if=" getDataDetail.quantity > 0">
                         <div class="col-6 col-md">
                             <div class="border">
                                 <span class="border">
@@ -31,14 +31,15 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart == '' && getDataDetail.quantity != 0">
+                        <div class="col-6 col-md" v-if="status_cart == '' ">
                             <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart != '' && getDataDetail.quantity != 0">           
+                        <div class="col-6 col-md" v-if="status_cart != '' ">           
                             <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product"  size="md" @click="Shoppingcart()"></q-btn>                            
                           
                         </div>
                     </div>
+
                     <div class="text-msj-cart"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>

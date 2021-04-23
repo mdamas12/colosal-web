@@ -16,12 +16,33 @@
           <div class="text-title-promotion">{{promotion.name}}</div>
           <div class="text-ID-promotion">Categoria:</div>
           <div class="text-title-brand">{{promotion.category.name}}</div>
-          <div class="text-detail-promotion">Cantidad Disponible :</div>
-          <div class="text-price-promotion">{{promotion.quantity}}</div>
+          <div v-if="promotion.quantity > 0" >
+            <div class="text-detail-promotion">Cantidad Disponible :</div>
+            <div class="text-quantity">{{promotion.quantity}}</div>
+          </div>
+           <div v-if="promotion.quantity  < 1" >
+            <div class="text-quantity-none">Promocion NO Disponible</div>
+          </div>
           <div class="text-fventa-promotion">Costo:</div>
           <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div>
           <div class="text-quantity-promotion">cantidad :</div>
-          <div class="row">
+
+            <div v-if="promotion.quantity < 1" class="row" disabled="true">
+            <div class="col-6 col-md">
+              <div class="border">
+                <span class="border">
+                  <q-btn flat round color="redsito" icon="remove" class="btn-promotion" size="md" v-on:click="decreaseProdQty()"></q-btn>
+                    {{counter}}
+                  <q-btn flat round color="indigo-10" icon="add" class="btn-promotion" size="md" v-on:click="increaseProdQty()"></q-btn>  
+                </span>
+              </div>
+            </div>
+            <div class="col-6 col-md">
+              <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md" @click="ToShoppingcart()"></q-btn>
+            </div>
+          </div>
+
+          <div v-if="promotion.quantity > 0 " class="row">
             <div class="col-6 col-md">
               <div class="border">
                 <span class="border">
@@ -300,5 +321,21 @@ export default defineComponent({
 }
 .border-img-slide{
   border-radius: 12px;
+}
+
+.text-quantity{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 24px;
+  color: #060485;
+
+}
+
+.text-quantity-none{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 24px;
+  color: #ce0707;
+
 }
 </style>
