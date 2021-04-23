@@ -117,8 +117,8 @@
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
-											<div class="col text-name-product text-bluesito">
-												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
+											<div class="col text-name-product">
+												{{shoppingcart.product.coin}} {{(shoppingcart.product.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -183,8 +183,8 @@
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
-											<div class="col text-name-product text-bluesito">
-												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price * shoppingcart.quantity}}
+											<div class="col text-name-product">
+												{{shoppingcart.promotion.coin}} {{(shoppingcart.promotion.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -229,8 +229,8 @@
 							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end text-name-product text-bluesito">
-								<strong>${{subtotal}}</strong>
+							<div class="col-2 wrap self-end">
+								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
 					</q-card-section>

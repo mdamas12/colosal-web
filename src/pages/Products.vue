@@ -147,7 +147,23 @@
                         {{product.price}}
                       </div>
                     </q-card-section>
-                    <q-card-section class="text-center">
+                    <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
+                      <div class="text-quantity-products">
+                        {{product.quantity}} Disponibles
+                      </div>
+                    </q-card-section>
+                      <q-card-section v-if="product.quantity == 1" class="text-center q-pt-none">
+                      <div class="text-quantity-products">
+                        {{product.quantity}} Disponible
+                      </div>
+                    </q-card-section>
+                      </q-card-section>
+                      <q-card-section v-if="product.quantity < 1" class="text-center q-pt-none">
+                      <div class="text-quantity-products-none">
+                         Producto No Disponoble
+                      </div>
+                    </q-card-section>
+                    <q-card-section v-if="product.quantity > 0" class="text-center">
                       <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                     </q-card-section>
                   </q-card>
@@ -454,5 +470,22 @@ export default defineComponent({
 .my-menu-link{
   color: white;
   background: var(--q-color-primary) !important
+}
+
+
+.text-quantity-products{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 18px;
+  color: #060485;
+
+}
+
+.text-quantity-products-none{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 18px;
+  color: #ce0707;
+
 }
 </style>

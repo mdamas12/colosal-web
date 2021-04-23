@@ -127,13 +127,25 @@
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
-                                            {{promotion.name}}
+                                            {{promotion.name}} 
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section class="text-center">
+                                        <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
+                                            {{promotion.quantitity}} Disponibles  
+                                        </q-item-label>
+                                        <q-item-label v-if="promotion.quantity == 1" lines="2" class="text-quantity-none">
+                                           Solo {{promotion.quantitity}} Disponible
+                                        </q-item-label>
+                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none">
+                                             Promocion NO Disponible
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
                                          {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
+
+                                    <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                                     </q-card-section>
                                 </q-card>
@@ -317,7 +329,7 @@
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
-                                            {{promotion.name}}
+                                            {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
@@ -424,5 +436,21 @@ export default defineComponent({
     .carousel-promo{
     height: 600px;
 }
+}
+
+.text-quantity{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 18px;
+  color: #060485;
+
+}
+
+.text-quantity-none{
+
+  font-family: 'Poppins-SemiBold';
+  font-size: 18px;
+  color: #ce0707;
+
 }
 </style>

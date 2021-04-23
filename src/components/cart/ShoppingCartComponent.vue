@@ -83,8 +83,9 @@
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
-											<div class="col text-name-product text-bluesito">
-												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
+											<div class="col text-name-product">
+											
+												{{shoppingcart.product.coin}} {{(shoppingcart.product.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -159,7 +160,7 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price * shoppingcart.quantity}}
+												{{shoppingcart.promotion.coin}} {{(shoppingcart.promotion.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -184,10 +185,11 @@
 							</div>
 						</div>
 					</q-card-section>
-					<q-card-section class="text-center">
-						<div class="row justify-between text-center">
-							<div class="col-2 self-start text-name-product">
-								Descuentos
+
+					<q-card-section>
+						<div class="row justify-between">
+							<div class="col-2 self-start">
+								Descuentos 
 							</div>
 							<div class="col-2 wrap self-end text-name-product">
 								<strong>$0.00</strong>
@@ -200,8 +202,8 @@
 							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end text-name-product text-bluesito">
-								<strong>${{subtotal}}</strong>
+							<div class="col-2 wrap self-end">
+								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
 					</q-card-section>
@@ -351,10 +353,12 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			 if (element.product){
 		
 			   this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity))
+			  
 			 }
 			 else{
 				this.subtotal = Number(this.subtotal) + (Number(element.promotion.price) * Number(element.quantity)) 
-			 }
+			 
+			}
 		 });
 	  },
 	  DeleteItemShop(id_item : number){
