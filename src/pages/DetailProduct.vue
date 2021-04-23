@@ -31,19 +31,19 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart == ''">
+                        <div class="col-6 col-md" v-if="status_cart == '' && getDataDetail.quantity != 0">
                             <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart != ''">
-                            
-                            <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                        <div class="col-6 col-md" v-if="status_cart != '' && getDataDetail.quantity != 0">           
+                            <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product"  size="md" @click="Shoppingcart()"></q-btn>                            
                           
                         </div>
                     </div>
                     <div class="text-msj-cart"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
-                    <div class="text-msj-stock"><b>Solo quedan {{getDataDetail.quantity}} en stock</b></div>
+                    <div v-if="stock_full == false" class="text-msj-stock"><b>{{msj_quantity}}</b></div>
+                    <div v-if="stock_full == true" class="text-msj-stock-full"><b>{{msj_quantity}}</b></div>
                 </div>
             </div>
         </div>
@@ -75,7 +75,9 @@ export default defineComponent({
 
       counter: 0,
       status_cart : "",
+      stock_full : false,
       slide: 1,
+      msj_quantity : "",
       showInitSession: false, 
       getDataDetail: [{
         id: this.$route.params.id,
@@ -110,6 +112,19 @@ export default defineComponent({
       ProductsServices.getProductDetail(this.$route.params.id).subscribe({
          next: data => {
              this.getDataDetail = new Product(data)
+             if ((this.getDataDetail.quantity <= 5) && (this.getDataDetail.quantity >1)){
+                 this.msj_quantity = "Solo Quedan "+ this.getDataDetail.quantity+" Disponibles"
+             }
+             else if(this.getDataDetail.quantity == 1){
+               this.msj_quantity = "Solo Queda "+this.getDataDetail.quantity+" Disponible"
+             }
+             else if(this.getDataDetail.quantity < 1){
+              this.msj_quantity = "Producto NO Disponible"             
+             }
+             else{
+                   this.msj_quantity = this.getDataDetail.quantity+" Disponibles"
+                   this.stock_full = true
+             }
            }
         });
     },
@@ -312,5 +327,11 @@ export default defineComponent({
     font-family: 'Poppins-Regular';
     font-size: 12px;
     color: #FF0000
+}
+
+.text-msj-stock-full{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    color: #000957
 }
 </style>

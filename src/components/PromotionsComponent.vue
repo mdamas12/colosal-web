@@ -317,7 +317,7 @@
                                     </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
-                                            {{promotion.name}}
+                                            {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">

@@ -87,7 +87,8 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-												{{shoppingcart.product.coin}} {{shoppingcart.product.price * shoppingcart.quantity}}
+											
+												{{shoppingcart.product.coin}} {{(shoppingcart.product.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -165,7 +166,7 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product">
-												{{shoppingcart.promotion.coin}} {{shoppingcart.promotion.price * shoppingcart.quantity}}
+												{{shoppingcart.promotion.coin}} {{(shoppingcart.promotion.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>
 									</div>
@@ -198,7 +199,7 @@
 					<q-card-section>
 						<div class="row justify-between">
 							<div class="col-2 self-start">
-								Descuentos
+								Descuentos 
 							</div>
 							<div class="col-2 wrap self-end">
 								<strong>$0.00</strong>
@@ -214,7 +215,7 @@
 								TOTAL
 							</div>
 							<div class="col-2 wrap self-end">
-								<strong>${{subtotal}}</strong>
+								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
 					</q-card-section>
@@ -372,10 +373,12 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			 if (element.product){
 		
 			   this.subtotal = Number(this.subtotal) + (Number(element.product.price) * Number(element.quantity))
+			  
 			 }
 			 else{
 				this.subtotal = Number(this.subtotal) + (Number(element.promotion.price) * Number(element.quantity)) 
-			 }
+			 
+			}
 		 });
 	  },
 	  DeleteItemShop(id_item : number){

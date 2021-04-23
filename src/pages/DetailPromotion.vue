@@ -16,7 +16,7 @@
           <div class="text-title-promotion">{{promotion.name}}</div>
           <div class="text-ID-promotion">Categoria:</div>
           <div class="text-title-brand">{{promotion.category.name}}</div>
-          <div class="text-detail-promotion">Cantidad Disponible:</div>
+          <div class="text-detail-promotion">Cantidad Disponible :</div>
           <div class="text-price-promotion">{{promotion.quantity}}</div>
           <div class="text-fventa-promotion">Costo:</div>
           <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div>
