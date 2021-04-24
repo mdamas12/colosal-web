@@ -40,7 +40,7 @@
 							<div class="column items-center">
 								<q-card-section class="text-center">
 									<div class="col text-name-product">
-										Referencia
+										Nro Orden
 									</div>
 									<div class="col text-desc">
 										{{purchase.id}}
@@ -172,7 +172,7 @@
 										</q-card-section>
 									</div>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<q-card-section class="q-pa-sm text-center">
 										<div class="col text-name-product">
 											Cantidad
@@ -182,7 +182,7 @@
 										</div>
 									</q-card-section>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<div class="column items-center">
 										<q-card-section class="q-pa-sm text-center">
 											<div class="col text-name-product">
@@ -225,7 +225,7 @@
 										</q-card-section>
 									</div>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<q-card-section class="q-pa-sm text-center">
 										<div class="col text-name-product">
 											Cantidad
@@ -235,7 +235,7 @@
 										</div>
 									</q-card-section>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<div class="column items-center">
 										<q-card-section class="q-pa-sm text-center">
 											<div class="col text-name-product">

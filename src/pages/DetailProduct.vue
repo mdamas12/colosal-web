@@ -8,21 +8,64 @@
         <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm q-pa-md">
-                    <q-carousel swipeable animated v-model="slide" thumbnails infinite >
+                    <q-carousel swipeable animated v-model="slide" thumbnails infinite>
                         <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
                     </q-carousel>
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
                     <div class="text-title-product">{{getDataDetail.name}}</div>
-                    <div class="text-title-brand">{{getDataDetail.brand.name}}</div>
-                    <div class="text-ID-product">ID Producto: {{getDataDetail.id}}</div>
-                    <div class="text-detail-product">Detail:</div>
-                    <div class="text-price-product">{{getDataDetail.price}}</div>
-                    <div class="text-fventa-product">Mayor:</div>
-                    <div class="text-price_fventa-product">{{getDataDetail.price}}</div>
-                    <div class="text-quantity-product">Cantidad:</div>
+                    <!-- <div>
+                        <q-card flat dense>
+                            <q-card-section>
+                                <div class="row">
+                                    <div class="col-12 col-md">
+                                        <div class="text-title-brand"> Categoría : {{getDataDetail.brand.name}}</div> 
+                                    </div>
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <q-separator />
+                    <q-card flat dense>
+                            <q-card-section>
+                                <div class="row">
+                                    <div class="col-12 col-md">
+                                        <div class="text-title-brand"> ID Producto : <span class="text-ID-product">{{getDataDetail.id}}</span></div> 
+                                    </div>
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                        <q-separator />
+                        <q-card flat dense>
+                            <q-card-section>
+                                <div class="row">
+                                    <div class="col-12 col-md">
+                                        <div class="text-title-brand"> Costo : <span class="text-red">{{getDataDetail.coin}} {{getDataDetail.price}}</span></div> 
+                                    </div>
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                        <q-separator />
+                        <q-card flat dense>
+                            <q-card-section>
+                                <div class="row">
+                                    <div class="col-12 col-md">
+                                        <div class="text-title-brand"> Descripción : <span class="text-nota-extra">{{getDataDetail.description}}</span></div> 
+                                    </div>
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                        <q-separator /> -->
+                    <div class="text-ID-product q-mb-md">{{getDataDetail.brand.name}} | ID Producto: {{getDataDetail.id}} </div>
+                    <!-- <div class="text-ID-product">ID Producto: {{getDataDetail.id}}</div> -->
+                    <q-separator class="mb-detail" />
+                    <!-- <div class="text-detail-product">Detail:</div>
+                    <div class="text-price-product">{{getDataDetail.price}}</div> -->
+                    <div class="text-fventa-product">Costo:</div>
+                    <div class="text-price_fventa-product mb-detail">{{getDataDetail.coin}} {{getDataDetail.price}}</div>
+                    <!-- <div class="text-quantity-product">Cantidad:</div> -->
                     <div class="row" v-if=" getDataDetail.quantity > 0">
-                        <div class="col-6 col-md">
+                        <div class="col-6 col-sm-4">
                             <div class="border">
                                 <span class="border">
                                 <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="decreaseProdQty()"></q-btn>
@@ -40,9 +83,9 @@
                         </div>
                     </div>
 
-                    <div class="text-msj-cart"><b>{{status_cart}}</b></div>
+                    <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div>
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
-                    <div class="text-nota-extra text-justify q-pr-md">{{getDataDetail.description}}</div>
+                    <div class="text-nota-extra text-justify q-pr-md mb-detail">{{getDataDetail.description}}</div>
                     <div v-if="stock_full == false" class="text-msj-stock"><b>{{msj_quantity}}</b></div>
                     <div v-if="stock_full == true" class="text-msj-stock-full"><b>{{msj_quantity}}</b></div>
                 </div>
@@ -120,7 +163,7 @@ export default defineComponent({
                this.msj_quantity = "Solo Queda "+this.getDataDetail.quantity+" Disponible"
              }
              else if(this.getDataDetail.quantity < 1){
-              this.msj_quantity = "Producto NO Disponible"             
+              this.msj_quantity = "NO Disponible"             
              }
              else{
                    this.msj_quantity = this.getDataDetail.quantity+" Disponibles"
@@ -207,7 +250,7 @@ export default defineComponent({
             });
         }
         else{
-           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
            this.showInitSession = true;
         }
     },
@@ -250,7 +293,7 @@ export default defineComponent({
     font-size: 20px;
 }
 .text-ID-product{
-    font-family: 'Poppins-Regular';
+    font-family: 'Poppins-SemiBold';
     font-size: 12px;
     color: #808080
 }
@@ -270,9 +313,9 @@ export default defineComponent({
     font-family: 'Poppins-Regular';
 }
 .text-price_fventa-product{
-    font-family: 'Poppins-Regular';
-    font-size: 30px;
-    color: #FF0000
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
+    color: #3D3D3D
 }
 .text-quantity-product{
     font-family: 'Poppins-Regular';
@@ -320,19 +363,22 @@ export default defineComponent({
 }
 
 .text-msj-cart{
-    font-family: 'Poppins-Regular';
-    font-size: 12px;
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
     color: rgba(3, 11, 88, 0.333)
 }
 .text-msj-stock{
-    font-family: 'Poppins-Regular';
-    font-size: 12px;
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
     color: #FF0000
 }
 
 .text-msj-stock-full{
-    font-family: 'Poppins-Regular';
-    font-size: 12px;
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
     color: #000957
+}
+.mb-detail{
+    margin-bottom: 30px;
 }
 </style>

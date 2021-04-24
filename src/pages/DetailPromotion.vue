@@ -9,26 +9,29 @@
       <div class="row">
         <div class="col-12 col-md q-gutter-sm q-pa-md">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-            <q-carousel-slide v-for="(pic,index) in images" :name="index + 1" :img-src="pic" class="border-img-slide" ></q-carousel-slide>
+            <q-carousel-slide v-for="(pic,index) in images" :key="index + 1" :name="index + 1" :img-src="pic" class="border-img-slide" ></q-carousel-slide>
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">
           <div class="text-title-promotion">{{promotion.name}}</div>
-          <div class="text-ID-promotion">Categoria:</div>
-          <div class="text-title-brand">{{promotion.category.name}}</div>
-          <div v-if="promotion.quantity > 0" >
+          <div class="text-ID-promotion q-mb-md">Categoría: {{promotion.category.name}}</div>
+          <q-separator class="mb-detail" />
+          <div class="text-fventa-promotion">Costo:</div>
+          <div class="text-price_fventa-promotion mb-detail">{{promotion.coin}}  {{promotion.price}}</div>
+          <!-- <div class="text-title-brand">{{promotion.category.name}}</div> -->
+          <div v-if="promotion.quantity > 0" class="mb-detail">
             <div class="text-detail-promotion">Cantidad Disponible :</div>
             <div class="text-quantity">{{promotion.quantity}}</div>
           </div>
-           <div v-if="promotion.quantity  < 1" >
-            <div class="text-quantity-none">Promocion NO Disponible</div>
+           <div v-if="promotion.quantity  < 1" class="mb-detail">
+            <div class="text-quantity-none">NO Disponible</div>
           </div>
-          <div class="text-fventa-promotion">Costo:</div>
-          <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div>
+          <!-- <div class="text-fventa-promotion">Costo:</div>
+          <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div> -->
           <div class="text-quantity-promotion">cantidad :</div>
 
-            <div v-if="promotion.quantity < 1" class="row" disabled="true">
-            <div class="col-6 col-md">
+            <div v-if="promotion.quantity < 1" class="row mb-detail" disabled="true">
+            <div class="col-6 col-sm-4">
               <div class="border">
                 <span class="border">
                   <q-btn flat round color="redsito" icon="remove" class="btn-promotion" size="md" v-on:click="decreaseProdQty()"></q-btn>
@@ -42,7 +45,7 @@
             </div>
           </div>
 
-          <div v-if="promotion.quantity > 0 " class="row">
+          <div v-if="promotion.quantity > 0 " class="row mb-detail">
             <div class="col-6 col-md">
               <div class="border">
                 <span class="border">
@@ -56,11 +59,11 @@
               <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md" @click="ToShoppingcart()"></q-btn>
             </div>
           </div> 
-          <div class="title-nota-extra">{{status_cart}}</div>
+          <div class="title-nota-extra mb-detail">{{status_cart}}</div>
           <div class="title-nota-extra"><b>Productos:</b></div>
           <q-list dense class="rounded-borders">
             <q-item clickable v-ripple v-for="promo in promotion.promotion_detail" :key="promo.product.id">
-              <q-item-section>
+              <q-item-section class="title-nota-extra">
                {{promo.quantity}} - {{promo.product.name}}
               </q-item-section>
             </q-item>
@@ -151,7 +154,7 @@ export default defineComponent({
                 return 
             }
             if (this.counter > this.promotion.quantity){
-                this.showNotif("La Cantidad Supera lo disponible de esta Promocion", 'red-10');
+                this.showNotif("La Cantidad Supera lo disponible de esta Promoción", 'red-10');
                 return
             }
              
@@ -183,7 +186,7 @@ export default defineComponent({
             });
         }
         else{
-          this.showNotif("Inicia Sesion para agrerar a tu carrito de compra", 'red-10');
+          this.showNotif("Inicia Sesión para agrerar a tu carrito de compra", 'red-10');
         }
     },
 
@@ -193,7 +196,7 @@ export default defineComponent({
            
           next: (resp) => {         
             this.counter = resp.data
-            this.status_cart  = "Promocion esta en su Carrito de Compra"
+            this.status_cart  = "Promoción está en su Carrito de Compra"
            },
            complete: () => {        
                //this.showNotif("data", 'blue-5');
@@ -256,7 +259,7 @@ export default defineComponent({
   font-size: 20px;
 }
 .text-ID-promotion{
-  font-family: 'Poppins-Regular';
+  font-family: 'Poppins-SemiBold';
   font-size: 12px;
   color: #808080
 }
@@ -276,9 +279,9 @@ export default defineComponent({
   font-family: 'Poppins-Regular';
 }
 .text-price_fventa-promotion{
-  font-family: 'Poppins-Regular';
-  font-size: 30px;
-  color: #FF0000
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
+    color: #3D3D3D
 }
 .text-quantity-promotion{
   font-family: 'Poppins-Regular';
@@ -337,5 +340,8 @@ export default defineComponent({
   font-size: 24px;
   color: #ce0707;
 
+}
+.mb-detail{
+    margin-bottom: 30px;
 }
 </style>

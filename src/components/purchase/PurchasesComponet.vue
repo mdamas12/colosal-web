@@ -360,7 +360,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Recuerda, en tu perfil estan tus órdenes d compras </q-item-label>
+                     <q-item-label class="label-register">Recuerda, en tu perfil estan tus órdenes de compras </q-item-label>
                      
                   </div>
                 </div>

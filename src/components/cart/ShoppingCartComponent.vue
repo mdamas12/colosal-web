@@ -187,8 +187,8 @@
 					</q-card-section>
 
 					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								Descuentos 
 							</div>
 							<div class="col-2 wrap self-end text-name-product">
@@ -226,7 +226,7 @@
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
               <h4 class="title-error">¡Advertencia!</h4>  
-              <q-item-label class="subtitle-error">La Cantidad Solicitada no esta disponible </q-item-label>
+              <q-item-label class="subtitle-error">La Cantidad Solicitada no está disponible </q-item-label>
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>

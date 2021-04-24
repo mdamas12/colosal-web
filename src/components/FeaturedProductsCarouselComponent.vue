@@ -19,7 +19,7 @@
                     arrows
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-md"
-                    style="height:450px">
+                    style="height:475px">
                     <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
                             <div class="col-6 col-md q-gutter-sm q-pa-md">
@@ -158,7 +158,7 @@
                     arrows
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-lg"
-                    style="height:465px">
+                    style="height:475px">
                     <q-carousel-slide :name="product.id" v-for="product in products" :key="product.id">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
