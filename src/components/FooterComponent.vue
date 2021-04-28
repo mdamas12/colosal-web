@@ -1,6 +1,6 @@
 <template>
     <div class="container-footer">
-        <div class="row justify-around">
+        <div class="row justify-around q-py-lg">
             <div class="column items-center q-pa-md">
                 <div class="row">
                     <div class="col-12 col-md q-pa-md text-center">

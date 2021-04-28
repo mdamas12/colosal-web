@@ -2,7 +2,7 @@
   <q-page class="container-products q-pt-md">
     <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
-      <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs"/>
+      <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
     <div class="container-products2">
       <q-layout view="hHh Lpr lff" container style="min-height: 1570px" class="rounded-borders">

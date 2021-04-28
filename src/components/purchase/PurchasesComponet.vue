@@ -1,10 +1,13 @@
 <template>
 	<div class="container-shopping-cart-title ">
-		<div class="row">
-		</div>
+		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm breadcrumbs-purchases" active-color="grey">
+			<q-breadcrumbs-el icon="home" to="/" />
+      <q-breadcrumbs-el label="Carrito" to="/cart" class="texto-breadcrumbs"/>
+			<q-breadcrumbs-el label="Compra" class="texto-breadcrumbs text-bluesito"/>
+    	</q-breadcrumbs>
 		<div class="row q-pa-md">
 			<div class="col-12 col-md-8" >
-				<div class="row q-my-lg">
+				<div class="row q-my-sm">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
@@ -199,7 +202,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-md-4 text-center">
-				<q-card flat bordered class="my-card q-mx-md q-mt-lg">
+				<q-card flat bordered class="my-card q-mx-md q-mt-sm">
 					<q-card-section class="text-center">
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product">

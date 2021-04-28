@@ -14,10 +14,11 @@
                 transition-prev="slide-right"
                 transition-next="slide-left"
                 infinite
+                arrows
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories q-px-lg q-pt-md bg-redp"
+                class="container-carousel-categories bg-redp"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -47,20 +48,34 @@
                         </div>
                     </div>
                     <div class="row justify-center" v-else>
-                        <div class="col-4 text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                        <!-- <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                            <q-card class="my-card card">
+                                <q-card-section class="text-center">
+                                    <q-img
+                                        :src="'http://minimarketcolosal.com/api' + category.image" 
+                                        class="text-center" 
+                                        style="height: 250px; max-width: 250px"
+                                    />
+                                </q-card-section>
+                                <q-card-section class="text-title-categorie text-center">
+                                    {{category.name}}
+                                </q-card-section>
+                            </q-card>
+                        </div> -->
+                        <div class="col-12 col-md text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
                                     :src="'http://minimarketcolosal.com/api' + category.image" 
-                                    class="image-categorie" 
+                                     class="image-categorie"
                                     style="height: 250px; max-width: 250px"/>
                                     
-                                <div class="middle q-pr-md q-pt-md">
+                                <div class="middle q-pt-md">
                                     <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie q-pr-md">
+                                <div class="text-title-categorie">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -75,10 +90,11 @@
                 transition-prev="slide-right"
                 transition-next="slide-left"
                 infinite
+                arrows
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories q-px-lg q-pt-md bg-redp"
+                class="container-carousel-categories bg-redp"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
@@ -92,7 +108,7 @@
                         </div>
                     </div>
                     <div class="row justify-center" v-else>
-                        <div class="col-12 text-center q-gutter-sm q-mt-md">
+                        <div class="col-12 text-center q-gutter-sm q-pt-md">
                             <div class="div-carniceria">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
@@ -105,7 +121,7 @@
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie q-pr-md">
+                                <div class="text-title-categorie">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -193,8 +209,8 @@ export default defineComponent({
 <style>
     .container-categories-1{
         background-color:#FFFBF6;
-        padding-left: 12%;
-        padding-right: 12%;
+        padding-left: 11%;
+        padding-right: 11%;
     }
     .container-categories{
         background-color: #FFFBF6;
@@ -203,6 +219,11 @@ export default defineComponent({
     }
     .container-carousel{
         height: 415px;
+    }
+
+    .container-carousel-categories{
+        padding-left: 3%;
+        padding-right: 3%;
     }
     .text-title{
         font-family: 'Poppins-SemiBold';
@@ -215,7 +236,7 @@ export default defineComponent({
     }
     .image-categorie{
         opacity: 1;
-        display: block;
+        /* display: block; */
         transition: .5s ease;
         backface-visibility: hidden;
         border-radius: 120px;
@@ -267,18 +288,34 @@ export default defineComponent({
         padding-right: 12%;
     }
 
-    @media (min-width:550px) {
+    /* @media(min-width:320px)and(max-width:549px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .div-carniceria .image-categorie-responsive{
+            border-radius: 120px;
+        }  
+    } */
+
+    @media (min-width:320px) and (max-width: 767px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
         .image-categorie-responsive{
         height: 250px;
         max-width: 250px;
         border-radius: 120px;
         }
     }
-    /* @media (min-width:1023px){
-        .image-categorie{
-            max-width: 250px;
+    @media (min-width:768px){
+        .image-categorie-responsive{
+        height: 250px;
+        max-width: 250px;
+        border-radius: 120px;
         }
-    } */
+    }
     @media (min-width: 1700px){
         .container-categories-1{
             padding-left: 11%;

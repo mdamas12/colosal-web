@@ -157,7 +157,7 @@
                           </q-menu>
                         </q-btn>
                       </div>
-                      <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesion" size="md" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" /> 
+                      <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesión" size="md" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" /> 
                       <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
                     </div>
                   </div>
@@ -422,7 +422,7 @@ export default defineComponent({
           complete: () => {
             Loading.hide();
             if (this.verifySession() == true){
-            this.showNotif("Ha iniciado sesion", 'green-10');
+            this.showNotif("Ha iniciado sesión", 'green-10');
             this.showInitSession = false;
             this.email = '';
             this.password = '';
@@ -440,6 +440,7 @@ export default defineComponent({
           if (this.verifySession() == false){
             this.showNotif("Sesión cerrada exitosamente", 'blue-7');
           }
+          this.$router.push('/')
       },
       Shoppingcart(){
         

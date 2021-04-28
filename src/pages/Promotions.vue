@@ -35,6 +35,12 @@
       <div class="row justify-center q-mb-md">
         <div class="col-12 col-md-4 q-pa-md q-gutter-sm" v-for="promotion in promotions" :key="promotion.id">
           <q-card class="my-card card2 q-pa-md text-center cursor-pointer" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
+            <q-card-section class="text-center">
+              <q-img 
+                                            :src="promotion.image" 
+                                            class="img-promotions" 
+                                            style="max-width:150px"></q-img>
+            </q-card-section>
             <q-card-section>
               <div class="text-name-promotion">
                 {{promotion.name}}
