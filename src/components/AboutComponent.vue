@@ -31,8 +31,8 @@ export default defineComponent({ name: 'AboutComponent' })
 <style>
     .container-about-1{
         color: #FAFAFA;
-        padding-left: 11%;
-        padding-right: 11%;
+        padding-left: 9%;
+        padding-right: 9%;
     }
     .container-about{
         color: #FAFAFA;

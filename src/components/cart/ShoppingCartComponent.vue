@@ -202,7 +202,7 @@
 							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end">
+							<div class="col-2 wrap self-end text-total-product">
 								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
@@ -500,6 +500,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			font-size: 16px;
 		}
 
+		.text-total-product{
+			font-family: 'Poppins-SemiBold';
+			font-size: 14px;
+		}
+
 		.text-price-product{
 			font-family: 'Poppins-SemiBold';
 			font-size: 16px;
@@ -535,4 +540,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
           text-align: center;
           color: rgb(194, 5, 5)
         }
+
+		@media(min-width:767px){
+			.container-shopping-cart-title{
+				padding-left: 11%;
+				padding-right: 11%;
+			}
+		}
 </style>

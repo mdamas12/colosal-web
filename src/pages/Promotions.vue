@@ -1,6 +1,6 @@
 <template>
 <q-page>
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm breadcrumbs-promotion" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
@@ -31,7 +31,7 @@
             </q-item>
         </q-list>
     </div> -->
-    <div class="q-pa-md">
+    <div class="container-list-promotions q-pa-md">
       <div class="row justify-center q-mb-md">
         <div class="col-12 col-md-4 q-pa-md q-gutter-sm" v-for="promotion in promotions" :key="promotion.id">
           <q-card class="my-card card2 q-pa-md text-center cursor-pointer" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
@@ -185,5 +185,10 @@ export default defineComponent({
   font-size: 24px;
   color: #ce0707;
 
+}
+
+.breadcrumbs-promotion{
+  padding-left: 13%;
+  padding-right: 13%;
 }
 </style>

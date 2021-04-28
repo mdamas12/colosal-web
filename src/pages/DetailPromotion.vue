@@ -1,6 +1,6 @@
 <template>
   <q-page class="container-detail-promotion q-pt-md">
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-promotions" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Todas las promociones" class="texto-breadcrumbs" to="/promotions"/>
       <q-breadcrumbs-el label="Almacén" class="texto-breadcrumbs text-bluesito"/>
@@ -236,6 +236,7 @@ export default defineComponent({
 })
 </script>
 <style>
+
 .border{
   border-radius: 9px;
 }
@@ -344,4 +345,16 @@ export default defineComponent({
 .mb-detail{
     margin-bottom: 30px;
 }
+
+@media (min-width:767px){
+  .container-detail-promotion2{
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+  .breadcrumbs-promotions{
+    padding-left: 13%;
+    padding-right: 13%;
+  }
+}
+
 </style>

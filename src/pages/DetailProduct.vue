@@ -1,6 +1,6 @@
 <template>
     <q-page class="container-detail-product q-pt-md">
-        <q-breadcrumbs gutter="sm" class="q-px-md text-grey" active-color="grey">
+        <q-breadcrumbs gutter="sm" class="q-px-md text-grey menu-breadcrumbs" active-color="grey">
             <q-breadcrumbs-el icon="home" to="/" />
             <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs" to="/products"/>
             <q-breadcrumbs-el label="Almacén" class="texto-breadcrumbs text-bluesito"/>
@@ -64,7 +64,35 @@
                     <div class="text-fventa-product">Costo:</div>
                     <div class="text-price_fventa-product mb-detail">{{getDataDetail.coin}} {{getDataDetail.price}}</div>
                     <!-- <div class="text-quantity-product">Cantidad:</div> -->
-                    <div class="row" v-if=" getDataDetail.quantity > 0">
+                    <!-- <div class="row" v-if=" getDataDetail.quantity > 0">
+                        <div class="col-6 col-sm-4">
+                            <div class="border">
+                                <span class="border">
+                                <q-btn flat round color="redsito" icon="remove" class="btn-product" size="md" v-on:click="decreaseProdQty()"></q-btn>
+                                {{counter}}
+                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="md" v-on:click="increaseProdQty()"></q-btn>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md" v-if="status_cart == '' ">
+                            <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
+                        </div>
+                        <div class="col-6 col-md" v-if="status_cart != '' ">           
+                            <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product"  size="md" @click="Shoppingcart()"></q-btn>                            
+                          
+                        </div>
+                    </div> -->
+
+                    <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div>
+                    <div class="title-nota-extra"><b>Descripción del producto:</b></div>
+                    <div class="text-nota-extra text-justify q-pr-md mb-detail">
+                        <q-item-label lines="2">
+                            {{getDataDetail.description}}
+                        </q-item-label>
+                    </div>
+                    <div v-if="stock_full == false" class="text-msj-stock"><b>{{msj_quantity}}</b></div>
+                    <div v-if="stock_full == true" class="text-msj-stock-full"><b>{{msj_quantity}}</b></div>
+                     <div class="row" v-if=" getDataDetail.quantity > 0">
                         <div class="col-6 col-sm-4">
                             <div class="border">
                                 <span class="border">
@@ -82,12 +110,6 @@
                           
                         </div>
                     </div>
-
-                    <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div>
-                    <div class="title-nota-extra"><b>Descripción del producto:</b></div>
-                    <div class="text-nota-extra text-justify q-pr-md mb-detail">{{getDataDetail.description}}</div>
-                    <div v-if="stock_full == false" class="text-msj-stock"><b>{{msj_quantity}}</b></div>
-                    <div v-if="stock_full == true" class="text-msj-stock-full"><b>{{msj_quantity}}</b></div>
                 </div>
             </div>
         </div>
@@ -380,5 +402,16 @@ export default defineComponent({
 }
 .mb-detail{
     margin-bottom: 30px;
+}
+
+@media (min-width:767px){
+    .container-detail-product2{
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+    .menu-breadcrumbs{
+        padding-left: 13%;
+        padding-right: 13%;
+    }
 }
 </style>

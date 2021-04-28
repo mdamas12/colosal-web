@@ -148,7 +148,7 @@ export default defineComponent({
   .enlace-ver{
     color:#EB0004;
     font-family: 'Poppins-Regular';
-    font-size: 19px;
+    font-size: 16px;
   }
   .my-card:hover .img-product{
     -webkit-transform: scale(1.00);
@@ -160,7 +160,7 @@ export default defineComponent({
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
   }
-  .text-name-product{
+  /* .text-name-product{
     font-family: 'Poppins-SemiBold';
     font-size: 16px;
   }
@@ -171,7 +171,7 @@ export default defineComponent({
   .text-price-product{
     font-family: 'Poppins-SemiBold';
     font-size: 24px;
-   }
+   } */
   @media (min-width:320px) and (max-width: 1023px) {
     .img-ventasmd{
       width: 60%;

@@ -413,4 +413,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		.btn-back{
 			font-family: 'Poppins-SemiBold';
 		}
+		@media(min-width:767px){
+			.col2{
+				padding-left: 12%;
+				padding-right: 12%;
+			}
+		}
+		
 </style>

@@ -2,14 +2,14 @@
 <div class="container-benefits-1">
  <div class="container-benefits">
         <div class="row">
-            <div class="col q-gutter-sm col-md q-pt-lg q-px-md">
-               <div class="text-title text-dark">
+            <div class="col q-gutter-sm col-md q-px-md">
+               <div class="text-title text-dark pd-text">
                    Nuestros beneficios
                </div>
             </div>
         </div>
         <div class="row justify-center">
-            <div class="column justify-center text-center q-mb-lg">
+            <div class="column justify-center text-center mbt-card">
                 <div class="row justify-center">
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
                         <q-card class="my-card card-benefits q-pa-md">
@@ -87,22 +87,29 @@ export default defineComponent({ name: 'OurBenefitsComponent' })
 </script>
 
 <style>
+.pd-text{
+    padding-top: 60px;
+    margin-bottom: 40px;
+}
+.mbt-card{
+    margin-bottom: 60px;   
+}
 .container-benefits-1{
-    background-color:#DFEBFF;
+    background-color: #F2F7FF;
     padding-left: 12%;
     padding-right: 12%;
 }
-.container-benefits{
-    /* height: 530px; */
+/* .container-benefits{
+    height: 530px;
     background-color:#DFEBFF;
-}
+} */
 .my-card{
 border-radius: 27px;
 /* height: 320px; */
 }
 
 .my-card:hover{
-    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 5px 28px rgba(156, 156, 156, 0.3), 0 10px 10px rgba(156, 156, 156, 0.3);
 }
 
 .card-benefits:hover img{

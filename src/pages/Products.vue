@@ -1,10 +1,10 @@
 <template>
   <q-page class="container-products q-pt-md">
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs"/>
     </q-breadcrumbs>
-    <div>
+    <div class="container-products2">
       <q-layout view="hHh Lpr lff" container style="min-height: 1570px" class="rounded-borders">
         <q-header class="bg-hueso">
           <q-toolbar>
@@ -132,19 +132,23 @@
                   <q-card class="my-card card2 q-pa-md" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                     <q-card-section class="text-center">
                       <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
-                      <q-img :src="product.image" class="img-product2"></q-img>
+                      <q-img :src="product.image" class="img-product2" style="max-width:150px; height: 150px;"></q-img>
                     </q-card-section>
-                    <q-card-section class="text-center">
+                    <q-card-section class="text-center hc">
                       <div class="text-name-product">
-                        {{product.name}}
+                        <q-item-label lines="2">
+                          {{product.name}}
+                        </q-item-label>
                       </div>
                       <div class="text-description-product">
-                        {{product.description}}
+                        <q-item-label lines="2">
+                           {{product.description}}
+                        </q-item-label>
                       </div>
                     </q-card-section>
                     <q-card-section class="text-center q-pt-none">
                       <div class="text-price-product">
-                        {{product.price}}
+                        {{product.coin}} {{product.price}}
                       </div>
                     </q-card-section>
                     <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
@@ -157,10 +161,10 @@
                         {{product.quantity}} Disponible
                       </div>
                     </q-card-section>
-                      </q-card-section>
+                      <!-- </q-card-section> -->
                       <q-card-section v-if="product.quantity < 1" class="text-center q-pt-none">
                       <div class="text-quantity-products-none">
-                         Producto No Disponoble
+                         No Disponible
                       </div>
                     </q-card-section>
                     <q-card-section v-if="product.quantity > 0" class="text-center">
@@ -260,8 +264,8 @@ export default defineComponent({
       limit: 25,
       numberOfPages: 0,
       count: 0,
-      orderBy: { label: 'Categoria', value: 2 },
-      optionsFilter: [{ label: 'Categoria', value: 2 }, { label: 'Nombre', value: 1 }],
+      orderBy: { label: 'Categoría', value: 2 },
+      optionsFilter: [{ label: 'Categoría', value: 2 }, { label: 'Nombre', value: 1 }],
       id: null,
       offset: 0,
       pagination: {
@@ -420,7 +424,7 @@ export default defineComponent({
     transition: all 0.8s;
 }
 .card2{
-    min-height: 420px;
+    min-height: 360px;
 }
 .skeleton-card-all-products{
     min-height: 420px;
@@ -432,7 +436,7 @@ export default defineComponent({
 }
 .text-name-product{
     font-family: 'Poppins-SemiBold';
-    font-size: 16px;
+    font-size: 18px;
 }
 .text-description-product{
     font-family: 'Poppins-Regular';
@@ -440,7 +444,7 @@ export default defineComponent({
 }
 .text-price-product{
     font-family: 'Poppins-SemiBold';
-    font-size: 24px;
+    font-size: 22px;
 }
 .texto-filter{
     font-family: 'Poppins-Medium';
@@ -454,6 +458,21 @@ export default defineComponent({
 .texto-all-products{
     font-family: 'Poppins-Regular';
 }
+.hc{
+  height: 91px;
+}
+
+@media (min-width:767px){
+  .breadcrumbs-products-list{
+    padding-left: 13%;
+    padding-right: 13%;
+  }
+  .container-products2{
+    padding-left: 13%;
+    padding-right: 13%;
+  }
+}
+
 @media (min-width:1023px){
     .img-product2{
         width: 50%;
@@ -486,6 +505,7 @@ export default defineComponent({
   font-family: 'Poppins-SemiBold';
   font-size: 18px;
   color: #ce0707;
+  margin: 68px 0 0 0;
 
 }
 </style>

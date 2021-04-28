@@ -116,13 +116,13 @@
     </q-layout> -->
     <q-layout view="hHh lpR fFf" class="bg-grey-1">
       <div class="container">
-        <q-header elevated class="bg-white text-grey-8 q-pa-sm" height-hint="64">
+        <q-header elevated class="bg-white text-grey-8 q-pa-sm header_" height-hint="64">
           <div class="row q-pa-sm justify-center">
             <div class="col-2 q-pa-sm gt-xs">
               <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
             </div>
             <div class="col-12 col-md q-pa-sm gt-sm">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -151,7 +151,7 @@
                               </q-item>
                               <q-separator />
                               <q-item clickable v-close-popup class="font-list">
-                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesión</a></q-item-section>
                               </q-item>
                             </q-list>
                           </q-menu>
@@ -165,7 +165,7 @@
               </div>
             </div>
             <div class="col-12 col-md q-pa-sm lt-md">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -565,6 +565,9 @@ export default defineComponent({
   .width-search{
   width: 40%;
   }
-
+  .header_{
+  padding-left: 12%;
+  padding-right: 12%;
+}
 }
 </style>

@@ -2,7 +2,7 @@
 <div class="container-categories-1 q-pt-md">
     <div class="container-categories q-pt-none">
         <div class="row q-pa-md">
-            <div class="col q-px-lg">
+            <div class="col">
                 <div class="text-title">
                     Categorías
                 </div>
@@ -17,7 +17,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel q-px-lg q-pt-md bg-redp"
+                class="container-carousel-categories q-px-lg q-pt-md bg-redp"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -78,7 +78,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel q-px-lg q-pt-md bg-redp"
+                class="container-carousel-categories q-px-lg q-pt-md bg-redp"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
@@ -192,14 +192,14 @@ export default defineComponent({
 
 <style>
     .container-categories-1{
-        background-color:#FAF3EB;
-        padding-left: 10%;
-        padding-right: 10%;
+        background-color:#FFFBF6;
+        padding-left: 12%;
+        padding-right: 12%;
     }
     .container-categories{
-        background-color: #FAF3EB;
-        padding-left: 3%;
-        padding-right: 3%;
+        background-color: #FFFBF6;
+        /* padding-left: 3%;
+        padding-right: 3%; */
     }
     .container-carousel{
         height: 415px;
@@ -218,6 +218,8 @@ export default defineComponent({
         display: block;
         transition: .5s ease;
         backface-visibility: hidden;
+        border-radius: 120px;
+        
     }
     .div-carniceria{
         position: relative;
@@ -269,6 +271,7 @@ export default defineComponent({
         .image-categorie-responsive{
         height: 250px;
         max-width: 250px;
+        border-radius: 120px;
         }
     }
     /* @media (min-width:1023px){

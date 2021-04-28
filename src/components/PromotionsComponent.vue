@@ -130,6 +130,9 @@
                                             {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
+                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                         {{promotion.coin}}  {{promotion.price}}
+                                    </q-card-section>
                                     <q-card-section class="text-center">
                                         <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
                                             {{promotion.quantitity}} Disponibles  
@@ -138,13 +141,9 @@
                                            Solo {{promotion.quantitity}} Disponible
                                         </q-item-label>
                                          <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none">
-                                             Promocion NO Disponible
+                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none text-price-product">
-                                         {{promotion.coin}}  {{promotion.price}}
-                                    </q-card-section>
-
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                                     </q-card-section>
@@ -320,22 +319,33 @@
                             <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            :src="'http://minimarketcolosal.com/api' + promotion.promotion_detail[0].product.image" 
+                                            :src="promotion.image" 
                                             class="img-promotions" 
                                             style="max-width:150px"></q-img>
                                         <div class="middle">
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                                                        <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-product">
                                             {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section class="text-center q-pt-none text-price-product">
-                                           {{promotion.coin}} {{promotion.price}}
+                                         {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
+                                    <q-card-section class="text-center">
+                                        <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
+                                            {{promotion.quantitity}} Disponibles  
+                                        </q-item-label>
+                                        <q-item-label v-if="promotion.quantity == 1" lines="2" class="text-quantity-none">
+                                           Solo {{promotion.quantitity}} Disponible
+                                        </q-item-label>
+                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none">
+                                             NO Disponible
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                                     </q-card-section>
                                 </q-card>
@@ -405,6 +415,9 @@ export default defineComponent({
 .card{
         min-height: 360px;
     }
+.my-card:hover{
+    box-shadow: 0 5px 28px rgba(156, 156, 156, 0.3), 0 10px 10px rgba(156, 156, 156, 0.3);
+}    
 .middle{
   transition: .5s ease;
   opacity: 0;
@@ -453,4 +466,10 @@ export default defineComponent({
   color: #ce0707;
 
 }
+
+.text-quantity-adv{
+       font-family: 'Poppins-SemiBold';
+  font-size: 18px;
+        color: rgb(212, 199, 7);
+    }
 </style>

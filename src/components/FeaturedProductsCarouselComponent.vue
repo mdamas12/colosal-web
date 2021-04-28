@@ -109,7 +109,7 @@
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            style="max-width:150px"
+                                            style="max-width:150px; height: 150px;"
                                             v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
@@ -133,7 +133,7 @@
                                     </q-card-section>
                                       <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity-none">
-                                            Producto NO Disponible
+                                            NO Disponible
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section  v-if="product.quantity > 0" class="text-center" >
@@ -248,7 +248,7 @@
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
-                                            style="max-width:150px"
+                                            style="max-width:150px; height: 150px;"
                                             v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
@@ -427,6 +427,8 @@ export default defineComponent({
     }
     .container-carousel{
         height: 425px;
+        padding-left: 3%;
+        padding-right: 3%;
     }
     .text-title{
         font-family: 'Poppins-SemiBold';
@@ -435,10 +437,14 @@ export default defineComponent({
     .enlace-ver{
         color:#EB0004;
         font-family: 'Poppins-Regular';
-        font-size: 19px;
+        font-size: 16px;
     }
     .card{
         min-height: 360px;
+    }
+
+    .my-card:hover{
+    box-shadow: 0 5px 28px rgba(156, 156, 156, 0.3), 0 10px 10px rgba(156, 156, 156, 0.3);
     }
     .my-card:hover .img-product{
         -webkit-transform: scale(1.00);
@@ -452,6 +458,7 @@ export default defineComponent({
         transform: scale(0.95);
         -webkit-transition: all 0.8s;
         transition: all 0.8s;
+        /* min-height: 300px; */
     }
     .text-title{
         font-family: 'Poppins-SemiBold';
@@ -459,7 +466,7 @@ export default defineComponent({
     }
     .text-name-product{
         font-family: 'Poppins-SemiBold';
-        font-size: 16px;
+        font-size: 18px;
     }
     .text-description-product{
         font-family: 'Poppins-Regular';
@@ -467,7 +474,7 @@ export default defineComponent({
     }
     .text-price-product{
         font-family: 'Poppins-SemiBold';
-        font-size: 24px;
+        font-size: 22px;
     }
     .btn-product{
         border-radius: 9px;

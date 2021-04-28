@@ -35,7 +35,7 @@
                                             <span class="tittle">Banco:</span>  <strong> {{item.bank.name}} </strong>
                                         </div>
                                         <div class="col desc">
-                                            <span class="tittle">Titular:</span> {{item.bank.account_owner}} 
+                                            <span class="tittle">Títular:</span> {{item.bank.account_owner}} 
                                         </div>
                                         <div class="col desc">
                                            <span class="tittle">Identificación:</span>  {{item.bank.owner_id}} 
@@ -229,7 +229,7 @@
 							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end">
+							<div class="col-2 wrap self-end text-total-purchase">
 								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
@@ -245,7 +245,7 @@
                      <span class="tittle">Banco:</span> {{bankSelect.bank.name}} 
                  </div>
                  <div class="col desc">
-                     <span class="tittle">Titular:</span> {{bankSelect.bank.account_owner}} 
+                     <span class="tittle">Títular:</span> {{bankSelect.bank.account_owner}} 
                  </div>
                  <div class="col desc">
                     <span class="tittle">Identificación:</span>  {{bankSelect.bank.owner_id}} 
@@ -281,13 +281,13 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Último Paso!
+              ¡Último Paso!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
         <q-separator />
          <div class="q-mt-xs" align="center">
-            <span class="label-register text-center">Ya casi terminas tu compra,<br> indicanos el número de transferencia.</span> 
+            <span class="label-register text-center">Ya casi terminas tu compra,<br> indícanos el número de transferencia.</span> 
          </div>
         <q-item class="q-pt-xs">
           <q-item-section>
@@ -306,7 +306,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Recuerda, si no tiene aún la referencia, puedes procesar la compra y buscarla en Órdenes de compra, tienes 24 Horas para validar el pago; de lo contrario la compra será anulada. </q-item-label>
+                     <q-item-label class="label-register">Recuerda, si no tiene aún la referencia, puedes procesar la compra y buscarla en órdenes de compra, tienes 24 Horas para validar el pago; de lo contrario la compra será anulada. </q-item-label>
 
                   </div>
                 </div>
@@ -322,7 +322,7 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Último Paso!
+              ¡Último Paso!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
@@ -331,7 +331,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Genial, Has seleccionado método de pago en efectivo, al procesar la compra nuestro agente se pondra en contacto contigo. </q-item-label>
+                     <q-item-label class="label-register">Genial, Has seleccionado método de pago en efectivo, al procesar la compra nuestro agente se pondrá en contacto contigo. </q-item-label>
                      
                   </div>
                 </div>
@@ -351,7 +351,7 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Genial! Tu Compra ha Sido Procesada
+              ¡Genial, tu compra ha sido procesada!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
@@ -580,6 +580,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			font-size: 16px;
 		}
 
+    .text-total-purchase{
+			font-family: 'Poppins-SemiBold';
+			font-size: 14px;
+		}
+    
 		.text-description-product{
 				font-family: 'Poppins-Regular';
 				font-size: 16px;
@@ -635,5 +640,12 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
     }
     .font-checkbox-mp{
       font-family: 'Poppins-Regular';
+    }
+
+    @media(min-width:767px){
+      .container-shopping-cart-title{
+        padding-left: 11%;
+        padding-right: 11%;
+      }
     }
 </style>
