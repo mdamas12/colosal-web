@@ -45,13 +45,13 @@
           <q-card-section class="q-pa-md">
             <q-list padding v-if="payments" v-for="payment in payments" :key="payment.id">
               <q-item>
-                <q-item-section>
+                <q-item-section class="font-payments">
                 <q-item-label><b>Banco: </b>{{payment.name}}</q-item-label>
-                <q-item-label><b>Titular: </b>{{payment.account_owner}}</q-item-label>
+                <q-item-label><b>Títular: </b>{{payment.account_owner}}</q-item-label>
                 <q-item-label><b>Nro de cuenta: </b>{{payment.account_number}}</q-item-label>
                 <q-item-label><b>Email: </b>{{payment.email}}</q-item-label>
-                <q-item-label><b>Telefono: </b>{{payment.phone}}</q-item-label>
-                <q-item-label><b>Metodos de pago: </b> {{payment.getMethods()}} </q-item-label>
+                <q-item-label><b>Teléfono: </b>{{payment.phone}}</q-item-label>
+                <q-item-label><b>Métodos de pago: </b> {{payment.getMethods()}} </q-item-label>
                 </q-item-section>
               </q-item>
               <q-separator spaced />
@@ -159,6 +159,10 @@ export default defineComponent({
   .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
+  }
+  .font-payments{
+    font-family: 'Poppins-Regular';
+    font-size: 15px;
   }
   /* .text-name-product{
     font-family: 'Poppins-SemiBold';

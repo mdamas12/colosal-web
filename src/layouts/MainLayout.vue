@@ -122,7 +122,7 @@
               <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
             </div>
             <div class="col-12 col-md q-pa-sm gt-sm">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Qué estás buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" class="font-input-placeholder" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -165,7 +165,7 @@
               </div>
             </div>
             <div class="col-12 col-md q-pa-sm lt-md">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Qué estás buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" class="font-input-placeholder" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -213,7 +213,7 @@
               </q-toolbar> -->
             <q-list v-if="products" v-for="product in products" :key="product.id" separator>
               <q-item clickable class="text-center q-px-md" @click="clickToProduct(product.id)">
-                <q-item-section>
+                <q-item-section class="font-list-products-search">
                   {{product.name}}
                 </q-item-section>
               </q-item>
@@ -560,6 +560,18 @@ export default defineComponent({
   color: #020B68;
   text-decoration: none;
 }
+
+.font-list-products-search{
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+}
+
+.font-input-placeholder{
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+}
+
+
 
 @media (min-width:767px) {
   .width-search{

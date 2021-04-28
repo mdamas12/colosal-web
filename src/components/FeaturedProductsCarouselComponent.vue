@@ -260,13 +260,25 @@
                                     <q-card-section class="text-center q-pt-none text-price-product">
                                       {{product.coin}} {{product.price}} 
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none">
+                                    <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity">
                                             {{product.quantity}} Disponibles 
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                       <q-card-section v-if="product.quantity == 1" class="text-center q-pt-none">
+                                        <q-item-label lines="2" class="text-quantity-adv">
+                                           Solo {{product.quantity}} Disponible 
+                                        </q-item-label>
+                                    </q-card-section>
+                                      <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
+                                        <q-item-label lines="2" class="text-quantity-none">
+                                            NO Disponible
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section  v-if="product.quantity > 0" class="text-center" >
+                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
+                                    </q-card-section>
+                                    <q-card-section  v-if="product.quantity <= 0" class="text-center" >
                                     </q-card-section>
                                 </q-card>
                             </div>

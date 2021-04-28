@@ -29,10 +29,10 @@
                             <q-radio v-model="Tpago" val="PAGO MOVIL" label="Pago Móvil" class="font-checkbox-mp"  />
                             <q-radio v-model="Tpago" val="EFECTIVO" label="Efectivo" class="font-checkbox-mp"  />
                             <div class="row"> 
-                                <div class="col-6" v-for="item in banks" :key="item.id">   
+                                <div class="col-12 col-md-6" v-for="item in banks" :key="item.id">   
                                     <q-card-section class="banks">
                                         <div class="col desc">
-                                            <span class="tittle">Banco:</span>  <strong> {{item.bank.name}} </strong>
+                                            <span class="tittle ">Banco:</span>  <strong> {{item.bank.name}} </strong>
                                         </div>
                                         <div class="col desc">
                                             <span class="tittle">Títular:</span> {{item.bank.account_owner}} 
@@ -238,25 +238,25 @@
 					<q-separator/>
 
                 <q-card-section  v-if="bankSelect.length != 0" v-show="bankSelectShow" >
-                  <div class="col-2 self-start">
+                  <div class="col-2 self-start text-name-product">
 				   <strong>Banco Seleccionado:</strong>   
 				  </div>
-                  <div class="col desc">
+                  <div class="col desc text-description-banks">
                      <span class="tittle">Banco:</span> {{bankSelect.bank.name}} 
                  </div>
-                 <div class="col desc">
+                 <div class="col desc text-description-banks">
                      <span class="tittle">Títular:</span> {{bankSelect.bank.account_owner}} 
                  </div>
-                 <div class="col desc">
+                 <div class="col desc text-description-banks">
                     <span class="tittle">Identificación:</span>  {{bankSelect.bank.owner_id}} 
                 </div>
-                <div class="col desc">
+                <div class="col desc text-description-banks">
                  <span class="tittle">Cuenta N:</span>  {{bankSelect.bank.account_number}} 
                 </div>
-                <div class="col desc">
+                <div class="col desc text-description-banks">
                     <span class="tittle">Teléfono:</span> {{bankSelect.bank.phone}} 
                 </div>
-                <div class="col desc">
+                <div class="col desc text-description-banks">
                     <span class="tittle">Email:</span> {{bankSelect.bank.email}} 
                 </div>
              </q-card-section>
@@ -350,7 +350,7 @@
     <q-dialog persistent v-model="showSaleReady" >
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
-          <q-toolbar-title class="title-session">
+          <q-toolbar-title class="title-purchase">
               ¡Genial, tu compra ha sido procesada!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
@@ -590,6 +590,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 				font-size: 16px;
 		}
 
+    .text-description-banks{
+				font-family: 'Poppins-Regular';
+				font-size: 16px;
+		}
+
 		.title-text{
 				font-family: 'Poppins-SemiBold';
 				font-size: 32px;
@@ -616,6 +621,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         margin: 0 10px;
         font-family: 'Poppins-SemiBold';
         font-weight: 400;
+    }
+    .title-purchase{
+        font-family: 'Poppins-SemiBold';
+			  font-size: 17px;
     }
     .my-card{
         padding:  10px;
