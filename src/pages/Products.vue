@@ -43,7 +43,7 @@
       <div class="q-pa-md">
        <!-- <q-input label="Buscar" v-model="search" @keyup.enter="productsFilter"/> -->
           <div class="row" v-if="load">
-            <div class="col-4 col-12-md q-gutter-sm q-pa-md" v-for="skeleton in 9" :key="skeleton.id">
+            <div class="col-12 col-md-4 q-gutter-sm q-pa-md" v-for="skeleton in 9" :key="skeleton.id">
               <q-card class="q-pt-md skeleton-card-all-products">
                 <q-card-section align="center" class="q-gutter-md">
                    <q-skeleton type="circle" size="130px" bordered />

@@ -298,7 +298,23 @@ export default defineComponent({
         }  
     } */
 
-    @media (min-width:320px) and (max-width: 767px){
+
+    @media (min-width:320px) and (max-width: 374px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .image-categorie-responsive{
+        height: 200px;
+        max-width: 200px;
+        border-radius: 120px;
+        }
+
+        .div-carniceria{
+            padding-top: 45px;
+        }
+    }
+    @media (min-width:375px) and (max-width: 767px){
         .container-categories-1{
             padding-left: 0;
             padding-right: 0;
@@ -307,6 +323,9 @@ export default defineComponent({
         height: 250px;
         max-width: 250px;
         border-radius: 120px;
+        }
+        .div-carniceria{
+            padding-top: 40px;
         }
     }
     @media (min-width:768px){

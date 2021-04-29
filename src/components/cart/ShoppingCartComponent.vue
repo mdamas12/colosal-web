@@ -393,7 +393,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 					return
 				}
 				if (this.counter[id] ==  this.products[id].quantity){
-					this.showNotif("no has modificado la cantidad", 'red-10');
+					this.showNotif("No has modificado la cantidad", 'red-10');
 					return
 				}
 			     data = {
@@ -410,7 +410,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 					return
 				}
 				if (this.counter[id] ==  this.products[id].quantity){
-					this.showNotif("no has modificado la cantidad", 'red-10');
+					this.showNotif("No has modificado la cantidad", 'red-10');
 					return
 				}
 			    data = {
@@ -441,7 +441,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
             });
         }
         else{
-           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
            //this.showInitSession = true;
         }
     },

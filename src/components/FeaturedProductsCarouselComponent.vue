@@ -401,7 +401,7 @@ export default defineComponent({
                     let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
                         complete: () => {
                             Loading.hide();
-                            this.showNotif("producto agregado al carrito de compra", 'blue-5');
+                            this.showNotif("Producto agregado al carrito de compra", 'blue-5');
                         },
                         error: () => {
                             Loading.hide();
@@ -413,7 +413,7 @@ export default defineComponent({
             });
         }
         else{
-           this.showNotif("Debe Iniciar Sesion", 'red-10');
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
            this.showInitSession = true;
         }
     },

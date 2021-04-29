@@ -209,7 +209,7 @@
 								Subtotal
 							</div>
 							<div class="col-2 wrap self-end text-name-product">
-								<strong>${{subtotal}}</strong>
+								<strong>${{subtotal.toFixed(2)}}</strong>
 							</div>
 						</div>
 					</q-card-section>
