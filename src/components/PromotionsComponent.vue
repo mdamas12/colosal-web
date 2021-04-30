@@ -470,9 +470,9 @@ export default defineComponent({
 .text-quantity-none-promotion-feature{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 12px;
+  font-size: 14px;
   color: #ce0707;
-  margin: 39px 0 0 0;
+  margin: 37px 0 0 0;
 
 }
 
