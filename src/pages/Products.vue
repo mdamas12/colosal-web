@@ -1,14 +1,14 @@
 <template>
   <q-page class="container-products q-pt-md">
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list q-pt-md" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
     <div class="container-products2">
       <q-layout view="hHh Lpr lff" container style="min-height: 1570px" class="rounded-borders">
         <q-header class="bg-hueso">
-          <q-toolbar>
-            <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" />
+          <q-toolbar class="toolbar-drawer">
+            <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>
             <div>
               <div class="text-h7 q-mr-sm texto-filter">Ordenar por:</div>
             </div>
@@ -26,7 +26,7 @@
           content-class="bg-white"
         >
         <q-scroll-area class="fit">
-          <q-list>
+          <q-list bordered>
             <q-item-label class="font-category-splitter q-pa-md">Categorías</q-item-label>
               <q-item clickable 
                       v-ripple 
@@ -40,7 +40,7 @@
         </q-scroll-area>
         </q-drawer>
       <q-page-container>
-      <div class="q-pa-md">
+      <div class="prueba">
        <!-- <q-input label="Buscar" v-model="search" @keyup.enter="productsFilter"/> -->
           <div class="row" v-if="load">
             <div class="col-12 col-md-4 q-gutter-sm q-pa-md" v-for="skeleton in 9" :key="skeleton.id">
@@ -127,31 +127,31 @@
           </div>
           <div class="row justify-center q-mb-md" v-else>
             <div class="col justify-center text-center">
-              <div class="row justify-center">
+              <div class="row">
                 <div class="col-12 col-md-4 q-pa-md q-gutter-sm cursor-pointer" v-for="product in products" :key="product.id">
                   <q-card class="my-card card2 q-pa-md" @click="$router.push({ path: `/products/detail/${product.id}/` })">
-                    <q-card-section class="text-center">
+                    <q-card-section class="text-center q-pt-none">
                       <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
-                      <q-img :src="product.image" class="img-product2" style="max-width:150px; height: 150px;"></q-img>
+                      <q-img :src="product.image" class="img-product2" style="max-width:110px; height: 110px;"></q-img>
                     </q-card-section>
                     <q-card-section class="text-center hc">
-                      <div class="text-name-product">
+                      <div class="text-name-product-list">
                         <q-item-label lines="2">
                           {{product.name}}
                         </q-item-label>
                       </div>
-                      <div class="text-description-product">
+                      <div class="text-brand-product-list">
                         <q-item-label lines="2">
-                           {{product.description}}
+                           {{product.brand.name}}
                         </q-item-label>
                       </div>
                     </q-card-section>
                     <q-card-section class="text-center q-pt-none">
-                      <div class="text-price-product">
+                      <div class="text-price-product-list">
                         {{product.coin}} {{product.price}}
                       </div>
                     </q-card-section>
-                    <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
+                    <!-- <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
                       <div class="text-quantity-products">
                         {{product.quantity}} Disponibles
                       </div>
@@ -160,14 +160,13 @@
                       <div class="text-quantity-products">
                         {{product.quantity}} Disponible
                       </div>
-                    </q-card-section>
-                      <!-- </q-card-section> -->
+                    </q-card-section> -->
                       <q-card-section v-if="product.quantity < 1" class="text-center q-pt-none">
                       <div class="text-quantity-products-none">
                          No Disponible
                       </div>
                     </q-card-section>
-                    <q-card-section v-if="product.quantity > 0" class="text-center">
+                    <q-card-section v-if="product.quantity > 0" class="text-center q-pt-none">
                       <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
                     </q-card-section>
                   </q-card>
@@ -175,7 +174,7 @@
               </div>
             </div>
           </div>
-          <div class="row justify-center">
+          <div class="row justify-center q-mb-md">
             <q-pagination
               v-if="numberOfPages > 1"
               v-model="pagination.page"
@@ -394,6 +393,9 @@ export default defineComponent({
 </script>
 
 <style>
+.prueba{
+  margin-top: -14px;
+}
 .container-products{
     background-color: #FAFAFA;
 }
@@ -412,6 +414,7 @@ export default defineComponent({
 }
 .texto-breadcrumbs{
     font-family: 'Poppins-Regular';
+    font-size: 12px;
 }
 
 .my-card{
@@ -434,15 +437,15 @@ export default defineComponent({
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
 }
-.text-name-product{
+.text-name-product-list{
     font-family: 'Poppins-SemiBold';
     font-size: 18px;
 }
-.text-description-product{
+.text-brand-product-list{
     font-family: 'Poppins-Regular';
     font-size: 16px;
 }
-.text-price-product{
+.text-price-product-list{
     font-family: 'Poppins-SemiBold';
     font-size: 22px;
 }
@@ -477,15 +480,19 @@ export default defineComponent({
     .img-product2{
         width: 50%;
     }
+
+    .toolbar-drawer{
+      justify-content: flex-end;
+    }
 }
-@media (min-width:1900px){
+/* @media (min-width:1900px){
     .card2{
         min-height: 520px;
     }
     .skeleton-card{
         min-height: 520px;
     }
-}
+} */
 .my-menu-link{
   color: white;
   background: var(--q-color-primary) !important
@@ -495,7 +502,7 @@ export default defineComponent({
 .text-quantity-products{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 18px;
+  font-size: 12px;
   color: #060485;
 
 }
@@ -503,9 +510,9 @@ export default defineComponent({
 .text-quantity-products-none{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 18px;
+  font-size: 12px;
   color: #ce0707;
-  margin: 68px 0 0 0;
+  /* margin: 53px 0 0 0; */
 
 }
 </style>

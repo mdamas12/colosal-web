@@ -24,7 +24,7 @@
             <div class="text-quantity">{{promotion.quantity}}</div>
           </div>
            <div v-if="promotion.quantity  < 1" class="mb-detail">
-            <div class="text-quantity-none">NO Disponible</div>
+            <div class="text-quantity-none-detail-promotion">NO Disponible</div>
           </div>
           <!-- <div class="text-fventa-promotion">Costo:</div>
           <div class="text-price_fventa-promotion">{{promotion.coin}}  {{promotion.price}}</div> -->
@@ -335,10 +335,10 @@ export default defineComponent({
 
 }
 
-.text-quantity-none{
+.text-quantity-none-detail-promotion{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 24px;
+  font-size: 20px;
   color: #ce0707;
 
 }

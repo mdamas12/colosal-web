@@ -5,9 +5,9 @@
             <div class="container-title-register bg-hueso q-mx-lg">
                 <div class="row q-pa-md">
                     <div class="col">
-                        <q-card>
+                        <q-card flat bordered>
                             <q-item>
-                                <q-item-section>
+                                <q-item-section class="padd-card">
                                     <q-item-label class="text-h5">Formulario de registro</q-item-label>
                                 </q-item-section>
                             </q-item>
@@ -32,7 +32,7 @@
                 </q-item>
                 <q-separator />
 
-                <q-card-section>
+                <q-card-section class="q-py-md">
                     <q-item>
                         <q-item-section>
                             <div class="row">
@@ -94,7 +94,7 @@
                     </q-item>
                 </q-card-section>
                 <q-card-actions vertical align="center">
-                    <q-btn label="Registrarme" color="bluesito" class="btn-register q-mb-md" @click="checkinformations()"></q-btn>
+                    <q-btn label="Registrarme" color="bluesito" class="btn-register" @click="checkinformations()"></q-btn>
                 </q-card-actions>
             </q-card>
         </div>
@@ -260,6 +260,9 @@ export default defineComponent({
     font-family:'Poppins-Medium';
     font-size: 12px;
     border-radius: 9px;
+}
+.padd-card{
+    padding: 16px 0px 16px 0px;
 }
 
 @media(min-width:320px) and (max-width:600px){

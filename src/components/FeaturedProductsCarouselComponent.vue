@@ -114,14 +114,19 @@
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-item-label lines="2" class="text-name-product">
+                                        <q-item-label lines="2" class="text-name-product-feature">
                                             {{product.name}} 
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                    <q-card-section class="text-center q-pt-none">
+                                        <q-item-label lines="2" class="text-brand-product-feature">
+                                            {{product.brand.name}}
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none text-price-product-feature">
                                       {{product.coin}}  {{product.price}}
                                     </q-card-section>
-                                     <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
+                                     <!-- <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity">
                                             {{product.quantity}} Disponibles 
                                         </q-item-label>
@@ -130,9 +135,9 @@
                                         <q-item-label lines="2" class="text-quantity-adv">
                                            Solo {{product.quantity}} Disponible 
                                         </q-item-label>
-                                    </q-card-section>
+                                    </q-card-section> -->
                                       <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
-                                        <q-item-label lines="2" class="text-quantity-none">
+                                        <q-item-label lines="2" class="text-quantity-none-product">
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
@@ -244,7 +249,7 @@
                             </div>
                         </div>
                         <div class="row justify-center" v-else>
-                            <div class="col-12 col-md q-gutter-sm q-pa-md">
+                            <div class="col-12 col-md-12 q-gutter-sm q-pa-md">
                                 <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                     <q-card-section class="text-center">
                                         <q-img 
@@ -253,14 +258,19 @@
                                             class="img-product"></q-img>
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-item-label lines="2" class="text-name-product">
+                                        <q-item-label lines="2" class="text-name-product-feature">
                                             {{product.name}}
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                    <q-card-section class="text-center">
+                                        <q-item-label lines="2" class="text-brand-product-feature">
+                                            {{product.brand.name}}
+                                        </q-item-label>
+                                    </q-card-section>
+                                    <q-card-section class="text-center q-pt-none text-price-product-feature">
                                       {{product.coin}} {{product.price}} 
                                     </q-card-section>
-                                    <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
+                                    <!-- <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity">
                                             {{product.quantity}} Disponibles 
                                         </q-item-label>
@@ -269,9 +279,9 @@
                                         <q-item-label lines="2" class="text-quantity-adv">
                                            Solo {{product.quantity}} Disponible 
                                         </q-item-label>
-                                    </q-card-section>
+                                    </q-card-section> -->
                                       <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
-                                        <q-item-label lines="2" class="text-quantity-none">
+                                        <q-item-label lines="2" class="text-quantity-none-product">
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
@@ -476,15 +486,15 @@ export default defineComponent({
         font-family: 'Poppins-SemiBold';
         font-size: 25px;
     }
-    .text-name-product{
+    .text-name-product-feature{
         font-family: 'Poppins-SemiBold';
         font-size: 18px;
     }
-    .text-description-product{
+    .text-brand-product-feature{
         font-family: 'Poppins-Regular';
         font-size: 16px;
     }
-    .text-price-product{
+    .text-price-product-feature{
         font-family: 'Poppins-SemiBold';
         font-size: 22px;
     }
@@ -517,10 +527,11 @@ export default defineComponent({
         font-weight: 700;
         color: rgb(17, 3, 95);
     }
-    .text-quantity-none{
-        margin: 38px 0 0 0;
+    .text-quantity-none-product{
+        margin: 5px 0 0 0;
         font-weight: 700;
         color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
     }
      .text-quantity-adv{
         font-weight: 700;

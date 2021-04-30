@@ -1,6 +1,6 @@
 <template>
 <q-page>
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm breadcrumbs-promotion" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
@@ -32,14 +32,14 @@
         </q-list>
     </div> -->
     <div class="container-list-promotions q-pa-md">
-      <div class="row justify-center q-mb-md">
+      <div class="row q-mb-md">
         <div class="col-12 col-md-4 q-pa-md q-gutter-sm" v-for="promotion in promotions" :key="promotion.id">
           <q-card class="my-card card2 q-pa-md text-center cursor-pointer" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
             <q-card-section class="text-center">
               <q-img 
                                             :src="promotion.image" 
                                             class="img-promotions" 
-                                            style="max-width:150px"></q-img>
+                                            style="max-width:150px; height: 150px;"></q-img>
             </q-card-section>
             <q-card-section>
               <div class="text-name-promotion">
@@ -54,12 +54,12 @@
                  {{promotion.coin}} {{promotion.price}}
               </div>
 
-              <div v-if="promotion.quantity > 0" >
+              <!-- <div v-if="promotion.quantity > 0" >
                 <div class="text-detail-promotion">Cantidad Disponible :</div>
                 <div class="text-quantity">{{promotion.quantity}}</div>
-              </div>
+              </div> -->
               <div v-if="promotion.quantity  < 1" >
-                <div class="text-quantity-none">Promocion NO Disponible</div>
+                <div class="text-quantity-none-promotion">NO Disponible</div>
               </div>
             </q-card-section>
             <q-card-section>
@@ -185,11 +185,12 @@ export default defineComponent({
 
 }
 
-.text-quantity-none{
+.text-quantity-none-promotion{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 24px;
+  font-size: 14px;
   color: #ce0707;
+  margin: 14px 0 0 0;
 
 }
 

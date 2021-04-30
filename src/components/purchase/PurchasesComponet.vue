@@ -1,6 +1,6 @@
 <template>
 	<div class="container-shopping-cart-title ">
-		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm breadcrumbs-purchases" active-color="grey">
+		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases" active-color="grey">
 			<q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Carrito" to="/cart" class="texto-breadcrumbs"/>
 			<q-breadcrumbs-el label="Compra" class="texto-breadcrumbs text-bluesito"/>
@@ -77,6 +77,9 @@
 											<div class="col text-name-product">
 												{{shoppingcart.product.name}}
 											</div>
+                      <div class="col text-description-product">
+												{{shoppingcart.product.brand.name}}
+											</div>
 										</q-card-section>
 									</div>
 								</div>
@@ -87,14 +90,14 @@
                   	</div>
 										<div class="text-center">
 											<q-card flat bordered>
-												<q-card-section>
+												<!-- <q-card-section> -->
 													<div class="row justify-evenly items-center">	
 														<div class="col text-name-product">
 															{{shoppingcart.quantity}} 
 														</div>
 																		
 													</div>
-												</q-card-section>
+												<!-- </q-card-section> -->
 											</q-card>
 										</div>
 		
@@ -144,6 +147,9 @@
 											<div class="col text-name-product">
 												{{shoppingcart.promotion.name}}
 											</div>
+                      <div class="col text-description-product">
+												{{shoppingcart.product.brand.name}}
+											</div>
 										</q-card-section>
 									</div>
 								</div>
@@ -154,14 +160,14 @@
 										</div>
 										<div class="text-center">
 											<q-card flat bordered>
-												<q-card-section>
+												<!-- <q-card-section> -->
 													<div class="row justify-evenly items-center">
 														<div class="col text-name-product self-center">
 															{{shoppingcart.quantity}} 
 														</div>
 																					
 													</div>
-												</q-card-section>
+												<!-- </q-card-section> -->
 											</q-card>
 										</div>
 									</q-card-section>
@@ -580,7 +586,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 		.text-name-product{
 			font-family: 'Poppins-SemiBold';
-			font-size: 16px;
+			font-size: 14px;
 		}
 
     .text-total-purchase{

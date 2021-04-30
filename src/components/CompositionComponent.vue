@@ -23,7 +23,7 @@
               </div>
               <q-btn label="ver nuestras ofertas"
               color="negative"
-              text-color="white" class="btn-slide">
+              text-color="white" class="btn-slide" @click="$router.push('/products')">
               </q-btn>
             </div>
           </div>
@@ -40,7 +40,7 @@
               </div>
               <q-btn label="ver promociones"
               color="negative"
-              text-color="white" class="btn-slide">
+              text-color="white" class="btn-slide" @click="$router.push('/promotions')">
               </q-btn>
             </div>
           </div>

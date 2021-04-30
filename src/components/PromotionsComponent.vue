@@ -120,27 +120,27 @@
                                         <q-img 
                                             :src="promotion.image" 
                                             class="img-promotions" 
-                                            style="max-width:150px"></q-img>
+                                            style="max-width:150px; height: 150px;"></q-img>
                                         <div class="middle">
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-item-label lines="2" class="text-name-product">
+                                        <q-item-label lines="2" class="text-name-promotion">
                                             {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                    <q-card-section class="text-center q-pt-none text-price-promotion">
                                          {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
+                                        <!-- <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
                                             {{promotion.quantitity}} Disponibles  
                                         </q-item-label>
                                         <q-item-label v-if="promotion.quantity == 1" lines="2" class="text-quantity-none">
                                            Solo {{promotion.quantitity}} Disponible
-                                        </q-item-label>
-                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none">
+                                        </q-item-label> -->
+                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none-promotion-feature">
                                              NO Disponible
                                         </q-item-label>
                                     </q-card-section>
@@ -321,27 +321,27 @@
                                         <q-img 
                                             :src="promotion.image" 
                                             class="img-promotions" 
-                                            style="max-width:150px"></q-img>
+                                            style=" max-width:150px; height: 150px;"></q-img>
                                         <div class="middle">
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
                                                                         <q-card-section class="text-center">
-                                        <q-item-label lines="2" class="text-name-product">
+                                        <q-item-label lines="2" class="text-name-promotion">
                                             {{promotion.name}} 
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section class="text-center q-pt-none text-price-product">
+                                    <q-card-section class="text-center q-pt-none text-price-promotion">
                                          {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
                                     <q-card-section class="text-center">
-                                        <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
+                                        <!-- <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
                                             {{promotion.quantitity}} Disponibles  
                                         </q-item-label>
                                         <q-item-label v-if="promotion.quantity == 1" lines="2" class="text-quantity-none">
                                            Solo {{promotion.quantitity}} Disponible
-                                        </q-item-label>
-                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none">
+                                        </q-item-label> -->
+                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none-promotion-feature">
                                              NO Disponible
                                         </q-item-label>
                                     </q-card-section>
@@ -433,6 +433,14 @@ export default defineComponent({
 .combo1:hover .middle{
     opacity: 1;
 }
+.text-name-promotion{
+    font-family: 'Poppins-SemiBold';
+    font-size: 18px;
+}
+.text-price-promotion{
+    font-family: 'Poppins-SemiBold';
+    font-size: 22px;
+}
 @media (min-width:320px) and (max-width: 767px) {
         .container-promotions{
             padding-left: 0;
@@ -454,22 +462,23 @@ export default defineComponent({
 .text-quantity{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 18px;
+  font-size: 12px;
   color: #060485;
 
 }
 
-.text-quantity-none{
+.text-quantity-none-promotion-feature{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 18px;
+  font-size: 12px;
   color: #ce0707;
+  margin: 39px 0 0 0;
 
 }
 
 .text-quantity-adv{
        font-family: 'Poppins-SemiBold';
-  font-size: 18px;
+  font-size: 12px;
         color: rgb(212, 199, 7);
     }
 </style>
