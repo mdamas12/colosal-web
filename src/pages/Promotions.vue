@@ -37,9 +37,9 @@
           <q-card class="my-card card2 q-pa-md text-center cursor-pointer" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
             <q-card-section class="text-center">
               <q-img 
-                                            :src="promotion.image" 
-                                            class="img-promotions" 
-                                            style="max-width:150px; height: 150px;"></q-img>
+                :src="promotion.image" 
+                class="img-promotions" 
+                style="max-width:150px; height: 150px;"></q-img>
             </q-card-section>
             <q-card-section>
               <div class="text-name-promotion">
@@ -62,7 +62,7 @@
                 <div class="text-quantity-none-promotion">NO Disponible</div>
               </div>
             </q-card-section>
-            <q-card-section>
+            <q-card-section class="q-pt-none">
               <div class="q-pt-none" v-if="promotion.quantity > 0">
                 <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" size="md" class="btn-promotions"></q-btn>
               </div>

@@ -5,7 +5,7 @@
       <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
     <div class="container-products2">
-      <q-layout view="hHh Lpr lff" container style="min-height: 1570px" class="rounded-borders">
+      <q-layout view="hHh Lpr lff" container style="min-height: 3680px" class="rounded-borders">
         <q-header class="bg-hueso">
           <q-toolbar class="toolbar-drawer">
             <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>

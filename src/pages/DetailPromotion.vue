@@ -7,7 +7,7 @@
     </q-breadcrumbs>
     <div class="container-detail-promotion2">
       <div class="row">
-        <div class="col-12 col-md q-gutter-sm q-pa-md">
+        <div class="col-12 col-md q-gutter-sm fondo-img-detail-promotion">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
             <q-carousel-slide v-for="(pic,index) in images" :key="index + 1" :name="index + 1" :img-src="pic" class="border-img-slide" ></q-carousel-slide>
           </q-carousel>
@@ -59,7 +59,7 @@
               <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-promotion" size="md" @click="ToShoppingcart()"></q-btn>
             </div>
           </div> 
-          <div class="title-nota-extra mb-detail">{{status_cart}}</div>
+          <div class="msj-nota-extra mb-detail">{{status_cart}}</div>
           <div class="title-nota-extra"><b>Productos:</b></div>
           <q-list dense class="rounded-borders">
             <q-item clickable v-ripple v-for="promo in promotion.promotion_detail" :key="promo.product.id">
@@ -268,10 +268,10 @@ export default defineComponent({
   font-family: 'Poppins-Regular';
   font-size: 13px;
 }
-.text-price-promotion{
+/* .text-price-promotion{
   font-family: 'Poppins-SemiBold';
   font-size: 30px;
-}
+} */
 .text-detail-promotion{
   font-family: 'Poppins-Regular';
   font-size: 12px;
@@ -292,6 +292,13 @@ export default defineComponent({
   font-family: 'Poppins-Regular';
   font-size: 13px;
 }
+
+.msj-nota-extra{
+  font-family: 'Poppins-SemiBold';
+  font-size: 13px;
+  color: rgba(3, 11, 88, 0.333)
+}
+
 .text-nota-extra{
   font-family: 'Poppins-Regular';
   font-size: 14px;
@@ -355,6 +362,9 @@ export default defineComponent({
     padding-left: 13%;
     padding-right: 13%;
   }
-}
 
+  .fondo-img-detail-promotion{
+    padding: 20px 75px 20px 75px;
+  }
+}
 </style>

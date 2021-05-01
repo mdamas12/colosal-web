@@ -141,11 +141,11 @@
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section  v-if="product.quantity > 0" class="text-center" >
+                                    <q-card-section  v-if="product.quantity > 0" class="text-center q-pt-none" >
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
                                     </q-card-section>
-                                    <q-card-section  v-if="product.quantity <= 0" class="text-center" >
-                                    </q-card-section>
+                                    <!-- <q-card-section  v-if="product.quantity <= 0" class="text-center" >
+                                    </q-card-section> -->
                                 </q-card>
                             </div>
                         </div>
@@ -285,11 +285,11 @@
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
-                                    <q-card-section  v-if="product.quantity > 0" class="text-center" >
+                                    <q-card-section  v-if="product.quantity > 0" class="text-center q-pt-none" >
                                         <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
                                     </q-card-section>
-                                    <q-card-section  v-if="product.quantity <= 0" class="text-center" >
-                                    </q-card-section>
+                                    <!-- <q-card-section  v-if="product.quantity <= 0" class="text-center" >
+                                    </q-card-section> -->
                                 </q-card>
                             </div>
                         </div>
@@ -528,7 +528,7 @@ export default defineComponent({
         color: rgb(17, 3, 95);
     }
     .text-quantity-none-product{
-        margin: 5px 0 0 0;
+        margin: 10px 0 10px 0;
         font-weight: 700;
         color: rgb(197, 11, 11);
         font-family: 'Poppins-SemiBold';

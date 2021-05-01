@@ -45,7 +45,7 @@
             <q-tab-panel name="personal-info">
               <q-card class="my-card card">
                 <q-item>
-                      <q-item-section>
+                      <q-item-section class="padd-perfil">
                           <div class="row items-center">
                               <div class="col text-center">
                                   <q-item-label class="title-personal-info">Información personal</q-item-label>
@@ -184,7 +184,7 @@
             <q-tab-panel name="order-status">
                 <q-card class="my-card q-px-md">
                     <q-item>
-                        <q-item-section>
+                        <q-item-section class="padd-perfil">
                             <div class="row items-center">
                                 <div class="col text-center">
                                     <q-item-label class="title-addresses">Estatus de Ordenes</q-item-label>
@@ -766,5 +766,8 @@ export default defineComponent({
     }
     .font-body-table{
         font-family: 'Poppins-Regular';
+    }
+    .padd-perfil{
+    padding: 16px 0px 16px 0px;
     }
 </style>

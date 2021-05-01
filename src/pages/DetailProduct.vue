@@ -7,7 +7,7 @@
         </q-breadcrumbs>
         <div class="container-detail-product2">
             <div class="row">
-                <div class="col-12 col-md q-gutter-sm q-pa-md">
+                <div class="col-12 col-md q-gutter-sm fondo-img-detail-product">
                     <q-carousel swipeable animated v-model="slide" thumbnails infinite>
                         <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
                     </q-carousel>
@@ -83,7 +83,7 @@
                         </div>
                     </div> -->
 
-                    <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div>
+                    <!-- <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div> -->
                     <div class="title-nota-extra"><b>Descripción del producto:</b></div>
                     <div class="text-nota-extra text-justify q-pr-md mb-detail">
                         <q-item-label lines="2">
@@ -102,13 +102,13 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart == '' ">
+                        <div class="col-6 col-md mb-detail" v-if="status_cart == '' ">
                             <q-btn label="AGREGAR" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md" @click="Shoppingcart()"></q-btn>                            
                         </div>
-                        <div class="col-6 col-md" v-if="status_cart != '' ">           
+                        <div class="col-6 col-md mb-detail" v-if="status_cart != '' ">           
                             <q-btn label="Actualizar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product"  size="md" @click="Shoppingcart()"></q-btn>                            
-                          
                         </div>
+                        <div class="text-msj-cart text-center mb-detail"><b>{{status_cart}}</b></div>
                     </div>
                 </div>
             </div>
@@ -386,18 +386,18 @@ export default defineComponent({
 
 .text-msj-cart{
     font-family: 'Poppins-SemiBold';
-    font-size: 20px;
+    font-size: 12px;
     color: rgba(3, 11, 88, 0.333)
 }
 .text-msj-stock{
     font-family: 'Poppins-SemiBold';
-    font-size: 20px;
+    font-size: 14px;
     color: #FF0000
 }
 
 .text-msj-stock-full{
     font-family: 'Poppins-SemiBold';
-    font-size: 20px;
+    font-size: 14px;
     color: #000957
 }
 .mb-detail{
@@ -413,5 +413,8 @@ export default defineComponent({
         padding-left: 13%;
         padding-right: 13%;
     }
+    .fondo-img-detail-product{
+    padding: 20px 75px 20px 75px;
+}
 }
 </style>

@@ -133,7 +133,7 @@
                                     <q-card-section class="text-center q-pt-none text-price-promotion">
                                          {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                    <q-card-section class="text-center q-pt-none">
                                         <!-- <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
                                             {{promotion.quantitity}} Disponibles  
                                         </q-item-label>
@@ -472,7 +472,7 @@ export default defineComponent({
   font-family: 'Poppins-SemiBold';
   font-size: 14px;
   color: #ce0707;
-  margin: 37px 0 0 0;
+  margin: 25px 0 0 0;
 
 }
 
