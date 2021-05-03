@@ -148,7 +148,7 @@
 												{{shoppingcart.promotion.name}}
 											</div>
                       <div class="col text-description-product">
-												{{shoppingcart.product.brand.name}}
+												{{shoppingcart.promotion.description}}
 											</div>
 										</q-card-section>
 									</div>

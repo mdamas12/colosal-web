@@ -220,7 +220,7 @@
 												{{item.promotion.name}}
 											</div>
 											<div class="col text-description-product">
-												{{item.promotion.brand.name}}
+												{{item.promotion.description}}
 											</div>
 										</q-card-section>
 									</div>

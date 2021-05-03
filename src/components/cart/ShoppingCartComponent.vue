@@ -27,7 +27,7 @@
 									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
 								<div class="col-12 col-sm-2 text-center">
-									<div class="column items-center text-center">
+									<div class="column items-center">
 										<q-card-section class="text-center">
 											<div class="col text-name-product-car">
 												{{shoppingcart.product.name}}
@@ -109,7 +109,7 @@
 												{{shoppingcart.promotion.name}}
 											</div>
 											<div class="col text-description-product-car">
-												{{shoppingcart.promotion.brand.name}}
+												{{shoppingcart.promotion.description}}
 											</div>
 										</q-card-section>
 									</div>
