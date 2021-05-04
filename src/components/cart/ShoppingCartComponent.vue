@@ -40,11 +40,11 @@
 								</div>
 								<div class="col-12 col-sm-3">
 									<q-card-section>
-										<div class="col text-description-product-car text-center">
+										<!-- <div class="col text-description-product-car text-center">
 											 <div  v-if="shoppingcart.product.quantity > 5"><b>Existen {{shoppingcart.product.quantity}} en Disponibles</b></div>
 							   				 <div  v-if="shoppingcart.product.quantity <= 5 && shoppingcart.product.quantity > 0 "><b>Solo quedan {{shoppingcart.product.quantity}} Disponibles</b></div>
 							   				 <div v-if="shoppingcart.product.quantity == 0"><b> Este Producto no esta Disponible</b></div>
-										</div>
+										</div> -->
 										<div class="text-center">
 											<q-card flat bordered>
 												<!-- <q-card-section> -->
@@ -116,11 +116,11 @@
 								</div>
 								<div class="col-12 col-sm-3">
 									<q-card-section>
-										<div class="col text-description-product-car text-center">
+										<!-- <div class="col text-description-product-car text-center">
 											 <div  v-if="shoppingcart.promotion.quantity > 5"><b>Existen {{shoppingcart.promotion.quantity}} Disponibles</b></div>
 							   				 <div  v-if="shoppingcart.promotion.quantity <= 5 && shoppingcart.promotion.quantity > 0 "><b>Solo quedan {{shoppingcart.promotion.quantity}} Disponibles</b></div>
 							   				 <div v-if="shoppingcart.promotion.quantity == 0"><b> Este Producto no esta Disponible</b></div>
-										</div>
+										</div> -->
 										<div class="text-center">
 											<q-card flat bordered>
 												<!-- <q-card-section> -->
@@ -182,19 +182,22 @@
 							<div class="col-2 self-start text-name-product-car">
 								Subtotal
 							</div>
-							<div class="col-2 wrap self-end text-name-product-car">
-								<strong>${{subtotal.toFixed(2)}}</strong>
+							<div class="container">
+								<div class="col-2 wrap self-end text-name-product-car">
+									<strong>${{subtotal.toFixed(2)}}</strong>
+								</div>
 							</div>
 						</div>
 					</q-card-section>
-
 					<q-card-section>
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product-car">
 								Descuentos 
 							</div>
-							<div class="col-2 wrap self-end text-name-product-car">
-								<strong>$0.00</strong>
+							<div class="container">
+								<div class="col-2 wrap self-end text-name-product-car">
+									<strong>$0.00</strong>
+								</div>
 							</div>
 						</div>
 					</q-card-section>
@@ -204,8 +207,10 @@
 							<div class="col-2 self-start text-name-product-car">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end text-total-product-car">
-								<strong>${{subtotal.toFixed(2)}}</strong>
+							<div class="container">
+								<div class="col-2 wrap self-end text-total-product-car">
+									<strong>${{subtotal.toFixed(2)}}</strong>
+								</div>
 							</div>
 						</div>
 					</q-card-section>

@@ -1,6 +1,10 @@
 <template>
   <q-page>
     <div class="container-purschases-order">
+       <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases-order" active-color="grey">
+                <q-breadcrumbs-el icon="home" to="/" />
+                <q-breadcrumbs-el label="Mis Compras" class="texto-breadcrumbs text-bluesito"/>
+    	    </q-breadcrumbs>
       <div class="row">
          <div class="col-md-12 col-xs-12 q-pa-sm">
         <!-- <div class="row full-width q-my-xl text-center">
@@ -643,6 +647,10 @@ export default Vue.extend({
 </script>
 <style>
 
+  .breadcrumbs-purchases-order{
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+  }
   .tittle-text{
     font-family: 'Poppins-SemiBold';
 			font-size: 20px;

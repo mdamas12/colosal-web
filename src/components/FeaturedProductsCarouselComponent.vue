@@ -126,6 +126,7 @@
                                     <q-card-section class="text-center q-pt-none text-price-product-feature">
                                       {{product.coin}}  {{product.price}}
                                     </q-card-section>
+    
                                      <!-- <q-card-section v-if="product.quantity > 1" class="text-center q-pt-none">
                                         <q-item-label lines="2" class="text-quantity">
                                             {{product.quantity}} Disponibles 
@@ -142,7 +143,31 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section  v-if="product.quantity > 0" class="text-center q-pt-none" >
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
+                                        <div class="row items-center">
+                                            <div class="col-5">
+                                                <div class="row items-center justify-end">
+                                                    <q-card flat bordered>
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
+                                                        {{counter}}
+                                                    </div>
+                                                    </q-card>
+                                                    
+                                                    <div class="col-3">
+                                                        <div class="row">
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(i)"></q-btn>
+                                                        </div>
+                                                        <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(i)"></q-btn>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="row items-center">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                </div>
+                                            </div>
+                                        </div>                          
                                     </q-card-section>
                                     <!-- <q-card-section  v-if="product.quantity <= 0" class="text-center" >
                                     </q-card-section> -->
@@ -280,13 +305,37 @@
                                            Solo {{product.quantity}} Disponible 
                                         </q-item-label>
                                     </q-card-section> -->
-                                      <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
-                                        <q-item-label lines="2" class="text-quantity-none-product">
+                                      <q-card-section>
+                                        <q-item-label v-if="product.quantity <= 0" class="text-center q-pt-none text-quantity-none-product" lines="2">
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section  v-if="product.quantity > 0" class="text-center q-pt-none" >
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>                                   
+                                       <div class="row items-center">
+                                            <div class="col-5">
+                                                <div class="row items-center justify-end">
+                                                    <q-card flat bordered>
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
+                                                        {{counter}}
+                                                    </div>
+                                                    </q-card>
+                                                    
+                                                    <div class="col-3">
+                                                        <div class="row">
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(i)"></q-btn>
+                                                        </div>
+                                                        <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(i)"></q-btn>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="row items-center">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                </div>
+                                            </div>
+                                        </div>                                     
                                     </q-card-section>
                                     <!-- <q-card-section  v-if="product.quantity <= 0" class="text-center" >
                                     </q-card-section> -->
@@ -311,11 +360,12 @@ export default defineComponent({
   name: 'FeaturedProductsCarouselComponent',
   data () {
     return {
+        counter: 0,
       shopp:[],
       incart: [],
       productsShop: [],
       slide: 0,
-			slideresponsive: 1,
+      slideresponsive: 1,
       load: true,
       itemsProdRow: 3,
 			itemsProdRowResponsive: 1,
@@ -333,18 +383,10 @@ export default defineComponent({
     // this.productsFilter = this.products
     // this.spliteCategories();
   },
-  //   mounted () {
-  //     setTimeout(() => {
-  //       this.load = false
-  //     }, 3000)
-  //     ProductsService.getProducts().subscribe({
-  //       next: data => {
-  //         this.products = data.results
-  //         console.log(data)
-  //       },
-  //       complete: () => console.log('[complete]')
-  //     })
-  //   }
+    // mounted () {
+    //   this.refreshComponent()
+    //   this.allProducts()
+    // },
   methods: {
     allProducts () {    
       this.load = true
@@ -436,6 +478,16 @@ export default defineComponent({
           { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
         ]
       })
+    },
+    increaseProdQty(i){
+        if (this.counter <= this.products[i].product.quantity){ //compruebo que no se pase de la cantidad de stock
+            this.counter++
+        }
+    },
+    decreaseProdQty(i){
+        if (this.counter > 1){ 
+            this.counter--
+        }
     }
   }
 })
@@ -494,6 +546,10 @@ export default defineComponent({
         font-family: 'Poppins-Regular';
         font-size: 16px;
     }
+    .quantity-product-feature{
+        font-family: 'Poppins-Regular';
+        font-size: 16px;
+    }
     .text-price-product-feature{
         font-family: 'Poppins-SemiBold';
         font-size: 22px;
@@ -528,7 +584,7 @@ export default defineComponent({
         color: rgb(17, 3, 95);
     }
     .text-quantity-none-product{
-        margin: 10px 0 10px 0;
+        margin: 16px 0 16px 0;
         font-weight: 700;
         color: rgb(197, 11, 11);
         font-family: 'Poppins-SemiBold';

@@ -2,6 +2,10 @@
   <q-page>
     <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
         <q-header class="bg-white">
+            <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-perfil" active-color="grey">
+                <q-breadcrumbs-el icon="home" to="/" />
+                <q-breadcrumbs-el label="Mi Perfil" class="texto-breadcrumbs text-bluesito"/>
+    	    </q-breadcrumbs>
              <q-toolbar>
               <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" />
         </q-toolbar>
@@ -677,6 +681,10 @@ export default defineComponent({
 </script>
 
 <style>
+    .breadcrumbs-perfil{
+        font-family: 'Poppins-Regular';
+        font-size: 12px;
+    }
     .title-personal-info{
         font-family: 'Poppins-SemiBold';
         font-size: 20px;

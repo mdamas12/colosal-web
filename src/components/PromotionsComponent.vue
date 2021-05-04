@@ -145,7 +145,31 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                        <div class="row items-center">
+                                            <div class="col-5">
+                                                <div class="row items-center justify-end">
+                                                    <q-card flat bordered>
+                                                        <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                                        {{counter}}
+                                                    </div>
+                                                    </q-card>
+                                                    
+                                                    <div class="col-3">
+                                                        <div class="row">
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty()"></q-btn>
+                                                        </div>
+                                                        <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty()"></q-btn>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="row items-center">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                </div>
+                                            </div>
+                                        </div>   
                                     </q-card-section>
                                 </q-card>
                         </div>
@@ -326,7 +350,7 @@
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
-                                                                        <q-card-section class="text-center">
+                                    <q-card-section class="text-center">
                                         <q-item-label lines="2" class="text-name-promotion">
                                             {{promotion.name}} 
                                         </q-item-label>
@@ -346,7 +370,31 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
-                                        <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
+                                         <div class="row items-center">
+                                            <div class="col-5">
+                                                <div class="row items-center justify-end">
+                                                    <q-card flat bordered>
+                                                        <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                                        {{counter}}
+                                                    </div>
+                                                    </q-card>
+                                                    
+                                                    <div class="col-3">
+                                                        <div class="row">
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty()"></q-btn>
+                                                        </div>
+                                                        <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty()"></q-btn>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="row">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                </div>
+                                            </div>
+                                        </div>   
                                     </q-card-section>
                                 </q-card>
                         </div>
@@ -368,7 +416,8 @@ export default defineComponent({
       slideresponsive: 1,
       load: true,
       itemsPromoRow: 3,
-      promotions: []
+      promotions: [],
+      counter: 0,
     }
   },
   computed: {
@@ -390,7 +439,17 @@ export default defineComponent({
           this.promotions = response.data
           console.log(response.data)
         })
-    }
+    },
+        increaseProdQty(){
+            if (this.counter <= 0){ //compruebo que no se pase de la cantidad de stock
+                this.counter++
+        }
+    },
+        decreaseProdQty(){
+            if (this.counter > 1){ 
+                this.counter--
+        }
+    },
   }
 })
 </script>
@@ -472,7 +531,7 @@ export default defineComponent({
   font-family: 'Poppins-SemiBold';
   font-size: 14px;
   color: #ce0707;
-  margin: 25px 0 0 0;
+  margin: 28px 0 22px 0;
 
 }
 
