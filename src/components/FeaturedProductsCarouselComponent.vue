@@ -164,7 +164,9 @@
                                             </div>
                                             <div class="col-7">
                                                 <div class="row items-center">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    <div class="col">
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>                          
@@ -333,8 +335,7 @@
                                             <div class="col-7">
                                                 <div class="row items-center">
                                                     <div class="col">
-                                                                                                            <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
-
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
                                                     </div>
                                                 </div>
                                             </div>
