@@ -50,20 +50,20 @@
 												<!-- <q-card-section> -->
 													<div class="row items-center">
 														<div class="col">
-															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
+															<q-btn flat round color="primary" icon="remove" size="sm" @click="decreaseProdQty(index)"/>
 														</div>
 														<div class="col text-name-product-car">
 															{{shoppingcart.quantity}} 
 														</div>
 														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
+															<q-btn flat round color="primary" icon="add" size="sm" @click="increaseProdQty(index)"/>
 														</div>										
 													</div>
 												<!-- </q-card-section> -->
 											</q-card>
 										</div>
-										<div class="col-3 text-center">
-											<q-btn label="Actualizar cantidad" color="redsito" text-color="white" icon="shopping_cart" class="btn-shopp" dense size="sm" @click="Shoppingcart(index)"></q-btn>					
+										<div class="col-3 text-center q-pt-sm">
+											<q-btn label="Actualizar" flat rounded color="redsito" text-color="red" icon="shopping_cart" class="btn-shopp" dense size="sm" @click="Shoppingcart(index)"></q-btn>					
 										</div>
 									</q-card-section>
 								</div>				 
@@ -86,7 +86,6 @@
 												SUBTOTAL
 											</div>
 											<div class="col text-name-product-car">
-											
 												{{shoppingcart.product.coin}} {{(shoppingcart.product.price * shoppingcart.quantity).toFixed(2)}}
 											</div>
 										</q-card-section>

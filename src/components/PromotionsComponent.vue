@@ -149,7 +149,7 @@
                                             <div class="col-5">
                                                 <div class="row items-center justify-end">
                                                     <q-card flat bordered>
-                                                        <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
                                                         {{counter}}
                                                     </div>
                                                     </q-card>
