@@ -13,7 +13,7 @@
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">
-          <div class="text-title-promotion">{{promotion.name}}</div>
+          <div class="text-title-promotion">{{promotion.name}} </div>
           <div class="text-ID-promotion q-mb-md">Categoría: {{promotion.category.name}}</div>
           <q-separator class="mb-detail" />
           <div class="text-fventa-promotion">Costo:</div>
