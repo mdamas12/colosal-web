@@ -214,20 +214,24 @@
 							<div class="col-2 self-start text-name-product">
 								Subtotal
 							</div>
-							<div class="col-2 wrap self-end text-name-product">
-								<strong>${{subtotal.toFixed(2)}}</strong>
-							</div>
+              <div class="container">
+                	<div class="col-2 wrap self-end text-name-product">
+								    <strong>${{subtotal.toFixed(2)}}</strong>
+							    </div>
+              </div>
+						
 						</div>
 					</q-card-section>
-
 					<q-card-section class="text-center">
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product">
 								Descuentos
 							</div>
-							<div class="col-2 wrap self-end text-name-product">
-								<strong>$0.00</strong>
-							</div>
+              <div class="container">
+                <div class="col-2 wrap self-end text-name-product">
+								  <strong>$0.00</strong>
+							  </div>
+              </div>
 						</div>
 					</q-card-section>
 
@@ -238,9 +242,11 @@
 							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end text-total-purchase">
-								<strong>${{subtotal.toFixed(2)}}</strong>
-							</div>
+              <div class="container">
+                <div class="col-2 wrap self-end text-total-purchase">
+								  <strong>${{subtotal.toFixed(2)}}</strong>
+							  </div>
+              </div>
 						</div>
 					</q-card-section>
 

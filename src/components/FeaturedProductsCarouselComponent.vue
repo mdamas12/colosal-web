@@ -165,7 +165,13 @@
                                             </div>
                                             <div class="col-7">
                                                 <div class="row items-center">
+<<<<<<< HEAD
                                                     <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id, product.shopp)" size="md"></q-btn>
+=======
+                                                    <div class="col">
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    </div>
+>>>>>>> c1203bf8c9cc7ddd56d60be2f85aca90b1accf21
                                                 </div>
                                             </div>
                                         </div>                          
@@ -178,11 +184,15 @@
                     </q-carousel-slide>
                 </q-carousel>
          </div>
+<<<<<<< HEAD
 
         <!-- *********************** 
         **** Version Responsive ****
         **************************** -->
 	   <div class="container lt-md">
+=======
+		<div class="container lt-md">
+>>>>>>> c1203bf8c9cc7ddd56d60be2f85aca90b1accf21
             <q-carousel
                     v-model="slideresponsive"
                     transition-prev="slide-right"
@@ -193,8 +203,13 @@
                     arrows
                     control-color="red-10"
                     class="bg-accent container-carousel q-px-lg"
+<<<<<<< HEAD
                     style="height:475px">
                     <q-carousel-slide :name="product.id" v-for="(product,i) in products" :key="product.id">
+=======
+                    style="height:490px">
+                    <q-carousel-slide :name="i + 1" v-for="(product, i) in products" :key="product.id">
+>>>>>>> c1203bf8c9cc7ddd56d60be2f85aca90b1accf21
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
@@ -337,7 +352,9 @@
                                             </div>
                                             <div class="col-7">
                                                 <div class="row items-center">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    <div class="col">
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>                                     
