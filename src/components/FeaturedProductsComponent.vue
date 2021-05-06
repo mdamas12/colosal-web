@@ -100,10 +100,10 @@ export default defineComponent({
   .container-featured-products-1{
     padding-left: 13%;
     padding-right: 13%;
-    background-color: #FAFAFA;
+    background-color: #F2F7FF;
   }
   .container-featured-products{
-    background-color: #FAFAFA;
+    background-color: #F2F7FF;
   }
   .container-ws{
     background-color: #00BFA5;

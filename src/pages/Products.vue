@@ -6,7 +6,7 @@
     </q-breadcrumbs>
     <div class="container-products2">
       <q-layout view="hHh Lpr lff" container style="min-height: 3680px" class="rounded-borders">
-        <q-header class="bg-hueso">
+        <q-header class="bg-azul-tenue">
           <q-toolbar class="toolbar-drawer">
             <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>
             <div>
@@ -26,8 +26,8 @@
           content-class="bg-white"
         >
         <q-scroll-area class="fit">
-          <q-list bordered>
-            <q-item-label class="font-category-splitter q-pa-md">Categorías</q-item-label>
+          <q-list>
+            <q-item-label class="font-category-splitter q-pa-md">CATEGORÍAS</q-item-label>
               <q-item clickable 
                       v-ripple 
                       :active="categorie.id === idCategorie"
@@ -35,7 +35,7 @@
                       v-for="categorie in categories" :key="categorie.id" class="font-title-splitter" @click="getId(categorie.id)">
                 <q-item-section>{{categorie.name}}</q-item-section>
               </q-item>
-              <q-separator />
+              <!-- <q-separator /> -->
           </q-list>
         </q-scroll-area>
         </q-drawer>
@@ -397,7 +397,7 @@ export default defineComponent({
   margin-top: -14px;
 }
 .container-products{
-    background-color: #FAFAFA;
+    background-color: #F2F7FF;
 }
 .btn-product{
     border-radius: 9px;
@@ -408,6 +408,7 @@ export default defineComponent({
 }
 .font-category-splitter{
     font-family: 'Poppins-SemiBold';
+     color:#0F2A55
 }
 .font-product-splitter{
     font-family: 'Poppins-Regular';
@@ -451,7 +452,7 @@ export default defineComponent({
 }
 .texto-filter{
     font-family: 'Poppins-Medium';
-    color: black;
+    color: #0F2A55;
 }
 .btn-filter{
     font-family: 'Poppins-Regular';

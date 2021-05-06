@@ -18,7 +18,7 @@
                     animated
                     arrows
                     control-color="red-10"
-                    class="bg-accent container-carousel q-px-md"
+                    class="bg-azul-tenue container-carousel q-px-md"
                     style="height:475px">
                     <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in productsGroups" :key="slide">
                         <div class="row" v-if="load">
@@ -189,7 +189,7 @@
                     animated
                     arrows
                     control-color="red-10"
-                    class="bg-accent container-carousel q-px-lg"
+                    class="bg-azul-tenue container-carousel q-px-lg"
                     style="height:490px">
                     <q-carousel-slide :name="i + 1" v-for="(product, i) in products" :key="product.id">
                         <div class="row" v-if="load">
@@ -499,7 +499,7 @@ export default defineComponent({
 
 <style>
     .container-featured-products-carousel{
-        background-color: #FAFAFA;
+        background-color: #F2F7FF;
         padding-left: 12%;
         padding-right: 12%;
     }

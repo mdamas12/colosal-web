@@ -3,7 +3,7 @@
  <div class="container-benefits">
         <div class="row">
             <div class="col q-gutter-sm col-md q-px-md">
-               <div class="text-title text-dark pd-text">
+               <div class="text-title pd-text">
                    Nuestros beneficios
                </div>
             </div>
@@ -105,7 +105,6 @@ export default defineComponent({ name: 'OurBenefitsComponent' })
 } */
 .my-card{
 border-radius: 27px;
-/* height: 320px; */
 }
 
 .my-card:hover{
@@ -127,6 +126,7 @@ border-radius: 27px;
 .text-title{
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
+    color:#0F2A55
 }
 
 .text-subtitle{

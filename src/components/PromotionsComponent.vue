@@ -18,7 +18,7 @@
                 animated
                 arrows
                 control-color="red-10"
-                class="bg-accent container-carousel q-px-lg"
+                class="bg-azul-tenue container-carousel q-px-lg"
                 style="height:450px">
                 <q-carousel-slide :name="slide" class="col" v-for="(slide,index) in promotionsGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -243,7 +243,7 @@
                 animated
                 arrows
                 control-color="red-10"
-                class="bg-accent container-carousel q-px-lg"
+                class="bg-azul-tenue container-carousel q-px-lg"
                 style="height:465px">
                 <q-carousel-slide :name="promotion.id" class="col" v-for="promotion in promotions" :key="promotion.id">
                     <div class="row" v-if="load">
@@ -458,6 +458,7 @@ export default defineComponent({
 .container-promotions{
     padding-left: 12%;
     padding-right: 12%;
+    background-color: #F2F7FF;
 }
 .carousel-promo{
     height: 500px;
