@@ -129,15 +129,15 @@
             <div class="col justify-center text-center">
               <div class="row">
                 <div class="col-12 col-md-4 q-pa-md q-gutter-sm cursor-pointer" v-for="product in products" :key="product.id">
-                  <q-card class="my-card card2 q-pa-md" @click="$router.push({ path: `/products/detail/${product.id}/` })">
-                    <q-card-section class="text-center q-pt-none">
+                  <q-card class="my-card card2 q-pa-md" >
+                    <q-card-section class="text-center q-pt-none" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                       <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                       <q-img :src="product.image" class="img-product2" style="max-width:110px; height: 110px;"></q-img>
                     </q-card-section>
-                    <q-card-section class="text-center hc">
+                    <q-card-section class="text-center hc" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                       <div class="text-name-product-list">
                         <q-item-label lines="2">
-                          {{product.name}}
+                          {{product.name}} 
                         </q-item-label>
                       </div>
                       <div class="text-brand-product-list">
@@ -167,8 +167,33 @@
                       </div>
                     </q-card-section>
                     <q-card-section v-if="product.quantity > 0" class="text-center q-pt-none">
-                      <q-btn label="Agregar" color="redsito" text-color="white" icon="shopping_cart" class="btn-product" size="md"></q-btn>
-                    </q-card-section>
+                                        <div class="row items-center">
+                                            <div class="col-5">
+                                                <div class="row items-center justify-end">
+                                                    <q-card flat bordered>
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
+                                                        {{product.shopp}}
+                                                    </div>
+                                                    </q-card>
+                                                    
+                                                    <div class="col-3">
+                                                        <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(product.index)"></q-btn>
+                                                        </div>
+                                                        <div class="row">
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  @click="decreaseProdQty(product.index)"></q-btn>
+                                                        </div>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="row items-center">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id, product.shopp)" size="md"></q-btn>
+                                                </div>
+                                            </div>
+                                        </div>                     
+                      </q-card-section>
                   </q-card>
                 </div>
               </div>
@@ -200,6 +225,8 @@ import { defineComponent } from '@vue/composition-api'
 import ProductsServices from '../services/home/products/product.service'
 import CategoriesServices from '../services/home/categories/categorie.services'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import { Loading } from "quasar";
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
 import { colors } from 'quasar'
 
 const { getPaletteColor } = colors
@@ -255,6 +282,7 @@ export default defineComponent({
       drawer: false,
       menuList,
       products: [],
+      incart: [],
       categories: [],
       search: '',
       page: 1,
@@ -343,7 +371,39 @@ export default defineComponent({
       this.offset = this.limit * (this.pagination.page - 1)
       ProductsServices.getProductsCategorie(id, this.limit, this.offset).subscribe({
         next: data => {
-          this.products = data.results
+          //this.products = data.results
+          let productsShop = data.results  
+            //buscar si el usuario tiene productos en carrito de compra
+            if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        let itemcart = data.results
+                        for (let i = 0; i < productsShop.length; i++){
+                            let swich = false 
+                            productsShop[i].shopp = 0
+                            productsShop[i].index = i
+                            for (let j = 0; j < itemcart.length; j++){
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id == itemcart[j].product.id)){   
+                                    this.incart[i] = true
+                                    productsShop[i].shopp  = itemcart[j].quantity
+                                    swich = true
+                                }
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id != itemcart[j].product.id)){
+                                    this.incart[i] = false                                   
+                                }
+                            }
+                        }
+                        this.products = productsShop
+                    },
+                    error: err =>{
+                        console.log(err.response.data)
+                    },
+                    complete: ()=>{}
+                });
+
+                
+            }
+          
           this.numberOfPages = Math.ceil(data.count / this.limit)
           this.load = false
         },
@@ -357,7 +417,40 @@ export default defineComponent({
       this.offset = this.limit * (this.pagination.page - 1)
       ProductsServices.orderProducts(this.orderBy.value, this.limit, this.offset).subscribe({
         next: data => {
-          this.products = data.results
+          //this.products = data.results
+          let productsShop = data.results  
+            //buscar si el usuario tiene productos en carrito de compra
+            if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        let itemcart = data.results
+                        for (let i = 0; i < productsShop.length; i++){
+                            let swich = false 
+                            productsShop[i].shopp = 0
+                            productsShop[i].index = i
+                            for (let j = 0; j < itemcart.length; j++){
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id == itemcart[j].product.id)){   
+                                    this.incart[i] = true
+                                    productsShop[i].shopp  = itemcart[j].quantity
+                                    swich = true
+                                }
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id != itemcart[j].product.id)){
+                                    this.incart[i] = false                                   
+                                }
+                            }
+                        }
+                        this.products = productsShop
+                    },
+                    error: err =>{
+                        console.log(err.response.data)
+                    },
+                    complete: ()=>{}
+                });
+
+                
+            }
+          
+
           this.numberOfPages = Math.ceil(data.count / this.limit)
           this.load = false
         },
@@ -370,7 +463,39 @@ export default defineComponent({
       this.offset = this.limit * (this.pagination.page - 1)
       ProductsServices.getProviders(this.limit, this.offset).subscribe({
         next: data => {
-          this.products = data.results
+          //this.products = data.results
+          let productsShop = data.results  
+            //buscar si el usuario tiene productos en carrito de compra
+            if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        let itemcart = data.results
+                        for (let i = 0; i < productsShop.length; i++){
+                            let swich = false 
+                            productsShop[i].shopp = 0
+                            productsShop[i].index = i
+                            for (let j = 0; j < itemcart.length; j++){
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id == itemcart[j].product.id)){   
+                                    this.incart[i] = true
+                                    productsShop[i].shopp  = itemcart[j].quantity
+                                    swich = true
+                                }
+                                if((itemcart[j].product!=null) && (swich == false) && (productsShop[i].id != itemcart[j].product.id)){
+                                    this.incart[i] = false                                   
+                                }
+                            }
+                        }
+                        this.products = productsShop
+                    },
+                    error: err =>{
+                        console.log(err.response.data)
+                    },
+                    complete: ()=>{}
+                });
+
+                
+            }
+          
           this.numberOfPages = Math.ceil(data.count / this.limit)
           console.log(this.numberOfPages)
           this.load = false
@@ -387,7 +512,82 @@ export default defineComponent({
           this.getId(idCategorie)
           break
       }
+    },
+    verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
+    Shoppingcart(product_id, shopp_quantity){   
+        if (this.verifySession() == true){
+            if(shopp_quantity == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
+          
+            Loading.show();
+            const data_cart = {
+                'product' : product_id,
+                'quantity' : shopp_quantity
+            };
+            let subscription = ShoppingcartService.saveShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+					
+					
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+					
+				}
+               
+             },
+             complete: () => {
+               Loading.hide();
+             
+             },
+             error: () => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
+           this.showInitSession = true;
+        }
+    },
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
+    },
+    increaseProdQty(i){     
+        if (this.products[i].shopp < this.products[i].quantity){ //compruebo que no se pase de la cantidad de stock
+            this.products[i].shopp += 1   
+        }
+    },
+    decreaseProdQty(i){
+        if (this.products[i].shopp > 0){ 
+            this.products[i].shopp -= 1  
+        }
     }
+
+
   }
 })
 </script>
