@@ -192,9 +192,9 @@
                     animated
                     arrows
                     control-color="red-10"
-                    class="bg-accent container-carousel q-px-lg"
+                    class="bg-azul-tenue container-carousel q-px-lg"
                     style="height:475px">
-                    <q-carousel-slide :name="product.id" v-for="(product,i) in products" :key="product.id">
+                    <q-carousel-slide :name="i + 1" v-for="(product,i) in products" :key="product.id">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
                                 <q-card class="q-pt-md skeleton-card">
@@ -280,14 +280,14 @@
                         </div>
                         <div class="row justify-center" v-else>
                             <div class="col-12 col-md-12 q-gutter-sm q-pa-md">
-                                <q-card class="my-card card" @click="$router.push({ path: `/products/detail/${product.id}/` })">
-                                    <q-card-section class="text-center">
+                                <q-card class="my-card card">
+                                    <q-card-section class="text-center" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                         <q-img 
                                             style="max-width:150px; height: 150px;"
                                             v-bind:src="product.image" 
                                             class="img-product"></q-img>
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                    <q-card-section class="text-center" @click="$router.push({ path: `/products/detail/${product.id}/` })">
                                         <q-item-label lines="2" class="text-name-product-feature">
                                             {{product.name}}
                                         </q-item-label>
@@ -321,16 +321,16 @@
                                                 <div class="row items-center justify-end">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-md q-py-sm quantity-product-feature">
-                                                        {{product.counter}}
+                                                        {{product.shopp}}
                                                     </div>
                                                     </q-card>
                                                     
                                                     <div class="col-3">
                                                         <div class="row">
-                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  @lick="decreaseProdQty(i)"></q-btn>
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(product.index)"></q-btn>
                                                         </div>
                                                         <div class="row">
-                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(i)"></q-btn>
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  @click="decreaseProdQty(product.index)"></q-btn>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -338,7 +338,7 @@
                                             <div class="col-7">
                                                 <div class="row items-center">
                                                     <div class="col">
-                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id, product.shopp)" size="md"></q-btn>
                                                     </div>
                                                 </div>
                                             </div>

@@ -341,17 +341,17 @@
                     </div>
                     <div class="row justify-center" v-else>
                         <div class="col-12 col-md q-gutter-sm q-pa-md">
-                            <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
+                            <q-card class="my-card card">
                                     <q-card-section class="text-center">
-                                        <q-img 
+                                        <q-img @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })"
                                             :src="promotion.image" 
                                             class="img-promotions" 
-                                            style=" max-width:150px; height: 150px;"></q-img>
+                                            style=" max-width:150px; height: 150px;" ></q-img>
                                         <div class="middle">
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                    <q-card-section class="text-center" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                         <q-item-label lines="2" class="text-name-promotion">
                                             {{promotion.name}} 
                                         </q-item-label>
@@ -376,23 +376,23 @@
                                                 <div class="row items-center justify-end">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
-                                                        {{counter}}
+                                                        {{promotion.shopp}}
                                                     </div>
                                                     </q-card>
                                                     
                                                     <div class="col-3">
                                                         <div class="row">
-                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty()"></q-btn>
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
                                                         </div>
                                                         <div class="row">
-                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty()"></q-btn>
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-7">
                                                 <div class="row">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
                                                 </div>
                                             </div>
                                         </div>   

@@ -498,7 +498,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		margin: 2px 0 ;
 	}
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product-car{
@@ -556,6 +556,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			.container-shopping-cart-title{
 				padding-left: 11%;
 				padding-right: 11%;
+				background-color: #F2F7FF;
 			}
 		}
 </style>
