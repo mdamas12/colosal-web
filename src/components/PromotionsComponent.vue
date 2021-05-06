@@ -115,9 +115,9 @@
                     </div>
                     <div class="row justify-center" v-else>
                         <div class="col-6 col-md q-gutter-sm q-pa-md" v-for="promotion in promotions.slice(index * itemsPromoRow, (index+1) * itemsPromoRow)" :key="promotion.id">
-                            <q-card class="my-card card" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
+                            <q-card class="my-card card" >
                                     <q-card-section class="text-center">
-                                        <q-img 
+                                        <q-img @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })"
                                             :src="promotion.image" 
                                             class="img-promotions" 
                                             style="max-width:150px; height: 150px;"></q-img>
@@ -125,7 +125,7 @@
                                             <q-btn color="white" text-color="black" label="Ver mas" icon-right="keyboard_arrow_right" class="btn-category"></q-btn>
                                         </div>
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                    <q-card-section class="text-center" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
                                         <q-item-label lines="2" class="text-name-promotion">
                                             {{promotion.name}} 
                                         </q-item-label>
@@ -150,23 +150,24 @@
                                                 <div class="row items-center justify-end">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
-                                                        {{counter}}
+                                                        {{promotion.shopp}}
                                                     </div>
                                                     </q-card>
                                                     
                                                     <div class="col-3">
-                                                        <div class="row">
-                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty()"></q-btn>
+                                                         <div class="row">
+                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
                                                         </div>
                                                         <div class="row">
-                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty()"></q-btn>
+                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
                                                         </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-7">
                                                 <div class="row items-center">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id)" size="md"></q-btn>
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
                                                 </div>
                                             </div>
                                         </div>   
@@ -407,6 +408,8 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { Loading } from "quasar";
 import axios from 'axios'
 export default defineComponent({
   name: 'PromotionsComponent',
@@ -418,6 +421,7 @@ export default defineComponent({
       itemsPromoRow: 3,
       promotions: [],
       counter: 0,
+     incart: [],
     }
   },
   computed: {
@@ -436,19 +440,112 @@ export default defineComponent({
       const headers = { 'Content-Type': 'application/json' }
       axios.get('http://minimarketcolosal.com/api/' + 'web/home/promotions-featured/', { headers })
         .then(response => {
-          this.promotions = response.data
-          console.log(response.data)
+          //this.promotions = response.data
+            let data_promotions = response.data
+            if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        let itemcart = data.results
+                        for (let i = 0; i < data_promotions.length; i++){
+                            let swich = false 
+                            data_promotions[i].shopp = 0
+                            data_promotions[i].index = i
+                            for (let j = 0; j < itemcart.length; j++){
+                                if((itemcart[j].promotion!=null) && (swich == false) && (data_promotions[i].id == itemcart[j].promotion.id)){   
+                                    this.incart[i] = true
+                                    data_promotions[i].shopp  = itemcart[j].quantity
+                                    swich = true
+                                }
+                                if((itemcart[j].promotion!=null) && (swich == false) && (data_promotions[i].id != itemcart[j].promotion.id)){
+                                    this.incart[i] = false                                   
+                                }
+                            }
+                        }
+                        this.promotions = data_promotions
+                    },
+                    error: err =>{
+                        console.log(err.response.data)
+                    },
+                    complete: ()=>{}
+                });
+
+                
+            }
         })
     },
-        increaseProdQty(){
-            if (this.counter <= 0){ //compruebo que no se pase de la cantidad de stock
-                this.counter++
+
+     Shoppingcart(product_id, shopp_quantity){   
+        if (this.verifySession() == true){
+            if(shopp_quantity == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
+          
+            Loading.show();
+            const data_cart = {
+                'promotion' : product_id,
+                'quantity' : shopp_quantity
+            };
+            let subscription = ShoppingcartService.savePromotionShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+				
+					
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+				
+				}
+               
+             },
+             complete: () => {
+               Loading.hide();
+             
+             },
+             error: () => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
+           this.showInitSession = true;
         }
     },
-        decreaseProdQty(){
-            if (this.counter > 1){ 
-                this.counter--
+    verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
+    increaseProdQty(i){
+        if (this.promotions[i].shopp < this.promotions[i].quantity){ //compruebo que no se pase de la cantidad de stock
+            this.promotions[i].shopp += 1   
         }
+    },
+    decreaseProdQty(i){
+        if (this.promotions[i].shopp > 0){ //compruebo que no se pase de la cantidad de stock
+            this.promotions[i].shopp -= 1   
+        }
+    },
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
     },
   }
 })

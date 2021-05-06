@@ -43,7 +43,7 @@
             </q-card-section>
             <q-card-section>
               <div class="text-name-promotion">
-                {{promotion.name}}
+                {{promotion.name}} 
               </div>
               <div class="text-description-promotion">
                 {{promotion.description}}
