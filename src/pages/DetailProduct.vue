@@ -296,10 +296,10 @@ export default defineComponent({
     border-radius: 9px;
 }
 .container-detail-product{
-    background-color: #F2F7FF;
+    background-color: #FFFFFF;
 }
 .container-detail-product2{
-    background-color: #F2F7FF;
+    background-color: #FFFFFF;
     padding-left: 12%;
     padding-right: 12%;
 }

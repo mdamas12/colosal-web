@@ -145,29 +145,31 @@
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
-                                        <div class="row items-center">
-                                            <div class="col-5">
+                                        <div class="row items-center justify-around">
+                                            <div class="col-lg-5">
                                                 <div class="row items-center justify-end">
                                                     <q-card flat bordered>
-                                                        <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
                                                         {{promotion.shopp}}
                                                     </div>
                                                     </q-card>
                                                     
                                                     <div class="col-3">
-                                                         <div class="row">
+                                                         <div class="row items-center">
                                                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row items-center">
                                                              <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
                                                         </div>
                                                        
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-7">
-                                                <div class="row items-center">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+                                            <div class="col-lg-7">
+                                                <div class="row items-center justify-center">
+                                                    <div class="col justify-center q-pt-xs">
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>   
@@ -245,7 +247,7 @@
                 arrows
                 control-color="red-10"
                 class="bg-azul-tenue container-carousel q-px-lg"
-                style="height:465px">
+                style="height:485px">
                 <q-carousel-slide :name="promotion.id" class="col" v-for="promotion in promotions" :key="promotion.id">
                     <div class="row" v-if="load">
                           <div class="col-12 col-md q-gutter-sm q-pa-md">
@@ -359,40 +361,43 @@
                                     <q-card-section class="text-center q-pt-none text-price-promotion">
                                          {{promotion.coin}}  {{promotion.price}}
                                     </q-card-section>
-                                    <q-card-section class="text-center">
+                                    <!-- <q-card-section class="text-center"> -->
                                         <!-- <q-item-label v-if="promotion.quantity > 1" lines="2" class="text-quantity">
                                             {{promotion.quantitity}} Disponibles  
                                         </q-item-label>
                                         <q-item-label v-if="promotion.quantity == 1" lines="2" class="text-quantity-none">
                                            Solo {{promotion.quantitity}} Disponible
                                         </q-item-label> -->
-                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-quantity-none-promotion-feature">
+                                         <q-item-label v-if="promotion.quantity < 1" lines="2" class="text-center text-quantity-none-promotion-feature">
                                              NO Disponible
                                         </q-item-label>
-                                    </q-card-section>
+                                    <!-- </q-card-section> -->
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
                                          <div class="row items-center">
-                                            <div class="col-5">
-                                                <div class="row items-center justify-end">
+                                            <div class="col-12 col-sm-5">
+                                                <div class="row items-center justify-center">
                                                     <q-card flat bordered>
-                                                        <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                                        <div class="col-8 q-px-md q-py-sm quantity-product-feature">
                                                         {{promotion.shopp}}
                                                     </div>
                                                     </q-card>
                                                     
-                                                    <div class="col-3">
-                                                        <div class="row">
+                                                    <div class="col-3 justify-center">
+                                                        <div class="row justify-center">
                                                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row justify-center">
                                                              <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-7">
-                                                <div class="row">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+                                            <div class="col-12 col-md-7 q-pt-md">
+                                                <div class="row items-center">
+                                                    <div class="col-12 col-md">
+                                                        <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>   
