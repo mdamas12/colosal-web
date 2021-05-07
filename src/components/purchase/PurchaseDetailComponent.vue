@@ -24,7 +24,7 @@
 				</div> -->
             <div class="col-8">                
                 <q-card flat bordered class="my-card q-mb-md">
-					<q-item class="bg-blue-1">
+					<q-item>
 						<q-item-section>
 							 <div class="row items-center">
                                 <div class="col text-center">
@@ -377,7 +377,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 <style>
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product{

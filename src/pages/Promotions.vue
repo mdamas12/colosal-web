@@ -1,6 +1,6 @@
 <template>
 <q-page>
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion" active-color="grey">
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion bg-azul-tenue" active-color="grey">
       <q-breadcrumbs-el icon="home" to="/" />
       <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
@@ -65,9 +65,9 @@
             <q-card-section class="q-pt-none">
               <div class="q-pt-none" v-if="promotion.quantity > 0">
 
-                 <div class="row items-center">
-                     <div class="col-5">
-                        <div class="row items-center justify-end">
+                 <div class="row items-center justify-around">
+                     <div class="col-lg-5">
+                        <div class="row items-center justify-center">
                             <q-card flat bordered>
                               <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
                                 {{promotion.shopp}}
@@ -75,19 +75,26 @@
                             </q-card>
                                                     
                             <div class="col-3">
-                              <div class="row">
+                              <div class="row items-center">
+                                <div class="col justify-center">
                                   <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
+                                </div>
                               </div>
-                              <div class="row">
+                              <div class="row items-center">
+                                <div class="col justify-center">
                                   <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
+                                </div>
                               </div>
                                                        
                               </div>
                          </div>
                         </div>
-                        <div class="col-7">
-                           <div class="row items-center">
-                               <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+                        <div class="col-lg-7">
+                           <div class="row items-center justify-center">
+                             <div class="col justify-center q-pt-xs">
+                                <q-btn  label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+
+                             </div>
                             </div>
                           </div>
                         </div>
@@ -290,6 +297,7 @@ export default defineComponent({
 .container-list-promotions{
     padding-left: 12%;
     padding-right: 12%;
+    background-color: #F2F7FF;
 }
 .title-promotions{
     font-family: 'Poppins-Regular';
@@ -331,7 +339,7 @@ export default defineComponent({
   font-family: 'Poppins-SemiBold';
   font-size: 14px;
   color: #ce0707;
-  margin: 14px 0 0 0;
+  margin: 14px 0 14px 0;
 
 }
 

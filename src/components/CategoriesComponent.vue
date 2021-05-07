@@ -18,7 +18,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories bg-redp"
+                class="container-carousel-categories bg-cielo"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -94,7 +94,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories bg-redp"
+                class="container-carousel-categories bg-cielo"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
@@ -208,12 +208,12 @@ export default defineComponent({
 
 <style>
     .container-categories-1{
-        background-color:#FFFBF6;
+        background-color:#DFEBFF;
         padding-left: 11%;
         padding-right: 11%;
     }
     .container-categories{
-        background-color: #FFFBF6;
+        background-color: #DFEBFF;
         /* padding-left: 3%;
         padding-right: 3%; */
     }
@@ -232,7 +232,7 @@ export default defineComponent({
     .text-title-categorie{
         font-family: 'Poppins-SemiBold';
         font-size: 24px;
-        color: #B31E1A;
+        color: #020B68;
     }
     .image-categorie{
         opacity: 1;

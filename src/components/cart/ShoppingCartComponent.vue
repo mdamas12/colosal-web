@@ -6,22 +6,22 @@
     	</q-breadcrumbs>
 		<div class="row q-ma-md">
 			<div class="col-12 col-md-8" >
-				<div class="row q-my-sm">
+				<div class="row q-my-sm q-mb-lg">
 					<div class="col">
-						<q-card flat bordered class="q-mb-sm q-pa-lg">
-							<q-card-header>
-								<div class="row title-text text-center">
+						<!-- <q-card flat class="q-mb-sm q-pa-lg bg-azul-tenue"> -->
+							<!-- <q-card-header> -->
+								<div class="row title-text-carrito text-center">
 									Carrito de compras
 								</div>
-							</q-card-header>
-						</q-card>		
+							<!-- </q-card-header> -->
+						<!-- </q-card>		 -->
 					</div>
 				</div>
 
 				<div class="row q-mx-xs">
 				 
 					<div class="col-12" v-for="(shoppingcart, index) in products" :key="shoppingcart.id">
-						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
+						<q-card flat bordered class="card-products-shopping q-mb-md" v-if="shoppingcart.product != null">
 							<div class="row items-center">
 								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
@@ -96,7 +96,7 @@
 								</div>
 							</div>
 						</q-card>
-						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.promotion != null">
+						<q-card flat bordered class="card-products-shopping q-mb-md" v-if="shoppingcart.promotion != null">
 							<div class="row items-center">
 								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.promotion.image" class="img-product q-ml-md"></q-img>
@@ -125,20 +125,20 @@
 												<!-- <q-card-section> -->
 													<div class="row items-center">
 														<div class="col">
-															<q-btn flat round color="primary" icon="remove" @click="decreaseProdQty(index)"/>
+															<q-btn flat round color="primary" icon="remove" size="sm" @click="decreaseProdQty(index)"/>
 														</div>
 														<div class="col text-name-product-car">
 															{{shoppingcart.quantity}} 
 														</div>
 														<div class="col">
-															<q-btn flat round color="primary" icon="add" @click="increaseProdQty(index)"/>
+															<q-btn flat round color="primary" icon="add" size="sm" @click="increaseProdQty(index)"/>
 														</div>										
 													</div>
 												<!-- </q-card-section> -->
 											</q-card>
 										</div>
-										<div class="col-3 col-sm">
-											<q-btn label="Actualizar cantidad" color="redsito" text-color="white" icon="shopping_cart" class="btn-shopp" dense size="sm" @click="Shoppingcart(index)"></q-btn>					
+										<div class="col-3 text-center q-pt-sm">
+											<q-btn label="Actualizar" flat rounded color="redsito" text-color="red" icon="shopping_cart" class="btn-shopp" dense size="sm" @click="Shoppingcart(index)"></q-btn>					
 										</div>
 									</q-card-section>
 								</div>		 
@@ -174,8 +174,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-4 text-center">
-				<q-card flat bordered class="my-card q-mx-md q-mt-sm">
+			<div class="col-12 col-md-4 text-center padd-ts">
+				<q-card flat bordered class="card-products-shopping q-mx-md q-mt-sm">
 					<q-card-section class="text-center">
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product-car">
@@ -498,7 +498,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		margin: 2px 0 ;
 	}
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product-car{
@@ -521,9 +521,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 				font-size: 16px;
 		}
 
-		.title-text{
+		.title-text-carrito{
 				font-family: 'Poppins-SemiBold';
-				font-size: 32px;
+				font-size: 24px;
+				color:#0F2A55
 		}
 
 		 .title-error{
@@ -556,6 +557,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 			.container-shopping-cart-title{
 				padding-left: 11%;
 				padding-right: 11%;
+				background-color: #F2F7FF;
+			}
+
+			.padd-ts{
+				padding-top: 60px;
 			}
 		}
 </style>

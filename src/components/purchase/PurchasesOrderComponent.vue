@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <div class="container-purschases-order">
-       <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases-order" active-color="grey">
+    <div class="container-purschases-order bg-azul-tenue">
+       <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases-order bg-azul-tenue" active-color="grey">
                 <q-breadcrumbs-el icon="home" to="/" />
                 <q-breadcrumbs-el label="Mis Compras" class="texto-breadcrumbs text-bluesito"/>
     	    </q-breadcrumbs>
@@ -62,7 +62,7 @@
               class="text-center"
               keep-alive
             >
-              <q-tab-panel name="validate">
+              <q-tab-panel name="validate" class="bg-azul-tenue">
                 <q-table
                   title="Por Validar"
                   :data="toValidate"
@@ -109,7 +109,7 @@
                 </q-table>
               </q-tab-panel>
 
-              <q-tab-panel name="deliver">
+              <q-tab-panel name="deliver" class="bg-azul-tenue">
                 <q-table
                   title="Por Entregar"
                   :data="toDeliver"
@@ -156,7 +156,7 @@
                 </q-table>
               </q-tab-panel>
 
-              <q-tab-panel name="processed">
+              <q-tab-panel name="processed" class="bg-azul-tenue">
                 <q-table
                   title="Procesado"
                   :data="processed"

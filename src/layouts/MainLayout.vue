@@ -280,6 +280,45 @@
           </q-item-section>
         </q-card>
       </q-dialog>
+      
+      <!-- *********************** 
+        **** Recuperar Contraseña ****
+        **************************** -->
+
+       <q-dialog persistent v-model="showRecoverPassword" >
+        <q-card class="my-card" style="max-width:100%; width:440px">
+          <q-toolbar class="text-bluesito">
+            <q-toolbar-title class="title-session">
+                Recuperar Contraseña 
+            </q-toolbar-title>
+            <q-btn flat icon="close" round v-close-popup />
+          </q-toolbar>
+          <q-separator />
+          <q-item class="q-pt-md">
+            <q-item-section>
+              <div class="row q-pt-md">
+                <div class="col-12 col-md q-px-md">
+                  <q-input label="Email" v-model="email" class="font-input"></q-input>
+                </div>
+              </div>
+            </q-item-section>
+          </q-item>
+          <q-card-actions vertical align="center">
+            <q-btn label="Recuperar" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
+          </q-card-actions>
+          <q-separator />
+          <!-- <q-item-section>
+            <div class="row q-pt-md">
+              <div class="col">
+                <div class="container text-center q-pa-md">
+                  <q-item-label class="label-register">¿No tienes cuenta? </q-item-label>
+                  <q-btn flat label="REGÍSTRATE" @click="goToRegister()"></q-btn>
+                </div>
+              </div>
+            </div>
+          </q-item-section> -->
+        </q-card>
+      </q-dialog>
         <q-page-container>
           <router-view />
         </q-page-container>
@@ -347,7 +386,8 @@ export default defineComponent({
 
     return {       
       leftDrawerOpen, 
-      showInitSession: false, 
+      showInitSession: false,
+      showRecoverPassword: false, 
       password: '', 
       isPwd: true, 
       search: '', 

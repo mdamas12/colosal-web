@@ -70,7 +70,7 @@ export default defineComponent({ name: 'FooterComponent' })
 </script>
 <style>
     .container-footer{
-        background-color: #020B68;
+        background-color: #101865;
     }
 
     .container-design{

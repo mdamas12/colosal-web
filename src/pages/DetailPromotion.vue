@@ -253,7 +253,8 @@ export default defineComponent({
 }
 .text-title-promotion{
   font-family: 'Poppins-SemiBold';
-  font-size: 30px;
+  font-size: 24px;
+  color:#0F2A55
 }
 .text-title-brand{
   font-family: 'Poppins-Regular';
@@ -304,7 +305,7 @@ export default defineComponent({
   font-size: 14px;
 }
 .container-description-promotion{
-  background-color: #FAFAFA;
+  background-color: #F2F7FF;
   padding-left: 13%;
   padding-right: 13%;
 }

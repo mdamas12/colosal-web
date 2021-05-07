@@ -5,8 +5,8 @@
       <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
     <div class="container-products2">
-      <q-layout view="hHh Lpr lff" container style="min-height: 3680px" class="rounded-borders">
-        <q-header class="bg-hueso">
+      <q-layout view="hHh Lpr lff" container style="min-height: 3840px" class="rounded-borders">
+        <q-header class="bg-azul-tenue">
           <q-toolbar class="toolbar-drawer">
             <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>
             <div>
@@ -26,8 +26,8 @@
           content-class="bg-white"
         >
         <q-scroll-area class="fit">
-          <q-list bordered>
-            <q-item-label class="font-category-splitter q-pa-md">Categorías</q-item-label>
+          <q-list>
+            <q-item-label class="font-category-splitter q-pa-md">CATEGORÍAS</q-item-label>
               <q-item clickable 
                       v-ripple 
                       :active="categorie.id === idCategorie"
@@ -35,7 +35,7 @@
                       v-for="categorie in categories" :key="categorie.id" class="font-title-splitter" @click="getId(categorie.id)">
                 <q-item-section>{{categorie.name}}</q-item-section>
               </q-item>
-              <q-separator />
+              <!-- <q-separator /> -->
           </q-list>
         </q-scroll-area>
         </q-drawer>
@@ -167,9 +167,9 @@
                       </div>
                     </q-card-section>
                     <q-card-section v-if="product.quantity > 0" class="text-center q-pt-none">
-                                        <div class="row items-center">
-                                            <div class="col-5">
-                                                <div class="row items-center justify-end">
+                                        <div class="row items-center justify-around">
+                                            <div class="col-lg-5 q-px-sm">
+                                                <div class="row items-center justify-center">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-md q-py-sm quantity-product-feature">
                                                         {{product.shopp}}
@@ -177,19 +177,26 @@
                                                     </q-card>
                                                     
                                                     <div class="col-3">
-                                                        <div class="row">
-                                                               <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(product.index)"></q-btn>
+                                                        <div class="row items-center">
+                                                          <div class="col justify-center">
+                                                            <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(product.index)"></q-btn>
+
+                                                          </div>
                                                         </div>
-                                                        <div class="row">
-                                                             <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  @click="decreaseProdQty(product.index)"></q-btn>
+                                                        <div class="row items-center">
+                                                          <div class="col justify-center">
+                                                            <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  @click="decreaseProdQty(product.index)"></q-btn>
+                                                          </div>
                                                         </div>
                                                       
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-7">
-                                                <div class="row items-center">
-                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id, product.shopp)" size="md"></q-btn>
+                                            <div class="col-lg-7">
+                                                <div class="row items-center justify-center">
+                                                  <div class="col justify-center q-pt-xs">
+                                                    <q-btn label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(product.id, product.shopp)" size="sm"></q-btn>
+                                                  </div>
                                                 </div>
                                             </div>
                                         </div>                     
@@ -616,7 +623,7 @@ export default defineComponent({
   margin-top: -14px;
 }
 .container-products{
-    background-color: #FAFAFA;
+    background-color: #F2F7FF;
 }
 .btn-product{
     border-radius: 9px;
@@ -627,6 +634,7 @@ export default defineComponent({
 }
 .font-category-splitter{
     font-family: 'Poppins-SemiBold';
+     color:#0F2A55
 }
 .font-product-splitter{
     font-family: 'Poppins-Regular';
@@ -670,7 +678,7 @@ export default defineComponent({
 }
 .texto-filter{
     font-family: 'Poppins-Medium';
-    color: black;
+    color: #0F2A55;
 }
 .btn-filter{
     font-family: 'Poppins-Regular';
@@ -703,6 +711,12 @@ export default defineComponent({
     .toolbar-drawer{
       justify-content: flex-end;
     }
+}
+
+@media (min-width:1023px) and (min-width:1439px){
+ .pdc{
+   padding-top: 5px;
+ }
 }
 /* @media (min-width:1900px){
     .card2{

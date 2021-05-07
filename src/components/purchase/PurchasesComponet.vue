@@ -9,16 +9,16 @@
 			<div class="col-12 col-md-8" >
 				<div class="row q-my-sm">
 					<div class="col">
-						<q-card flat bordered class="q-mb-sm q-pa-lg">
-							<q-card-header>
-								<div class="row title-text text-center">
+						<!-- <q-card flat bordered class="q-mb-sm q-pa-lg"> -->
+							<!-- <q-card-header> -->
+								<div class="row title-text-purchase text-center">
 									Finaliza tu Compra
 								</div>
-							</q-card-header>
-						</q-card>		
+							<!-- </q-card-header> -->
+						<!-- </q-card>		 -->
 					</div>
 				</div>
-               <div class="row full-width q-my-xl">
+               <div class="row full-width q-pt-md q-mb-md">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
@@ -66,7 +66,7 @@
 		  		<div class="row q-mx-xs">
 				 
 					<div class="col-12" v-for="shoppingcart in products" :key="shoppingcart.id">
-						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
+						<q-card flat bordered class="card-products-purchase q-mb-md" v-if="shoppingcart.product != null">
 							<div class="row items-center">
 								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
@@ -207,8 +207,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-4 text-center">
-				<q-card flat bordered class="my-card q-mx-md q-mt-sm">
+			<div class="col-12 col-md-4 text-center padd-ts">
+				<q-card flat bordered class="card-products-purchase q-mx-md q-mt-sm">
 					<q-card-section class="text-center">
 						<div class="row justify-between text-center">
 							<div class="col-2 self-start text-name-product">
@@ -587,7 +587,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 <style>
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product{
@@ -610,9 +610,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 				font-size: 16px;
 		}
 
-		.title-text{
+		.title-text-purchase{
 				font-family: 'Poppins-SemiBold';
-				font-size: 32px;
+				font-size: 24px;
+        color:#0F2A55
 		}
     .banks{
         border: #666 solid 1px;
@@ -671,5 +672,9 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
         padding-left: 11%;
         padding-right: 11%;
       }
+
+      .padd-ts{
+				padding-top: 60px;
+			}
     }
 </style>
