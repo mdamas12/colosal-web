@@ -192,8 +192,9 @@ export default defineComponent({
             return emailPattern.test(val) || 'Correo inválido';
             },
         isValidPassword (val) {
-           const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-           return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres (1 Letra May, 1 Caracter especial) ';
+        //    const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+            const password_validator = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
+           return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres';
         },
   }
 })

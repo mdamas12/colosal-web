@@ -1,6 +1,7 @@
 <template>
   <q-page>
-    <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
+      <div class="container-profile bg-azul-tenue">
+           <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
         <q-header class="bg-white">
             <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-perfil bg-azul-tenue" active-color="grey">
                 <q-breadcrumbs-el icon="home" to="/" />
@@ -59,7 +60,7 @@
                       </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item class="q-pt-md">
+                <!-- <q-item class="q-pt-md">
                       <q-item-section avatar class="q-px-lg">
                           <q-avatar size="84px">
                               <img src="https://cdn.quasar.dev/img/avatar4.jpg">
@@ -75,7 +76,7 @@
                           Lorem ipsum dolor sit amet, consetetur
                       </q-item-label>
                       </q-item-section>
-                </q-item>
+                </q-item> -->
                 <q-card-section>
                       <q-item>
                           <q-item-section>
@@ -523,6 +524,8 @@
         </div>
         </q-page-container>
     </q-layout>
+      </div>
+   
     <footer-component></footer-component>
   </q-page>
 </template>
@@ -852,6 +855,14 @@ export default defineComponent({
             align-items: center;
         }
     }
+
+    @media(min-width:767px){
+			.container-profile{
+				padding-left: 12%;
+				padding-right: 12%;
+                background-color: #F2F7FF;
+			}
+		}
     @media(min-width: 1023px){
         .img-ws-contact{
             align-items: flex-end;
