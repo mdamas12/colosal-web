@@ -461,7 +461,7 @@ export default defineComponent({
                                 }
                             }
                         }
-                        this.promotions = data_promotions
+                        
                     },
                     error: err =>{
                         console.log(err.response.data)
@@ -471,6 +471,14 @@ export default defineComponent({
 
                 
             }
+            else{
+                for (let i = 0; i < data_promotions.length; i++){  
+                    data_promotions[i].shopp = 0
+                    data_promotions[i].index = i
+                }
+
+            }
+            this.promotions = data_promotions
         })
     },
 
