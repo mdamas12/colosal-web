@@ -193,7 +193,7 @@ export default defineComponent({
             },
         isValidPassword (val) {
         //    const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-            const password_validator = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
+            const password_validator = /^(?=.*[a-zA-Z0-9]).{8,}$/;
            return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres';
         },
   }
