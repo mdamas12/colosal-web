@@ -428,6 +428,7 @@ export default defineComponent({
                                 }
                             }
                         }
+                        this.products = productsShop
                         
                     },
                     error: err =>{
@@ -443,8 +444,9 @@ export default defineComponent({
                     productsShop[i].shopp = 0
                     productsShop[i].index = i
                 }
+                this.products = productsShop
             }
-            this.products = productsShop
+            
             //console.log(this.products)
             this.load = false
         }

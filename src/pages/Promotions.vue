@@ -186,6 +186,7 @@ export default defineComponent({
                                 }
                             }
                         }
+                      this.promotions = data_promotions
                        
                     },
                     error: err =>{
@@ -201,8 +202,9 @@ export default defineComponent({
                   data_promotions[i].shopp = 0
                   data_promotions[i].index = i
                }
+              this.promotions = data_promotions
             }
-           this.promotions = data_promotions
+           
           this.numberOfPages = Math.ceil(data.count / this.limit)
         },
         complete: () => console.log('[complete]')
