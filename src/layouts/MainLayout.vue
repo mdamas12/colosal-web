@@ -305,7 +305,7 @@
             </q-item-section>
           </q-item>
           <q-card-actions vertical align="center">
-            <q-btn label="Recuperar" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
+            <q-btn @click="recovePassword" label="Recuperar" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
           </q-card-actions>
           <q-separator />
           <!-- <q-item-section>
@@ -424,6 +424,22 @@ export default defineComponent({
     }
   },
   methods: {
+    recovePassword(){
+      this.showRecoverPassword = false
+      Loading.show()
+        UsersService.recovePassword({'email' : this.email}).subscribe({
+          next: (data : any) => {
+            this.email = ''
+            Loading.hide()
+            this.showNotif("Correo de recuperacion enviado exitosamente. Revisa tu bandeja de entrada", 'green-10');
+          },
+          error: (error : any) => {
+              Loading.hide()
+              this.email = ''
+              this.showNotif("Email no existe", 'red-10');
+          }
+        })
+    },
     goToRegister(){
       this.showInitSession = false
       this.$router.push('/register')

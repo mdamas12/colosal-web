@@ -64,6 +64,19 @@ class UsuersService {
     })
   }
 
+  recovePassword (data){
+    return Observable.create((observer) => {
+      axios.post(API_URL + `users/recove/`, data)
+        .then((response) => {
+          observer.next(response.data)
+          observer.complete()
+        })
+        .catch((error) => {
+          observer.error(error)
+        })
+    })
+  }
+
 }
 
 export default new UsuersService()
