@@ -428,7 +428,7 @@ export default defineComponent({
                                 }
                             }
                         }
-                        this.products = productsShop
+                        
                     },
                     error: err =>{
                         console.log(err.response.data)
@@ -438,8 +438,14 @@ export default defineComponent({
 
                 
             }
-           
-             //console.log(this.products)
+            else{
+                for (let i = 0; i < productsShop.length; i++){
+                    productsShop[i].shopp = 0
+                    productsShop[i].index = i
+                }
+            }
+            this.products = productsShop
+            //console.log(this.products)
             this.load = false
         }
       })
