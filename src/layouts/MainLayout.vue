@@ -116,6 +116,7 @@
     </q-layout> -->
     <q-layout view="hHh lpR fFf" class="bg-grey-1">
       <div class="container">
+        
         <q-header elevated class="bg-white text-grey-8 q-pa-sm header_" height-hint="64">
           <div class="row q-pa-sm justify-center">
             <div class="col-2 q-pa-sm gt-xs">
@@ -383,7 +384,6 @@ export default defineComponent({
   data () {
     const leftDrawerOpen = ref(false)
     // const essentialLinks = ref(linksData)
-
     return {       
       leftDrawerOpen, 
       showInitSession: false,
@@ -396,7 +396,33 @@ export default defineComponent({
       searching : false, 
       email: '', SessionCotrol: false, SessionClean : true }
   },
+  computed: {
+      login: {
+        get () {
+          return this.$store.state.app.login
+        },
+        set (val) {
+          //this.$store.commit('showcase/updateDrawerState', val)
+        }
+      }
+  },
+  watch:{
+    login: function(newVal){
+        let token = localStorage.getItem("token")
+      let username =  localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+          this.name = username
+          this.SessionClean = false;
+          this.SessionCotrol = true;
 
+      }
+      else{
+        this.name = '';
+        this.SessionClean = true;
+        this.SessionCotrol = false;
+      }
+    }
+  },
   methods: {
     goToRegister(){
       this.showInitSession = false
