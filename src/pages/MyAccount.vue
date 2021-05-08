@@ -82,25 +82,25 @@
                           <q-item-section>
                               <div class="row q-pt-md">
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Nombre(s) y Apellido(s)*" class="font-input"></q-input>
+                                      <q-input label="Nombre(s) y Apellido(s)*" class="font-input" v-model="profile.first_name"></q-input>
                                   </div>
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Correo Electrónico*" class="font-input"></q-input>
+                                      <q-input label="Correo Electrónico*" class="font-input" v-model="profile.email"></q-input>
                                   </div>
                               </div>
                               <div class="row q-pt-md">
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Teléfono móvil*" class="font-input"></q-input>
+                                      <q-input label="Teléfono móvil*" class="font-input" v-model="profile.phone"></q-input>
                                   </div>
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Teléfono casa (opcional)" class="font-input"></q-input>
+                                      <q-input label="Contraseña" class="font-input" type="password" v-model="newPassword"></q-input>
                                   </div>
                               </div>
                           </q-item-section>
                       </q-item>
                 </q-card-section>
                 <q-card-actions vertical align="center">
-                  <q-btn label="Guardar cambios" color="bluesito" class="btn-register q-mb-md" size="md"></q-btn>
+                  <q-btn label="Guardar cambios" color="bluesito" class="btn-register q-mb-md" size="md" @click="saveProfile"></q-btn>
                 </q-card-actions>
               </q-card>
             </q-tab-panel>
@@ -533,10 +533,19 @@
 import { defineComponent } from '@vue/composition-api'
 import PurchaseService   from 'src/services/purchases/purchase.services'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import UserService from 'src/services/home/users/user.service'
+import { Loading } from "quasar";
+
 export default defineComponent({
   components: { FooterComponent },
   data () {
     return {
+      profile: {
+          "first_name": '',
+          "email": '',
+          "phone": ''
+      },
+      newPassword: '',
       tab: 'personal-info',
       tab_purchases: 'validate',
       text: '',
@@ -644,7 +653,54 @@ export default defineComponent({
     const vm = this;
     vm.onRequest();
   },
-    methods: {
+  created(){
+      this.getUser()
+  },
+  methods: {
+    saveProfile(){
+        console.log(this.profile)
+        console.log(this.newPassword)
+
+        let profileAux = this.profile
+        profileAux.password = this.newPassword
+
+        if (this.profile.first_name == "" || this.profile.email == "" || this.profile.email == "" || this.newPassword == ""){
+            this.showNotif("No puede dejar campos vacios", 'red-10');
+            return;
+        };
+
+        if(this.newPassword.length < 8){
+            this.showNotif("La contraseña debe ser mayor o igual a 8 caracteres", 'red-10');
+        }
+
+        UserService.editProfile(profileAux).subscribe({
+            next: data => {
+                console.log(data);
+                Loading.hide()
+                this.showNotif("Usuario Actualizado", 'green-5');
+            },
+            complete: () => {          
+            },
+            error : err => {
+                console.log(err)
+                Loading.hide();
+                this.showNotif("Error actualizando usuario, por favor intente mas tarde", 'red-10');
+            }
+        })
+    },
+    getUser(){
+        UserService.getUserMe().subscribe({
+          next: data => {
+            console.log(data);
+            this.profile = data
+          },
+          complete: () => {          
+          },
+          error : err => {
+              console.log(err)
+          }
+        })
+    },
     onRequest(){
       this.toValidate.pop();
       this.toDeliver.pop();
