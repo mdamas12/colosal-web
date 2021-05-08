@@ -171,7 +171,7 @@ export default defineComponent({
                 complete: () => {
                     Loading.hide()
                     this.showNotif("Usuario Registrado", 'green-5');
-                    this.$router.go('/')
+                    this.$router.push('/')
                 },
                 error: err => {
                     console.log(err)

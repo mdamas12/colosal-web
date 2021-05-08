@@ -259,7 +259,7 @@
               </div>
               <div class="row q-pt-md">
                 <div class="col col-md q-px-md">
-                  <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
+                  <q-btn flat class="enlace-olvido-password" @click="showInitSession = false; showRecoverPassword = true">He olvidado mi contraseña</q-btn>
                 </div>
               </div>
             </q-item-section>
