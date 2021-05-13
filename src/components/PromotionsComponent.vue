@@ -374,7 +374,7 @@
                                     <!-- </q-card-section> -->
                                     <q-card-section v-if="promotion.quantity > 0" class="text-center q-pt-none">
                                          <div class="row items-center">
-                                            <div class="col-12 col-sm-5">
+                                            <div class="col-12 col-sm-12">
                                                 <div class="row items-center justify-center">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-md q-py-sm quantity-product-feature">
@@ -382,7 +382,7 @@
                                                     </div>
                                                     </q-card>
                                                     
-                                                    <div class="col-3 justify-center">
+                                                    <div class="col-2 justify-center">
                                                         <div class="row justify-center">
                                                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
                                                         </div>
@@ -615,6 +615,33 @@ export default defineComponent({
             height: 100px;
         }
     }
+
+@media (min-width:320px) and (max-width: 1022px){
+       .text-quantity-none-promotion-feature{
+        margin: 28px 0 22px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }
+
+    @media (min-width:1023px) and (max-width: 1150px){
+       .text-quantity-none-promotion-feature{
+        margin: 35px 0 53px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }
+
+    @media (min-width:1151px){
+       .text-quantity-none-promotion-feature{
+        margin: 28px 0 22px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }            
 @media (min-width:1500px){
     .carousel-promo{
     height: 600px;
@@ -629,14 +656,14 @@ export default defineComponent({
 
 }
 
-.text-quantity-none-promotion-feature{
+/* .text-quantity-none-promotion-feature{
 
   font-family: 'Poppins-SemiBold';
   font-size: 14px;
   color: #ce0707;
   margin: 28px 0 22px 0;
 
-}
+} */
 
 .text-quantity-adv{
        font-family: 'Poppins-SemiBold';

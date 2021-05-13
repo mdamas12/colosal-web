@@ -1,4 +1,7 @@
 <template>
+<q-page>
+
+
 	<div class="container-shopping-cart-title ">
 		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-carrito" active-color="grey">
 			<q-breadcrumbs-el icon="home" to="/" />
@@ -256,13 +259,18 @@
           </q-card>
         </q-dialog>	
 	</div>
+	<footer-component></footer-component>
+	</q-page>
 </template>
  
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import ShoppingcartService   from "../../services/home/shoppingcart/shoppingcart.service";
+import FooterComponent from 'src/components/FooterComponent.vue'
 import { Loading } from "quasar";
-export default defineComponent ( { name: 'ShoppingCartComponent',
+// export default defineComponent ( { name: 'ShoppingCartComponent',
+export default defineComponent ( { components: {FooterComponent},
+
 	data (){
 
 		var products : any = []

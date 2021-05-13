@@ -210,8 +210,8 @@
             <q-pagination
               v-if="numberOfPages > 1"
               v-model="pagination.page"
-              :min="currentPage"
-              :max="numberOfPages"
+              :min="this.currentPage"
+              :max="this.numberOfPages"
               :direction-links="true"
               color="black"
               :boundary-numbers="false"

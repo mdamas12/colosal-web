@@ -20,7 +20,9 @@
                             Social
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                            <q-icon name="font_download" />
+                           <!-- <div> -->
+                                <img src="~assets/img/icon-instagram.svg" style=" width: 11px;" >
+                            <!-- </div> -->
                             @minimarketcolosal
                         </div>
                     </div>

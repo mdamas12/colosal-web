@@ -138,7 +138,7 @@
                                         </q-item-label>
                                     </q-card-section> -->
                                       <q-card-section v-if="product.quantity <= 0" class="text-center q-pt-none">
-                                        <q-item-label lines="2" class="text-quantity-none-product">
+                                        <q-item-label lines="2" class="text-quantity-none-product-featured">
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
@@ -196,7 +196,7 @@
                     arrows
                     control-color="red-10"
                     class="bg-azul-tenue container-carousel q-px-lg"
-                    style="height:495px">
+                    style="height:540px">
                     <q-carousel-slide :name="i + 1" v-for="(product,i) in products" :key="product.id">
                         <div class="row" v-if="load">
                             <div class="col-12 col-md q-gutter-sm q-pa-md">
@@ -314,13 +314,13 @@
                                         </q-item-label>
                                     </q-card-section> -->
                                       <q-card-section>
-                                        <q-item-label v-if="product.quantity <= 0" class="text-center text-quantity-none-product" lines="2">
+                                        <q-item-label v-if="product.quantity <= 0" class="text-center text-quantity-none-product-featured" lines="2">
                                             NO Disponible
                                         </q-item-label>
                                     </q-card-section>
                                     <q-card-section  v-if="product.quantity > 0" class="text-center q-pt-none" >
                                        <div class="row items-center">
-                                            <div class="col-12 col-sm-5">
+                                            <div class="col-12 col-sm-12">
                                                 <div class="row items-center justify-center">
                                                     <q-card flat bordered>
                                                         <div class="col-8 q-px-md q-py-sm quantity-product-feature">
@@ -328,7 +328,7 @@
                                                     </div>
                                                     </q-card>
                                                     
-                                                    <div class="col-3 justify-center">
+                                                    <div class="col-2 justify-center">
                                                         <div class="row justify-center">
                                                                <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  @click="increaseProdQty(product.index)"></q-btn>
                                                         </div>
@@ -602,6 +602,34 @@ export default defineComponent({
             height: 100px;
         }
     }
+
+    @media (min-width:320px) and (max-width: 1022px){
+       .text-quantity-none-product-featured{
+        margin: 16px 0 16px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }
+
+    @media (min-width:1023px) and (max-width: 1150px){
+       .text-quantity-none-product-featured{
+        margin: 20px 0 51px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }
+
+    @media (min-width:1151px){
+       .text-quantity-none-product-featured{
+        margin: 16px 0 16px 0;
+        font-weight: 700;
+        color: rgb(197, 11, 11);
+        font-family: 'Poppins-SemiBold';
+        }
+    }
+
     @media (min-width:1500px){
         .container-carousel{
         height: 480px;
@@ -611,12 +639,13 @@ export default defineComponent({
         font-weight: 700;
         color: rgb(17, 3, 95);
     }
-    .text-quantity-none-product{
+    
+    /* .text-quantity-none-product-featured{
         margin: 16px 0 16px 0;
         font-weight: 700;
         color: rgb(197, 11, 11);
         font-family: 'Poppins-SemiBold';
-    }
+    } */
      .text-quantity-adv{
         font-weight: 700;
         color: rgb(212, 199, 7);
