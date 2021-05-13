@@ -370,7 +370,7 @@ export default defineComponent({
       })
     },
     getId (id) {
-      console.log('estoy en esta categoria:', id)
+      //console.log('estoy en esta categoria:', id)
       this.load = true
       this.idCategorie = id
       this.filtroPagination = 2
@@ -400,7 +400,8 @@ export default defineComponent({
                                 }
                             }
                         }
-                        this.products = productsShop
+                      this.products = productsShop
+                        
                     },
                     error: err =>{
                         console.log(err.response.data)
@@ -409,6 +410,13 @@ export default defineComponent({
                 });
 
                 
+            }
+            else{
+                for (let i = 0; i < productsShop.length; i++){            
+                  productsShop[i].shopp = 0
+                  productsShop[i].index = i
+                }
+              this.products = productsShop
             }
           
           this.numberOfPages = Math.ceil(data.count / this.limit)
@@ -445,8 +453,10 @@ export default defineComponent({
                                     this.incart[i] = false                                   
                                 }
                             }
+                          
                         }
-                        this.products = productsShop
+                       this.products = productsShop
+                     
                     },
                     error: err =>{
                         console.log(err.response.data)
@@ -456,8 +466,16 @@ export default defineComponent({
 
                 
             }
-          
+            else{
 
+              for (let i = 0; i < productsShop.length; i++){
+                productsShop[i].shopp = 0
+                productsShop[i].index = i
+              }
+              this.products = productsShop
+            }
+          
+          
           this.numberOfPages = Math.ceil(data.count / this.limit)
           this.load = false
         },
@@ -492,7 +510,8 @@ export default defineComponent({
                                 }
                             }
                         }
-                        this.products = productsShop
+                      this.products = productsShop
+                  
                     },
                     error: err =>{
                         console.log(err.response.data)
@@ -502,7 +521,14 @@ export default defineComponent({
 
                 
             }
-          
+            else{
+               for (let i = 0; i < productsShop.length; i++){            
+                  productsShop[i].shopp = 0
+                  productsShop[i].index = i
+               }
+              this.products = productsShop
+            }
+    
           this.numberOfPages = Math.ceil(data.count / this.limit)
           console.log(this.numberOfPages)
           this.load = false

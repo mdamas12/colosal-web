@@ -135,7 +135,6 @@ export default defineComponent({
         })
         },
         checkinformations(){
-         
         if (this.username == "" || this.email == "" || this.email_confirm == "" || this.password == "" || this.password_confirm == ""){
             this.showNotif("Faltan campos por completar", 'red-10');
             return;
@@ -170,8 +169,9 @@ export default defineComponent({
             let subscription = UsersService.Register(credentials).subscribe({
                 complete: () => {
                     Loading.hide()
-                    this.showNotif("Usuario Registrado", 'green-5');
-                    this.$router.go('/')
+                    this.showNotif("Usuario Registrado", 'green-5')
+                    this.$store.dispatch('app/updateLogin')
+                    this.$router.push('/')
                 },
                 error: err => {
                     console.log(err)
