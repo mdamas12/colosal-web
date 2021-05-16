@@ -383,7 +383,7 @@
                           <div class="row text-center">
                               <div class="col-12">
                                   <q-item-label class="label-contact-ws text-center text-grey q-pa-md">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed tempora ipsam odio consequuntur facilis?.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed tempora ipsam odio consequuntur facilis?
+                                    Si tienes alguna duda o problema con tu cuenta, por favor escribenos y con gusto te ayudaremos.
                                   </q-item-label>
                               </div>
                                <!-- <div class="row"> -->
@@ -403,7 +403,7 @@
                                     Contáctanos a nuestro WhatsApp
                                 </div> -->
                                 <div class="column btn-ws-contact q-pa-md">
-                                    <q-btn label="Iniciar chat" text-color="white" color="green" size="md" class="btn"></q-btn>                                </div>
+                                    <q-btn label="Iniciar chat" text-color="white" color="green" size="md" class="btn" @click="goToWz()"></q-btn>                                </div>
                             </div>
                         </div>
                                   <!-- </div> -->
@@ -657,6 +657,9 @@ export default defineComponent({
       this.getUser()
   },
   methods: {
+    goToWz(){
+        window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+    },
     saveProfile(){
         console.log(this.profile)
         console.log(this.newPassword)

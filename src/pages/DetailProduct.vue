@@ -8,9 +8,19 @@
         <div class="container-detail-product2">
             <div class="row">
                 <div class="col-12 col-md q-gutter-sm fondo-img-detail-product">
-                    <q-carousel swipeable animated v-model="slide" thumbnails infinite>
-                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="pic.image" :key="index + 1" :name="index + 1" class="border-img-slide"></q-carousel-slide>
+                    <q-carousel 
+                        v-model="slide"
+                        animated
+                        swipeable
+                        padding
+                        thumbnails
+                        transition-prev="slide-right"
+                        transition-next="slide-left"
+                         >
+                        <q-carousel-slide v-for="(pic, index) in this.getDataDetail.picture" :img-src="pic.image" :key="index + 1" :name="index + 1" class="border-img-slide column flex-center no-margin"></q-carousel-slide>
                     </q-carousel>
+
+                    
                 </div>
                 <div class="col q-gutter-sm q-pa-md">
                     <div class="text-title-product">{{getDataDetail.name}}</div>
@@ -416,5 +426,14 @@ export default defineComponent({
     .fondo-img-detail-product{
     padding: 20px 75px 20px 75px;
 }
+}
+
+.q-carousel{
+  margin-bottom: 45px;
+  overflow: visible !important
+}
+
+.q-carousel__control.q-carousel__navigation{
+  bottom: -60px !important;
 }
 </style>

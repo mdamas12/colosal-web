@@ -3,7 +3,7 @@
     <div class="container-categories q-pt-none">
         <div class="row q-pa-md">
             <div class="col">
-                <div class="text-title">
+                <div class="text-title text-white">
                     Categorías
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories bg-cielo"
+                class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie">
+                                <div class="text-title-categorie text-white">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                 swipeable
                 animated
                 control-color="red-10"
-                class="container-carousel-categories bg-cielo"
+                class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie">
+                                <div class="text-title-categorie text-white">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -208,13 +208,13 @@ export default defineComponent({
 
 <style>
     .container-categories-1{
-        background-color:#DFEBFF;
+        /*background-color:#DFEBFF;*/
         padding-left: 11%;
         padding-right: 11%;
     }
     .container-categories{
-        background-color: #DFEBFF;
-        /* padding-left: 3%;
+        /*background-color: #DFEBFF;
+     padding-left: 3%;
         padding-right: 3%; */
     }
     .container-carousel{

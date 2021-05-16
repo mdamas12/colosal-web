@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="bg-body-all">
     <!-- <header-component></header-component> -->
     <example-component></example-component>
     <our-benefits-component></our-benefits-component>

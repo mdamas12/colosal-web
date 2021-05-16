@@ -3,7 +3,7 @@
  <div class="container-benefits">
         <div class="row">
             <div class="col q-gutter-sm col-md q-px-md">
-               <div class="text-title pd-text">
+               <div class="text-title pd-text text-white">
                    Nuestros beneficios
                </div>
             </div>
@@ -95,7 +95,7 @@ export default defineComponent({ name: 'OurBenefitsComponent' })
     margin-bottom: 60px;   
 }
 .container-benefits-1{
-    background-color: #F2F7FF;
+    /*background-color: #F2F7FF;*/
     padding-left: 12%;
     padding-right: 12%;
 }

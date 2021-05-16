@@ -1,5 +1,5 @@
 <template>
-    <div class="container-footer">
+    <div class="bg-body-all">
         <div class="row justify-around q-py-lg">
             <div class="column items-center q-pa-md">
                 <div class="row">
@@ -10,10 +10,6 @@
                             <div class="text-parrafo-footer text-white q-pt-md">
                                 Somos mayoristas e importadores directos de una gran variedad de productos.
                             </div>
-                            <div class="text-social-footer text-white q-pt-md">
-                                <q-icon name="mail_outline" style="font-size: 18px;"/>
-                                design@galuapps.com
-                            </div>
                     </div>
                     <div class="col-12 col-md q-pa-md text-center">
                         <div class="text-title-footer text-white">
@@ -23,7 +19,7 @@
                            <!-- <div> -->
                                 <img src="~assets/img/icon-instagram.svg" style=" width: 11px;" >
                             <!-- </div> -->
-                            @minimarketcolosal
+                            <a class="q-ml-xs" style="color:#fff" href="https://www.instagram.com/minimarketcolosal/?hl=es">@minimarketcolosal</a>
                         </div>
                     </div>
                     <div class="col-12 col-md q-pa-md text-center">
@@ -32,11 +28,7 @@
                         </div>
                          <div class="text-parrafo-footer text-white q-pt-md">
                             <q-icon name="location_on" style="font-size: 15px;"/>
-                           C.C Guayana Mall, Planta baja.
-                        </div>
-                        <div class="text-parrafo-footer text-white q-pt-md">
-                            <q-icon name="location_on" style="font-size: 15px;"/>
-                           C.C Las Cúpulas.
+                           Paseo caroni, Sector el Guamo, Antigua Izabella
                         </div>
                     </div>
                     <div class="col-12 col-md q-pa-md text-center">
@@ -45,11 +37,7 @@
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
                             <q-icon name="phone" style="font-size: 15px;"/>
-                           +58 412 877 0825
-                        </div>
-                        <div class="text-parrafo-footer text-white q-pt-md">
-                            <q-icon name="phone" style="font-size: 15px;"/>
-                           +58 412 877 0825
+                           <a href="https://wa.me/584128770825?text=Hola%20buen%20dia." style="color:#fff">+58-412-8770825</a>
                         </div>
                     </div>
                 </div>
@@ -59,7 +47,7 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="text-design">
-                       DESIGN BY GALUAPPS - © 2021. ALL RIGHTS RESERVED.
+                       DESIGN BY <a href="https://galuapps.com/" style="text-decoration:none">GALUAPPS</a> - © 2021. ALL RIGHTS RESERVED.
                     </div>
                 </div>
             </div>

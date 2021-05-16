@@ -1,5 +1,5 @@
 <template>
-<div class="container-featured-products-1 q-pb-xl q-pt-lg">
+<div class="container-featured-products-1 q-pb-xl q-pt-xl">
     <div class="container-featured-products">
         <div class="row">
             <div class="col">
@@ -32,7 +32,7 @@
                                     Contáctanos a nuestro WhatsApp
                                 </div>
                                 <div class="column items-end q-pa-md">
-                                    <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
+                                    <q-btn @click="goToWz()" label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,6 +81,9 @@ export default defineComponent({
       this.getPaymentMethods()
     },
     methods: { 
+      goToWz(){
+        window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+      },
       getPaymentMethods () {
         let vm = this
         PaymentsService.getPaymentMethods().subscribe({
@@ -100,10 +103,10 @@ export default defineComponent({
   .container-featured-products-1{
     padding-left: 13%;
     padding-right: 13%;
-    background-color: #F2F7FF;
+    /*background-color: #F2F7FF;*/
   }
   .container-featured-products{
-    background-color: #F2F7FF;
+    /*background-color: #F2F7FF;*/
   }
   .container-ws{
     background-color: #00BFA5;
