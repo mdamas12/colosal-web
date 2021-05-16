@@ -1,18 +1,13 @@
 <template>
     <q-page>
         <div class="container q-pt-lg q-mb-xl bg-hueso">
-             <div class="container-registro bg-hueso">
-            <div class="container-title-register bg-hueso q-mx-lg">
-                <div class="row q-pa-md">
-                    <div class="col">
-                        <q-card flat bordered>
-                            <q-item>
-                                <q-item-section class="padd-card">
-                                    <q-item-label class="text-h5">Formulario de registro</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                        </q-card>
-                    </div>
+        <div class="container-form bg-hueso q-mt-md q-mb-md">
+            <div class="row">
+                <div>
+                    <q-btn icon="keyboard_backspace" flat rounded @click="$router.back()"/>
+                </div>
+                <div class="col">
+                    <q-item-label class="text-h5 q-mt-xs">Formulario de registro</q-item-label>
                 </div>
             </div>
         </div>
