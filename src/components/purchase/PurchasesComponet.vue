@@ -568,7 +568,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
      GoToShoppingCart(){
          this.showErrorFaltaStock = false;
          this.$router.push('/cart');
-     }
+     },
+     goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+    }
 
 	},
 	 mounted () {

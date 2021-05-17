@@ -591,6 +591,9 @@ export default Vue.extend({
         ]
       })
      },
+     goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+    }
  
   },
   watch: {

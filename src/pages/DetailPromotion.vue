@@ -8,8 +8,19 @@
     <div class="container-detail-promotion2">
       <div class="row">
         <div class="col-12 col-md q-gutter-sm fondo-img-detail-promotion">
-          <q-carousel swipeable animated v-model="slide" thumbnails infinite>
+          <!-- <q-carousel swipeable animated v-model="slide" thumbnails infinite>
             <q-carousel-slide v-for="(pic,index) in images" :key="index + 1" :name="index + 1" :img-src="pic" class="border-img-slide" ></q-carousel-slide>
+          </q-carousel> -->
+          <q-carousel 
+            v-model="slide"
+            animated
+            swipeable
+            padding
+            thumbnails
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            >
+            <q-carousel-slide v-for="(pic,index) in images" :key="index + 1" :name="index + 1" :img-src="pic" class="border-img-slide column flex-center no-margin" ></q-carousel-slide>
           </q-carousel>
         </div>
         <div class="col q-gutter-sm q-pa-md">
@@ -81,6 +92,11 @@
     </div>
     <featured-products-carousel-component></featured-products-carousel-component>
     <footer-component></footer-component>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn fab color="white" @click="goToWz()">
+        <img src="~assets/img/whatsapp-icon.svg" style=" width: 25px;" >
+      </q-btn>
+    </q-page-sticky>
   </q-page>
 </template>
 <script>
@@ -231,6 +247,9 @@ export default defineComponent({
           this.getPromotionDetail()
         }
       )
+    },
+    goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
     }
   }
 })
@@ -367,5 +386,13 @@ export default defineComponent({
   .fondo-img-detail-promotion{
     padding: 20px 75px 20px 75px;
   }
+}
+.q-carousel{
+  margin-bottom: 45px;
+  overflow: visible !important
+}
+
+.q-carousel__control.q-carousel__navigation{
+  bottom: -60px !important;
 }
 </style>

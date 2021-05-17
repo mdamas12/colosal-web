@@ -133,6 +133,11 @@
         </div>-->
         <featured-products-carousel-component></featured-products-carousel-component>
         <footer-component></footer-component>
+        <q-page-sticky position="bottom-right" :offset="[18, 18]">
+            <q-btn fab color="white" @click="goToWz()">
+                <img src="~assets/img/whatsapp-icon.svg" style=" width: 25px;" >
+            </q-btn>
+        </q-page-sticky>
     </q-page>
 </template>
 
@@ -296,6 +301,9 @@ export default defineComponent({
           { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
         ]
       })
+    },
+    goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
     }
   }
 })
