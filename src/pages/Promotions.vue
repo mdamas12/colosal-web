@@ -1,7 +1,7 @@
 <template>
 <q-page>
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion bg-azul-tenue" active-color="grey">
-      <q-breadcrumbs-el icon="home" to="/" />
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion bg-azul-tenue" active-color="grey" style="font-size: 15px">
+      <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
       <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
      <!-- <div class="container-skeleton-list q-pa-md q-mb-sm" v-if="load">

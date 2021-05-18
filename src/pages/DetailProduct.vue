@@ -1,7 +1,7 @@
 <template>
     <q-page class="container-detail-product q-pt-md">
-        <q-breadcrumbs gutter="sm" class="q-px-md text-grey menu-breadcrumbs" active-color="grey">
-            <q-breadcrumbs-el icon="home" to="/" />
+        <q-breadcrumbs gutter="sm" class="q-px-md text-grey menu-breadcrumbs" active-color="grey" style="font-size: 15px">
+            <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
             <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs" to="/products"/>
             <q-breadcrumbs-el label="Almacén" class="texto-breadcrumbs text-bluesito"/>
         </q-breadcrumbs>

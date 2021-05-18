@@ -3,9 +3,9 @@
       <div class="container-profile bg-azul-tenue">
            <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
         <q-header class="bg-white">
-            <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-perfil bg-azul-tenue" active-color="grey">
-                <q-breadcrumbs-el icon="home" to="/" />
-                <q-breadcrumbs-el label="Mi Perfil" class="texto-breadcrumbs text-bluesito"/>
+            <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-perfil bg-azul-tenue" active-color="grey" style="font-size: 15px">
+                <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" />
+                <q-breadcrumbs-el label="Mi Perfil" class="texto-breadcrumbs-perfil text-bluesito"/>
     	    </q-breadcrumbs>
              <q-toolbar class="bg-azul-tenue">
               <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>
@@ -905,6 +905,10 @@ export default defineComponent({
     }
     .img-ws{
         width: 40%;
+    }
+
+    .texto-breadcrumbs-perfil{
+        font-family: 'Poppins-Regular';
     }
     @media(min-width:320px) and (min-width:1022px){
         /* .img-ws-contact{

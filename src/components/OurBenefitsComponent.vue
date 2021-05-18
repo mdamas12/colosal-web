@@ -12,7 +12,7 @@
             <div class="column justify-center text-center mbt-card">
                 <div class="row justify-center">
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card card-benefits q-pa-md">
+                        <q-card class="card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -33,7 +33,7 @@
                         </q-card>
                     </div>
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card card-benefits q-pa-md">
+                        <q-card class="card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -54,7 +54,7 @@
                         </q-card>
                     </div>
                     <div class="col-12 col-md q-pa-md q-gutter-sm">
-                        <q-card class="my-card card-benefits q-pa-md">
+                        <q-card class="card-benefits q-pa-md">
                             <q-item-section class="q-pt-md">
                                 <div class="col text-center">
                                     <q-avatar rounded>
@@ -104,6 +104,10 @@ export default defineComponent({ name: 'OurBenefitsComponent' })
     background-color:#DFEBFF;
 } */
 .my-card{
+border-radius: 27px;
+}
+
+.card-benefits{
 border-radius: 27px;
 }
 

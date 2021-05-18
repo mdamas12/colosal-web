@@ -17,7 +17,7 @@
                 arrows
                 swipeable
                 animated
-                control-color="red-10"
+                control-color="white"
                 class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
@@ -93,7 +93,7 @@
                 arrows
                 swipeable
                 animated
-                control-color="red-10"
+                control-color="white"
                 class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">

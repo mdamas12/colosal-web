@@ -3,8 +3,8 @@
 
 
 	<div class="container-shopping-cart-title ">
-		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-carrito" active-color="grey">
-			<q-breadcrumbs-el icon="home" to="/" />
+		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-carrito" active-color="grey" style="font-size: 15px">
+			<q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
 			<q-breadcrumbs-el label="Carrito" class="texto-breadcrumbs text-bluesito"/>
     	</q-breadcrumbs>
 		<div class="row q-ma-md">
@@ -566,7 +566,6 @@ export default defineComponent ( { components: {FooterComponent},
 
 		.texto-breadcrumbs{
 			font-family: 'Poppins-Regular';
-    		font-size: 12px;
 		}
 
 		@media(min-width:767px){

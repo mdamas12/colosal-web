@@ -1,8 +1,8 @@
 <template>
   <q-page class="container-products q-pt-md">
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list q-pt-md" active-color="grey">
-      <q-breadcrumbs-el icon="home" to="/" />
-      <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs text-bluesito"/>
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey breadcrumbs-products-list q-pt-md" active-color="grey" style="font-size: 15px">
+      <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs-products"/>
+      <q-breadcrumbs-el label="Todos los productos" class="texto-breadcrumbs-products text-bluesito"/>
     </q-breadcrumbs>
     <div class="container-products2">
       <q-layout view="hHh Lpr lff" container style="min-height: 3840px" class="rounded-borders">
@@ -653,9 +653,8 @@ export default defineComponent({
 .font-product-splitter{
     font-family: 'Poppins-Regular';
 }
-.texto-breadcrumbs{
+.texto-breadcrumbs-products{
     font-family: 'Poppins-Regular';
-    font-size: 12px;
 }
 
 .my-card{

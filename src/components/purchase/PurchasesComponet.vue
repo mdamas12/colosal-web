@@ -1,7 +1,7 @@
 <template>
 	<div class="container-shopping-cart-title ">
-		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases" active-color="grey">
-			<q-breadcrumbs-el icon="home" to="/" />
+		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases" active-color="grey" style="font-size: 15px">
+			<q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
       <q-breadcrumbs-el label="Carrito" to="/cart" class="texto-breadcrumbs"/>
 			<q-breadcrumbs-el label="Compra" class="texto-breadcrumbs text-bluesito"/>
     	</q-breadcrumbs>
