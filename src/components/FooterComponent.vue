@@ -18,7 +18,7 @@
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
                           <q-list dense>
-                              <q-item v-for="categorie in categories" :key="categorie.id">
+                              <q-item clickable v-for="categorie in categories" :key="categorie.id" @click="$router.push({name : 'Products' , params: {idCategorie : categorie.id}})">
                                   <q-item-section class="not-padding">{{categorie.name}}</q-item-section>
                               </q-item>
                           </q-list>
@@ -43,6 +43,14 @@
                             <q-icon name="location_on" style="font-size: 15px;"/>
                            Paseo caroni, Sector el Guamo, Antigua Izabella
                         </div>
+                        <div class="text-parrafo-footer text-white q-pt-md">
+                            <q-icon name="location_on" style="font-size: 15px;"/>
+                           C. C LAS CÚPULAS
+                        </div>
+                        <div class="text-parrafo-footer text-white q-pt-md">
+                            <q-icon name="location_on" style="font-size: 15px;"/>
+                           C. C GUAYANA MALL
+                        </div>
                     </div>
                     <div class="col-12 col-md q-pa-md">
                         <div class="text-title-footer text-white">
@@ -51,6 +59,9 @@
                         <div class="text-parrafo-footer text-white q-pt-md">
                             <q-icon name="phone" style="font-size: 15px;"/>
                            <a href="https://wa.me/584128770825?text=Hola%20buen%20dia." style="color:#fff">+58-412-8770825</a>
+                        </div>
+                        <div class="text-parrafo-footer text-white q-pt-md">
+                           Colosalminimarket@gmail.com
                         </div>
                     </div>
                 </div>
