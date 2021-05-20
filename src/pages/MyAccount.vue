@@ -1,9 +1,14 @@
 <template>
   <q-page>
-    <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
+      <div class="container-profile bg-azul-tenue">
+           <q-layout view="hHh Lpr lff" container style="min-height: 550px" class="rounded-borders">
         <q-header class="bg-white">
-             <q-toolbar>
-              <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" />
+            <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-perfil bg-azul-tenue" active-color="grey" style="font-size: 15px">
+                <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" />
+                <q-breadcrumbs-el label="Mi Perfil" class="texto-breadcrumbs-perfil text-bluesito"/>
+    	    </q-breadcrumbs>
+             <q-toolbar class="bg-azul-tenue">
+              <q-btn flat @click="drawer = !drawer" round dense icon="menu" color="bluesito" class="lt-md"/>
         </q-toolbar>
         </q-header>
         <q-drawer
@@ -29,6 +34,7 @@
             <!-- <q-tab name="security" label="Seguridad" class="font-tabs-item"/> -->
             <!-- <q-tab name="addresses" label="Direcciones" class="font-tabs-item"/> -->
             <q-tab name="order-status" label="Estatus de Ordenes" class="font-tabs-item"/>
+            <q-tab name="contact-ws" label="Contáctanos" class="font-tabs-item"/>
             <!-- <q-tab name="shopping-history" label="Historial de Compras" class="font-tabs-item"/> -->
         </q-tabs>
         </q-drawer>
@@ -42,10 +48,10 @@
               transition-prev="jump-up"
               transition-next="jump-up"
             >
-            <q-tab-panel name="personal-info">
+            <q-tab-panel name="personal-info" class="bg-azul-tenue">
               <q-card class="my-card card">
                 <q-item>
-                      <q-item-section>
+                      <q-item-section class="padd-perfil">
                           <div class="row items-center">
                               <div class="col text-center">
                                   <q-item-label class="title-personal-info">Información personal</q-item-label>
@@ -54,7 +60,7 @@
                       </q-item-section>
                 </q-item>
                 <q-separator />
-                <q-item class="q-pt-md">
+                <!-- <q-item class="q-pt-md">
                       <q-item-section avatar class="q-px-lg">
                           <q-avatar size="84px">
                               <img src="https://cdn.quasar.dev/img/avatar4.jpg">
@@ -70,31 +76,31 @@
                           Lorem ipsum dolor sit amet, consetetur
                       </q-item-label>
                       </q-item-section>
-                </q-item>
+                </q-item> -->
                 <q-card-section>
                       <q-item>
                           <q-item-section>
                               <div class="row q-pt-md">
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Nombre(s) y Apellido(s)*" class="font-input"></q-input>
+                                      <q-input label="Nombre(s) y Apellido(s)*" class="font-input" v-model="profile.first_name"></q-input>
                                   </div>
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Correo Electrónico*" class="font-input"></q-input>
+                                      <q-input label="Correo Electrónico*" class="font-input" v-model="profile.email"></q-input>
                                   </div>
                               </div>
                               <div class="row q-pt-md">
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Teléfono móvil*" class="font-input"></q-input>
+                                      <q-input label="Teléfono móvil*" class="font-input" v-model="profile.phone"></q-input>
                                   </div>
                                   <div class="col-12 col-md q-px-md">
-                                      <q-input label="Teléfono casa (opcional)" class="font-input"></q-input>
+                                      <q-input label="Contraseña" class="font-input" type="password" v-model="newPassword"></q-input>
                                   </div>
                               </div>
                           </q-item-section>
                       </q-item>
                 </q-card-section>
                 <q-card-actions vertical align="center">
-                  <q-btn label="Guardar cambios" color="bluesito" class="btn-register q-mb-md" size="md"></q-btn>
+                  <q-btn label="Guardar cambios" color="bluesito" class="btn-register q-mb-md" size="md" @click="saveProfile"></q-btn>
                 </q-card-actions>
               </q-card>
             </q-tab-panel>
@@ -181,10 +187,10 @@
                 </q-card-actions>
             </q-card>
           </q-tab-panel> -->
-            <q-tab-panel name="order-status">
+            <q-tab-panel name="order-status" class="bg-azul-tenue">
                 <q-card class="my-card q-px-md">
                     <q-item>
-                        <q-item-section>
+                        <q-item-section class="padd-perfil">
                             <div class="row items-center">
                                 <div class="col text-center">
                                     <q-item-label class="title-addresses">Estatus de Ordenes</q-item-label>
@@ -360,6 +366,62 @@
                     </q-card-section>
                 </q-card>
             </q-tab-panel>
+            <q-tab-panel name="contact-ws" class="bg-azul-tenue">
+                <q-card class="my-card">
+                     <q-item>
+                        <q-item-section class="padd-perfil">
+                            <div class="row items-center">
+                                <div class="col text-center">
+                                    <q-item-label class="title-addresses">Contáctanos</q-item-label>
+                                </div>
+                            </div>
+                        </q-item-section>
+                    </q-item>
+                    <q-separator />
+                    <q-item class="q-pt-md">
+                      <q-item-section>
+                          <div class="row text-center">
+                              <div class="col-12">
+                                  <q-item-label class="label-contact-ws text-center text-grey q-pa-md">
+                                    Si tienes alguna duda o problema con tu cuenta, por favor escribenos y con gusto te ayudaremos.
+                                  </q-item-label>
+                              </div>
+                               <!-- <div class="row"> -->
+                              <div class="col-12 col-md q-pa-md text-center">
+                                  <!-- <div class="row"> -->
+                                      <div class="row items-center">
+                            <div class="col-12 col-md q-pa-md">
+                                <div class="column img-ws-contact">
+                                     <div class="img-ws q-pt-md">
+                                     <q-img src="~assets/img/Personaje-Whatsapp.svg"></q-img>
+                                </div>
+                                </div>
+                               
+                            </div>
+                            <div class="col q-pt-md q-mx-md">
+                                <!-- <div class="pdt-ventasmd text-h6 text-right">
+                                    Contáctanos a nuestro WhatsApp
+                                </div> -->
+                                <div class="column btn-ws-contact q-pa-md">
+                                    <q-btn label="Iniciar chat" text-color="white" color="green" size="md" class="btn" @click="goToWz()"></q-btn>                                </div>
+                            </div>
+                        </div>
+                                  <!-- </div> -->
+                                <!-- <div class="img-ws q-pt-md">
+                                     <q-img src="~assets/img/Personaje-Whatsapp.svg"></q-img>
+                                     <q-btn label="Iniciar Chat" color="green" class="btn-register q-mb-md" size="md"></q-btn>
+                                </div> -->
+                            </div>
+
+                          <!-- </div> -->
+                          </div>
+                      </q-item-section>
+                      <!-- <q-item-section> -->
+                         
+                      <!-- </q-item-section> -->
+                </q-item>
+                </q-card>
+            </q-tab-panel>
           <!-- <q-tab-panel name="shopping-history">
            <q-card class="my-card">
                 <q-item>
@@ -416,6 +478,7 @@
             </q-card>
           </q-tab-panel> -->
         </q-tab-panels>
+        
         <q-dialog persistent v-model="PurchaseEdit" >
             <q-card class="my-card" style="max-width:100%; width:440px">
                 <q-toolbar class="text-bluesito">
@@ -461,6 +524,8 @@
         </div>
         </q-page-container>
     </q-layout>
+      </div>
+   
     <footer-component></footer-component>
   </q-page>
 </template>
@@ -468,10 +533,19 @@
 import { defineComponent } from '@vue/composition-api'
 import PurchaseService   from 'src/services/purchases/purchase.services'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import UserService from 'src/services/home/users/user.service'
+import { Loading } from "quasar";
+
 export default defineComponent({
   components: { FooterComponent },
   data () {
     return {
+      profile: {
+          "first_name": '',
+          "email": '',
+          "phone": ''
+      },
+      newPassword: '',
       tab: 'personal-info',
       tab_purchases: 'validate',
       text: '',
@@ -579,7 +653,57 @@ export default defineComponent({
     const vm = this;
     vm.onRequest();
   },
-    methods: {
+  created(){
+      this.getUser()
+  },
+  methods: {
+    goToWz(){
+        window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+    },
+    saveProfile(){
+        console.log(this.profile)
+        console.log(this.newPassword)
+
+        let profileAux = this.profile
+        profileAux.password = this.newPassword
+
+        if (this.profile.first_name == "" || this.profile.email == "" || this.profile.email == "" || this.newPassword == ""){
+            this.showNotif("No puede dejar campos vacios", 'red-10');
+            return;
+        };
+
+        if(this.newPassword.length < 8){
+            this.showNotif("La contraseña debe ser mayor o igual a 8 caracteres", 'red-10');
+        }
+
+        UserService.editProfile(profileAux).subscribe({
+            next: data => {
+                console.log(data);
+                Loading.hide()
+                this.showNotif("Usuario Actualizado", 'green-5');
+            },
+            complete: () => {          
+            },
+            error : err => {
+                console.log(err)
+                Loading.hide();
+                this.showNotif("Error actualizando usuario, por favor intente mas tarde", 'red-10');
+            }
+        })
+    },
+    getUser(){
+        UserService.getUserMe().subscribe({
+          next: data => {
+            console.log(data);
+            this.profile = data
+          },
+          complete: () => {          
+          },
+          error : err => {
+              console.log(err)
+          }
+        })
+    },
     onRequest(){
       this.toValidate.pop();
       this.toDeliver.pop();
@@ -677,6 +801,10 @@ export default defineComponent({
 </script>
 
 <style>
+    .breadcrumbs-perfil{
+        font-family: 'Poppins-Regular';
+        font-size: 12px;
+    }
     .title-personal-info{
         font-family: 'Poppins-SemiBold';
         font-size: 20px;
@@ -694,7 +822,12 @@ export default defineComponent({
     }
     .font-tabs-item{
         font-family:'Poppins-SemiBold';
-        font-size: 14px
+        font-size: 14px;
+        color:#0F2A55
+    }
+    .label-contact-ws{
+        font-family:'Poppins-SemiBold';
+        font-size: 14px 
     }
     .font-input{
         font-family: 'Poppins-Regular';
@@ -766,5 +899,39 @@ export default defineComponent({
     }
     .font-body-table{
         font-family: 'Poppins-Regular';
+    }
+    .padd-perfil{
+    padding: 16px 0px 16px 0px;
+    }
+    .img-ws{
+        width: 40%;
+    }
+
+    .texto-breadcrumbs-perfil{
+        font-family: 'Poppins-Regular';
+    }
+    @media(min-width:320px) and (min-width:1022px){
+        /* .img-ws-contact{
+            align-items: center;
+        } */
+        .btn-ws-contact{
+            align-items: center;
+        }
+    }
+
+    @media(min-width:767px){
+			.container-profile{
+				padding-left: 12%;
+				padding-right: 12%;
+                background-color: #F2F7FF;
+			}
+		}
+    @media(min-width: 1023px){
+        .img-ws-contact{
+            align-items: flex-end;
+        }
+        .btn-ws-contact{
+            align-items: flex-start;
+        }
     }
 </style>

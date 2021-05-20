@@ -30,17 +30,18 @@ export default defineComponent({ name: 'AboutComponent' })
 
 <style>
     .container-about-1{
-        color: #FAFAFA;
-        padding-left: 11%;
-        padding-right: 11%;
+        /* color: #FAFAFA; */
+        background-color: #F2F7FF;
+        padding-left: 9%;
+        padding-right: 9%;
     }
     .container-about{
-        color: #FAFAFA;
+        background-color: #F2F7FF;
+        /* color: #FAFAFA; */
     }
     .text-title{
         font-family: 'Poppins-SemiBold';
         font-size: 25px;
-        color: #000000
     }
     .text-parrafo{
         font-family: 'Poppins-Regular';

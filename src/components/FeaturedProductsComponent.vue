@@ -1,5 +1,5 @@
 <template>
-<div class="container-featured-products-1 q-pb-xl q-pt-lg">
+<div class="container-featured-products-1 q-pb-xl q-pt-xl">
     <div class="container-featured-products">
         <div class="row">
             <div class="col">
@@ -32,7 +32,7 @@
                                     Contáctanos a nuestro WhatsApp
                                 </div>
                                 <div class="column items-end q-pa-md">
-                                    <q-btn label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
+                                    <q-btn @click="goToWz()" label="Iniciar chat" text-color="black" color="white" size="md" class="btn"></q-btn>                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,13 +45,13 @@
           <q-card-section class="q-pa-md">
             <q-list padding v-if="payments" v-for="payment in payments" :key="payment.id">
               <q-item>
-                <q-item-section>
+                <q-item-section class="font-payments">
                 <q-item-label><b>Banco: </b>{{payment.name}}</q-item-label>
-                <q-item-label><b>Titular: </b>{{payment.account_owner}}</q-item-label>
+                <q-item-label><b>Títular: </b>{{payment.account_owner}}</q-item-label>
                 <q-item-label><b>Nro de cuenta: </b>{{payment.account_number}}</q-item-label>
                 <q-item-label><b>Email: </b>{{payment.email}}</q-item-label>
-                <q-item-label><b>Telefono: </b>{{payment.phone}}</q-item-label>
-                <q-item-label><b>Metodos de pago: </b> {{payment.getMethods()}} </q-item-label>
+                <q-item-label><b>Teléfono: </b>{{payment.phone}}</q-item-label>
+                <q-item-label><b>Métodos de pago: </b> {{payment.getMethods()}} </q-item-label>
                 </q-item-section>
               </q-item>
               <q-separator spaced />
@@ -81,6 +81,9 @@ export default defineComponent({
       this.getPaymentMethods()
     },
     methods: { 
+      goToWz(){
+        window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+      },
       getPaymentMethods () {
         let vm = this
         PaymentsService.getPaymentMethods().subscribe({
@@ -100,10 +103,10 @@ export default defineComponent({
   .container-featured-products-1{
     padding-left: 13%;
     padding-right: 13%;
-    background-color: #FAFAFA;
+    /*background-color: #F2F7FF;*/
   }
   .container-featured-products{
-    background-color: #FAFAFA;
+    /*background-color: #F2F7FF;*/
   }
   .container-ws{
     background-color: #00BFA5;
@@ -148,7 +151,7 @@ export default defineComponent({
   .enlace-ver{
     color:#EB0004;
     font-family: 'Poppins-Regular';
-    font-size: 19px;
+    font-size: 16px;
   }
   .my-card:hover .img-product{
     -webkit-transform: scale(1.00);
@@ -160,7 +163,11 @@ export default defineComponent({
     font-family: 'Poppins-SemiBold';
     font-size: 25px;
   }
-  .text-name-product{
+  .font-payments{
+    font-family: 'Poppins-Regular';
+    font-size: 15px;
+  }
+  /* .text-name-product{
     font-family: 'Poppins-SemiBold';
     font-size: 16px;
   }
@@ -171,7 +178,7 @@ export default defineComponent({
   .text-price-product{
     font-family: 'Poppins-SemiBold';
     font-size: 24px;
-   }
+   } */
   @media (min-width:320px) and (max-width: 1023px) {
     .img-ventasmd{
       width: 60%;

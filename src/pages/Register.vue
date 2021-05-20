@@ -1,18 +1,13 @@
 <template>
     <q-page>
         <div class="container q-pt-lg q-mb-xl bg-hueso">
-             <div class="container-registro bg-hueso">
-            <div class="container-title-register bg-hueso q-mx-lg">
-                <div class="row q-pa-md">
-                    <div class="col">
-                        <q-card>
-                            <q-item>
-                                <q-item-section>
-                                    <q-item-label class="text-h5">Formulario de registro</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                        </q-card>
-                    </div>
+        <div class="container-form bg-hueso q-mt-md q-mb-md">
+            <div class="row">
+                <div>
+                    <q-btn icon="keyboard_backspace" flat rounded @click="$router.back()"/>
+                </div>
+                <div class="col">
+                    <q-item-label class="text-h5 q-mt-xs">Formulario de registro</q-item-label>
                 </div>
             </div>
         </div>
@@ -32,7 +27,7 @@
                 </q-item>
                 <q-separator />
 
-                <q-card-section>
+                <q-card-section class="q-py-md">
                     <q-item>
                         <q-item-section>
                             <div class="row">
@@ -94,7 +89,7 @@
                     </q-item>
                 </q-card-section>
                 <q-card-actions vertical align="center">
-                    <q-btn label="Registrarme" color="bluesito" class="btn-register q-mb-md" @click="checkinformations()"></q-btn>
+                    <q-btn label="Registrarme" color="bluesito" class="btn-register" @click="checkinformations()"></q-btn>
                 </q-card-actions>
             </q-card>
         </div>
@@ -135,7 +130,6 @@ export default defineComponent({
         })
         },
         checkinformations(){
-         
         if (this.username == "" || this.email == "" || this.email_confirm == "" || this.password == "" || this.password_confirm == ""){
             this.showNotif("Faltan campos por completar", 'red-10');
             return;
@@ -170,8 +164,9 @@ export default defineComponent({
             let subscription = UsersService.Register(credentials).subscribe({
                 complete: () => {
                     Loading.hide()
-                    this.showNotif("Usuario Registrado", 'green-5');
-                    this.$router.go('/')
+                    this.showNotif("Usuario Registrado", 'green-5')
+                    this.$store.dispatch('app/updateLogin')
+                    this.$router.push('/')
                 },
                 error: err => {
                     console.log(err)
@@ -192,8 +187,9 @@ export default defineComponent({
             return emailPattern.test(val) || 'Correo inválido';
             },
         isValidPassword (val) {
-           const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-           return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres (1 Letra May, 1 Caracter especial) ';
+        //    const password_validator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+            const password_validator = /^(?=.*[a-zA-Z0-9]).{8,}$/;
+           return password_validator.test(val) || 'La Contraseña debe tener al menos : 8 caracteres';
         },
   }
 })
@@ -260,6 +256,9 @@ export default defineComponent({
     font-family:'Poppins-Medium';
     font-size: 12px;
     border-radius: 9px;
+}
+.padd-card{
+    padding: 16px 0px 16px 0px;
 }
 
 @media(min-width:320px) and (max-width:600px){

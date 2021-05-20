@@ -1,6 +1,10 @@
 <template>
+<<<<<<< HEAD
    
   <div class="">
+=======
+  <div class="container-carousel-banner">
+>>>>>>> responsive
     <q-carousel
       animated
       v-model="slide"
@@ -151,6 +155,13 @@ export default defineComponent({
     padding-top: 6%;
   }
 }
+/* @media(min-width:768px){
+  .container-carousel-banner{
+  padding-left: 12%;
+  padding-right: 12%;
+  }
+} */
+
 @media (min-width:1024px) and (max-width:1325px){
   .text-h3{
     font-size:50px

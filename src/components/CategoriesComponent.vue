@@ -2,8 +2,8 @@
 <div class="container-categories-1 q-pt-md">
     <div class="container-categories q-pt-none">
         <div class="row q-pa-md">
-            <div class="col q-px-lg">
-                <div class="text-title">
+            <div class="col">
+                <div class="text-title text-white">
                     Categorías
                 </div>
             </div>
@@ -14,10 +14,11 @@
                 transition-prev="slide-right"
                 transition-next="slide-left"
                 infinite
+                arrows
                 swipeable
                 animated
-                control-color="red-10"
-                class="container-carousel q-px-lg q-pt-md bg-redp"
+                control-color="white"
+                class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="slide" class="col q-pt-none" v-for="(slide,index) in categoriesGroups" :key="slide">
                     <div class="row" v-if="load">
@@ -47,20 +48,34 @@
                         </div>
                     </div>
                     <div class="row justify-center" v-else>
-                        <div class="col-4 text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                        <!-- <div class="col-12 col-md q-gutter-sm q-pa-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
+                            <q-card class="my-card card">
+                                <q-card-section class="text-center">
+                                    <q-img
+                                        :src="'http://minimarketcolosal.com/api' + category.image" 
+                                        class="text-center" 
+                                        style="height: 250px; max-width: 250px"
+                                    />
+                                </q-card-section>
+                                <q-card-section class="text-title-categorie text-center">
+                                    {{category.name}}
+                                </q-card-section>
+                            </q-card>
+                        </div> -->
+                        <div class="col-12 col-md text-center q-gutter-sm q-mt-md" v-for="category in categories.slice(index * itemsCatRow, (index+1) * itemsCatRow)" :key="category.id">
                             <div class="div-carniceria q-pa-md">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
                                     :src="'http://minimarketcolosal.com/api' + category.image" 
-                                    class="image-categorie" 
+                                     class="image-categorie"
                                     style="height: 250px; max-width: 250px"/>
                                     
-                                <div class="middle q-pr-md q-pt-md">
+                                <div class="middle q-pt-md">
                                     <q-btn color="white" text-color="black" label="Ver todo" icon-right="keyboard_arrow_right" class="btn-category" @click="$router.push({name : 'Products' , params: {idCategorie : category.id}})"></q-btn>
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie q-pr-md">
+                                <div class="text-title-categorie text-white">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -75,32 +90,17 @@
                 transition-prev="slide-right"
                 transition-next="slide-left"
                 infinite
+                arrows
                 swipeable
                 animated
-                control-color="red-10"
-                class="container-carousel q-px-lg q-pt-md bg-redp"
+                control-color="white"
+                class="container-carousel-categories bg-transparent"
             >
                     <q-carousel-slide :name="category.id" class="col q-pt-none" v-for="category in categories" :key="category.id">
                     <div class="row" v-if="load">
-                        <div class="col-12 col-md text-center q-gutter-sm">
+                        <div class="col-12 col-sm-12 text-center q-gutter-sm">
                             <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
-                            </q-card-section>
-                            <q-card-actions align="center" class="q-pt-sm">
-                                <q-skeleton type="QBtn" class="q-mb-sm" bordered />
-                            </q-card-actions>
-                        </div>
-                        <div class="col-12 col-md text-center q-gutter-sm">
-                            <q-card-section align="center" class="q-gutter-md">
-                                <q-skeleton type="circle" size="250px" bordered />
+                                <q-skeleton type="circle" size="145px" bordered />
                             </q-card-section>
                             <q-card-actions align="center" class="q-pt-sm">
                                 <q-skeleton type="QBtn" class="q-mb-sm" bordered />
@@ -108,12 +108,12 @@
                         </div>
                     </div>
                     <div class="row justify-center" v-else>
-                        <div class="col-12 text-center q-gutter-sm q-mt-md">
-                            <div class="div-carniceria q-pa-md">
+                        <div class="col-12 text-center q-gutter-sm q-pt-md">
+                            <div class="div-carniceria">
                                 <!-- Concatenando el dominio porque no lo manda el servicio al crearlo desde el panel -->
                                 <q-img 
                                     :src="'http://minimarketcolosal.com/api' + category.image" 
-                                    class="image-categorie" 
+                                    class="image-categorie-responsive" 
                                 />
                                     
                                 <div class="middle q-pr-md q-pt-md">
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                             <div align="center">
-                                <div class="text-title-categorie q-pr-md">
+                                <div class="text-title-categorie text-white">
                                     {{category.name}}
                                 </div>
                             </div>
@@ -208,17 +208,22 @@ export default defineComponent({
 
 <style>
     .container-categories-1{
-        background-color:#FAF3EB;
-        padding-left: 10%;
-        padding-right: 10%;
+        /*background-color:#DFEBFF;*/
+        padding-left: 11%;
+        padding-right: 11%;
     }
     .container-categories{
-        background-color: #FAF3EB;
-        padding-left: 3%;
-        padding-right: 3%;
+        /*background-color: #DFEBFF;
+     padding-left: 3%;
+        padding-right: 3%; */
     }
     .container-carousel{
         height: 415px;
+    }
+
+    .container-carousel-categories{
+        padding-left: 3%;
+        padding-right: 3%;
     }
     .text-title{
         font-family: 'Poppins-SemiBold';
@@ -227,13 +232,15 @@ export default defineComponent({
     .text-title-categorie{
         font-family: 'Poppins-SemiBold';
         font-size: 24px;
-        color: #B31E1A;
+        color: #020B68;
     }
     .image-categorie{
         opacity: 1;
-        display: block;
+        /* display: block; */
         transition: .5s ease;
         backface-visibility: hidden;
+        border-radius: 120px;
+        
     }
     .div-carniceria{
         position: relative;
@@ -253,10 +260,7 @@ export default defineComponent({
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%)
     }
-    .image-categorie{
-        max-height: 250px;
-        min-height: 200px;
-    }
+    
     .div-carniceria:hover .image-categorie{
         opacity: 0.6;
     }
@@ -284,9 +288,51 @@ export default defineComponent({
         padding-right: 12%;
     }
 
-    @media (min-width:1023px){
-        .image-categorie{
-            max-width: 250px;
+    /* @media(min-width:320px)and(max-width:549px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .div-carniceria .image-categorie-responsive{
+            border-radius: 120px;
+        }  
+    } */
+
+
+    @media (min-width:320px) and (max-width: 374px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .image-categorie-responsive{
+        height: 200px;
+        max-width: 200px;
+        border-radius: 120px;
+        }
+
+        .div-carniceria{
+            padding-top: 45px;
+        }
+    }
+    @media (min-width:375px) and (max-width: 767px){
+        .container-categories-1{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .image-categorie-responsive{
+        height: 250px;
+        max-width: 250px;
+        border-radius: 120px;
+        }
+        .div-carniceria{
+            padding-top: 40px;
+        }
+    }
+    @media (min-width:768px){
+        .image-categorie-responsive{
+        height: 250px;
+        max-width: 250px;
+        border-radius: 120px;
         }
     }
     @media (min-width: 1700px){

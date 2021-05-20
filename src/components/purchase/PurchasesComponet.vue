@@ -1,50 +1,53 @@
 <template>
 	<div class="container-shopping-cart-title ">
-		<div class="row">
-		</div>
-		<div class="row justify-evenly items-start content-center">
-			<div class="col-8 q-mx-md" >
-				<div class="row full-width q-my-xl">
+		<q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-purchases" active-color="grey" style="font-size: 15px">
+			<q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
+      <q-breadcrumbs-el label="Carrito" to="/cart" class="texto-breadcrumbs"/>
+			<q-breadcrumbs-el label="Compra" class="texto-breadcrumbs text-bluesito"/>
+    	</q-breadcrumbs>
+		<div class="row q-pa-md">
+			<div class="col-12 col-md-8" >
+				<div class="row q-my-sm">
 					<div class="col">
-						<q-card flat bordered class="q-mb-sm q-pa-lg">
-							<q-card-header>
-								<div class="row title-text">
+						<!-- <q-card flat bordered class="q-mb-sm q-pa-lg"> -->
+							<!-- <q-card-header> -->
+								<div class="row title-text-purchase text-center">
 									Finaliza tu Compra
 								</div>
-							</q-card-header>
-						</q-card>		
+							<!-- </q-card-header> -->
+						<!-- </q-card>		 -->
 					</div>
 				</div>
-               <div class="row full-width q-my-xl">
+               <div class="row full-width q-pt-md q-mb-md">
 					<div class="col">
 						<q-card flat bordered class="q-mb-sm q-pa-lg">
 							<q-card-header>
-								<div class="row title-text-principal">
-									Selecciona un metodo de pago:
+								<div class="row title-text-principal text-bluesito">
+									Selecciona un método de pago:
 								</div>
 							</q-card-header>
-                            <q-radio v-model="Tpago" val="TRANSFERENCIA $" unchecked-icon="visibility_off" checked-icon="visibility" label="Transferencia $" class="font-checkbox"  />
-                            <q-radio v-model="Tpago" val="TRANSFERENCIA BS" label="Transferencia Bs" class="font-checkbox"  />
-                            <q-radio v-model="Tpago" val="ZELLE" label="Zelle" class="font-checkbox"  />
-                            <q-radio v-model="Tpago" val="PAGO MOVIL" label="Pago Movil" class="font-checkbox"  />
-                            <q-radio v-model="Tpago" val="EFECTIVO" label="Efectivo" class="font-checkbox"  />
+                            <q-radio v-model="Tpago" val="TRANSFERENCIA $" unchecked-icon="visibility_off" checked-icon="visibility" label="Transferencia $" class="font-checkbox-mp"  />
+                            <q-radio v-model="Tpago" val="TRANSFERENCIA BS" label="Transferencia Bs" class="font-checkbox-mp"  />
+                            <q-radio v-model="Tpago" val="ZELLE" label="Zelle" class="font-checkbox-mp"  />
+                            <q-radio v-model="Tpago" val="PAGO MOVIL" label="Pago Móvil" class="font-checkbox-mp"  />
+                            <q-radio v-model="Tpago" val="EFECTIVO" label="Efectivo" class="font-checkbox-mp"  />
                             <div class="row"> 
-                                <div class="col-6" v-for="item in banks" :key="item.id">   
+                                <div class="col-12 col-md-6" v-for="item in banks" :key="item.id">   
                                     <q-card-section class="banks">
                                         <div class="col desc">
-                                            <span class="tittle">Banco:</span>  <strong> {{item.bank.name}} </strong>
+                                            <span class="tittle ">Banco:</span>  <strong> {{item.bank.name}} </strong>
                                         </div>
                                         <div class="col desc">
-                                            <span class="tittle">Titular:</span> {{item.bank.account_owner}} 
+                                            <span class="tittle">Títular:</span> {{item.bank.account_owner}} 
                                         </div>
                                         <div class="col desc">
-                                           <span class="tittle">Identificacion:</span>  {{item.bank.owner_id}} 
+                                           <span class="tittle">Identificación:</span>  {{item.bank.owner_id}} 
                                         </div>
                                         <div class="col desc">
                                            <span class="tittle">Cuenta N:</span>  {{item.bank.account_number}} 
                                         </div>
                                         <div class="col desc">
-                                            <span class="tittle">Telefono:</span> {{item.bank.phone}} 
+                                            <span class="tittle">Teléfono:</span> {{item.bank.phone}} 
                                         </div>
                                         <div class="col desc">
                                             <span class="tittle">Email:</span> {{item.bank.email}} 
@@ -63,35 +66,38 @@
 		  		<div class="row q-mx-xs">
 				 
 					<div class="col-12" v-for="shoppingcart in products" :key="shoppingcart.id">
-						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.product != null">
+						<q-card flat bordered class="card-products-purchase q-mb-md" v-if="shoppingcart.product != null">
 							<div class="row items-center">
-								<div class="col-2">
+								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.product.image" class="img-product q-ml-md"></q-img>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												{{shoppingcart.product.name}}
+											</div>
+                      <div class="col text-description-product">
+												{{shoppingcart.product.brand.name}}
 											</div>
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-3">
-									<q-card-section>
+								<div class="col-12 col-sm-3 text-center">
+									<q-card-section class="text-center">
 										<div class="col text-name-product">
 						          Cantidad
                   	</div>
-										<div>
+										<div class="text-center">
 											<q-card flat bordered>
-												<q-card-section>
+												<!-- <q-card-section> -->
 													<div class="row justify-evenly items-center">	
-														<div class="col text-name-product self-center q-pl-lg">
+														<div class="col text-name-product">
 															{{shoppingcart.quantity}} 
 														</div>
 																		
 													</div>
-												</q-card-section>
+												<!-- </q-card-section> -->
 											</q-card>
 										</div>
 		
@@ -99,9 +105,9 @@
 								
 								</div>
 									 
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												Precio
 											</div>
@@ -111,9 +117,9 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
@@ -132,42 +138,45 @@
 						<q-card flat bordered class="my-card q-mb-md" v-if="shoppingcart.promotion != null">
 							<div class="row items-center">
        
-								<div class="col-2">
+								<div class="col-12 col-sm-2 text-center">
 									<q-img :src="shoppingcart.promotion.image" class="img-product q-ml-md"></q-img>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												{{shoppingcart.promotion.name}}
+											</div>
+                      <div class="col text-description-product">
+												{{shoppingcart.promotion.description}}
 											</div>
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-3">
-									<q-card-section>
+								<div class="col-12 col-sm-3 text-center">
+									<q-card-section class="text-center">
 										<div class="col text-name-product items-center">
                        Cantidad 
 										</div>
-										<div>
+										<div class="text-center">
 											<q-card flat bordered>
-												<q-card-section>
+												<!-- <q-card-section> -->
 													<div class="row justify-evenly items-center">
-														<div class="col text-name-product self-center q-pl-lg">
+														<div class="col text-name-product self-center">
 															{{shoppingcart.quantity}} 
 														</div>
 																					
 													</div>
-												</q-card-section>
+												<!-- </q-card-section> -->
 											</q-card>
 										</div>
 									</q-card-section>
 								
 								</div>
 									 
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												Precio
 											</div>
@@ -177,9 +186,9 @@
 										</q-card-section>
 									</div>
 								</div>
-								<div class="col-2">
-									<div class="column items-start">
-										<q-card-section>
+								<div class="col-12 col-sm-2 text-center">
+									<div class="column items-center">
+										<q-card-section class="text-center">
 											<div class="col text-name-product">
 												SUBTOTAL
 											</div>
@@ -198,65 +207,71 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
-				<q-card flat bordered class="my-card q-mx-md q-mt-xl">
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+			<div class="col-12 col-md-4 text-center padd-ts">
+				<q-card flat bordered class="card-products-purchase q-mx-md q-mt-sm">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								Subtotal
 							</div>
-							<div class="col-2 wrap self-end">
-								<strong>${{subtotal}}</strong>
-							</div>
+              <div class="container">
+                	<div class="col-2 wrap self-end text-name-product">
+								    <strong>${{subtotal.toFixed(2)}}</strong>
+							    </div>
+              </div>
+						
 						</div>
 					</q-card-section>
-
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								Descuentos
 							</div>
-							<div class="col-2 wrap self-end">
-								<strong>$0.00</strong>
-							</div>
+              <div class="container">
+                <div class="col-2 wrap self-end text-name-product">
+								  <strong>$0.00</strong>
+							  </div>
+              </div>
 						</div>
 					</q-card-section>
 
 					<q-separator/>
 
-					<q-card-section>
-						<div class="row justify-between">
-							<div class="col-2 self-start">
+					<q-card-section class="text-center">
+						<div class="row justify-between text-center">
+							<div class="col-2 self-start text-name-product">
 								TOTAL
 							</div>
-							<div class="col-2 wrap self-end">
-								<strong>${{subtotal.toFixed(2)}}</strong>
-							</div>
+              <div class="container">
+                <div class="col-2 wrap self-end text-total-purchase">
+								  <strong>${{subtotal.toFixed(2)}}</strong>
+							  </div>
+              </div>
 						</div>
 					</q-card-section>
 
 					<q-separator/>
 
                 <q-card-section  v-if="bankSelect.length != 0" v-show="bankSelectShow" >
-                  <div class="col-2 self-start">
+                  <div class="col-2 self-start text-name-product">
 				   <strong>Banco Seleccionado:</strong>   
 				  </div>
-                  <div class="col desc">
+                  <div class="col desc text-description-banks">
                      <span class="tittle">Banco:</span> {{bankSelect.bank.name}} 
                  </div>
-                 <div class="col desc">
-                     <span class="tittle">Titular:</span> {{bankSelect.bank.account_owner}} 
+                 <div class="col desc text-description-banks">
+                     <span class="tittle">Títular:</span> {{bankSelect.bank.account_owner}} 
                  </div>
-                 <div class="col desc">
-                    <span class="tittle">Identificacion:</span>  {{bankSelect.bank.owner_id}} 
+                 <div class="col desc text-description-banks">
+                    <span class="tittle">Identificación:</span>  {{bankSelect.bank.owner_id}} 
                 </div>
-                <div class="col desc">
+                <div class="col desc text-description-banks">
                  <span class="tittle">Cuenta N:</span>  {{bankSelect.bank.account_number}} 
                 </div>
-                <div class="col desc">
-                    <span class="tittle">Telefono:</span> {{bankSelect.bank.phone}} 
+                <div class="col desc text-description-banks">
+                    <span class="tittle">Teléfono:</span> {{bankSelect.bank.phone}} 
                 </div>
-                <div class="col desc">
+                <div class="col desc text-description-banks">
                     <span class="tittle">Email:</span> {{bankSelect.bank.email}} 
                 </div>
              </q-card-section>
@@ -266,7 +281,7 @@
 						<div class="column items-center">
 							<div class="row">
 								<div class="col">
-									<q-btn color="red-10" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido" @click="PurchaseNext()" ></q-btn>
+									<q-btn color="redsito" text-color="white" icon-right="arrow_forward_ios" label="finalizar pedido" class="btn-car" size="md" @click="PurchaseNext()" ></q-btn>
 								</div>
 							</div>
 						</div>
@@ -281,13 +296,13 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Ultimo Paso!
+              ¡Último Paso!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
         <q-separator />
          <div class="q-mt-xs" align="center">
-            <span class="label-register text-center">Ya casi terminas tu compra,<br> indicanos el numero de transferencia.</span> 
+            <span class="label-register text-center">Ya casi terminas tu compra,<br> indícanos el número de transferencia.</span> 
          </div>
         <q-item class="q-pt-xs">
           <q-item-section>
@@ -306,13 +321,13 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Recuerda, si no tiene aun la referencia, puedes procesar la compra y buscarla en Ordenes de compra, tienes 24 Horas para validar el pago; de lo contrario la compra sera anulada. </q-item-label>
+                     <q-item-label class="label-register">Recuerda, si no tiene aún la referencia, puedes procesar la compra y buscarla en órdenes de compra, tienes 24 Horas para validar el pago; de lo contrario la compra será anulada. </q-item-label>
 
                   </div>
                 </div>
               </div>
            </q-item-section>
-           </q-item>
+           <!-- </q-item> -->
           </q-card>
         </q-dialog>
 
@@ -322,7 +337,7 @@
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
           <q-toolbar-title class="title-session">
-              Ultimo Paso!
+              ¡Último Paso!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
@@ -331,7 +346,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Genial, Has seleccionado metodo de pago en efectivo, al procesar la compra nuestro agente se pondra en contacto contigo. </q-item-label>
+                     <q-item-label class="label-register">Genial, Has seleccionado método de pago en efectivo, al procesar la compra nuestro agente se pondrá en contacto contigo. </q-item-label>
                      
                   </div>
                 </div>
@@ -342,7 +357,7 @@
          </q-card-actions>
          <q-separator />
  
-           </q-item>
+           <!-- </q-item> -->
           </q-card>
         </q-dialog>
 
@@ -350,8 +365,8 @@
     <q-dialog persistent v-model="showSaleReady" >
       <q-card class="my-card" style="max-width:100%; width:440px">
         <q-toolbar class="text-bluesito">
-          <q-toolbar-title class="title-session">
-              Genial! Tu Compra ha Sido Procesada
+          <q-toolbar-title class="title-purchase">
+              ¡Genial, tu compra ha sido procesada!
           </q-toolbar-title>
           <q-btn flat icon="close" round v-close-popup />
         </q-toolbar>
@@ -360,7 +375,7 @@
            <div class="row q-pt-md">
                 <div class="col">
                   <div class="container text-center q-pa-md">
-                     <q-item-label class="label-register">Recuerda, en tu perfil estan tus ordenes d compras </q-item-label>
+                     <q-item-label class="label-register">Recuerda, en tu perfil estan tus órdenes de compras </q-item-label>
                      
                   </div>
                 </div>
@@ -371,7 +386,7 @@
          </q-card-actions>
          <q-separator />
  
-           </q-item>
+           <!-- </q-item> -->
           </q-card>
         </q-dialog>
 
@@ -405,7 +420,7 @@
          </q-card-actions>
          <q-separator />
  
-           </q-item>
+           <!-- </q-item> -->
           </q-card>
         </q-dialog>
     
@@ -553,7 +568,10 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
      GoToShoppingCart(){
          this.showErrorFaltaStock = false;
          this.$router.push('/cart');
-     }
+     },
+     goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
+    }
 
 	},
 	 mounted () {
@@ -572,70 +590,94 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 <style>
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product{
 			font-family: 'Poppins-SemiBold';
-			font-size: 16px;
+			font-size: 14px;
 		}
 
+    .text-total-purchase{
+			font-family: 'Poppins-SemiBold';
+			font-size: 14px;
+		}
+    
 		.text-description-product{
 				font-family: 'Poppins-Regular';
 				font-size: 16px;
 		}
 
-		.title-text{
-				font-family: 'Poppins-SemiBold';
-				font-size: 32px;
+    .text-description-banks{
+				font-family: 'Poppins-Regular';
+				font-size: 16px;
 		}
-        .banks{
-            border: #666 solid 1px;
-            border-radius: 3px;
-            margin: 3px 5px;
-            box-shadow: 2px 2px rgb(158, 158, 158);
-        }
-        .banks .tittle{
-            font-family: 'Poppins-Regular';
-			font-size: 14px;
-        }
-          .banks .desc{
-            font-family: 'Poppins-SemiBold';
-			font-size: 14px;
-            margin: 3px 0;
-        }
 
-        .separador{
-            border-bottom: 1px solid rgb(156, 156, 156);
-        }
+		.title-text-purchase{
+				font-family: 'Poppins-SemiBold';
+				font-size: 24px;
+        color:#0F2A55
+		}
+    .banks{
+        border: #666 solid 1px;
+        border-radius: 3px;
+        margin: 3px 5px;
+        box-shadow: 2px 2px rgb(158, 158, 158);
+    }
+    .banks .tittle{
+        font-family: 'Poppins-Regular';
+			  font-size: 14px;
+    }
+    .banks .desc{
+        font-family: 'Poppins-SemiBold';
+			  font-size: 14px;
+        margin: 3px 0;
+    }
+    .separador{
+        border-bottom: 1px solid rgb(156, 156, 156);
+    }
+    .title-text-principal{
+        margin: 0 10px;
+        font-family: 'Poppins-SemiBold';
+        font-weight: 400;
+    }
+    .title-purchase{
+        font-family: 'Poppins-SemiBold';
+			  font-size: 17px;
+    }
+    .my-card{
+        padding:  10px;
+    }
+    .title-error{
+        font-family: 'Poppins-SemiBold';
+        font-size: 18px;
+        font-weight: 400;
+        color: rgb(194, 5, 5)
+    }
+    .text-msg-error{
+        font-family: 'Poppins-SemiBold';
+        font-size: 15px;
+        text-align: left;
+        color: rgb(26, 25, 25)
+    }
+    .subtitle-error{
+        font-family: 'Poppins-SemiBold';
+        font-size: 15px;
+        text-align: center;
+        color: rgb(194, 5, 5)
+    }
+    .font-checkbox-mp{
+      font-family: 'Poppins-Regular';
+    }
 
-        .title-text-principal{
-          margin: 0 10px;
-          font-family: 'Poppins-SemiBold';
-          font-weight: 400;
-          color: rgb(23, 7, 168)
-        }
-        .my-card{
-            padding:  10px;
-        }
-        .title-error{
-          font-family: 'Poppins-SemiBold';
-          font-size: 18px;
-          font-weight: 400;
-          color: rgb(194, 5, 5)
-        }
+    @media(min-width:767px){
+      .container-shopping-cart-title{
+        padding-left: 11%;
+        padding-right: 11%;
+      }
 
-       .text-msg-error{
-          font-family: 'Poppins-SemiBold';
-          font-size: 15px;
-         
-          text-align: left;
-          color: rgb(26, 25, 25)
-        }
-        .subtitle-error{
-          font-family: 'Poppins-SemiBold';
-          font-size: 15px;
-          text-align: center;
-          color: rgb(194, 5, 5)
-        }
+      .padd-ts{
+				padding-top: 60px;
+			}
+    }
 </style>

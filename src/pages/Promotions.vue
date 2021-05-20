@@ -1,7 +1,7 @@
 <template>
 <q-page>
-    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-sm" active-color="grey">
-      <q-breadcrumbs-el icon="home" to="/" />
+    <q-breadcrumbs gutter="sm" class="q-px-md text-grey q-pt-md breadcrumbs-promotion bg-azul-tenue" active-color="grey" style="font-size: 15px">
+      <q-breadcrumbs-el label="Volver a Home" icon="arrow_back" to="/" class="texto-breadcrumbs"/>
       <q-breadcrumbs-el label="Promociones" class="texto-breadcrumbs text-bluesito"/>
     </q-breadcrumbs>
      <!-- <div class="container-skeleton-list q-pa-md q-mb-sm" v-if="load">
@@ -31,13 +31,19 @@
             </q-item>
         </q-list>
     </div> -->
-    <div class="q-pa-md">
-      <div class="row justify-center q-mb-md">
+    <div class="container-list-promotions q-pa-md">
+      <div class="row q-mb-md">
         <div class="col-12 col-md-4 q-pa-md q-gutter-sm" v-for="promotion in promotions" :key="promotion.id">
-          <q-card class="my-card card2 q-pa-md text-center cursor-pointer" @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
-            <q-card-section>
+          <q-card class="my-card card2 q-pa-md text-center cursor-pointer" >
+            <q-card-section class="text-center">
+              <q-img @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })"
+                :src="promotion.image" 
+                class="img-promotions" 
+                style="max-width:150px; height: 150px;"></q-img>
+            </q-card-section>
+            <q-card-section  @click="$router.push({ path: `/promotions/detail/${promotion.id}/` })">
               <div class="text-name-promotion">
-                {{promotion.name}}
+                {{promotion.name}} 
               </div>
               <div class="text-description-promotion">
                 {{promotion.description}}
@@ -48,17 +54,51 @@
                  {{promotion.coin}} {{promotion.price}}
               </div>
 
-              <div v-if="promotion.quantity > 0" >
+              <!-- <div v-if="promotion.quantity > 0" >
                 <div class="text-detail-promotion">Cantidad Disponible :</div>
                 <div class="text-quantity">{{promotion.quantity}}</div>
-              </div>
+              </div> -->
               <div v-if="promotion.quantity  < 1" >
-                <div class="text-quantity-none">Promocion NO Disponible</div>
+                <div class="text-quantity-none-promotion">NO Disponible</div>
               </div>
             </q-card-section>
-            <q-card-section>
+            <q-card-section class="q-pt-none">
               <div class="q-pt-none" v-if="promotion.quantity > 0">
-                <q-btn label="Agregar" color="red-10" text-color="white" icon="shopping_cart" size="md" class="btn-promotions"></q-btn>
+
+                 <div class="row items-center justify-around">
+                     <div class="col-lg-5">
+                        <div class="row items-center justify-center">
+                            <q-card flat bordered>
+                              <div class="col-8 q-px-lg q-py-sm quantity-product-feature">
+                                {{promotion.shopp}}
+                              </div>
+                            </q-card>
+                                                    
+                            <div class="col-3">
+                              <div class="row items-center">
+                                <div class="col justify-center">
+                                  <q-btn flat round color="indigo-10" icon="add" class="btn-product" size="xs"  v-on:click="increaseProdQty(promotion.index)"></q-btn>
+                                </div>
+                              </div>
+                              <div class="row items-center">
+                                <div class="col justify-center">
+                                  <q-btn flat round color="redsito" icon="remove" class="btn-product" size="xs"  v-on:click="decreaseProdQty(promotion.index)"></q-btn>
+                                </div>
+                              </div>
+                                                       
+                              </div>
+                         </div>
+                        </div>
+                        <div class="col-lg-7">
+                           <div class="row items-center justify-center">
+                             <div class="col justify-center q-pt-xs">
+                                <q-btn  label="Agregar" color="blue" text-color="white" icon="shopping_cart" class="btn-product" @click.stop="Shoppingcart(promotion.id, promotion.shopp)" size="md"></q-btn>
+
+                             </div>
+                            </div>
+                          </div>
+                        </div>
+                
               </div>
             </q-card-section>
           </q-card>
@@ -79,6 +119,11 @@
       </q-pagination>
     </div>
     <footer-component></footer-component>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn fab color="white" @click="goToWz()">
+        <img src="~assets/img/whatsapp-icon.svg" style=" width: 25px;" >
+      </q-btn>
+    </q-page-sticky>
 </q-page>
 </template>
 
@@ -86,6 +131,8 @@
 import { defineComponent } from '@vue/composition-api'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import PromotionsService from '../services/home/promotions/promotion.service'
+import ShoppingcartService   from "../services/home/shoppingcart/shoppingcart.service";
+import { Loading } from "quasar";
 
 export default defineComponent({
   components: { FooterComponent },
@@ -93,6 +140,7 @@ export default defineComponent({
     return {
       load: true,
       promotions: [],
+      incart: [],
       pagination: {
         page: 1,
         rowsPerPage: 25,
@@ -121,12 +169,128 @@ export default defineComponent({
       this.offset = this.limit * (this.pagination.page - 1)
       PromotionsService.getPromotions(this.limit, this.offset).subscribe({
         next: data => {
-          console.log(data.results)
-          this.promotions = data.results
+          //console.log(data.results)
+          //this.promotions = data.results
+          let data_promotions = data.results
+          if(this.verifySession()){
+                ShoppingcartService.getListCart().subscribe({
+                    next: data => {
+                        let itemcart = data.results
+                        for (let i = 0; i < data_promotions.length; i++){
+                            let swich = false 
+                            data_promotions[i].shopp = 0
+                            data_promotions[i].index = i
+                            for (let j = 0; j < itemcart.length; j++){
+                                if((itemcart[j].promotion!=null) && (swich == false) && (data_promotions[i].id == itemcart[j].promotion.id)){   
+                                    this.incart[i] = true
+                                    data_promotions[i].shopp  = itemcart[j].quantity
+                                    swich = true
+                                }
+                                if((itemcart[j].promotion!=null) && (swich == false) && (data_promotions[i].id != itemcart[j].promotion.id)){
+                                    this.incart[i] = false                                   
+                                }
+                            }
+                        }
+                      this.promotions = data_promotions
+                       
+                    },
+                    error: err =>{
+                        console.log(err.response.data)
+                    },
+                    complete: ()=>{}
+                });
+
+                
+            }
+            else{
+               for (let i = 0; i < data_promotions.length; i++){
+                  data_promotions[i].shopp = 0
+                  data_promotions[i].index = i
+               }
+              this.promotions = data_promotions
+            }
+           
           this.numberOfPages = Math.ceil(data.count / this.limit)
         },
         complete: () => console.log('[complete]')
       })
+    },
+
+   Shoppingcart(product_id, shopp_quantity){   
+        if (this.verifySession() == true){
+            if(shopp_quantity == 0){
+                this.showNotif("Debe agregar cantidad en producto", 'red-10');
+                return 
+            }
+          
+            Loading.show();
+            const data_cart = {
+                'promotion' : product_id,
+                'quantity' : shopp_quantity
+            };
+            let subscription = ShoppingcartService.savePromotionShoppingCart(data_cart).subscribe( {
+            next: resp =>{
+                Loading.hide();
+              	if (resp.status == "200"){
+					this.showNotif(resp.data, 'red-8');
+				
+					
+				}
+				else{
+					this.showNotif(resp.data, 'blue-8');
+				
+				}
+               
+             },
+             complete: () => {
+               Loading.hide();
+             
+             },
+             error: () => {
+               Loading.hide();
+               this.showNotif("Error al agregar producto", 'red-10');
+              }
+            });
+        }
+        else{
+           this.showNotif("Debe Iniciar Sesión", 'red-10');
+           this.showInitSession = true;
+        }
+    },
+    verifySession(){
+      let token = localStorage.getItem("token")
+      let username = localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+
+          return true;
+      }
+      else{
+        return false;
+       
+      }
+    },
+    increaseProdQty(i){
+        if (this.promotions[i].shopp < this.promotions[i].quantity){ //compruebo que no se pase de la cantidad de stock
+            this.promotions[i].shopp += 1   
+        }
+    },
+    decreaseProdQty(i){
+        if (this.promotions[i].shopp > 0){ //compruebo que no se pase de la cantidad de stock
+            this.promotions[i].shopp -= 1   
+        }
+    },
+    showNotif (message , color) {
+      this.$q.notify({
+        message: message,
+        color: color,
+        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+        actions: [
+          { label: 'Ok', color: 'white', handler: () => { /* ... */ } }
+        ]
+      })
+    },
+    goToWz(){
+      window.location.href = "https://wa.me/584128770825?text=Hola%20buen%20dia."
     }
   }
 })
@@ -143,6 +307,7 @@ export default defineComponent({
 .container-list-promotions{
     padding-left: 12%;
     padding-right: 12%;
+    background-color: #F2F7FF;
 }
 .title-promotions{
     font-family: 'Poppins-Regular';
@@ -179,11 +344,17 @@ export default defineComponent({
 
 }
 
-.text-quantity-none{
+.text-quantity-none-promotion{
 
   font-family: 'Poppins-SemiBold';
-  font-size: 24px;
+  font-size: 14px;
   color: #ce0707;
+  margin: 14px 0 14px 0;
 
+}
+
+.breadcrumbs-promotion{
+  padding-left: 13%;
+  padding-right: 13%;
 }
 </style>

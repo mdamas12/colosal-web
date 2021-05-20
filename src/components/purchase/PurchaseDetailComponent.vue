@@ -24,7 +24,7 @@
 				</div> -->
             <div class="col-8">                
                 <q-card flat bordered class="my-card q-mb-md">
-					<q-item class="bg-blue-1">
+					<q-item>
 						<q-item-section>
 							 <div class="row items-center">
                                 <div class="col text-center">
@@ -40,7 +40,7 @@
 							<div class="column items-center">
 								<q-card-section class="text-center">
 									<div class="col text-name-product">
-										Referencia
+										Nro Orden
 									</div>
 									<div class="col text-desc">
 										{{purchase.id}}
@@ -154,7 +154,7 @@
 			    </q-card>
 			</div>      
 			<div class="row q-mx-xs">
-				<div class="col-12 col-sm" v-for="item in purchase.detail_sale" :key="item.id">
+				<div class="col-12 col-sm-12" v-for="item in purchase.detail_sale" :key="item.id">
 					<q-card v-if="item.product != null" flat bordered class="my-card q-mb-md">
 						<div class="row items-center">
 							<div class="col-12 col-md text-center">
@@ -167,12 +167,12 @@
 												{{item.product.name}}
 											</div>
 											<div class="col text-description-product">
-												{{item.product.description}}
+												{{item.product.brand.name}}
 											</div>
 										</q-card-section>
 									</div>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<q-card-section class="q-pa-sm text-center">
 										<div class="col text-name-product">
 											Cantidad
@@ -182,7 +182,7 @@
 										</div>
 									</q-card-section>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<div class="column items-center">
 										<q-card-section class="q-pa-sm text-center">
 											<div class="col text-name-product">
@@ -225,7 +225,7 @@
 										</q-card-section>
 									</div>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<q-card-section class="q-pa-sm text-center">
 										<div class="col text-name-product">
 											Cantidad
@@ -235,7 +235,7 @@
 										</div>
 									</q-card-section>
 							</div>
-							<div class="col-6 col-md text-center">
+							<div class="col-12 col-md text-center">
 									<div class="column items-center">
 										<q-card-section class="q-pa-sm text-center">
 											<div class="col text-name-product">
@@ -377,7 +377,7 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 
 <style>
     .container-shopping-cart-title {
-			background: #FAFAFA;
+			background: #F2F7FF;
     }
 
 		.text-name-product{
@@ -413,4 +413,11 @@ export default defineComponent ( { name: 'ShoppingCartComponent',
 		.btn-back{
 			font-family: 'Poppins-SemiBold';
 		}
+		@media(min-width:767px){
+			.col2{
+				padding-left: 12%;
+				padding-right: 12%;
+			}
+		}
+		
 </style>

@@ -116,13 +116,14 @@
     </q-layout> -->
     <q-layout view="hHh lpR fFf" class="bg-grey-1">
       <div class="container">
-        <q-header elevated class="bg-white text-grey-8 q-pa-sm" height-hint="64">
+        
+        <q-header elevated class="bg-white text-grey-8 q-pa-sm header_" height-hint="64">
           <div class="row q-pa-sm justify-center">
             <div class="col-2 q-pa-sm gt-xs">
               <img src="~assets/img/logo.png" @click="$router.push('/')" class="cursor-pointer">
             </div>
             <div class="col-12 col-md q-pa-sm gt-sm">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" class="font-input-placeholder" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -151,13 +152,13 @@
                               </q-item>
                               <q-separator />
                               <q-item clickable v-close-popup class="font-list">
-                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesion</a></q-item-section>
+                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesión</a></q-item-section>
                               </q-item>
                             </q-list>
                           </q-menu>
                         </q-btn>
                       </div>
-                      <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesion" size="md" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" /> 
+                      <q-btn v-show="SessionClean" flat color="dark" icon-right="keyboard_arrow_down" label="Iniciar Sesión" size="md" class="q-mr-md btn-sign"  @click.stop="showInitSession = true" /> 
                       <q-btn icon="shopping_cart" color="indigo-10" text-color="white" label="Carrito" class="btn-car"  size="md" @click="Shoppingcart()"></q-btn>
                     </div>
                   </div>
@@ -165,7 +166,7 @@
               </div>
             </div>
             <div class="col-12 col-md q-pa-sm lt-md">
-              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" placeholder="¿Que estas buscando?">
+              <q-input rounded outlined dense v-model="search" @keyup="searchProduct" color="bluesito" class="font-input-placeholder" placeholder="¿Qué estás buscando?">
                 <template v-slot:prepend>
                   <q-icon v-if="search === ''" name="search" />
                   <q-icon v-else name="clear" class="cursor-pointer" @click="clearSearch()" />
@@ -213,7 +214,7 @@
               </q-toolbar> -->
             <q-list v-if="products" v-for="product in products" :key="product.id" separator>
               <q-item clickable class="text-center q-px-md" @click="clickToProduct(product.id)">
-                <q-item-section>
+                <q-item-section class="font-list-products-search">
                   {{product.name}}
                 </q-item-section>
               </q-item>
@@ -259,7 +260,7 @@
               </div>
               <div class="row q-pt-md">
                 <div class="col col-md q-px-md">
-                  <a href="" class="enlace-olvido-password">He olvidado mi contraseña</a>
+                  <q-btn flat class="enlace-olvido-password" @click="showInitSession = false; showRecoverPassword = true">He olvidado mi contraseña</q-btn>
                 </div>
               </div>
             </q-item-section>
@@ -278,6 +279,45 @@
               </div>
             </div>
           </q-item-section>
+        </q-card>
+      </q-dialog>
+      
+      <!-- *********************** 
+        **** Recuperar Contraseña ****
+        **************************** -->
+
+       <q-dialog persistent v-model="showRecoverPassword" >
+        <q-card class="my-card" style="max-width:100%; width:440px">
+          <q-toolbar class="text-bluesito">
+            <q-toolbar-title class="title-session">
+                Recuperar Contraseña 
+            </q-toolbar-title>
+            <q-btn flat icon="close" round v-close-popup />
+          </q-toolbar>
+          <q-separator />
+          <q-item class="q-pt-md">
+            <q-item-section>
+              <div class="row q-pt-md">
+                <div class="col-12 col-md q-px-md">
+                  <q-input label="Email" v-model="email" class="font-input"></q-input>
+                </div>
+              </div>
+            </q-item-section>
+          </q-item>
+          <q-card-actions vertical align="center">
+            <q-btn @click="recovePassword" label="Recuperar" color="bluesito" class="btn-init-session q-mb-md" size="md"></q-btn>
+          </q-card-actions>
+          <q-separator />
+          <!-- <q-item-section>
+            <div class="row q-pt-md">
+              <div class="col">
+                <div class="container text-center q-pa-md">
+                  <q-item-label class="label-register">¿No tienes cuenta? </q-item-label>
+                  <q-btn flat label="REGÍSTRATE" @click="goToRegister()"></q-btn>
+                </div>
+              </div>
+            </div>
+          </q-item-section> -->
         </q-card>
       </q-dialog>
         <q-page-container>
@@ -344,10 +384,10 @@ export default defineComponent({
   data () {
     const leftDrawerOpen = ref(false)
     // const essentialLinks = ref(linksData)
-
     return {       
       leftDrawerOpen, 
-      showInitSession: false, 
+      showInitSession: false,
+      showRecoverPassword: false, 
       password: '', 
       isPwd: true, 
       search: '', 
@@ -356,8 +396,50 @@ export default defineComponent({
       searching : false, 
       email: '', SessionCotrol: false, SessionClean : true }
   },
+  computed: {
+      login: {
+        get () {
+          return this.$store.state.app.login
+        },
+        set (val) {
+          //this.$store.commit('showcase/updateDrawerState', val)
+        }
+      }
+  },
+  watch:{
+    login: function(newVal){
+        let token = localStorage.getItem("token")
+      let username =  localStorage.getItem("username")
+      if ((token != null) && (username != null)) {
+          this.name = username
+          this.SessionClean = false;
+          this.SessionCotrol = true;
 
+      }
+      else{
+        this.name = '';
+        this.SessionClean = true;
+        this.SessionCotrol = false;
+      }
+    }
+  },
   methods: {
+    recovePassword(){
+      this.showRecoverPassword = false
+      Loading.show()
+        UsersService.recovePassword({'email' : this.email}).subscribe({
+          next: (data : any) => {
+            this.email = ''
+            Loading.hide()
+            this.showNotif("Correo de recuperacion enviado exitosamente. Revisa tu bandeja de entrada", 'green-10');
+          },
+          error: (error : any) => {
+              Loading.hide()
+              this.email = ''
+              this.showNotif("Email no existe", 'red-10');
+          }
+        })
+    },
     goToRegister(){
       this.showInitSession = false
       this.$router.push('/register')
@@ -422,7 +504,7 @@ export default defineComponent({
           complete: () => {
             Loading.hide();
             if (this.verifySession() == true){
-            this.showNotif("Ha iniciado sesion", 'green-10');
+            this.showNotif("Ha iniciado sesión", 'green-10');
             this.showInitSession = false;
             this.email = '';
             this.password = '';
@@ -440,6 +522,7 @@ export default defineComponent({
           if (this.verifySession() == false){
             this.showNotif("Sesión cerrada exitosamente", 'blue-7');
           }
+          this.$router.push('/')
       },
       Shoppingcart(){
         
@@ -561,10 +644,25 @@ export default defineComponent({
   text-decoration: none;
 }
 
+.font-list-products-search{
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+}
+
+.font-input-placeholder{
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+}
+
+
+
 @media (min-width:767px) {
   .width-search{
   width: 40%;
   }
-
+  .header_{
+  padding-left: 12%;
+  padding-right: 12%;
+}
 }
 </style>
