@@ -139,20 +139,20 @@
                               <q-item-label class="label-register"> </q-item-label>
                           </div> -->
                       <div class="col-12 col-sm">
-                        <q-btn v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm btn-menu">{{name}}
+                        <q-btn rounded dense v-show="SessionCotrol" flat icon="users" text-color="redsito" class="q-ml-sm q-mr-md btn-menu">{{name}}
                           <q-icon name="keyboard_arrow_down" color="bluesito"/>
                           <q-menu class="menux" fit :offset="[0, 20]" transition-show="jump-down" transition-hide="jump-up" :content-style="{ backgroundColor: '#FFFFFF', color: '#020B68'}">
                             <q-list>
                               <q-item clickable v-close-popup class="font-list">
-                                <q-item-section><a href="#" class="text-myacount" @click="myaccount()">Mi Perfil</a></q-item-section>
+                                <q-item-section><a href="#" class="text-myacount q-ml-md" @click="myaccount()">Mi Perfil</a></q-item-section>
                               </q-item>
                               <q-separator />
                               <q-item clickable v-close-popup class="font-list">
-                                <q-item-section><a href="#" class="text-myacount" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
+                                <q-item-section><a href="#" class="text-myacount q-ml-md" @click="GoPurchaseOrder()">Mis Compras</a></q-item-section>
                               </q-item>
                               <q-separator />
                               <q-item clickable v-close-popup class="font-list">
-                                <q-item-section><a href="#" class="text-myacount" @click="Logout()">Cerrar Sesión</a></q-item-section>
+                                <q-item-section><a href="#" class="text-myacount q-ml-md" @click="Logout()">Cerrar Sesión</a></q-item-section>
                               </q-item>
                             </q-list>
                           </q-menu>
