@@ -1,4 +1,5 @@
 <template>
+   
   <div class="">
     <q-carousel
       animated
@@ -13,46 +14,40 @@
       @mouseleave="autoplay = true"
       control-color="red-10"
     >
-      <q-carousel-slide :name="1" img-src="~assets/img/Banner-1-cesta.png">
+     
+      <q-carousel-slide v-for="slide in header" :key="slide.id" :name="slide.id" :img-src="slide.image" >
       <div class="texto-slide1">
         <div class="col">
           <div class="row items-center q-pa-md">
             <div class="col-4 q-pa-md">
                <div class="text-h3 q-mb-md">
-                Tu minimarket de <span class="color-text">Confia<span class="subrayar">nza</span></span>
+                {{slide.title}} <span class="color-text"><span class="subrayar">{{slide.span}}</span></span>
               </div>
-              <q-btn label="ver nuestras ofertas"
-              color="negative"
-              text-color="white" class="btn-slide">
-              </q-btn>
+              <div v-if="slide.action_link == 'promociones'">
+                  <q-btn :label="slide.action_title" @click="$router.push('/promotions')"
+                  color="negative"
+                  text-color="white" class="btn-slide">
+                  </q-btn>
+              </div>
+              <div v-if="slide.action_link == 'productos'">
+                  <q-btn :label="slide.action_title" @click="$router.push('/products')"
+                  color="negative"
+                  text-color="white" class="btn-slide">
+                  </q-btn>
+              </div>
             </div>
           </div>
         </div>
       </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="2" img-src="~assets/img/Banner-2-Family.png">
-      <div class="texto-slide2">
-        <div class="col">
-          <div class="row q-pa-md">
-            <div class="col-4 q-pa-md">
-               <div class="text-h3 q-mb-md">
-                Promociones para toda la <span class="color-text"><span class="subrayar">fam</span>ilia</span>
-              </div>
-              <q-btn label="ver promociones"
-              color="negative"
-              text-color="white" class="btn-slide">
-              </q-btn>
-            </div>
-          </div>
-        </div>
-      </div>
-      </q-carousel-slide>
+    
     </q-carousel>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import HeaderService from '../services/header/header.service'
 export default defineComponent({
   name: 'CompositionComponent',
 
@@ -60,9 +55,32 @@ export default defineComponent({
     return {
       slide: 1,
       autoplay: true,
-      controlType: 'flat'
+      controlType: 'flat',
+      variable : "",
+      header : []
     }
-  }
+  },
+  mounted(){
+      
+      this.getHeader()
+    },
+  methods: {
+
+    getHeader(){
+      //alert("ok ok ok")
+      let subscription = HeaderService.getImagesActive().subscribe( {
+        
+        next: (data : any) => {
+          this.header = data; 
+          //console.log(this.header)       
+        },
+        complete: () => console.log(this.header),
+      })
+
+    }
+
+
+   }
 })
 </script>
 

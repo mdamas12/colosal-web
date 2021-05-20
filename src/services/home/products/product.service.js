@@ -66,6 +66,8 @@ class ProductsService {
     return Observable.create((observer) => {
       axios.get(API_URL + `products-orderby/${id}/?limit=${limit}&offset=${offset}`)
         .then((response) => {
+          console.log("estee es ")
+          console.log(response.data)
           observer.next(response.data)
           observer.complete()
         })
