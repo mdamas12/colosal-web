@@ -61,7 +61,7 @@
                            <a href="https://wa.me/584128770825?text=Hola%20buen%20dia." style="color:#fff">+58-412-8770825</a>
                         </div>
                         <div class="text-parrafo-footer text-white q-pt-md">
-                           Colosalminimarket@gmail.com
+                            <a href="mailto:Colosalminimarket@gmail.com" style="color:#fff">Colosalminimarket@gmail.com</a>
                         </div>
                     </div>
                 </div>
